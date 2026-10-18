@@ -27,3 +27,7 @@ Bilden die Schritte eine gerade Linie (jeder Schritt verarbeitet nur das Produkt
 - Verbindungen zwischen den Gruppen (welcher Ausgang speist welchen Strang).
 - Blueprint-Download: braucht Vorlagen aus Spieler-Blueprints, die nicht im Repo liegen.
 - Auswahl von Alternativrezepten, Mast-Stufe, Daisy Chain.
+
+## Vorschau
+
+Draufsicht je Bauplan (`src/ui/Preview.tsx`), von der Eingangsseite aus gesehen: Zuführung unten, „links“ links. Orange Rahmen: Designer, Gitter: Foundations. Gefüllt: harte Boxen, gestrichelt: weiche Boxen. Graue Pfeile: Bänder in Flussrichtung, orange: Stummel und offene Enden.

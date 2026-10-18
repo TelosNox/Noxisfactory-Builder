@@ -3,6 +3,9 @@
 import { useMemo, useState } from 'preact/hooks';
 import { gameData, type ItemId } from '../planner/gameData';
 import { plan, standardRecipes, type Plan } from '../planner/planner';
+import { generateChain } from '../generator/chain';
+import { generateRow } from '../generator/row';
+import { Preview } from './Preview';
 import { buildPlan, suggestRates, type BuildOptions, type BuildPlan, type ChainPlan, type Group } from '../build/buildPlan';
 
 const products: ItemId[] = [
@@ -199,6 +202,9 @@ function ChainSection({ chain, opt }: { chain: ChainPlan; opt: BuildOptions }) {
               </p>
             ))}
             <p>Designer Mk{opt.designer - 3}, Band Mk{opt.beltTier}</p>
+            <Preview
+              layout={generateChain({ ...opt, stages: chain.stages.map((s) => ({ recipe: s.recipe, machines: s.perModule })) })}
+            />
           </div>
         </div>
       </section>
@@ -233,7 +239,10 @@ function GroupCard({ group: g, index, opt }: { group: Group; index: number; opt:
       {g.unsupported ? (
         <p class="warn">Generator: {g.unsupported}</p>
       ) : (
-        <p>Designer Mk{opt.designer - 3}, Band Mk{opt.beltTier}</p>
+        <>
+          <p>Designer Mk{opt.designer - 3}, Band Mk{opt.beltTier}</p>
+          <Preview layout={generateRow({ ...opt, recipe: g.recipe, machines: n })} />
+        </>
       )}
     </div>
   );

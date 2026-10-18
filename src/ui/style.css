@@ -31,7 +31,7 @@ select, input { font: inherit; padding: 6px; color: var(--fg); background: var(-
 table { border-collapse: collapse; width: 100%; }
 th, td { text-align: left; padding: 4px 8px; border-bottom: 1px solid var(--line); }
 .num { text-align: right; }
-.groups { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+.groups { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 12px; }
 .card { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 12px; }
 .card h3 { margin: 0 0 8px; font-size: 1em; }
 .card p { margin: 4px 0; }
@@ -39,3 +39,17 @@ th, td { text-align: left; padding: 4px 8px; border-bottom: 1px solid var(--line
 .ok { color: var(--ok); }
 .warn, .error { color: var(--warn); }
 button { font: inherit; margin: 0 4px; padding: 4px 8px; color: var(--fg); background: var(--card); border: 1px solid var(--line); border-radius: 4px; cursor: pointer; }
+
+.preview { width: 100%; margin-top: 8px; background: var(--bg); border-radius: 4px; }
+.preview .designer { fill: none; stroke: var(--accent); stroke-width: 0.3; }
+.preview .grid { stroke: var(--line); stroke-width: 0.1; }
+.preview .hard { stroke-width: 0.15; }
+.preview .soft { fill: none; stroke-width: 0.1; stroke-dasharray: 0.4 0.3; }
+.preview .machine.hard { fill: #8aa9c9; stroke: #3d5f80; }
+.preview .splitter.hard, .preview .splitter.soft { fill: #e8b35a55; stroke: #a36a00; }
+.preview .merger.hard, .preview .merger.soft { fill: #7cc47f55; stroke: #2f7d32; }
+.preview .machine.soft { stroke: #3d5f80; }
+.preview .belt { stroke: #555; stroke-width: 0.8; stroke-opacity: 0.8; }
+.preview .belt.stub { stroke: var(--accent); }
+.preview .arrow { fill: #555; }
+.preview .label { font-size: 1.2px; text-anchor: middle; dominant-baseline: middle; fill: #10263c; }
