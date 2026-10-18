@@ -1,2 +1,5 @@
 # Raw game asset exports (not redistributable)
 data/raw/
+node_modules/
+dist/
+data/poc/

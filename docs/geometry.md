@@ -67,6 +67,10 @@ Spielversion der Exporte und Tests: 1.2.4.1 (CL#513885). „Spielerfahrung“ un
   - *Ohne Daisy Chain* (Standard): Mast am Boden auf einem freien Platz nahe dem Stromanschluss der ersten Maschine. Ein Mast versorgt höchstens die Hälfte seiner Anschlüsse an Maschinen, aufgerundet (Mk1: 2, Mk2: 4, Mk3: 5). Die übrigen Anschlüsse bleiben für Zuleitung und Verbindungen zu anderen Masten. Für die nächste Maschine kommt ein neuer Mast. Stellfläche: weiche Box 0,8 × 0,8 m, auf dem 1-m-Raster also 1 × 1 m, Höhe 7,6 (Mk1) bis 9,5 m (Mk3) (Export).
   - *Mit Daisy Chain*: keine Masten im Bauplan. Maschinen in Kette, Baupläne untereinander ebenfalls per Daisy Chain verbunden.
 
+## Blueprint-Schnittstellen
+
+- Damit sich nebeneinander gesetzte Blueprints automatisch verbinden, muss an der Kante ein Stück Förderband enden (Spielerfahrung, *prüfen, ob das in 1.2 noch so ist*).
+
 ## Offene Punkte
 
 - Höhe des Bandanschlusses am Kopf der Förderlift-Durchführung *(vermutlich 1 m wie die Ports)*.
