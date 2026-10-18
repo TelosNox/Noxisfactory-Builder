@@ -6,7 +6,7 @@ Werte, die mit *(prüfen)* markiert sind, stammen aus dem Gedächtnis und müsse
 
 ## Randbedingungen des Spiels
 
-- Baupläne sind in ihrer Größe begrenzt, abhängig vom Blueprint Designer (in Foundations à 8 m): Mk1 4×4×4, Mk2 5×5×5, Mk3 6×6×6 *(prüfen)*.
+- Baupläne sind in ihrer Größe begrenzt, abhängig vom Blueprint Designer (in Foundations à 8 m): Mk1 4×4×4, Mk2 5×5×5, Mk3 6×6×6 (Quelle: `mDimensions` in `Build_BlueprintDesigner*`, FModel-Export).
 - Gebäude beanspruchen nicht pauschal ganze Kacheln. Es zählen die tatsächliche Kollisionsbox bzw. Clearance (harte und weiche Clearance *(prüfen)*), Port-Positionen, -Höhen und -Richtungen sowie das Platzierungsraster.
 - Obere Ebenen brauchen keine Stützen, Stützen sind rein ästhetisch. Der Bauraum ist damit ein echtes 3D-Raster ohne Statik.
 - Es gibt vertikale Splitter und Merger.

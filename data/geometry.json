@@ -1,0 +1,7676 @@
+{
+  "Build_AlienPowerBuilding_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/AlienPower/Build_AlienPowerBuilding.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -15.0,
+          -15.0,
+          0.0
+        ],
+        "max": [
+          15.0,
+          15.0,
+          25.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -8.0,
+          -8.0,
+          25.0
+        ],
+        "max": [
+          8.0,
+          8.0,
+          39.2
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      }
+    ],
+    "connections": [
+      {
+        "name": "Input0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          9.1,
+          1.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "PowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          3.773,
+          10.436,
+          4.664
+        ],
+        "yaw": 180,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_AlienPowerBuilding_C"
+  },
+  "Build_AssemblerMk1_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -4.5,
+          -8.5,
+          0.0
+        ],
+        "max": [
+          4.5,
+          7.5,
+          3.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -4.5,
+          -2.0,
+          3.0
+        ],
+        "max": [
+          4.5,
+          3.5,
+          8.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          1.55,
+          -0.8,
+          8.0
+        ],
+        "max": [
+          1.95,
+          -0.4,
+          10.75
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      }
+    ],
+    "connections": [
+      {
+        "name": "Input0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          2.0,
+          -6.0,
+          1.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "Input1",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          -2.0,
+          -6.0,
+          1.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "Output0",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          0.0,
+          5.0,
+          1.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "PowerInput",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          4.835,
+          1.236,
+          6.95
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_AssemblerMk1_C"
+  },
+  "Build_AutomatedWorkBench_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/AutomatedWorkBench/Build_AutomatedWorkBench.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -3.0,
+          -1.5,
+          0.0
+        ],
+        "max": [
+          3.0,
+          0.9,
+          4.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [],
+    "class": "Build_AutomatedWorkBench_C"
+  },
+  "Build_Blender_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/Blender/Build_Blender.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -9.0,
+          -5.0,
+          7.0
+        ],
+        "max": [
+          3.0,
+          5.0,
+          13.8
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -9.0,
+          -8.0,
+          0.0
+        ],
+        "max": [
+          9.0,
+          8.0,
+          7.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          2.535,
+          -2.449,
+          5.657
+        ],
+        "max": [
+          5.592,
+          1.704,
+          10.5
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -9.0,
+          -7.0,
+          7.0
+        ],
+        "max": [
+          -2.0,
+          7.0,
+          10.5
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          2.3,
+          -0.2,
+          13.8
+        ],
+        "max": [
+          2.7,
+          0.2,
+          15.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      }
+    ],
+    "connections": [
+      {
+        "name": "Input0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          2.0,
+          -7.0,
+          1.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "Input1",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          6.0,
+          -7.0,
+          1.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "Output1",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          -2.0,
+          7.0,
+          1.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "PipeInputFactory",
+        "kind": "pipe",
+        "direction": "PCT_CONSUMER",
+        "position": [
+          -2.0,
+          -7.0,
+          1.75
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "PipeInputFactory1",
+        "kind": "pipe",
+        "direction": "PCT_CONSUMER",
+        "position": [
+          -6.0,
+          -7.0,
+          1.75
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "PipeOutputFactory",
+        "kind": "pipe",
+        "direction": "PCT_PRODUCER",
+        "position": [
+          -6.0,
+          7.4,
+          1.75
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "PowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          -8.807,
+          -6.9,
+          10.945
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_Blender_C"
+  },
+  "Build_Blueprint_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/BlueprintBuildable/Build_Blueprint.json",
+    "clearance": [],
+    "connections": [],
+    "class": "Build_Blueprint_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_BlueprintDesigner_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/BlueprintDesigner/Build_BlueprintDesigner.json",
+    "clearance": [],
+    "connections": [],
+    "class": "Build_BlueprintDesigner_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_BlueprintDesigner_MK2_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/BlueprintDesigner/Build_BlueprintDesigner_MK2.json",
+    "clearance": [],
+    "connections": [],
+    "class": "Build_BlueprintDesigner_MK2_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_BlueprintDesigner_Mk3_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/BlueprintDesigner/Build_BlueprintDesigner_Mk3.json",
+    "clearance": [],
+    "connections": [],
+    "class": "Build_BlueprintDesigner_Mk3_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_ConveyorAttachmentMerger_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/CA_Merger/Build_ConveyorAttachmentMerger.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          -2.0,
+          -2.0,
+          -0.8
+        ],
+        "max": [
+          2.0,
+          2.0,
+          1.8
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "Input1",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 180,
+        "pitch": 0
+      },
+      {
+        "name": "Input2",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "Input3",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          -1.0,
+          0.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "Output1",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_ConveyorAttachmentMerger_C"
+  },
+  "Build_ConveyorAttachmentMergerLift_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/CA_MergerLift/Build_ConveyorAttachmentMergerLift.json",
+    "clearance": [],
+    "connections": [
+      {
+        "name": "BottomConnection",
+        "kind": "belt",
+        "direction": "FCD_ANY",
+        "position": [
+          0.0,
+          0.0,
+          0.5
+        ],
+        "yaw": 0,
+        "pitch": -90
+      },
+      {
+        "name": "Input1",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          -1.0,
+          0.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "Input2",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "TopConnection",
+        "kind": "belt",
+        "direction": "FCD_ANY",
+        "position": [
+          -0.0,
+          0.0,
+          0.5
+        ],
+        "yaw": 0,
+        "pitch": 90
+      }
+    ],
+    "class": "Build_ConveyorAttachmentMergerLift_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_ConveyorAttachmentMergerPriorityLift_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/CA_MergerLiftPriority/Build_ConveyorAttachmentMergerPriorityLift.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          -2.0,
+          -2.0,
+          -0.8
+        ],
+        "max": [
+          2.0,
+          2.0,
+          1.8
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "BottomConnection",
+        "kind": "belt",
+        "direction": "FCD_ANY",
+        "position": [
+          0.0,
+          0.0,
+          -0.45
+        ],
+        "yaw": 0,
+        "pitch": -90
+      },
+      {
+        "name": "Input1",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          -1.0,
+          0.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "Input2",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "TopConnection",
+        "kind": "belt",
+        "direction": "FCD_ANY",
+        "position": [
+          0.0,
+          0.0,
+          1.55
+        ],
+        "yaw": 0,
+        "pitch": 90
+      }
+    ],
+    "class": "Build_ConveyorAttachmentMergerPriorityLift_C"
+  },
+  "Build_ConveyorAttachmentMergerPriority_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/CA_MergerPriority/Build_ConveyorAttachmentMergerPriority.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          -2.0,
+          -2.0,
+          -0.8
+        ],
+        "max": [
+          2.0,
+          2.0,
+          1.8
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "Input1",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 180,
+        "pitch": 0
+      },
+      {
+        "name": "Input2",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "Input3",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          -1.0,
+          0.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "Output1",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_ConveyorAttachmentMergerPriority_C"
+  },
+  "Build_ConveyorAttachmentSplitter_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/CA_Splitter/Build_ConveyorAttachmentSplitter.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          -2.0,
+          -2.0,
+          -0.8
+        ],
+        "max": [
+          2.0,
+          2.0,
+          1.8
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "Input1",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 180,
+        "pitch": 0
+      },
+      {
+        "name": "Output1",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      },
+      {
+        "name": "Output2",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "Output3",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          -0.0,
+          -1.0,
+          0.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_ConveyorAttachmentSplitter_C"
+  },
+  "Build_ConveyorAttachmentSplitterLift_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/CA_SplitterLift/Build_ConveyorAttachmentSplitterLift.json",
+    "clearance": [],
+    "connections": [
+      {
+        "name": "BottomConnection",
+        "kind": "belt",
+        "direction": "FCD_ANY",
+        "position": [
+          0.0,
+          0.0,
+          0.5
+        ],
+        "yaw": 0,
+        "pitch": -90
+      },
+      {
+        "name": "Output1",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          0.0,
+          -1.0,
+          0.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "Output2",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "TopConnection",
+        "kind": "belt",
+        "direction": "FCD_ANY",
+        "position": [
+          0.0,
+          0.0,
+          0.5
+        ],
+        "yaw": 0,
+        "pitch": 90
+      }
+    ],
+    "class": "Build_ConveyorAttachmentSplitterLift_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_ConveyorAttachmentSplitterProgrammableLift_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/CA_SplitterLiftProgrammable/Build_ConveyorAttachmentSplitterProgrammableLift.json",
+    "clearance": [],
+    "connections": [
+      {
+        "name": "BottomConnection",
+        "kind": "belt",
+        "direction": "FCD_ANY",
+        "position": [
+          0.0,
+          0.0,
+          0.5
+        ],
+        "yaw": 180,
+        "pitch": -90
+      },
+      {
+        "name": "Output1",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          0.0,
+          -1.0,
+          0.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "Output2",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "TopConnection",
+        "kind": "belt",
+        "direction": "FCD_ANY",
+        "position": [
+          0.0,
+          0.0,
+          0.5
+        ],
+        "yaw": 0,
+        "pitch": 90
+      }
+    ],
+    "class": "Build_ConveyorAttachmentSplitterProgrammableLift_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_ConveyorAttachmentSplitterSmartLift_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/CA_SplitterLiftSmart/Build_ConveyorAttachmentSplitterSmartLift.json",
+    "clearance": [],
+    "connections": [
+      {
+        "name": "BottomConnection",
+        "kind": "belt",
+        "direction": "FCD_ANY",
+        "position": [
+          0.0,
+          0.0,
+          0.5
+        ],
+        "yaw": 180,
+        "pitch": -90
+      },
+      {
+        "name": "Output1",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          0.0,
+          -1.0,
+          0.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "Output2",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "TopConnection",
+        "kind": "belt",
+        "direction": "FCD_ANY",
+        "position": [
+          0.0,
+          0.0,
+          0.5
+        ],
+        "yaw": 0,
+        "pitch": 90
+      }
+    ],
+    "class": "Build_ConveyorAttachmentSplitterSmartLift_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_ConveyorAttachmentSplitterProgrammable_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/CA_SplitterProgrammable/Build_ConveyorAttachmentSplitterProgrammable.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          -2.0,
+          -2.0,
+          -0.8
+        ],
+        "max": [
+          2.0,
+          2.0,
+          1.8
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "Input1",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 180,
+        "pitch": 0
+      },
+      {
+        "name": "Output1",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      },
+      {
+        "name": "Output2",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "Output3",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          0.0,
+          -1.0,
+          0.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_ConveyorAttachmentSplitterProgrammable_C"
+  },
+  "Build_ConveyorAttachmentSplitterSmart_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/CA_SplitterSmart/Build_ConveyorAttachmentSplitterSmart.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          -2.0,
+          -2.0,
+          -0.8
+        ],
+        "max": [
+          2.0,
+          2.0,
+          1.8
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "Input1",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 180,
+        "pitch": 0
+      },
+      {
+        "name": "Output1",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      },
+      {
+        "name": "Output2",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "Output3",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          0.0,
+          -1.0,
+          0.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_ConveyorAttachmentSplitterSmart_C"
+  },
+  "Build_CeilingLight_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/CeilingLight/Build_CeilingLight.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -5.5,
+          -6.5,
+          -0.85
+        ],
+        "max": [
+          5.5,
+          5.5,
+          0.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "PowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          0.0,
+          -6.0,
+          -0.6
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_CeilingLight_C"
+  },
+  "Build_CentralStorage_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/CentralStorage/Build_CentralStorage.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -2.5,
+          -4.5,
+          0.0
+        ],
+        "max": [
+          2.5,
+          4.5,
+          4.23
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "Input0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          -0.0,
+          3.9,
+          1.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_CentralStorage_C"
+  },
+  "Build_CheatFluidPump_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/CheatFluidPump/Build_CheatFluidPump.json",
+    "clearance": [],
+    "connections": [],
+    "class": "Build_CheatFluidPump_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_CheatPowerSource_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/CheatPowerSource/Build_CheatPowerSource.json",
+    "clearance": [],
+    "connections": [
+      {
+        "name": "PowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          0.7,
+          -0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": -90
+      }
+    ],
+    "class": "Build_CheatPowerSource_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_ConstructorMk1_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -4.0,
+          -5.0,
+          0.0
+        ],
+        "max": [
+          4.0,
+          5.0,
+          6.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          -1.85,
+          -4.85,
+          6.0
+        ],
+        "max": [
+          -1.45,
+          -4.45,
+          8.5
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          1.85,
+          -4.9,
+          6.0
+        ],
+        "max": [
+          2.35,
+          -4.4,
+          7.3
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      }
+    ],
+    "connections": [
+      {
+        "name": "Input0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          -3.0,
+          1.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "Output0",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          0.0,
+          3.0,
+          1.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "PowerInput",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          2.1,
+          -4.7,
+          6.872
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_ConstructorMk1_C"
+  },
+  "Build_Converter_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/Converter/Build_Converter.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -8.0,
+          -8.0,
+          0.0
+        ],
+        "max": [
+          8.0,
+          8.0,
+          4.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -7.5,
+          -7.5,
+          4.0
+        ],
+        "max": [
+          7.5,
+          7.5,
+          17.5
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      }
+    ],
+    "connections": [
+      {
+        "name": "Input0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          -2.0,
+          -6.8,
+          1.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "Input1",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          2.0,
+          -6.8,
+          1.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "Output0",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          2.0,
+          6.6,
+          1.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "FGPipeConnectionFactory",
+        "kind": "pipe",
+        "direction": "PCT_PRODUCER",
+        "position": [
+          -2.0,
+          7.0,
+          1.75
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "PowerInput",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          5.25,
+          -7.67,
+          5.08
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_Converter_C"
+  },
+  "Build_ConveyorBeltMk1_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/ConveyorBeltMk1/Build_ConveyorBeltMk1.json",
+    "clearance": [],
+    "connections": [
+      {
+        "name": "ConveyorAny0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      },
+      {
+        "name": "ConveyorAny1",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_ConveyorBeltMk1_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_ConveyorBeltMk2_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/ConveyorBeltMk2/Build_ConveyorBeltMk2.json",
+    "clearance": [],
+    "connections": [
+      {
+        "name": "ConveyorAny0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      },
+      {
+        "name": "ConveyorAny1",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_ConveyorBeltMk2_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_ConveyorBeltMk3_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/ConveyorBeltMk3/Build_ConveyorBeltMk3.json",
+    "clearance": [],
+    "connections": [
+      {
+        "name": "ConveyorAny0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      },
+      {
+        "name": "ConveyorAny1",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_ConveyorBeltMk3_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_ConveyorBeltMk4_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/ConveyorBeltMk4/Build_ConveyorBeltMk4.json",
+    "clearance": [],
+    "connections": [
+      {
+        "name": "ConveyorAny0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      },
+      {
+        "name": "ConveyorAny1",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_ConveyorBeltMk4_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_ConveyorBeltMk5_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/ConveyorBeltMk5/Build_ConveyorBeltMk5.json",
+    "clearance": [],
+    "connections": [
+      {
+        "name": "ConveyorAny0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      },
+      {
+        "name": "ConveyorAny1",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_ConveyorBeltMk5_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_ConveyorBeltMk6_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/ConveyorBeltMk6/Build_ConveyorBeltMk6.json",
+    "clearance": [],
+    "connections": [
+      {
+        "name": "ConveyorAny0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      },
+      {
+        "name": "ConveyorAny1",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_ConveyorBeltMk6_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_ConveyorLiftMk1_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/ConveyorLiftMk1/Build_ConveyorLiftMk1.json",
+    "clearance": [],
+    "connections": [
+      {
+        "name": "ConveyorAny0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      },
+      {
+        "name": "ConveyorAny1",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_ConveyorLiftMk1_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_ConveyorLiftMk2_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/ConveyorLiftMk2/Build_ConveyorLiftMk2.json",
+    "clearance": [],
+    "connections": [
+      {
+        "name": "ConveyorAny0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      },
+      {
+        "name": "ConveyorAny1",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_ConveyorLiftMk2_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_ConveyorLiftMk3_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/ConveyorLiftMk3/Build_ConveyorLiftMk3.json",
+    "clearance": [],
+    "connections": [
+      {
+        "name": "ConveyorAny0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      },
+      {
+        "name": "ConveyorAny1",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_ConveyorLiftMk3_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_ConveyorLiftMk4_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/ConveyorLiftMk4/Build_ConveyorLiftMk4.json",
+    "clearance": [],
+    "connections": [
+      {
+        "name": "ConveyorAny0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      },
+      {
+        "name": "ConveyorAny1",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_ConveyorLiftMk4_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_ConveyorLiftMk5_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/ConveyorLiftMk5/Build_ConveyorLiftMk5.json",
+    "clearance": [],
+    "connections": [
+      {
+        "name": "ConveyorAny0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      },
+      {
+        "name": "ConveyorAny1",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_ConveyorLiftMk5_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_ConveyorLiftMk6_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/ConveyorLiftMk6/Build_ConveyorLiftMk6.json",
+    "clearance": [],
+    "connections": [
+      {
+        "name": "ConveyorAny0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      },
+      {
+        "name": "ConveyorAny1",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_ConveyorLiftMk6_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_ConveyorMonitor_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/ConveyorMonitor/Build_ConveyorMonitor.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          -1.0,
+          -1.1,
+          -0.25
+        ],
+        "max": [
+          1.0,
+          1.1,
+          0.75
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [],
+    "class": "Build_ConveyorMonitor_C"
+  },
+  "Build_ConveyorPole_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/ConveyorPole/Build_ConveyorPole.json",
+    "clearance": [],
+    "connections": [
+      {
+        "name": "SnapOnly0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_ConveyorPole_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_ConveyorPoleStackable_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/ConveyorPoleStackable/Build_ConveyorPoleStackable.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          -0.5,
+          -1.0,
+          0.0
+        ],
+        "max": [
+          0.5,
+          1.0,
+          2.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      }
+    ],
+    "connections": [
+      {
+        "name": "SnapOnly0",
+        "kind": "belt",
+        "direction": "FCD_SNAP_ONLY",
+        "position": [
+          0.0,
+          0.0,
+          3.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_ConveyorPoleStackable_C"
+  },
+  "Build_ConveyorCeilingAttachment_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/ConveyorPoleWall/Build_ConveyorCeilingAttachment.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          -0.1,
+          -1.0,
+          0.4
+        ],
+        "max": [
+          0.1,
+          1.0,
+          2.4
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "SnapOnly0",
+        "kind": "belt",
+        "direction": "FCD_SNAP_ONLY",
+        "position": [
+          0.0,
+          -0.0,
+          2.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_ConveyorCeilingAttachment_C"
+  },
+  "Build_ConveyorPoleWall_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/ConveyorPoleWall/Build_ConveyorPoleWall.json",
+    "clearance": [],
+    "connections": [
+      {
+        "name": "SnapOnly0",
+        "kind": "belt",
+        "direction": "FCD_SNAP_ONLY",
+        "position": [
+          2.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_ConveyorPoleWall_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_DroneStation_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/DroneStation/Build_DroneStation.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -5.0,
+          -12.0,
+          0.0
+        ],
+        "max": [
+          12.0,
+          12.0,
+          3.5
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          4.0,
+          -12.0,
+          4.5
+        ],
+        "max": [
+          12.0,
+          12.0,
+          8.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          6.0,
+          -10.0,
+          8.0
+        ],
+        "max": [
+          10.0,
+          -6.0,
+          14.5
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -1.0,
+          8.5,
+          4.5
+        ],
+        "max": [
+          1.0,
+          11.5,
+          8.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -12.0,
+          -12.0,
+          3.5
+        ],
+        "max": [
+          12.0,
+          12.0,
+          4.5
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "Input0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          12.0,
+          7.0,
+          1.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      },
+      {
+        "name": "Input1",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          12.0,
+          -5.0,
+          1.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      },
+      {
+        "name": "Output0",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          12.0,
+          -9.0,
+          1.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      },
+      {
+        "name": "PowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          9.738,
+          -8.488,
+          13.782
+        ],
+        "yaw": 90,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_DroneStation_C"
+  },
+  "Build_Elevator_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/Elevator/Build_Elevator.json",
+    "clearance": [],
+    "connections": [
+      {
+        "name": "PowerConnection ",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_Elevator_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_ElevatorFloorStop_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/Elevator/Build_ElevatorFloorStop.json",
+    "clearance": [],
+    "connections": [
+      {
+        "name": "PowerInput",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          4.2,
+          -1.85,
+          3.22
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_ElevatorFloorStop_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_FloodlightPole_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/Floodlight/Build_FloodlightPole.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -1.5,
+          -1.5,
+          2.0
+        ],
+        "max": [
+          1.5,
+          1.5,
+          34.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -4.0,
+          -4.0,
+          0.0
+        ],
+        "max": [
+          4.0,
+          4.0,
+          2.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "PowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          -1.415,
+          -0.034,
+          7.842
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_FloodlightPole_C"
+  },
+  "Build_FloodlightWall_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/Floodlight/Build_FloodlightWall.json",
+    "clearance": [],
+    "connections": [
+      {
+        "name": "PowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          0.275,
+          -0.0,
+          -0.942
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_FloodlightWall_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_FoundationPassthrough_Hypertube_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/FoundationPassthrough/Build_FoundationPassthrough_Hypertube.json",
+    "clearance": [],
+    "connections": [],
+    "class": "Build_FoundationPassthrough_Hypertube_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_FoundationPassthrough_Lift_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/FoundationPassthrough/Build_FoundationPassthrough_Lift.json",
+    "clearance": [],
+    "connections": [],
+    "class": "Build_FoundationPassthrough_Lift_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_FoundationPassthrough_Pipe_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/FoundationPassthrough/Build_FoundationPassthrough_Pipe.json",
+    "clearance": [],
+    "connections": [],
+    "class": "Build_FoundationPassthrough_Pipe_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_FoundryMk1_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/FoundryMk1/Build_FoundryMk1.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -5.0,
+          -5.5,
+          0.0
+        ],
+        "max": [
+          5.0,
+          4.5,
+          4.5
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          0.0,
+          -5.5,
+          4.5
+        ],
+        "max": [
+          5.0,
+          4.5,
+          9.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          -4.1,
+          1.8,
+          4.5
+        ],
+        "max": [
+          -3.7,
+          2.2,
+          6.8
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "Input0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          2.0,
+          -3.0,
+          1.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "Input1",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          -2.0,
+          -3.0,
+          1.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "Output2",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          -2.0,
+          2.0,
+          1.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "PowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          -4.2,
+          3.2,
+          5.55
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_FoundryMk1_C"
+  },
+  "Build_FrackingExtractor_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/FrackingExtractor/Build_FrackingExtractor.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -2.5,
+          -2.5,
+          0.0
+        ],
+        "max": [
+          2.5,
+          2.5,
+          5.7
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "FGPipeConnectionFactory",
+        "kind": "pipe",
+        "direction": "PCT_PRODUCER",
+        "position": [
+          1.0,
+          0.0,
+          3.75
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_FrackingExtractor_C"
+  },
+  "Build_FrackingSmasher_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/FrackingSmasher/Build_FrackingSmasher.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -7.5,
+          -7.5,
+          0.0
+        ],
+        "max": [
+          7.5,
+          7.5,
+          22.5
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "FGPowerConnection1",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          -0.0,
+          -4.057,
+          11.534
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_FrackingSmasher_C"
+  },
+  "Build_GeneratorBiomass_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/GeneratorBiomass/Build_GeneratorBiomass.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -4.0,
+          -4.0,
+          0.0
+        ],
+        "max": [
+          4.0,
+          4.0,
+          5.7
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          1.2,
+          2.8,
+          5.7
+        ],
+        "max": [
+          1.8,
+          3.4,
+          7.7
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          1.55,
+          -0.6,
+          5.7
+        ],
+        "max": [
+          3.55,
+          1.4,
+          6.45
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "PowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          3.052,
+          1.845,
+          6.4
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_GeneratorBiomass_C"
+  },
+  "Build_GeneratorBiomass_Automated_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/GeneratorBiomass/Build_GeneratorBiomass_Automated.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -4.0,
+          -4.0,
+          0.0
+        ],
+        "max": [
+          4.0,
+          4.0,
+          7.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "Input0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          -0.0,
+          3.0,
+          1.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "PowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          1.569,
+          3.158,
+          6.4
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_GeneratorBiomass_Automated_C"
+  },
+  "Build_GeneratorIntegratedBiomass_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/GeneratorBiomass/Build_GeneratorIntegratedBiomass.json",
+    "clearance": [],
+    "connections": [
+      {
+        "name": "PowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          -0.348,
+          -0.755,
+          3.75
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_GeneratorIntegratedBiomass_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_GeneratorCoal_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/GeneratorCoal/Build_GeneratorCoal.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -5.0,
+          -13.5,
+          0.0
+        ],
+        "max": [
+          5.0,
+          12.5,
+          9.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -4.087,
+          7.5,
+          9.0
+        ],
+        "max": [
+          -1.487,
+          10.0,
+          32.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          2.45,
+          -12.95,
+          9.0
+        ],
+        "max": [
+          2.85,
+          -12.55,
+          11.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          -2.95,
+          -13.3,
+          9.0
+        ],
+        "max": [
+          -2.35,
+          -12.7,
+          9.75
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      }
+    ],
+    "connections": [
+      {
+        "name": "Input0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          2.0,
+          11.0,
+          1.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "FGPipeConnectionFactory",
+        "kind": "pipe",
+        "direction": "PCT_CONSUMER",
+        "position": [
+          -2.0,
+          11.417,
+          1.75
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "PowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          -2.671,
+          -12.822,
+          9.384
+        ],
+        "yaw": 180,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_GeneratorCoal_C"
+  },
+  "Build_GeneratorFuel_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/GeneratorFuel/Build_GeneratorFuel.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -9.192,
+          -9.192,
+          0.0
+        ],
+        "max": [
+          9.192,
+          9.192,
+          5.5
+        ],
+        "rotated": true,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -10.0,
+          -2.0,
+          0.0
+        ],
+        "max": [
+          10.0,
+          2.0,
+          11.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -9.192,
+          -9.192,
+          0.0
+        ],
+        "max": [
+          9.192,
+          9.192,
+          5.5
+        ],
+        "rotated": true,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -1.186,
+          -1.177,
+          8.068
+        ],
+        "max": [
+          1.176,
+          1.17,
+          26.568
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -3.2,
+          -3.2,
+          14.568
+        ],
+        "max": [
+          3.2,
+          3.2,
+          16.568
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -2.0,
+          -10.0,
+          0.0
+        ],
+        "max": [
+          2.0,
+          10.0,
+          7.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          -1.9,
+          -5.4,
+          7.0
+        ],
+        "max": [
+          -1.5,
+          -5.0,
+          8.75
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          -1.0,
+          3.25,
+          7.0
+        ],
+        "max": [
+          1.0,
+          5.75,
+          9.5
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      }
+    ],
+    "connections": [
+      {
+        "name": "FGPipeConnectionFactory",
+        "kind": "pipe",
+        "direction": "PCT_CONSUMER",
+        "position": [
+          0.0,
+          -8.602,
+          1.75
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "PowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          -0.001,
+          5.384,
+          9.197
+        ],
+        "yaw": 90,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_GeneratorFuel_C"
+  },
+  "Build_GeneratorGeoThermal_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/GeneratorGeoThermal/Build_GeneratorGeoThermal.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -10.0,
+          -9.5,
+          0.0
+        ],
+        "max": [
+          10.0,
+          9.5,
+          32.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "PowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          -2.7,
+          4.85,
+          10.4
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_GeneratorGeoThermal_C"
+  },
+  "Build_GeneratorNuclear_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/GeneratorNuclear/Build_GeneratorNuclear.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -6.0,
+          -21.0,
+          0.0
+        ],
+        "max": [
+          6.0,
+          21.0,
+          8.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -18.0,
+          -8.0,
+          0.0
+        ],
+        "max": [
+          18.0,
+          8.0,
+          10.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -9.0,
+          -9.0,
+          9.0
+        ],
+        "max": [
+          9.0,
+          9.0,
+          36.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -5.0,
+          9.0,
+          8.0
+        ],
+        "max": [
+          5.0,
+          19.5,
+          34.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          -1.0,
+          8.8,
+          36.0
+        ],
+        "max": [
+          1.0,
+          9.2,
+          38.5
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          8.8,
+          -1.0,
+          36.0
+        ],
+        "max": [
+          9.2,
+          1.0,
+          38.5
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          -9.2,
+          -1.0,
+          36.0
+        ],
+        "max": [
+          -8.8,
+          1.0,
+          38.5
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -13.0,
+          -15.0,
+          0.0
+        ],
+        "max": [
+          13.0,
+          15.0,
+          10.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      }
+    ],
+    "connections": [
+      {
+        "name": "Input0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          -2.0,
+          19.878,
+          1.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "Output0",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          2.0,
+          19.878,
+          1.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "FGPipeConnectionFactory",
+        "kind": "pipe",
+        "direction": "PCT_CONSUMER",
+        "position": [
+          0.0,
+          20.649,
+          5.75
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "PowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          -6.623,
+          -18.991,
+          8.887
+        ],
+        "yaw": 180,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_GeneratorNuclear_C"
+  },
+  "Build_HadronCollider_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/HadronCollider/Build_HadronCollider.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          9.0,
+          3.0,
+          0.0
+        ],
+        "max": [
+          19.0,
+          13.0,
+          8.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          6.366,
+          5.5,
+          16.5
+        ],
+        "max": [
+          15.83,
+          8.5,
+          28.892
+        ],
+        "rotated": true,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          0.583,
+          5.5,
+          25.572
+        ],
+        "max": [
+          9.469,
+          8.5,
+          32.067
+        ],
+        "rotated": true,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -4.0,
+          5.5,
+          28.0
+        ],
+        "max": [
+          4.0,
+          8.5,
+          32.0
+        ],
+        "rotated": true,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -11.477,
+          5.5,
+          25.775
+        ],
+        "max": [
+          -2.591,
+          8.5,
+          32.27
+        ],
+        "rotated": true,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -17.134,
+          5.5,
+          18.036
+        ],
+        "max": [
+          -8.67,
+          8.5,
+          28.696
+        ],
+        "rotated": true,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -17.5,
+          5.5,
+          0.5
+        ],
+        "max": [
+          -12.5,
+          8.5,
+          20.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -16.752,
+          5.5,
+          1.864
+        ],
+        "max": [
+          -6.92,
+          8.5,
+          12.924
+        ],
+        "rotated": true,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -18.0,
+          4.5,
+          0.0
+        ],
+        "max": [
+          15.0,
+          9.5,
+          4.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          10.5,
+          3.5,
+          6.0
+        ],
+        "max": [
+          17.5,
+          10.5,
+          17.5
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          4.165,
+          0.362,
+          21.709
+        ],
+        "max": [
+          9.495,
+          4.594,
+          23.478
+        ],
+        "rotated": true,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          7.513,
+          2.295,
+          19.572
+        ],
+        "max": [
+          13.029,
+          6.634,
+          23.604
+        ],
+        "rotated": true,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -0.637,
+          -2.41,
+          18.536
+        ],
+        "max": [
+          5.629,
+          2.362,
+          23.068
+        ],
+        "rotated": true,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -2.474,
+          -3.471,
+          14.813
+        ],
+        "max": [
+          2.018,
+          0.277,
+          20.028
+        ],
+        "rotated": true,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -3.232,
+          -3.866,
+          5.5
+        ],
+        "max": [
+          0.366,
+          -0.634,
+          15.5
+        ],
+        "rotated": true,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -4.844,
+          -4.839,
+          2.45
+        ],
+        "max": [
+          5.695,
+          2.4,
+          11.96
+        ],
+        "rotated": true,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -3.196,
+          -3.888,
+          0.2
+        ],
+        "max": [
+          16.856,
+          8.844,
+          5.7
+        ],
+        "rotated": true,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -13.223,
+          -10.254,
+          0.0
+        ],
+        "max": [
+          -0.83,
+          -0.79,
+          2.0
+        ],
+        "rotated": true,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -5.051,
+          -4.959,
+          0.515
+        ],
+        "max": [
+          -0.377,
+          -1.106,
+          4.757
+        ],
+        "rotated": true,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -11.175,
+          -8.495,
+          6.667
+        ],
+        "max": [
+          -6.93,
+          -4.889,
+          10.414
+        ],
+        "rotated": true,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -11.892,
+          -8.866,
+          0.5
+        ],
+        "max": [
+          -9.16,
+          -6.134,
+          7.5
+        ],
+        "rotated": true,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -9.258,
+          -7.388,
+          9.0
+        ],
+        "max": [
+          -3.062,
+          -2.656,
+          10.3
+        ],
+        "rotated": true,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          6.0,
+          -14.0,
+          0.0
+        ],
+        "max": [
+          19.0,
+          3.0,
+          5.2
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          18.0,
+          -9.05,
+          5.2
+        ],
+        "max": [
+          18.6,
+          -8.45,
+          6.5
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      }
+    ],
+    "connections": [
+      {
+        "name": "Input0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          -6.0,
+          9.0,
+          1.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "Input1",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          -2.0,
+          9.0,
+          1.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "Output0",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          -4.0,
+          -13.1,
+          1.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "FGPipeConnectionFactory",
+        "kind": "pipe",
+        "direction": "PCT_CONSUMER",
+        "position": [
+          2.0,
+          9.9,
+          1.75
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "PowerInput",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          -8.33,
+          6.749,
+          6.166
+        ],
+        "yaw": 270,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_HadronCollider_C"
+  },
+  "Build_TreeGiftProducer_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/Holiday/Build_TreeGiftProducer/Build_TreeGiftProducer.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -4.0,
+          -4.0,
+          0.0
+        ],
+        "max": [
+          4.0,
+          4.0,
+          17.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "output0",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_TreeGiftProducer_C"
+  },
+  "Build_HubTerminal_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/HubTerminal/Build_HubTerminal.json",
+    "clearance": [],
+    "connections": [],
+    "class": "Build_HubTerminal_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_HyperTubeWallHole_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/HyperTubeWallSupport/Build_HyperTubeWallHole.json",
+    "clearance": [],
+    "connections": [],
+    "class": "Build_HyperTubeWallHole_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_HyperTubeWallSupport_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/HyperTubeWallSupport/Build_HyperTubeWallSupport.json",
+    "clearance": [],
+    "connections": [],
+    "class": "Build_HyperTubeWallSupport_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_IndustrialTank_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/IndustrialFluidContainer/Build_IndustrialTank.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -7.0,
+          -7.0,
+          0.0
+        ],
+        "max": [
+          7.0,
+          7.0,
+          12.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "ConnectionAny0",
+        "kind": "pipe",
+        "direction": null,
+        "position": [
+          0.0,
+          6.0,
+          1.75
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "ConnectionAny1",
+        "kind": "pipe",
+        "direction": null,
+        "position": [
+          0.0,
+          -6.0,
+          1.75
+        ],
+        "yaw": 270,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_IndustrialTank_C"
+  },
+  "Build_JumpPad_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/JumpPad/Build_JumpPad.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -3.0,
+          -3.0,
+          0.0
+        ],
+        "max": [
+          3.0,
+          3.0,
+          6.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "FGPowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          -0.3,
+          -2.0,
+          4.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_JumpPad_C"
+  },
+  "Build_JumpPadAdjustable_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/JumpPad/Build_JumpPadAdjustable.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -3.0,
+          -3.0,
+          0.0
+        ],
+        "max": [
+          3.0,
+          3.0,
+          3.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "FGPowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          -2.12,
+          -2.1,
+          1.55
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_JumpPadAdjustable_C"
+  },
+  "Build_JumpPadTilted_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/JumpPad/Build_JumpPadTilted.json",
+    "clearance": [],
+    "connections": [],
+    "class": "Build_JumpPadTilted_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_LandingPad_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/LandingPad/Build_LandingPad.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -5.0,
+          -4.5,
+          0.0
+        ],
+        "max": [
+          5.0,
+          5.5,
+          5.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "FGPowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          4.59,
+          5.25,
+          4.64
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_LandingPad_C"
+  },
+  "Build_LightsControlPanel_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/LightsControlPanel/Build_LightsControlPanel.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -1.0,
+          -0.5,
+          0.0
+        ],
+        "max": [
+          1.0,
+          0.5,
+          3.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "DownstreamConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          0.795,
+          0.0,
+          2.72
+        ],
+        "yaw": 0,
+        "pitch": 0
+      },
+      {
+        "name": "UpstreamConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          -0.847,
+          0.0,
+          2.355
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_LightsControlPanel_C"
+  },
+  "Build_Locker_MK1_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/Locker/Build_Locker_MK1.json",
+    "clearance": [],
+    "connections": [],
+    "class": "Build_Locker_MK1_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_LookoutTower_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/LookoutTower/Build_LookoutTower.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -4.0,
+          -4.0,
+          0.0
+        ],
+        "max": [
+          4.0,
+          4.0,
+          1.5
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -1.5,
+          -1.5,
+          1.5
+        ],
+        "max": [
+          1.5,
+          1.5,
+          16.5
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -3.0,
+          -3.0,
+          16.5
+        ],
+        "max": [
+          3.0,
+          3.0,
+          23.5
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      }
+    ],
+    "connections": [],
+    "class": "Build_LookoutTower_C"
+  },
+  "Build_Mam_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/Mam/Build_Mam.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -2.5,
+          -4.5,
+          0.0
+        ],
+        "max": [
+          3.5,
+          4.5,
+          5.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [],
+    "class": "Build_Mam_C"
+  },
+  "Build_ManufacturerMk1_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -9.0,
+          -3.0,
+          0.0
+        ],
+        "max": [
+          9.0,
+          9.0,
+          11.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -9.0,
+          -11.0,
+          0.0
+        ],
+        "max": [
+          9.0,
+          -3.0,
+          3.8
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          -7.5,
+          4.5,
+          11.291
+        ],
+        "max": [
+          -5.0,
+          6.0,
+          14.591
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -4.0,
+          -5.939,
+          3.817
+        ],
+        "max": [
+          4.0,
+          -2.939,
+          9.068
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      }
+    ],
+    "connections": [
+      {
+        "name": "Input0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          6.0,
+          -8.75,
+          1.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "Input1",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          2.0,
+          -8.75,
+          1.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "Input2",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          -2.0,
+          -8.75,
+          1.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "Input3",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          -6.0,
+          -8.75,
+          1.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "Output0",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          0.0,
+          8.0,
+          1.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "PowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          8.4,
+          4.952,
+          10.146
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_ManufacturerMk1_C"
+  },
+  "Build_MinerMk1_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/MinerMK1/Build_MinerMk1.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -3.0,
+          -5.0,
+          0.0
+        ],
+        "max": [
+          3.0,
+          9.0,
+          4.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -3.0,
+          -5.0,
+          4.0
+        ],
+        "max": [
+          3.0,
+          5.0,
+          16.3
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          0.75,
+          -0.1,
+          16.3
+        ],
+        "max": [
+          1.75,
+          0.5,
+          18.35
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      }
+    ],
+    "connections": [
+      {
+        "name": "Output0",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          0.0,
+          8.0,
+          1.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "PowerInput",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          1.262,
+          0.158,
+          17.998
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_MinerMk1_C"
+  },
+  "Build_MinerMk2_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/MinerMk2/Build_MinerMk2.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -3.0,
+          -5.0,
+          0.0
+        ],
+        "max": [
+          3.0,
+          9.0,
+          4.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -3.0,
+          -5.0,
+          4.0
+        ],
+        "max": [
+          3.0,
+          5.0,
+          17.5
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          1.05,
+          -0.06,
+          17.5
+        ],
+        "max": [
+          1.65,
+          0.54,
+          17.5
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      }
+    ],
+    "connections": [
+      {
+        "name": "Output0",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          0.0,
+          8.0,
+          1.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "PowerInput",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          1.391,
+          0.208,
+          17.985
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_MinerMk2_C"
+  },
+  "Build_MinerMk3_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/MinerMk3/Build_MinerMk3.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -3.0,
+          -5.0,
+          0.0
+        ],
+        "max": [
+          3.0,
+          9.0,
+          6.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -3.0,
+          -5.0,
+          6.0
+        ],
+        "max": [
+          3.0,
+          5.0,
+          17.5
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          1.1,
+          -0.1,
+          17.5
+        ],
+        "max": [
+          1.7,
+          0.5,
+          18.4
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      }
+    ],
+    "connections": [
+      {
+        "name": "Output0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_MinerMk3_C"
+  },
+  "Build_OilPump_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/OilPump/Build_OilPump.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -4.0,
+          -5.1,
+          0.2
+        ],
+        "max": [
+          4.0,
+          7.9,
+          18.2
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "FGPipeConnectionFactory",
+        "kind": "pipe",
+        "direction": "PCT_PRODUCER",
+        "position": [
+          0.0,
+          7.6,
+          1.75
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "PowerInput",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          1.016,
+          -5.251,
+          16.551
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_OilPump_C"
+  },
+  "Build_OilRefinery_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -5.0,
+          -11.0,
+          0.0
+        ],
+        "max": [
+          5.0,
+          11.0,
+          15.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -2.5,
+          -4.5,
+          15.0
+        ],
+        "max": [
+          2.5,
+          10.0,
+          19.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -2.5,
+          -10.0,
+          15.0
+        ],
+        "max": [
+          2.5,
+          -4.5,
+          21.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -1.0,
+          8.676,
+          19.0
+        ],
+        "max": [
+          1.0,
+          10.376,
+          30.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          0.65,
+          -9.5,
+          21.0
+        ],
+        "max": [
+          1.05,
+          -9.1,
+          22.8
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      }
+    ],
+    "connections": [
+      {
+        "name": "Input0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          2.0,
+          9.0,
+          1.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "Output1",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          2.0,
+          -9.0,
+          1.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "PipeInputFactory",
+        "kind": "pipe",
+        "direction": "PCT_CONSUMER",
+        "position": [
+          -2.0,
+          9.0,
+          1.75
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "PipeOutputFactory",
+        "kind": "pipe",
+        "direction": "PCT_PRODUCER",
+        "position": [
+          -2.0,
+          -9.0,
+          1.75
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "PowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          0.0,
+          9.69,
+          18.725
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_OilRefinery_C"
+  },
+  "Build_Packager_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/Packager/Build_Packager.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -4.0,
+          -4.0,
+          0.0
+        ],
+        "max": [
+          4.0,
+          4.0,
+          12.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "Input0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          -3.0,
+          1.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "Output1",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          -0.0,
+          3.0,
+          1.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "PipeInputFactory",
+        "kind": "pipe",
+        "direction": "PCT_CONSUMER",
+        "position": [
+          0.0,
+          -3.8,
+          3.75
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "PipeOutputFactory",
+        "kind": "pipe",
+        "direction": "PCT_PRODUCER",
+        "position": [
+          -0.0,
+          3.5,
+          3.75
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "PowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          -2.19,
+          0.48,
+          10.74
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_Packager_C"
+  },
+  "Build_PipeHyper_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/PipeHyper/Build_PipeHyper.json",
+    "clearance": [],
+    "connections": [],
+    "class": "Build_PipeHyper_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_HyperTubeJunction_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/PipeHyperJunction/Build_HyperTubeJunction.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "max": [
+          1.0,
+          2.5,
+          1.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          -2.665,
+          -2.116,
+          -1.0
+        ],
+        "max": [
+          1.366,
+          1.366,
+          1.0
+        ],
+        "rotated": true,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          -1.366,
+          -2.116,
+          -1.0
+        ],
+        "max": [
+          2.665,
+          1.366,
+          1.0
+        ],
+        "rotated": true,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [],
+    "class": "Build_HyperTubeJunction_C"
+  },
+  "Build_PipeHyperStart_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/PipeHyperStart/Build_PipeHyperStart.json",
+    "clearance": [],
+    "connections": [
+      {
+        "name": "PowerInput",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          -1.795,
+          -0.003,
+          2.487
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_PipeHyperStart_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_PipeHyperSupport_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/PipeHyperSupport/Build_PipeHyperSupport.json",
+    "clearance": [],
+    "connections": [],
+    "class": "Build_PipeHyperSupport_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_HypertubeTJunction_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/PipeHyperTJunction/Build_HypertubeTJunction.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          -2.5,
+          -1.0,
+          -1.0
+        ],
+        "max": [
+          2.5,
+          1.0,
+          1.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          -2.137,
+          -0.872,
+          -1.0
+        ],
+        "max": [
+          1.122,
+          2.729,
+          1.0
+        ],
+        "rotated": true,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [],
+    "class": "Build_HypertubeTJunction_C"
+  },
+  "Build_PipelineJunction_Cross_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/PipeJunction/Build_PipelineJunction_Cross.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          -1.2,
+          -1.2,
+          -0.75
+        ],
+        "max": [
+          1.2,
+          1.2,
+          0.75
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "Connection0",
+        "kind": "pipe",
+        "direction": null,
+        "position": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 180,
+        "pitch": 0
+      },
+      {
+        "name": "Connection1",
+        "kind": "pipe",
+        "direction": null,
+        "position": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      },
+      {
+        "name": "Connection2",
+        "kind": "pipe",
+        "direction": null,
+        "position": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "Connection3",
+        "kind": "pipe",
+        "direction": null,
+        "position": [
+          0.0,
+          -1.0,
+          0.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_PipelineJunction_Cross_C"
+  },
+  "Build_PipelineJunction_T_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/PipeJunction/Build_PipelineJunction_T.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          -1.2,
+          -1.2,
+          -0.75
+        ],
+        "max": [
+          1.2,
+          1.2,
+          0.75
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "Connection0",
+        "kind": "pipe",
+        "direction": null,
+        "position": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 180,
+        "pitch": 0
+      },
+      {
+        "name": "Connection1",
+        "kind": "pipe",
+        "direction": null,
+        "position": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      },
+      {
+        "name": "Connection2",
+        "kind": "pipe",
+        "direction": null,
+        "position": [
+          0.0,
+          -1.0,
+          0.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_PipelineJunction_T_C"
+  },
+  "Build_Pipeline_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/Pipeline/Build_Pipeline.json",
+    "clearance": [],
+    "connections": [
+      {
+        "name": "PipelineConnection0",
+        "kind": "pipe",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      },
+      {
+        "name": "PipelineConnection1",
+        "kind": "pipe",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_Pipeline_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_Pipeline_NoIndicator_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/Pipeline/Build_Pipeline_NoIndicator.json",
+    "clearance": [],
+    "connections": [
+      {
+        "name": "PipelineConnection0",
+        "kind": "pipe",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      },
+      {
+        "name": "PipelineConnection1",
+        "kind": "pipe",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_Pipeline_NoIndicator_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_PipelineFlowIndicator_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/Pipeline/FlowIndicator/Build_PipelineFlowIndicator.json",
+    "clearance": [],
+    "connections": [],
+    "class": "Build_PipelineFlowIndicator_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_PipelineMK2_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/PipelineMk2/Build_PipelineMK2.json",
+    "clearance": [],
+    "connections": [
+      {
+        "name": "PipelineConnection0",
+        "kind": "pipe",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      },
+      {
+        "name": "PipelineConnection1",
+        "kind": "pipe",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_PipelineMK2_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_PipelineMK2_NoIndicator_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/PipelineMk2/Build_PipelineMK2_NoIndicator.json",
+    "clearance": [],
+    "connections": [
+      {
+        "name": "PipelineConnection0",
+        "kind": "pipe",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      },
+      {
+        "name": "PipelineConnection1",
+        "kind": "pipe",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_PipelineMK2_NoIndicator_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_HyperPoleStackable_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/PipelineSupport/Build_HyperPoleStackable.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          -0.5,
+          -1.2,
+          2.8
+        ],
+        "max": [
+          0.5,
+          1.2,
+          4.8
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      }
+    ],
+    "connections": [],
+    "class": "Build_HyperPoleStackable_C"
+  },
+  "Build_PipelineSupport_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/PipelineSupport/Build_PipelineSupport.json",
+    "clearance": [],
+    "connections": [
+      {
+        "name": "SnapOnly0",
+        "kind": "pipe",
+        "direction": "PCT_SNAP_ONLY",
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_PipelineSupport_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_PipeSupportStackable_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/PipelineSupport/Build_PipeSupportStackable.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          -0.5,
+          -1.2,
+          2.8
+        ],
+        "max": [
+          0.5,
+          1.2,
+          4.8
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      }
+    ],
+    "connections": [
+      {
+        "name": "SnapOnly0",
+        "kind": "pipe",
+        "direction": "PCT_SNAP_ONLY",
+        "position": [
+          0.0,
+          0.0,
+          3.75
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_PipeSupportStackable_C"
+  },
+  "Build_PipelineSupportWall_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/PipelineSupportWall/Build_PipelineSupportWall.json",
+    "clearance": [],
+    "connections": [
+      {
+        "name": "SnapOnly0",
+        "kind": "pipe",
+        "direction": "PCT_SNAP_ONLY",
+        "position": [
+          2.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_PipelineSupportWall_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_PipelineSupportWallHole_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/PipelineSupportWallHole/Build_PipelineSupportWallHole.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          -0.468,
+          -1.0,
+          -1.0
+        ],
+        "max": [
+          0.468,
+          1.0,
+          1.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "SnapOnly0",
+        "kind": "pipe",
+        "direction": "PCT_SNAP_ONLY",
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_PipelineSupportWallHole_C"
+  },
+  "Build_PipelinePump_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/PipePump/Build_PipelinePump.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -1.68,
+          -0.6,
+          -0.6
+        ],
+        "max": [
+          2.12,
+          0.6,
+          0.6
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "Connection0",
+        "kind": "pipe",
+        "direction": "PCT_CONSUMER",
+        "position": [
+          -1.5,
+          -0.0,
+          0.0
+        ],
+        "yaw": 180,
+        "pitch": 0
+      },
+      {
+        "name": "Connection1",
+        "kind": "pipe",
+        "direction": "PCT_PRODUCER",
+        "position": [
+          1.95,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      },
+      {
+        "name": "PowerInput",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          1.778,
+          0.451,
+          1.115
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_PipelinePump_C"
+  },
+  "Build_PipelinePumpMk2_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/PipePumpMk2/Build_PipelinePumpMK2.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -2.5,
+          -0.6,
+          -0.6
+        ],
+        "max": [
+          2.5,
+          0.6,
+          0.6
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "Connection0",
+        "kind": "pipe",
+        "direction": "PCT_CONSUMER",
+        "position": [
+          -2.0,
+          -0.0,
+          0.0
+        ],
+        "yaw": 180,
+        "pitch": 0
+      },
+      {
+        "name": "Connection1",
+        "kind": "pipe",
+        "direction": "PCT_PRODUCER",
+        "position": [
+          2.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      },
+      {
+        "name": "PowerInput",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          1.165,
+          -1.411,
+          0.493
+        ],
+        "yaw": 270,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_PipelinePumpMk2_C"
+  },
+  "Build_Valve_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/PipeValve/Build_Valve.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -0.78,
+          -0.6,
+          -0.6
+        ],
+        "max": [
+          1.22,
+          0.6,
+          0.6
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "Connection0",
+        "kind": "pipe",
+        "direction": "PCT_CONSUMER",
+        "position": [
+          -0.5,
+          0.0,
+          0.0
+        ],
+        "yaw": 180,
+        "pitch": 0
+      },
+      {
+        "name": "Connection1",
+        "kind": "pipe",
+        "direction": "PCT_PRODUCER",
+        "position": [
+          0.95,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_Valve_C"
+  },
+  "Build_Portal_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/Portal/Build_Portal.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -4.0,
+          -4.0,
+          0.0
+        ],
+        "max": [
+          4.0,
+          4.0,
+          12.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "ConveyorInput0_0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          -3.0,
+          0.0,
+          1.0
+        ],
+        "yaw": 180,
+        "pitch": 0
+      },
+      {
+        "name": "PowerInput",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          -1.57,
+          -0.0,
+          9.83
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_Portal_C"
+  },
+  "Build_PortalSatellite_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/Portal/Build_PortalSatellite.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -4.0,
+          -4.0,
+          0.0
+        ],
+        "max": [
+          4.0,
+          4.0,
+          10.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "PowerInput",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          -1.57,
+          -0.0,
+          8.283
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_PortalSatellite_C"
+  },
+  "Build_PortalPotty_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/PortalPotty/Build_PortalPotty.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -1.0,
+          -1.0,
+          0.0
+        ],
+        "max": [
+          1.0,
+          1.0,
+          3.7
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [],
+    "class": "Build_PortalPotty_C"
+  },
+  "Build_PowerLine_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/PowerLine/Build_PowerLine.json",
+    "clearance": [],
+    "connections": [],
+    "class": "Build_PowerLine_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_PowerPoleMk1_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/PowerPoleMk1/Build_PowerPoleMk1.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          -0.4,
+          -0.4,
+          0.0
+        ],
+        "max": [
+          0.4,
+          0.4,
+          7.6
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "PowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          7.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_PowerPoleMk1_C"
+  },
+  "Build_PowerPoleMk2_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/PowerPoleMk2/Build_PowerPoleMk2.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          -0.4,
+          -0.4,
+          0.8
+        ],
+        "max": [
+          0.4,
+          0.4,
+          8.2
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "PowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          7.6
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_PowerPoleMk2_C"
+  },
+  "Build_PowerPoleMk3_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/PowerPoleMk3/Build_PowerPoleMk3.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          -0.4,
+          -0.4,
+          0.8
+        ],
+        "max": [
+          0.4,
+          0.4,
+          9.5
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "PowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          8.85
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_PowerPoleMk3_C"
+  },
+  "Build_PowerPoleWall_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/PowerPoleWall/Build_PowerPoleWall.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          0.105,
+          -0.283,
+          -0.283
+        ],
+        "max": [
+          1.002,
+          0.283,
+          0.283
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "PowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          0.8,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_PowerPoleWall_C"
+  },
+  "Build_PowerPoleWall_Mk2_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/PowerPoleWall/Build_PowerPoleWall_Mk2.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          0.105,
+          -0.283,
+          -0.283
+        ],
+        "max": [
+          1.002,
+          0.283,
+          0.283
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          0.105,
+          -0.346,
+          -0.346
+        ],
+        "max": [
+          1.001,
+          0.346,
+          0.346
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "PowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_PowerPoleWall_Mk2_C"
+  },
+  "Build_PowerPoleWall_Mk3_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/PowerPoleWall/Build_PowerPoleWall_Mk3.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          0.105,
+          -0.283,
+          -0.283
+        ],
+        "max": [
+          1.002,
+          0.283,
+          0.283
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          0.105,
+          -0.433,
+          -0.433
+        ],
+        "max": [
+          1.002,
+          0.433,
+          0.433
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "PowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_PowerPoleWall_Mk3_C"
+  },
+  "Build_PowerPoleWallDouble_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/PowerPoleWallDouble/Build_PowerPoleWallDouble.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          -1.002,
+          -0.283,
+          -0.283
+        ],
+        "max": [
+          1.002,
+          0.283,
+          0.283
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "PowerConnection1",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          0.7,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      },
+      {
+        "name": "PowerConnection2",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          -0.7,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_PowerPoleWallDouble_C"
+  },
+  "Build_PowerPoleWallDouble_Mk2_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/PowerPoleWallDouble/Build_PowerPoleWallDouble_Mk2.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          -1.002,
+          -0.283,
+          -0.283
+        ],
+        "max": [
+          1.002,
+          0.283,
+          0.283
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          -1.001,
+          -0.346,
+          -0.346
+        ],
+        "max": [
+          1.001,
+          0.346,
+          0.346
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "PowerConnection1",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      },
+      {
+        "name": "PowerConnection2",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_PowerPoleWallDouble_Mk2_C"
+  },
+  "Build_PowerPoleWallDouble_Mk3_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/PowerPoleWallDouble/Build_PowerPoleWallDouble_Mk3.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          -1.002,
+          -0.283,
+          -0.283
+        ],
+        "max": [
+          1.002,
+          0.283,
+          0.283
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          -1.001,
+          -0.346,
+          -0.346
+        ],
+        "max": [
+          1.001,
+          0.346,
+          0.346
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          -1.002,
+          -0.433,
+          -0.433
+        ],
+        "max": [
+          1.002,
+          0.433,
+          0.433
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "PowerConnection1",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      },
+      {
+        "name": "PowerConnection2",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_PowerPoleWallDouble_Mk3_C"
+  },
+  "Build_PowerStorageMk1_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/PowerStorage/Build_PowerStorageMk1.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -3.0,
+          -3.0,
+          0.0
+        ],
+        "max": [
+          3.0,
+          3.0,
+          12.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "PowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          -0.0,
+          -3.215,
+          11.5
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_PowerStorageMk1_C"
+  },
+  "Build_PowerSwitch_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/PowerSwitch/Build_PowerSwitch.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -1.0,
+          -0.5,
+          0.0
+        ],
+        "max": [
+          1.0,
+          0.5,
+          3.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "PowerConnection1",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          -0.85,
+          -0.003,
+          3.01
+        ],
+        "yaw": 0,
+        "pitch": 0
+      },
+      {
+        "name": "PowerConnection2",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          0.85,
+          -0.003,
+          3.01
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_PowerSwitch_C"
+  },
+  "Build_PowerTower_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/PowerTower/Build_PowerTower.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          -6.0,
+          -6.0,
+          0.0
+        ],
+        "max": [
+          6.0,
+          6.0,
+          7.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          -3.0,
+          -3.0,
+          7.0
+        ],
+        "max": [
+          3.0,
+          3.0,
+          24.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          -2.0,
+          -7.0,
+          24.0
+        ],
+        "max": [
+          2.0,
+          7.0,
+          30.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "PowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          12.1
+        ],
+        "yaw": 0,
+        "pitch": 0
+      },
+      {
+        "name": "PowerTowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          0.0,
+          0.0,
+          27.7
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_PowerTower_C"
+  },
+  "Build_PowerTowerPlatform_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/PowerTower/Build_PowerTowerPlatform.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          -6.0,
+          -6.0,
+          0.0
+        ],
+        "max": [
+          6.0,
+          6.0,
+          7.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          -3.0,
+          -3.0,
+          7.0
+        ],
+        "max": [
+          3.0,
+          3.0,
+          24.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          -2.0,
+          -7.0,
+          24.0
+        ],
+        "max": [
+          2.0,
+          7.0,
+          30.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          -4.0,
+          -4.0,
+          19.5
+        ],
+        "max": [
+          4.0,
+          4.0,
+          20.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      }
+    ],
+    "connections": [],
+    "class": "Build_PowerTowerPlatform_C"
+  },
+  "Build_PriorityPowerSwitch_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/PriorityPowerSwitch/Build_PriorityPowerSwitch.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -1.0,
+          -0.5,
+          0.0
+        ],
+        "max": [
+          1.0,
+          0.5,
+          3.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "PowerConnection1",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          -0.85,
+          -0.003,
+          3.01
+        ],
+        "yaw": 0,
+        "pitch": 0
+      },
+      {
+        "name": "PowerConnection2",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          0.85,
+          -0.003,
+          3.01
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_PriorityPowerSwitch_C"
+  },
+  "Build_QuantumEncoder_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/QuantumEncoder/Build_QuantumEncoder.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -8.0,
+          -21.0,
+          0.0
+        ],
+        "max": [
+          8.0,
+          -10.0,
+          4.5
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -11.0,
+          -10.0,
+          0.0
+        ],
+        "max": [
+          11.0,
+          10.0,
+          14.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -4.5,
+          -27.0,
+          0.0
+        ],
+        "max": [
+          4.5,
+          -21.0,
+          5.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -6.0,
+          10.0,
+          0.0
+        ],
+        "max": [
+          6.0,
+          23.0,
+          5.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          8.1,
+          -20.6,
+          2.5
+        ],
+        "max": [
+          8.9,
+          -20.0,
+          5.2
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          -8.9,
+          -19.8,
+          4.5
+        ],
+        "max": [
+          -1.9,
+          -16.8,
+          7.2
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      }
+    ],
+    "connections": [
+      {
+        "name": "Input1",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          2.0,
+          -24.6,
+          1.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "Input2",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          -2.0,
+          -24.6,
+          1.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "Input3",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          -6.0,
+          -21.0,
+          1.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "Output0",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          -2.0,
+          21.0,
+          1.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "PipeInput1",
+        "kind": "pipe",
+        "direction": "PCT_CONSUMER",
+        "position": [
+          6.0,
+          -20.9,
+          1.75
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "PipeOutput1",
+        "kind": "pipe",
+        "direction": "PCT_PRODUCER",
+        "position": [
+          2.0,
+          21.6,
+          1.75
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "PowerInput",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          8.575,
+          -20.297,
+          4.792
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_QuantumEncoder_C"
+  },
+  "Build_RadarTower_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/RadarTower/Build_RadarTower.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -5.0,
+          -5.0,
+          0.0
+        ],
+        "max": [
+          5.0,
+          5.0,
+          118.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "FGPowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          1.149,
+          -3.469,
+          17.303
+        ],
+        "yaw": 180,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_RadarTower_C"
+  },
+  "Build_ResourceSink_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/ResourceSink/Build_ResourceSink.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -6.0,
+          -7.0,
+          0.0
+        ],
+        "max": [
+          10.0,
+          7.0,
+          9.5
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          2.75,
+          -6.5,
+          9.5
+        ],
+        "max": [
+          8.75,
+          1.5,
+          18.2
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      }
+    ],
+    "connections": [
+      {
+        "name": "Input0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          5.0,
+          1.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "FGPowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          -3.611,
+          -3.207,
+          8.985
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_ResourceSink_C"
+  },
+  "Build_ResourceSinkShop_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/ResourceSinkShop/Build_ResourceSinkShop.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -2.0,
+          -3.0,
+          0.0
+        ],
+        "max": [
+          2.0,
+          3.0,
+          5.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [],
+    "class": "Build_ResourceSinkShop_C"
+  },
+  "Build_StandaloneWidgetSign_Huge_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/SignDigital/Build_StandaloneWidgetSign_Huge.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          -8.0,
+          0.26,
+          -4.0
+        ],
+        "max": [
+          8.0,
+          0.66,
+          4.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [],
+    "class": "Build_StandaloneWidgetSign_Huge_C"
+  },
+  "Build_StandaloneWidgetSign_Large_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/SignDigital/Build_StandaloneWidgetSign_Large.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          -4.0,
+          -0.12,
+          -2.0
+        ],
+        "max": [
+          4.0,
+          0.08,
+          2.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [],
+    "class": "Build_StandaloneWidgetSign_Large_C"
+  },
+  "Build_StandaloneWidgetSign_Medium_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/SignDigital/Build_StandaloneWidgetSign_Medium.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          -1.0,
+          -0.09,
+          -0.5
+        ],
+        "max": [
+          1.0,
+          0.09,
+          0.5
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [],
+    "class": "Build_StandaloneWidgetSign_Medium_C"
+  },
+  "Build_StandaloneWidgetSign_Portrait_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/SignDigital/Build_StandaloneWidgetSign_Portrait.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          -1.0,
+          -0.09,
+          -1.5
+        ],
+        "max": [
+          1.0,
+          0.09,
+          1.5
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [],
+    "class": "Build_StandaloneWidgetSign_Portrait_C"
+  },
+  "Build_StandaloneWidgetSign_Small_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/SignDigital/Build_StandaloneWidgetSign_Small.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          -1.0,
+          -0.09,
+          -0.25
+        ],
+        "max": [
+          1.0,
+          0.09,
+          0.25
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [],
+    "class": "Build_StandaloneWidgetSign_Small_C"
+  },
+  "Build_StandaloneWidgetSign_SmallVeryWide_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/SignDigital/Build_StandaloneWidgetSign_SmallVeryWide.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          -2.0,
+          -0.09,
+          -0.25
+        ],
+        "max": [
+          2.0,
+          0.09,
+          0.25
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [],
+    "class": "Build_StandaloneWidgetSign_SmallVeryWide_C"
+  },
+  "Build_StandaloneWidgetSign_SmallWide_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/SignDigital/Build_StandaloneWidgetSign_SmallWide.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          -1.5,
+          -0.09,
+          -0.25
+        ],
+        "max": [
+          1.5,
+          0.09,
+          0.25
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [],
+    "class": "Build_StandaloneWidgetSign_SmallWide_C"
+  },
+  "Build_StandaloneWidgetSign_Square_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/SignDigital/Build_StandaloneWidgetSign_Square.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          -1.0,
+          -0.09,
+          -1.0
+        ],
+        "max": [
+          1.0,
+          0.09,
+          1.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [],
+    "class": "Build_StandaloneWidgetSign_Square_C"
+  },
+  "Build_StandaloneWidgetSign_Square_Small_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/SignDigital/Build_StandaloneWidgetSign_Square_Small.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          -0.5,
+          -0.08,
+          -0.5
+        ],
+        "max": [
+          0.5,
+          0.08,
+          0.5
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [],
+    "class": "Build_StandaloneWidgetSign_Square_Small_C"
+  },
+  "Build_StandaloneWidgetSign_Square_Tiny_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/SignDigital/Build_StandaloneWidgetSign_Square_Tiny.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          -0.25,
+          -0.08,
+          -0.25
+        ],
+        "max": [
+          0.25,
+          0.08,
+          0.25
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [],
+    "class": "Build_StandaloneWidgetSign_Square_Tiny_C"
+  },
+  "Build_SignPole_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/SignPole/Build_SignPole.json",
+    "clearance": [],
+    "connections": [],
+    "class": "Build_SignPole_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_SignPole_Huge_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/SignPole/Build_SignPole_Huge.json",
+    "clearance": [],
+    "connections": [],
+    "class": "Build_SignPole_Huge_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_SignPole_Large_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/SignPole/Build_SignPole_Large.json",
+    "clearance": [],
+    "connections": [],
+    "class": "Build_SignPole_Large_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_SignPole_Medium_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/SignPole/Build_SignPole_Medium.json",
+    "clearance": [],
+    "connections": [],
+    "class": "Build_SignPole_Medium_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_SignPole_Portrait_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/SignPole/Build_SignPole_Portrait.json",
+    "clearance": [],
+    "connections": [],
+    "class": "Build_SignPole_Portrait_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_SignPole_Small_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/SignPole/Build_SignPole_Small.json",
+    "clearance": [],
+    "connections": [],
+    "class": "Build_SignPole_Small_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_SmelterMk1_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/SmelterMk1/Build_SmelterMk1.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -2.5,
+          -5.0,
+          0.0
+        ],
+        "max": [
+          2.5,
+          5.0,
+          4.5
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -2.5,
+          -2.1,
+          4.5
+        ],
+        "max": [
+          2.5,
+          5.0,
+          8.5
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          -1.2,
+          -4.6,
+          4.5
+        ],
+        "max": [
+          -0.8,
+          -4.2,
+          6.3
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          2.0,
+          -3.4,
+          4.5
+        ],
+        "max": [
+          2.6,
+          -2.8,
+          5.4
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      }
+    ],
+    "connections": [
+      {
+        "name": "Input0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          -3.0,
+          1.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "Output2",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          -0.0,
+          2.0,
+          1.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "PowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          -2.2,
+          2.8,
+          4.8
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_SmelterMk1_C"
+  },
+  "Build_SpaceElevator_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/SpaceElevator/Build_SpaceElevator.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          7.5,
+          -21.5,
+          0.0
+        ],
+        "max": [
+          22.5,
+          21.5,
+          5.5
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -20.611,
+          -4.25,
+          0.0
+        ],
+        "max": [
+          7.361,
+          27.2,
+          35.0
+        ],
+        "rotated": true,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -20.611,
+          -27.2,
+          0.0
+        ],
+        "max": [
+          7.361,
+          4.25,
+          35.0
+        ],
+        "rotated": true,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -0.0,
+          -8.5,
+          0.0
+        ],
+        "max": [
+          26.5,
+          8.5,
+          35.0
+        ],
+        "rotated": true,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          -8.0,
+          -8.0,
+          0.0
+        ],
+        "max": [
+          8.0,
+          8.0,
+          1000.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -22.0,
+          -2.0,
+          0.0
+        ],
+        "max": [
+          -17.0,
+          2.0,
+          3.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      }
+    ],
+    "connections": [
+      {
+        "name": "InPut3",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          12.0,
+          -20.0,
+          1.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "Input1",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          18.0,
+          -20.0,
+          1.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "Input2",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          15.0,
+          -20.0,
+          1.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "Input4",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          12.0,
+          20.0,
+          1.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "Input5",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          15.0,
+          20.0,
+          1.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "Input6",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          18.0,
+          20.0,
+          1.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_SpaceElevator_C"
+  },
+  "Build_StorageContainerMk1_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/StorageContainerMk1/Build_StorageContainerMk1.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -2.5,
+          -5.5,
+          0.0
+        ],
+        "max": [
+          2.5,
+          5.5,
+          4.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "Input0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          -4.0,
+          1.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "Output1",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          0.0,
+          4.0,
+          1.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_StorageContainerMk1_C"
+  },
+  "Build_StorageContainerMk2_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/StorageContainerMk2/Build_StorageContainerMk2.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -2.5,
+          -5.5,
+          0.0
+        ],
+        "max": [
+          2.5,
+          5.5,
+          8.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "Input0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          -4.0,
+          1.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "Input1",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          0.0,
+          -4.0,
+          5.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "Output1",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          0.0,
+          4.0,
+          1.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "Output2",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          0.0,
+          4.0,
+          5.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_StorageContainerMk2_C"
+  },
+  "Build_StorageBlueprint_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/StoragePlayer/Build_StorageBlueprint.json",
+    "clearance": [],
+    "connections": [],
+    "class": "Build_StorageBlueprint_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_StorageHazard_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/StoragePlayer/Build_StorageHazard.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -0.5,
+          -0.8,
+          0.0
+        ],
+        "max": [
+          0.5,
+          0.8,
+          0.8
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [],
+    "class": "Build_StorageHazard_C"
+  },
+  "Build_StorageIntegrated_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/StoragePlayer/Build_StorageIntegrated.json",
+    "clearance": [],
+    "connections": [],
+    "class": "Build_StorageIntegrated_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_StorageMedkit_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/StoragePlayer/Build_StorageMedkit.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -0.5,
+          -0.8,
+          0.0
+        ],
+        "max": [
+          0.5,
+          0.8,
+          0.8
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [],
+    "class": "Build_StorageMedkit_C"
+  },
+  "Build_StoragePlayer_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/StoragePlayer/Build_StoragePlayer.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -0.5,
+          -0.8,
+          0.0
+        ],
+        "max": [
+          0.5,
+          0.8,
+          0.8
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [],
+    "class": "Build_StoragePlayer_C"
+  },
+  "Build_PipeStorageTank_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/StorageTank/Build_PipeStorageTank.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -3.0,
+          -3.0,
+          0.0
+        ],
+        "max": [
+          3.0,
+          3.0,
+          8.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "ConnectionAny0",
+        "kind": "pipe",
+        "direction": null,
+        "position": [
+          0.0,
+          2.0,
+          1.75
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "ConnectionAny1",
+        "kind": "pipe",
+        "direction": null,
+        "position": [
+          -0.0,
+          -2.0,
+          1.75
+        ],
+        "yaw": 270,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_PipeStorageTank_C"
+  },
+  "Build_StreetLight_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/StreetLight/Build_StreetLight.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          -0.25,
+          -0.25,
+          0.0
+        ],
+        "max": [
+          0.25,
+          0.25,
+          9.3
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "FGPowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          0.0,
+          -1.733,
+          9.494
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_StreetLight_C"
+  },
+  "Build_TradingPost_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/TradingPost/Build_TradingPost.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -8.0,
+          -12.8,
+          0.0
+        ],
+        "max": [
+          6.0,
+          13.2,
+          8.5
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -8.0,
+          0.2,
+          8.5
+        ],
+        "max": [
+          6.0,
+          13.2,
+          15.5
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      }
+    ],
+    "connections": [],
+    "class": "Build_TradingPost_C"
+  },
+  "Build_RailroadEndStop_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/Train/EndStop/Build_RailroadEndStop.json",
+    "clearance": [
+      {
+        "type": "CT_Soft",
+        "min": [
+          -3.0,
+          -3.0,
+          0.0
+        ],
+        "max": [
+          3.0,
+          3.0,
+          2.5
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [],
+    "class": "Build_RailroadEndStop_C"
+  },
+  "Build_RailroadBlockSignal_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/Train/Signal/Build_RailroadBlockSignal.json",
+    "clearance": [],
+    "connections": [],
+    "class": "Build_RailroadBlockSignal_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_RailroadPathSignal_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/Train/Signal/Build_RailroadPathSignal.json",
+    "clearance": [],
+    "connections": [],
+    "class": "Build_RailroadPathSignal_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_CheatTrainTeleportStation_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/Train/Station/Build_CheatTrainTeleportStation.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -8.0,
+          -8.0,
+          0.0
+        ],
+        "max": [
+          8.0,
+          8.0,
+          12.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "PowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          -0.259,
+          -16.628,
+          18.802
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_CheatTrainTeleportStation_C"
+  },
+  "Build_TrainDockingStation_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/Train/Station/Build_TrainDockingStation.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -8.0,
+          -17.0,
+          0.0
+        ],
+        "max": [
+          8.0,
+          17.0,
+          20.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "Input0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          -3.0,
+          16.0,
+          1.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "Input1",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          -3.0,
+          16.0,
+          5.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "Output0",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          3.0,
+          16.0,
+          1.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "Output1",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          3.0,
+          16.0,
+          5.0
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "FGPowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          0.0,
+          20.25,
+          16.65
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_TrainDockingStation_C"
+  },
+  "Build_TrainDockingStationLiquid_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/Train/Station/Build_TrainDockingStationLiquid.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -8.0,
+          -17.0,
+          0.0
+        ],
+        "max": [
+          8.0,
+          17.0,
+          20.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "PipeFactoryInput0",
+        "kind": "pipe",
+        "direction": "PCT_CONSUMER",
+        "position": [
+          -3.0,
+          16.0,
+          1.75
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "PipeFactoryInput1",
+        "kind": "pipe",
+        "direction": "PCT_CONSUMER",
+        "position": [
+          -3.0,
+          16.0,
+          5.75
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "PipeFactoryOutput0",
+        "kind": "pipe",
+        "direction": "PCT_PRODUCER",
+        "position": [
+          3.0,
+          16.0,
+          1.75
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "PipeFactoryOutput1",
+        "kind": "pipe",
+        "direction": "PCT_PRODUCER",
+        "position": [
+          3.0,
+          16.0,
+          5.75
+        ],
+        "yaw": 90,
+        "pitch": 0
+      },
+      {
+        "name": "FGPowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          0.0,
+          20.25,
+          16.65
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_TrainDockingStationLiquid_C"
+  },
+  "Build_TrainPlatformEmpty_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/Train/Station/Build_TrainPlatformEmpty.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -8.0,
+          -17.0,
+          0.0
+        ],
+        "max": [
+          8.0,
+          17.0,
+          8.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [],
+    "class": "Build_TrainPlatformEmpty_C"
+  },
+  "Build_TrainPlatformEmpty_02_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/Train/Station/Build_TrainPlatformEmpty_02.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -8.0,
+          -17.0,
+          0.0
+        ],
+        "max": [
+          8.0,
+          17.0,
+          9.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [],
+    "class": "Build_TrainPlatformEmpty_02_C"
+  },
+  "Build_TrainStation_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/Train/Station/Build_TrainStation.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -8.0,
+          -17.0,
+          0.0
+        ],
+        "max": [
+          8.0,
+          17.0,
+          21.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [
+      {
+        "name": "PowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          -0.259,
+          -16.628,
+          18.802
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_TrainStation_C"
+  },
+  "Build_RailroadSwitchControl_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/Train/SwitchControl/Build_RailroadSwitchControl.json",
+    "clearance": [],
+    "connections": [],
+    "class": "Build_RailroadSwitchControl_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_RailroadTrack_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/Train/Track/Build_RailroadTrack.json",
+    "clearance": [],
+    "connections": [],
+    "class": "Build_RailroadTrack_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_RailroadTrackIntegrated_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/Train/Track/Build_RailroadTrackIntegrated.json",
+    "clearance": [],
+    "connections": [],
+    "class": "Build_RailroadTrackIntegrated_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_FluidTruckStation_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/TruckStation/Build_FluidTruckStation.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -6.0,
+          -13.0,
+          0.0
+        ],
+        "max": [
+          11.0,
+          -4.0,
+          6.2
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -1.0,
+          -4.0,
+          8.5
+        ],
+        "max": [
+          1.0,
+          2.0,
+          10.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -2.0,
+          -12.0,
+          6.2
+        ],
+        "max": [
+          2.0,
+          -4.0,
+          10.2
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          1.15,
+          -8.6,
+          10.2
+        ],
+        "max": [
+          1.55,
+          -8.2,
+          12.45
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          -2.8,
+          -10.4,
+          8.0
+        ],
+        "max": [
+          -2.0,
+          -9.8,
+          11.1
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      }
+    ],
+    "connections": [
+      {
+        "name": "FuelInput0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          7.0,
+          -10.053,
+          1.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "PipeInput0",
+        "kind": "pipe",
+        "direction": "PCT_CONSUMER",
+        "position": [
+          3.0,
+          -10.046,
+          1.8
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "PipeInput1",
+        "kind": "pipe",
+        "direction": "PCT_CONSUMER",
+        "position": [
+          3.0,
+          -10.046,
+          3.8
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "PipeOutput0",
+        "kind": "pipe",
+        "direction": "PCT_PRODUCER",
+        "position": [
+          -3.0,
+          -10.058,
+          1.8
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "PipeOutput1",
+        "kind": "pipe",
+        "direction": "PCT_PRODUCER",
+        "position": [
+          -3.0,
+          -10.058,
+          3.8
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "PowerInput",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          -2.512,
+          -9.935,
+          10.685
+        ],
+        "yaw": 270,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_FluidTruckStation_C"
+  },
+  "Build_TruckStation_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/TruckStation/Build_TruckStation.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -6.0,
+          -13.0,
+          0.0
+        ],
+        "max": [
+          11.0,
+          -4.0,
+          6.2
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -1.0,
+          -4.0,
+          8.5
+        ],
+        "max": [
+          1.0,
+          2.0,
+          10.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -2.0,
+          -12.0,
+          6.2
+        ],
+        "max": [
+          2.0,
+          -4.0,
+          10.2
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          1.15,
+          -8.6,
+          10.2
+        ],
+        "max": [
+          1.55,
+          -8.2,
+          12.45
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      },
+      {
+        "type": "CT_Soft",
+        "min": [
+          -2.8,
+          -10.4,
+          8.0
+        ],
+        "max": [
+          -2.0,
+          -9.8,
+          11.1
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      }
+    ],
+    "connections": [
+      {
+        "name": "Input0",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          7.0,
+          -10.053,
+          1.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "Input1",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          3.0,
+          -10.046,
+          1.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "Input2",
+        "kind": "belt",
+        "direction": null,
+        "position": [
+          3.0,
+          -10.046,
+          3.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "Output0",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          -3.0,
+          -10.058,
+          1.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "Output1",
+        "kind": "belt",
+        "direction": "FCD_OUTPUT",
+        "position": [
+          -3.0,
+          -10.058,
+          3.0
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "PowerInput",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          -2.512,
+          -9.935,
+          10.685
+        ],
+        "yaw": 270,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_TruckStation_C"
+  },
+  "Build_WaterPump_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/Waterpump/Build_WaterPump.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -10.0,
+          -5.0,
+          -8.0
+        ],
+        "max": [
+          10.0,
+          13.0,
+          4.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      },
+      {
+        "type": "CT_Default",
+        "min": [
+          -5.0,
+          -5.0,
+          4.0
+        ],
+        "max": [
+          4.5,
+          6.0,
+          15.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": true
+      }
+    ],
+    "connections": [
+      {
+        "name": "FGPipeConnectionFactory",
+        "kind": "pipe",
+        "direction": "PCT_PRODUCER",
+        "position": [
+          0.0,
+          -4.6,
+          2.4
+        ],
+        "yaw": 270,
+        "pitch": 0
+      },
+      {
+        "name": "PowerConnection",
+        "kind": "power",
+        "direction": null,
+        "position": [
+          -5.93,
+          3.22,
+          10.47
+        ],
+        "yaw": 0,
+        "pitch": 0
+      }
+    ],
+    "class": "Build_WaterPump_C"
+  },
+  "Build_WorkBench_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/WorkBench/Build_WorkBench.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -2.0,
+          -3.0,
+          0.0
+        ],
+        "max": [
+          2.0,
+          3.0,
+          3.0
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [],
+    "class": "Build_WorkBench_C"
+  },
+  "Build_WorkBenchIntegrated_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/WorkBench/Build_WorkBenchIntegrated.json",
+    "clearance": [],
+    "connections": [],
+    "class": "Build_WorkBenchIntegrated_C",
+    "warning": "no mClearanceData (maybe inherited from a parent class)"
+  },
+  "Build_Workshop_C": {
+    "source": "FactoryGame/Content/FactoryGame/Buildable/Factory/Workshop/Build_Workshop.json",
+    "clearance": [
+      {
+        "type": "CT_Default",
+        "min": [
+          -3.0,
+          -5.0,
+          0.0
+        ],
+        "max": [
+          3.0,
+          5.0,
+          5.5
+        ],
+        "rotated": false,
+        "excludeForSnapping": false
+      }
+    ],
+    "connections": [],
+    "class": "Build_Workshop_C"
+  }
+}
