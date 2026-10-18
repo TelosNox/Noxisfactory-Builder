@@ -1,8 +1,8 @@
 """Extract production recipes, items and machines from the game's Docs.json.
 
-Writes data/recipes.json with only the facts the planner needs: amounts,
-durations, machines and power. Names are derived from class names, no game
-texts are copied.
+Writes data/recipes.json with only the facts the planner and generator need:
+amounts, durations, machines, power and building costs. Names are derived
+from class names, no game texts are copied.
 
 Source: CommunityResources/Docs/en-US.json in the game installation.
 Fluid amounts are stored by the game in liters; they are converted to m³.
@@ -36,7 +36,9 @@ ITEM_GROUPS = {
 MACHINE_GROUPS = {"FGBuildableManufacturer", "FGBuildableManufacturerVariablePower"}
 
 AMOUNT = re.compile(r"\.(\w+_C)'\"?,Amount=(\d+)")
+ITEM_PATH = re.compile(r"'(/Game/[^']+\.(\w+_C))'")
 PRODUCED_IN = re.compile(r"\.(Build_\w+_C)\"")
+BUILD_GUN = "BP_BuildGun_C"
 
 
 def load(path):
@@ -115,15 +117,34 @@ def main():
             recipe["powerMW"] = {"min": constant, "max": constant + factor}
         recipes[c["ClassName"]] = recipe
 
+    # Build gun recipes: what a building costs. Product is the building
+    # descriptor Desc_X_C; the placed class is Build_X_C.
+    buildings = {}
+    item_paths = {}
+    for c in groups["FGRecipe"]:
+        if BUILD_GUN not in c.get("mProducedIn", ""):
+            continue
+        product = re.search(r"\.Desc_(\w+)_C'", c["mProduct"])
+        if not product:
+            continue
+        cost = {item: int(amount) for item, amount in AMOUNT.findall(c["mIngredients"])}
+        item_paths.update({name: path for path, name in ITEM_PATH.findall(c["mIngredients"])})
+        buildings[f"Build_{product.group(1)}_C"] = {
+            "recipe": c["FullName"].split(" ", 1)[1],
+            "cost": cost,
+        }
+
     used = {i for r in recipes.values() for side in ("in", "out") for i in r[side]}
     data = {
         "source": "Docs.json (CommunityResources), Spielversion 1.2.4.1",
         "items": {k: v for k, v in sorted(items.items()) if k in used},
         "machines": dict(sorted(machines.items())),
         "recipes": dict(sorted(recipes.items())),
+        "buildings": dict(sorted(buildings.items())),
+        "itemPaths": dict(sorted(item_paths.items())),
     }
     out.write_text(json.dumps(data, indent=1) + "\n", encoding="utf-8", newline="\n")
-    print(f"{len(data['items'])} items, {len(machines)} machines, {len(recipes)} recipes -> {out}")
+    print(f"{len(data['items'])} items, {len(machines)} machines, {len(recipes)} recipes, {len(buildings)} buildings -> {out}")
 
 
 if __name__ == "__main__":

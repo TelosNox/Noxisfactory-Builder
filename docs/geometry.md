@@ -69,7 +69,9 @@ Spielversion der Exporte und Tests: 1.2.4.1 (CL#513885). „Spielerfahrung“ un
 
 ## Blueprint-Schnittstellen
 
-- Damit sich nebeneinander gesetzte Blueprints automatisch verbinden, muss an der Kante ein Stück Förderband enden (Spielerfahrung, *prüfen, ob das in 1.2 noch so ist*).
+- Autoconnect: Setzt man Blueprints nebeneinander, baut das Spiel das Verbindungsband selbst. Dafür braucht es auf einer Seite ein offenes Bandende; auf der anderen Seite sucht es einen passenden offenen Anschluss (z. B. Splitter-Port). Zwei offene Ports allein werden nicht verbunden. Die Enden müssen nur in einer Linie liegen, Autoconnect kann auch Kurven bauen (Spielerfahrung, 1.2).
+- Reicht das Stummelband bis an den Rand des Designers, drückt das die Blueprints beim Autoconnect auseinander (im Spiel beobachtet). - Autoconnect geht immer von den offenen Bändern des Blueprints aus, der gerade gesetzt wird, und verbindet nur diese (Spielerfahrung).
+- **Festlegung:** Stummelbänder 2 m, innerhalb des Designers, alle auf derselben Seite des Moduls (der Seite, an der die nächste Kopie an die vorige anschließt). Auf der Gegenseite enden die Leitungen mit offenen Ports.
 
 ## Offene Punkte
 

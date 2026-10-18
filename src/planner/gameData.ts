@@ -29,10 +29,20 @@ export interface Recipe {
   powerMW?: { min: number; max: number };
 }
 
+export interface Building {
+  /** Path of the build gun recipe. */
+  recipe: string;
+  cost: Record<ItemId, number>;
+}
+
 export interface GameData {
   items: Record<ItemId, Item>;
   machines: Record<MachineId, Machine>;
   recipes: Record<RecipeId, Recipe>;
+  /** Build cost per building class (Build_X_C). */
+  buildings: Record<string, Building>;
+  /** Asset path per item class, for blueprint headers. */
+  itemPaths: Record<ItemId, string>;
 }
 
 export const gameData = recipesJson as GameData;

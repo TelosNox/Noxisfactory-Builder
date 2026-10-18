@@ -4911,5 +4911,3642 @@
     "Desc_XmasWreath_C": 2
    }
   }
+ },
+ "buildings": {
+  "Build_AlienPowerBuilding_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_AlienPowerBuilding.Recipe_AlienPowerBuilding_C",
+   "cost": {
+    "Desc_WAT1_C": 10,
+    "Desc_SAMFluctuator_C": 50,
+    "Desc_Cable_C": 100,
+    "Desc_SteelPlateReinforced_C": 50,
+    "Desc_Motor_C": 25,
+    "Desc_Computer_C": 10
+   }
+  },
+  "Build_AssemblerMk1_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_AssemblerMk1.Recipe_AssemblerMk1_C",
+   "cost": {
+    "Desc_IronPlateReinforced_C": 8,
+    "Desc_Rotor_C": 4,
+    "Desc_Cable_C": 10
+   }
+  },
+  "Build_Barrier_Corner_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Fence/Recipe_Barrier_Corner.Recipe_Barrier_Corner_C",
+   "cost": {
+    "Desc_Cement_C": 1
+   }
+  },
+  "Build_Barrier_Low_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Fence/Recipe_Barrier_Low_01.Recipe_Barrier_Low_01_C",
+   "cost": {
+    "Desc_Cement_C": 1,
+    "Desc_IronPlate_C": 1
+   }
+  },
+  "Build_Barrier_Tall_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Fence/Recipe_Barrier_Tall_01.Recipe_Barrier_Tall_01_C",
+   "cost": {
+    "Desc_Cement_C": 1,
+    "Desc_IronPlate_C": 1
+   }
+  },
+  "Build_Beam_C": {
+   "recipe": "/Game/FactoryGame/Prototype/Buildable/Beams/Recipe_Beam.Recipe_Beam_C",
+   "cost": {
+    "Desc_SteelPlate_C": 1
+   }
+  },
+  "Build_Beam_Cable_C": {
+   "recipe": "/Game/FactoryGame/Prototype/Buildable/Beams/Recipe_Beam_Cable.Recipe_Beam_Cable_C",
+   "cost": {
+    "Desc_SteelPlate_C": 1
+   }
+  },
+  "Build_Beam_Cable_Cluster_C": {
+   "recipe": "/Game/FactoryGame/Prototype/Buildable/Beams/Recipe_Beam_Cable_Cluster.Recipe_Beam_Cable_Cluster_C",
+   "cost": {
+    "Desc_SteelPlate_C": 1
+   }
+  },
+  "Build_Beam_Concrete_C": {
+   "recipe": "/Game/FactoryGame/Prototype/Buildable/Beams/Recipe_Beam_Concrete.Recipe_Beam_Concrete_C",
+   "cost": {
+    "Desc_Cement_C": 1
+   }
+  },
+  "Build_Beam_Connector_C": {
+   "recipe": "/Game/FactoryGame/Prototype/Buildable/Beams/Recipe_Beam_Connector.Recipe_Beam_Connector_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Beam_Connector_Double_C": {
+   "recipe": "/Game/FactoryGame/Prototype/Buildable/Beams/Recipe_Beam_Connector_Double.Recipe_Beam_Connector_Double_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Beam_Cross_C": {
+   "recipe": "/Game/FactoryGame/Prototype/Buildable/Beams/Recipe_Beam_Cross.Recipe_Beam_Cross_C",
+   "cost": {
+    "Desc_SteelPlate_C": 1
+   }
+  },
+  "Build_Beam_H_C": {
+   "recipe": "/Game/FactoryGame/Prototype/Buildable/Beams/Recipe_Beam_H.Recipe_Beam_H_C",
+   "cost": {
+    "Desc_SteelPlate_C": 1
+   }
+  },
+  "Build_Beam_Painted_C": {
+   "recipe": "/Game/FactoryGame/Prototype/Buildable/Beams/Recipe_Beam_Painted.Recipe_Beam_Painted_C",
+   "cost": {
+    "Desc_SteelPlate_C": 1
+   }
+  },
+  "Build_Beam_Shelf_C": {
+   "recipe": "/Game/FactoryGame/Prototype/Buildable/Beams/Recipe_Beam_Shelf.Recipe_Beam_Shelf_C",
+   "cost": {
+    "Desc_SteelPlate_C": 1
+   }
+  },
+  "Build_Beam_Support_C": {
+   "recipe": "/Game/FactoryGame/Prototype/Buildable/Beams/Recipe_Beam_Support.Recipe_Beam_Support_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_BigGarageDoor_16x8_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Doors/Recipe_BigGarageDoor_16x8.Recipe_BigGarageDoor_16x8_C",
+   "cost": {
+    "Desc_Cement_C": 4,
+    "Desc_IronPlate_C": 4
+   }
+  },
+  "Build_BigGarageDoor_16x8_Concrete_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Doors/Recipe_BigGarageDoor_16x8_Concrete.Recipe_BigGarageDoor_16x8_Concrete_C",
+   "cost": {
+    "Desc_Cement_C": 8
+   }
+  },
+  "Build_BigGarageDoor_16x8_Steel_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Doors/Recipe_BigGarageDoor_16x8_Steel.Recipe_BigGarageDoor_16x8_Steel_C",
+   "cost": {
+    "Desc_Cement_C": 4,
+    "Desc_SteelPlate_C": 4
+   }
+  },
+  "Build_Blender_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_Blender.Recipe_Blender_C",
+   "cost": {
+    "Desc_Computer_C": 10,
+    "Desc_ModularFrameHeavy_C": 10,
+    "Desc_Motor_C": 20,
+    "Desc_AluminumCasing_C": 50
+   }
+  },
+  "Build_BlueprintDesigner_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_BlueprintDesigner.Recipe_BlueprintDesigner_C",
+   "cost": {
+    "Desc_ModularFrame_C": 15,
+    "Desc_Cable_C": 25,
+    "Desc_Cement_C": 100,
+    "Desc_SteelPlate_C": 100
+   }
+  },
+  "Build_BlueprintDesigner_MK2_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_BlueprintDesigner_Mk2.Recipe_BlueprintDesigner_Mk2_C",
+   "cost": {
+    "Desc_ModularFrameHeavy_C": 10,
+    "Desc_Computer_C": 20,
+    "Desc_Rubber_C": 100,
+    "Desc_Cement_C": 100
+   }
+  },
+  "Build_BlueprintDesigner_MK3_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_BlueprintDesigner_Mk3.Recipe_BlueprintDesigner_Mk3_C",
+   "cost": {
+    "Desc_TemporalProcessor_C": 10,
+    "Desc_ModularFrameFused_C": 20,
+    "Desc_TimeCrystal_C": 50,
+    "Desc_FicsiteMesh_C": 100
+   }
+  },
+  "Build_CandyCaneDecor_C": {
+   "recipe": "/Game/FactoryGame/Events/Christmas/Buildings/CandyCaneDecor/Recipe_CandyCaneDecor.Recipe_CandyCaneDecor_C",
+   "cost": {
+    "Desc_CandyCane_C": 10,
+    "Desc_XmasBow_C": 1
+   }
+  },
+  "Build_CatwalkCross_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Catwalks/Recipe_Catwalk_Cross.Recipe_Catwalk_Cross_C",
+   "cost": {
+    "Desc_IronRod_C": 2,
+    "Desc_IronPlate_C": 1
+   }
+  },
+  "Build_CatwalkRamp_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Catwalks/Recipe_Catwalk_Ramp.Recipe_Catwalk_Ramp_C",
+   "cost": {
+    "Desc_IronRod_C": 2,
+    "Desc_IronPlate_C": 1
+   }
+  },
+  "Build_CatwalkStairs_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Catwalks/Recipe_Catwalk_Stairs.Recipe_Catwalk_Stairs_C",
+   "cost": {
+    "Desc_IronRod_C": 2,
+    "Desc_IronPlate_C": 1
+   }
+  },
+  "Build_CatwalkStraight_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Catwalks/Recipe_Catwalk_Straight.Recipe_Catwalk_Straight_C",
+   "cost": {
+    "Desc_IronRod_C": 2,
+    "Desc_IronPlate_C": 1
+   }
+  },
+  "Build_CatwalkT_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Catwalks/Recipe_Catwalk_T.Recipe_Catwalk_T_C",
+   "cost": {
+    "Desc_IronRod_C": 2,
+    "Desc_IronPlate_C": 1
+   }
+  },
+  "Build_CatwalkTurn_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Catwalks/Recipe_Catwalk_Turn.Recipe_Catwalk_Turn_C",
+   "cost": {
+    "Desc_IronRod_C": 2,
+    "Desc_IronPlate_C": 1
+   }
+  },
+  "Build_CeilingLight_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_CeilingLight.Recipe_CeilingLight_C",
+   "cost": {
+    "Desc_HighSpeedWire_C": 50,
+    "Desc_Wire_C": 16,
+    "Desc_SteelPlate_C": 6
+   }
+  },
+  "Build_CentralStorage_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_CentralStorage.Recipe_CentralStorage_C",
+   "cost": {
+    "Desc_WAT2_C": 1,
+    "Desc_SAMFluctuator_C": 10,
+    "Desc_ModularFrame_C": 10,
+    "Desc_Wire_C": 100
+   }
+  },
+  "Build_ChainLinkFence_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Fence/Recipe_ChainLinkFence.Recipe_ChainLinkFence_C",
+   "cost": {
+    "Desc_IronRod_C": 2
+   }
+  },
+  "Build_Concrete_Barrier_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Fence/Recipe_Concrete_Barrier_01.Recipe_Concrete_Barrier_01_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_ConstructorMk1_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_ConstructorMk1.Recipe_ConstructorMk1_C",
+   "cost": {
+    "Desc_IronPlateReinforced_C": 2,
+    "Desc_Cable_C": 8
+   }
+  },
+  "Build_Converter_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_Converter.Recipe_Converter_C",
+   "cost": {
+    "Desc_ModularFrameFused_C": 10,
+    "Desc_CoolingSystem_C": 25,
+    "Desc_ModularFrameLightweight_C": 50,
+    "Desc_SAMFluctuator_C": 100
+   }
+  },
+  "Build_ConveyorAttachmentMergerPriority_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_ConveyorAttachmentMergerPriority.Recipe_ConveyorAttachmentMergerPriority_C",
+   "cost": {
+    "Desc_IronPlateReinforced_C": 2,
+    "Desc_ModularFrame_C": 1,
+    "Desc_CrystalOscillator_C": 1
+   }
+  },
+  "Build_ConveyorAttachmentMerger_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_ConveyorAttachmentMerger.Recipe_ConveyorAttachmentMerger_C",
+   "cost": {
+    "Desc_IronPlate_C": 2,
+    "Desc_IronRod_C": 2
+   }
+  },
+  "Build_ConveyorAttachmentSplitterProgrammable_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_ConveyorAttachmentSplitterProgrammable.Recipe_ConveyorAttachmentSplitterProgrammable_C",
+   "cost": {
+    "Desc_ModularFrameHeavy_C": 1,
+    "Desc_Computer_C": 2,
+    "Desc_CircuitBoardHighSpeed_C": 5
+   }
+  },
+  "Build_ConveyorAttachmentSplitterSmart_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_ConveyorAttachmentSplitterSmart.Recipe_ConveyorAttachmentSplitterSmart_C",
+   "cost": {
+    "Desc_IronPlateReinforced_C": 2,
+    "Desc_Rotor_C": 2,
+    "Desc_CircuitBoardHighSpeed_C": 1
+   }
+  },
+  "Build_ConveyorAttachmentSplitter_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_ConveyorAttachmentSplitter.Recipe_ConveyorAttachmentSplitter_C",
+   "cost": {
+    "Desc_IronPlate_C": 2,
+    "Desc_Cable_C": 2
+   }
+  },
+  "Build_ConveyorBeltMk1_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_ConveyorBeltMk1.Recipe_ConveyorBeltMk1_C",
+   "cost": {
+    "Desc_IronPlate_C": 1
+   }
+  },
+  "Build_ConveyorBeltMk2_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_ConveyorBeltMk2.Recipe_ConveyorBeltMk2_C",
+   "cost": {
+    "Desc_IronPlateReinforced_C": 1
+   }
+  },
+  "Build_ConveyorBeltMk3_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_ConveyorBeltMk3.Recipe_ConveyorBeltMk3_C",
+   "cost": {
+    "Desc_SteelPlate_C": 1
+   }
+  },
+  "Build_ConveyorBeltMk4_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_ConveyorBeltMk4.Recipe_ConveyorBeltMk4_C",
+   "cost": {
+    "Desc_SteelPlateReinforced_C": 1
+   }
+  },
+  "Build_ConveyorBeltMk5_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_ConveyorBeltMk5.Recipe_ConveyorBeltMk5_C",
+   "cost": {
+    "Desc_AluminumPlate_C": 1
+   }
+  },
+  "Build_ConveyorBeltMk6_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_ConveyorBeltMk6.Recipe_ConveyorBeltMk6_C",
+   "cost": {
+    "Desc_FicsiteMesh_C": 1,
+    "Desc_TimeCrystal_C": 1
+   }
+  },
+  "Build_ConveyorCeilingAttachment_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_ConveyorCeilingAttachment.Recipe_ConveyorCeilingAttachment_C",
+   "cost": {
+    "Desc_IronRod_C": 2,
+    "Desc_IronPlate_C": 2,
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_ConveyorLiftMk1_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_ConveyorLiftMk1.Recipe_ConveyorLiftMk1_C",
+   "cost": {
+    "Desc_IronPlate_C": 2
+   }
+  },
+  "Build_ConveyorLiftMk2_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_ConveyorLiftMk2.Recipe_ConveyorLiftMk2_C",
+   "cost": {
+    "Desc_IronPlateReinforced_C": 2
+   }
+  },
+  "Build_ConveyorLiftMk3_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_ConveyorLiftMk3.Recipe_ConveyorLiftMk3_C",
+   "cost": {
+    "Desc_SteelPlate_C": 2
+   }
+  },
+  "Build_ConveyorLiftMk4_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_ConveyorLiftMk4.Recipe_ConveyorLiftMk4_C",
+   "cost": {
+    "Desc_SteelPlateReinforced_C": 2
+   }
+  },
+  "Build_ConveyorLiftMk5_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_ConveyorLiftMk5.Recipe_ConveyorLiftMk5_C",
+   "cost": {
+    "Desc_AluminumPlate_C": 2
+   }
+  },
+  "Build_ConveyorLiftMk6_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_ConveyorLiftMk6.Recipe_ConveyorLiftMk6_C",
+   "cost": {
+    "Desc_FicsiteMesh_C": 2,
+    "Desc_TimeCrystal_C": 2
+   }
+  },
+  "Build_ConveyorMonitor_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_ConveyorMonitor.Recipe_ConveyorMonitor_C",
+   "cost": {
+    "Desc_IronPlateReinforced_C": 4,
+    "Desc_QuartzCrystal_C": 10,
+    "Desc_CrystalOscillator_C": 1
+   }
+  },
+  "Build_ConveyorPoleStackable_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_ConveyorPoleStackable.Recipe_ConveyorPoleStackable_C",
+   "cost": {
+    "Desc_IronRod_C": 2,
+    "Desc_IronPlate_C": 2,
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_ConveyorPoleWall_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_ConveyorPoleWall.Recipe_ConveyorPoleWall_C",
+   "cost": {
+    "Desc_IronRod_C": 2,
+    "Desc_IronPlate_C": 2,
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_ConveyorPole_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_ConveyorPole.Recipe_ConveyorPole_C",
+   "cost": {
+    "Desc_IronRod_C": 1,
+    "Desc_IronPlate_C": 1,
+    "Desc_Cement_C": 1
+   }
+  },
+  "Build_ConveyorWallHole_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/ConveyorHole/Recipe_ConveyorWallHole.Recipe_ConveyorWallHole_C",
+   "cost": {
+    "Desc_IronRod_C": 2,
+    "Desc_IronPlate_C": 2,
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_CyberWagon_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Vehicle/Recipe_CyberWagon.Recipe_CyberWagon_C",
+   "cost": {
+    "Desc_IronPlateReinforced_C": 10
+   }
+  },
+  "Build_DownQuarterPipeInCorner_Asphalt_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_DownQuarterPipe_AsphaltInCorner_8x4.Recipe_DownQuarterPipe_AsphaltInCorner_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_DownQuarterPipeInCorner_ConcretePolished_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_DownQuarterPipe_ConcretePolishedInCorner_8x4.Recipe_DownQuarterPipe_ConcretePolishedInCorner_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_DownQuarterPipeInCorner_Concrete_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_DownQuarterPipe_ConcreteInCorner_8x4.Recipe_DownQuarterPipe_ConcreteInCorner_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_DownQuarterPipeInCorner_Grip_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_DownQuarterPipe_GripInCorner_8x4.Recipe_DownQuarterPipe_GripInCorner_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_DownQuarterPipeOutCorner_Asphalt_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_DownQuarterPipe_AsphaltOutCorner_8x4.Recipe_DownQuarterPipe_AsphaltOutCorner_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_DownQuarterPipeOutCorner_ConcretePolished_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_DownQuarterPipe_ConcretePolishedOutCorner_8x4.Recipe_DownQuarterPipe_ConcretePolishedOutCorner_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_DownQuarterPipeOutCorner_Concrete_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_DownQuarterPipe_ConcreteOutCorner_8x4.Recipe_DownQuarterPipe_ConcreteOutCorner_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_DownQuarterPipeOutCorner_Grip_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_DownQuarterPipe_GripOutCorner_8x4.Recipe_DownQuarterPipe_GripOutCorner_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_DownQuarterPipe_Asphalt_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_DownQuarterPipe_Asphalt_8x4.Recipe_DownQuarterPipe_Asphalt_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_DownQuarterPipe_ConcretePolished_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_DownQuarterPipe_ConcretePolished_8x4.Recipe_DownQuarterPipe_ConcretePolished_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_DownQuarterPipe_Concrete_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_DownQuarterPipe_Concrete_8x4.Recipe_DownQuarterPipe_Concrete_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_DownQuarterPipe_Grip_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_DownQuarterPipe_Grip_8x4.Recipe_DownQuarterPipe_Grip_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_DroneStation_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_DroneStation.Recipe_DroneStation_C",
+   "cost": {
+    "Desc_ModularFrameHeavy_C": 20,
+    "Desc_HighSpeedConnector_C": 20,
+    "Desc_AluminumPlate_C": 50,
+    "Desc_AluminumCasing_C": 50,
+    "Desc_ModularFrameLightweight_C": 10
+   }
+  },
+  "Build_DroneTransport_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_DroneTransport.Recipe_DroneTransport_C",
+   "cost": {
+    "Desc_Motor_C": 4,
+    "Desc_AluminumPlate_C": 10,
+    "Desc_ModularFrameLightweight_C": 1,
+    "Desc_CircuitBoardHighSpeed_C": 2,
+    "BP_ItemDescriptorPortableMiner_C": 1
+   }
+  },
+  "Build_ElevatorFloorStop_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Elevator/Recipe_ElevatorFloorStop.Recipe_ElevatorFloorStop_C",
+   "cost": {
+    "Desc_ModularFrame_C": 2,
+    "Desc_Motor_C": 1,
+    "Desc_SteelPlate_C": 5
+   }
+  },
+  "Build_Elevator_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Elevator/Recipe_Elevator.Recipe_Elevator_C",
+   "cost": {
+    "Desc_SteelPlate_C": 1,
+    "Desc_Silica_C": 1
+   }
+  },
+  "Build_Explorer_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Vehicle/Recipe_Explorer.Recipe_Explorer_C",
+   "cost": {
+    "Desc_CrystalOscillator_C": 5,
+    "Desc_Motor_C": 5,
+    "Desc_ModularFrame_C": 10,
+    "Desc_SteelPipe_C": 15
+   }
+  },
+  "Build_Fence_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Fence/Recipe_Fence_01.Recipe_Fence_01_C",
+   "cost": {
+    "Desc_IronRod_C": 4
+   }
+  },
+  "Build_Flat_Frame_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Foundations/Recipe_Flat_Frame_01.Recipe_Flat_Frame_01_C",
+   "cost": {
+    "Desc_SteelPlate_C": 2
+   }
+  },
+  "Build_FloodlightPole_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_FloodlightPole.Recipe_FloodlightPole_C",
+   "cost": {
+    "Desc_HighSpeedWire_C": 25,
+    "Desc_CopperSheet_C": 4,
+    "Desc_SteelPlateReinforced_C": 8
+   }
+  },
+  "Build_FloodlightWall_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_FloodlightWall.Recipe_FloodlightWall_C",
+   "cost": {
+    "Desc_HighSpeedWire_C": 25,
+    "Desc_CopperSheet_C": 4,
+    "Desc_SteelPlateReinforced_C": 2
+   }
+  },
+  "Build_FluidTruckStation_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_FluidTruckStation.Recipe_FluidTruckStation_C",
+   "cost": {
+    "Desc_ModularFrame_C": 15,
+    "Desc_Stator_C": 20,
+    "Desc_Rubber_C": 20,
+    "Desc_Plastic_C": 50
+   }
+  },
+  "Build_FluidTruck_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Vehicle/Recipe_FluidTruck.Recipe_FluidTruck_C",
+   "cost": {
+    "Desc_Motor_C": 15,
+    "Desc_SteelPlateReinforced_C": 20,
+    "Desc_ModularFrame_C": 20,
+    "Desc_Plastic_C": 50
+   }
+  },
+  "Build_FoundationGlass_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Foundations/Recipe_FoundationGlass_01.Recipe_FoundationGlass_01_C",
+   "cost": {
+    "Desc_SteelPlate_C": 2,
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_FoundationPassthrough_Hypertube_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Factory/FoundationPassthrough/Recipe_FoundationPassthrough_Hypertube.Recipe_FoundationPassthrough_Hypertube_C",
+   "cost": {
+    "Desc_IronRod_C": 2,
+    "Desc_IronPlate_C": 2,
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_FoundationPassthrough_Lift_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Factory/FoundationPassthrough/Recipe_FoundationPassthrough_Lift.Recipe_FoundationPassthrough_Lift_C",
+   "cost": {
+    "Desc_IronRod_C": 2,
+    "Desc_IronPlate_C": 2,
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_FoundationPassthrough_Pipe_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Factory/FoundationPassthrough/Recipe_FoundationPassthrough_Pipe.Recipe_FoundationPassthrough_Pipe_C",
+   "cost": {
+    "Desc_IronRod_C": 2,
+    "Desc_IronPlate_C": 2,
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Foundation_8x1_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Foundations/Recipe_Foundation_8x1_01.Recipe_Foundation_8x1_01_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Foundation_8x2_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Foundations/Recipe_Foundation_8x2_01.Recipe_Foundation_8x2_01_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Foundation_8x4_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Foundations/Recipe_Foundation_8x4_01.Recipe_Foundation_8x4_01_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Foundation_Asphalt_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_Foundation_Asphalt_8x1.Recipe_Foundation_Asphalt_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Foundation_Asphalt_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_Foundation_Asphalt_8x2.Recipe_Foundation_Asphalt_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Foundation_Asphalt_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_Foundation_Asphalt_8x4.Recipe_Foundation_Asphalt_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Foundation_ConcretePolished_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_Foundation_ConcretePolished_8x1.Recipe_Foundation_ConcretePolished_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Foundation_Concrete_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_Foundation_Concrete_8x1.Recipe_Foundation_Concrete_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Foundation_Concrete_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_Foundation_Concrete_8x2.Recipe_Foundation_Concrete_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Foundation_Concrete_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_Foundation_Concrete_8x4.Recipe_Foundation_Concrete_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Foundation_Frame_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Foundations/Recipe_Foundation_Frame_01.Recipe_Foundation_Frame_01_C",
+   "cost": {
+    "Desc_SteelPlate_C": 5
+   }
+  },
+  "Build_Foundation_Metal_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_Foundation_Metal_8x1.Recipe_Foundation_Metal_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Foundation_Metal_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_Foundation_Metal_8x2.Recipe_Foundation_Metal_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Foundation_Metal_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_Foundation_Metal_8x4.Recipe_Foundation_Metal_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_FoundryMk1_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_SmelterMk1.Recipe_SmelterMk1_C",
+   "cost": {
+    "Desc_ModularFrame_C": 10,
+    "Desc_Rotor_C": 10,
+    "Desc_Cement_C": 20
+   }
+  },
+  "Build_FrackingExtractor_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_FrackingExtractor.Recipe_FrackingExtractor_C",
+   "cost": {
+    "Desc_SteelPlate_C": 10,
+    "Desc_AluminumCasing_C": 10
+   }
+  },
+  "Build_FrackingSmasher_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_FrackingSmasher.Recipe_FrackingSmasher_C",
+   "cost": {
+    "Desc_ModularFrameLightweight_C": 10,
+    "Desc_ModularFrameHeavy_C": 25,
+    "Desc_Motor_C": 50,
+    "Desc_AluminumPlate_C": 50,
+    "Desc_Rubber_C": 100
+   }
+  },
+  "Build_FreightWagon_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Vehicle/Train/Recipe_FreightWagon.Recipe_FreightWagon_C",
+   "cost": {
+    "Desc_ModularFrame_C": 5,
+    "Desc_SteelPipe_C": 10,
+    "Desc_SteelPlate_C": 10
+   }
+  },
+  "Build_Gate_Automated_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Doors/Recipe_Gate_Automated_8x4.Recipe_Gate_Automated_8x4_C",
+   "cost": {
+    "Desc_IronPlate_C": 6
+   }
+  },
+  "Build_GeneratorBiomass_Automated_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_GeneratorBiomass_Automated.Recipe_GeneratorBiomass_Automated_C",
+   "cost": {
+    "Desc_IronPlate_C": 15,
+    "Desc_IronRod_C": 15,
+    "Desc_Wire_C": 25
+   }
+  },
+  "Build_GeneratorCoal_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_GeneratorCoal.Recipe_GeneratorCoal_C",
+   "cost": {
+    "Desc_IronPlateReinforced_C": 20,
+    "Desc_Rotor_C": 10,
+    "Desc_Cable_C": 30
+   }
+  },
+  "Build_GeneratorFuel_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_GeneratorFuel.Recipe_GeneratorFuel_C",
+   "cost": {
+    "Desc_Motor_C": 15,
+    "Desc_SteelPlateReinforced_C": 15,
+    "Desc_CopperSheet_C": 30,
+    "Desc_Rubber_C": 50,
+    "Desc_HighSpeedWire_C": 50
+   }
+  },
+  "Build_GeneratorGeoThermal_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_GeneratorGeoThermal.Recipe_GeneratorGeoThermal_C",
+   "cost": {
+    "Desc_Motor_C": 10,
+    "Desc_ModularFrame_C": 25,
+    "Desc_HighSpeedConnector_C": 25,
+    "Desc_CopperSheet_C": 50,
+    "Desc_Wire_C": 250
+   }
+  },
+  "Build_GeneratorNuclear_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_GeneratorNuclear.Recipe_GeneratorNuclear_C",
+   "cost": {
+    "Desc_ComputerSuper_C": 10,
+    "Desc_ModularFrameHeavy_C": 25,
+    "Desc_AluminumPlate_C": 100,
+    "Desc_Cable_C": 200,
+    "Desc_Cement_C": 250
+   }
+  },
+  "Build_HadronCollider_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_HadronCollider.Recipe_HadronCollider_C",
+   "cost": {
+    "Desc_MotorLightweight_C": 10,
+    "Desc_ComputerSuper_C": 10,
+    "Desc_ModularFrameFused_C": 25,
+    "Desc_CoolingSystem_C": 50,
+    "Desc_HighSpeedWire_C": 500
+   }
+  },
+  "Build_HyperPoleStackable_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_HyperPoleStackable.Recipe_HyperPoleStackable_C",
+   "cost": {
+    "Desc_IronPlate_C": 4,
+    "Desc_IronRod_C": 2,
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_HyperTubeJunction_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_HyperTubeJunction.Recipe_HyperTubeJunction_C",
+   "cost": {
+    "Desc_SteelPlateReinforced_C": 2,
+    "Desc_SteelPlate_C": 2,
+    "Desc_CopperSheet_C": 5
+   }
+  },
+  "Build_HyperTubeWallHole_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_HyperTubeWallHole.Recipe_HyperTubeWallHole_C",
+   "cost": {
+    "Desc_IronPlate_C": 2,
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_HyperTubeWallSupport_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_HyperTubeWallSupport.Recipe_HyperTubeWallSupport_C",
+   "cost": {
+    "Desc_IronPlate_C": 2,
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_HypertubeTJunction_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_HyperTubeTJunction.Recipe_HyperTubeTJunction_C",
+   "cost": {
+    "Desc_SteelPlateReinforced_C": 2,
+    "Desc_SteelPipe_C": 2,
+    "Desc_CopperSheet_C": 5
+   }
+  },
+  "Build_IndustrialTank_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_IndustrialTank.Recipe_IndustrialTank_C",
+   "cost": {
+    "Desc_SteelPlateReinforced_C": 5,
+    "Desc_CopperSheet_C": 10,
+    "Desc_Plastic_C": 25
+   }
+  },
+  "Build_InvertedRamp_Asphalt_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_InvertedRamp_Asphalt_8x1.Recipe_InvertedRamp_Asphalt_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_InvertedRamp_Asphalt_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_InvertedRamp_Asphalt_8x2.Recipe_InvertedRamp_Asphalt_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_InvertedRamp_Asphalt_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_InvertedRamp_Asphalt_8x4.Recipe_InvertedRamp_Asphalt_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_InvertedRamp_Concrete_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_InvertedRamp_Concrete_8x1.Recipe_InvertedRamp_Concrete_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_InvertedRamp_Concrete_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_InvertedRamp_Concrete_8x2.Recipe_InvertedRamp_Concrete_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_InvertedRamp_Concrete_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_InvertedRamp_Concrete_8x4.Recipe_InvertedRamp_Concrete_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_InvertedRamp_DCorner_Asphalt_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_InvertedRamp_DCorner_Asphalt_8x1.Recipe_InvertedRamp_DCorner_Asphalt_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_InvertedRamp_DCorner_Asphalt_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_InvertedRamp_DCorner_Asphalt_8x2.Recipe_InvertedRamp_DCorner_Asphalt_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_InvertedRamp_DCorner_Asphalt_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_InvertedRamp_DCorner_Asphalt_8x4.Recipe_InvertedRamp_DCorner_Asphalt_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_InvertedRamp_DCorner_Concrete_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_InvertedRamp_DCorner_Concrete_8x1.Recipe_InvertedRamp_DCorner_Concrete_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_InvertedRamp_DCorner_Concrete_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_InvertedRamp_DCorner_Concrete_8x2.Recipe_InvertedRamp_DCorner_Concrete_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_InvertedRamp_DCorner_Concrete_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_InvertedRamp_DCorner_Concrete_8x4.Recipe_InvertedRamp_DCorner_Concrete_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_InvertedRamp_DCorner_Metal_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_InvertedRamp_DCorner_Metal_8x1.Recipe_InvertedRamp_DCorner_Metal_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_InvertedRamp_DCorner_Metal_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_InvertedRamp_DCorner_Metal_8x2.Recipe_InvertedRamp_DCorner_Metal_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_InvertedRamp_DCorner_Metal_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_InvertedRamp_DCorner_Metal_8x4.Recipe_InvertedRamp_DCorner_Metal_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_InvertedRamp_DCorner_Polished_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_InvertedRamp_DCorner_Polished_8x1.Recipe_InvertedRamp_DCorner_Polished_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_InvertedRamp_DCorner_Polished_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_InvertedRamp_DCorner_Polished_8x2.Recipe_InvertedRamp_DCorner_Polished_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_InvertedRamp_DCorner_Polished_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_InvertedRamp_DCorner_Polished_8x4.Recipe_InvertedRamp_DCorner_Polished_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_InvertedRamp_Metal_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_InvertedRamp_Metal_8x1.Recipe_InvertedRamp_Metal_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_InvertedRamp_Metal_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_InvertedRamp_Metal_8x2.Recipe_InvertedRamp_Metal_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_InvertedRamp_Metal_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_InvertedRamp_Metal_8x4.Recipe_InvertedRamp_Metal_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_InvertedRamp_Polished_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_InvertedRamp_Polished_8x1.Recipe_InvertedRamp_Polished_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_InvertedRamp_Polished_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_InvertedRamp_Polished_8x2.Recipe_InvertedRamp_Polished_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_InvertedRamp_Polished_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_InvertedRamp_Polished_8x4.Recipe_InvertedRamp_Polished_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_InvertedRamp_UCorner_Asphalt_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_InvertedRamp_UCorner_Asphalt_8x1.Recipe_InvertedRamp_UCorner_Asphalt_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_InvertedRamp_UCorner_Asphalt_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_InvertedRamp_UCorner_Asphalt_8x2.Recipe_InvertedRamp_UCorner_Asphalt_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_InvertedRamp_UCorner_Asphalt_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_InvertedRamp_UCorner_Asphalt_8x4.Recipe_InvertedRamp_UCorner_Asphalt_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_InvertedRamp_UCorner_Concrete_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_InvertedRamp_UCorner_Concrete_8x1.Recipe_InvertedRamp_UCorner_Concrete_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_InvertedRamp_UCorner_Concrete_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_InvertedRamp_UCorner_Concrete_8x2.Recipe_InvertedRamp_UCorner_Concrete_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_InvertedRamp_UCorner_Concrete_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_InvertedRamp_UCorner_Concrete_8x4.Recipe_InvertedRamp_UCorner_Concrete_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_InvertedRamp_UCorner_Metal_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_InvertedRamp_UCorner_Metal_8x1.Recipe_InvertedRamp_UCorner_Metal_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_InvertedRamp_UCorner_Metal_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_InvertedRamp_UCorner_Metal_8x2.Recipe_InvertedRamp_UCorner_Metal_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_InvertedRamp_UCorner_Metal_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_InvertedRamp_UCorner_Metal_8x4.Recipe_InvertedRamp_UCorner_Metal_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_InvertedRamp_UCorner_Polished_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_InvertedRamp_UCorner_Polished_8x1.Recipe_InvertedRamp_UCorner_Polished_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_InvertedRamp_UCorner_Polished_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_InvertedRamp_UCorner_Polished_8x2.Recipe_InvertedRamp_UCorner_Polished_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_InvertedRamp_UCorner_Polished_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_InvertedRamp_UCorner_Polished_8x4.Recipe_InvertedRamp_UCorner_Polished_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_JumpPadAdjustable_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_JumpPadAdjustable.Recipe_JumpPadAdjustable_C",
+   "cost": {
+    "Desc_Rotor_C": 2,
+    "Desc_IronPlate_C": 15,
+    "Desc_Cable_C": 10
+   }
+  },
+  "Build_Ladder_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Ladder/Recipe_Ladder.Recipe_Ladder_C",
+   "cost": {
+    "Desc_IronRod_C": 2
+   }
+  },
+  "Build_LandingPad_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_UJellyLandingPad.Recipe_UJellyLandingPad_C",
+   "cost": {
+    "Desc_Rotor_C": 2,
+    "Desc_Cable_C": 20,
+    "Desc_GenericBiomass_C": 200
+   }
+  },
+  "Build_LargeFan_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Vent/Recipe_LargeFan.Recipe_LargeFan_C",
+   "cost": {
+    "Desc_IronPlate_C": 1,
+    "Desc_CopperSheet_C": 1
+   }
+  },
+  "Build_LargeVent_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Vent/Recipe_LargeVent.Recipe_LargeVent_C",
+   "cost": {
+    "Desc_IronPlate_C": 1,
+    "Desc_CopperSheet_C": 1
+   }
+  },
+  "Build_LightsControlPanel_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_LightsControlPanel.Recipe_LightsControlPanel_C",
+   "cost": {
+    "Desc_Cable_C": 10,
+    "Desc_IronPlateReinforced_C": 5,
+    "Desc_CircuitBoardHighSpeed_C": 3
+   }
+  },
+  "Build_Locomotive_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Vehicle/Train/Recipe_Locomotive.Recipe_Locomotive_C",
+   "cost": {
+    "Desc_ModularFrame_C": 5,
+    "Desc_Motor_C": 10,
+    "Desc_SteelPipe_C": 20,
+    "Desc_Rubber_C": 20,
+    "Desc_Wire_C": 50
+   }
+  },
+  "Build_LookoutTower_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_LookoutTower.Recipe_LookoutTower_C",
+   "cost": {
+    "Desc_IronPlate_C": 5,
+    "Desc_IronRod_C": 5
+   }
+  },
+  "Build_Mam_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_Mam.Recipe_Mam_C",
+   "cost": {
+    "Desc_IronPlateReinforced_C": 5,
+    "Desc_Cable_C": 15,
+    "Desc_Wire_C": 45
+   }
+  },
+  "Build_ManufacturerMk1_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_ManufacturerMk1.Recipe_ManufacturerMk1_C",
+   "cost": {
+    "Desc_Motor_C": 10,
+    "Desc_ModularFrame_C": 20,
+    "Desc_Plastic_C": 50,
+    "Desc_Cable_C": 50
+   }
+  },
+  "Build_MinerMk1_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_MinerMk1.Recipe_MinerMk1_C",
+   "cost": {
+    "BP_ItemDescriptorPortableMiner_C": 1,
+    "Desc_IronPlate_C": 10,
+    "Desc_Cement_C": 10
+   }
+  },
+  "Build_MinerMk2_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_MinerMk2.Recipe_MinerMk2_C",
+   "cost": {
+    "BP_ItemDescriptorPortableMiner_C": 2,
+    "Desc_SteelPlateReinforced_C": 10,
+    "Desc_SteelPipe_C": 20,
+    "Desc_ModularFrame_C": 10
+   }
+  },
+  "Build_MinerMk3_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_MinerMk3.Recipe_MinerMk3_C",
+   "cost": {
+    "BP_ItemDescriptorPortableMiner_C": 3,
+    "Desc_SteelPipe_C": 50,
+    "Desc_ComputerSuper_C": 5,
+    "Desc_ModularFrameFused_C": 10,
+    "Desc_MotorLightweight_C": 3
+   }
+  },
+  "Build_OilPump_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_OilPump.Recipe_OilPump_C",
+   "cost": {
+    "Desc_Motor_C": 15,
+    "Desc_SteelPlateReinforced_C": 20,
+    "Desc_Cable_C": 60
+   }
+  },
+  "Build_OilRefinery_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_OilRefinery.Recipe_OilRefinery_C",
+   "cost": {
+    "Desc_Motor_C": 10,
+    "Desc_SteelPlateReinforced_C": 10,
+    "Desc_SteelPipe_C": 30,
+    "Desc_CopperSheet_C": 20
+   }
+  },
+  "Build_Packager_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_Packager.Recipe_Packager_C",
+   "cost": {
+    "Desc_SteelPlate_C": 20,
+    "Desc_Rubber_C": 10,
+    "Desc_Plastic_C": 10
+   }
+  },
+  "Build_PillarBase_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Foundations/Recipe_PillarBase.Recipe_PillarBase_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_PillarBase_Small_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Pillars/Recipe_PillarBase_Small.Recipe_PillarBase_Small_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_PillarMiddle_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Foundations/Recipe_PillarMiddle.Recipe_PillarMiddle_C",
+   "cost": {
+    "Desc_IronPlate_C": 2,
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_PillarMiddle_Concrete_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Foundations/Recipe_PillarMiddle_Concrete.Recipe_PillarMiddle_Concrete_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_PillarMiddle_Frame_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Foundations/Recipe_PillarMiddle_Frame.Recipe_PillarMiddle_Frame_C",
+   "cost": {
+    "Desc_SteelPlate_C": 5
+   }
+  },
+  "Build_Pillar_Small_Concrete_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Pillars/Recipe_Pillar_Small_Concrete.Recipe_Pillar_Small_Concrete_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Pillar_Small_Frame_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Pillars/Recipe_Pillar_Small_Frame.Recipe_Pillar_Small_Frame_C",
+   "cost": {
+    "Desc_SteelPlate_C": 3
+   }
+  },
+  "Build_Pillar_Small_Metal_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Pillars/Recipe_Pillar_Small_Metal.Recipe_Pillar_Small_Metal_C",
+   "cost": {
+    "Desc_IronPlate_C": 1,
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_PipeHyperStart_C": {
+   "recipe": "/Game/FactoryGame/Recipe_PipeHyperStart.Recipe_PipeHyperStart_C",
+   "cost": {
+    "Desc_SteelPlateReinforced_C": 4,
+    "Desc_Rotor_C": 4,
+    "Desc_SteelPipe_C": 10
+   }
+  },
+  "Build_PipeHyperSupport_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_PipeHyperSupport.Recipe_PipeHyperSupport_C",
+   "cost": {
+    "Desc_IronPlate_C": 2,
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_PipeHyper_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_PipeHyper.Recipe_PipeHyper_C",
+   "cost": {
+    "Desc_CopperSheet_C": 1,
+    "Desc_SteelPipe_C": 1
+   }
+  },
+  "Build_PipeStorageTank_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_PipeStorageTank.Recipe_PipeStorageTank_C",
+   "cost": {
+    "Desc_CopperSheet_C": 10,
+    "Desc_ModularFrame_C": 5
+   }
+  },
+  "Build_PipeSupportStackable_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_PipeSupportStackable.Recipe_PipeSupportStackable_C",
+   "cost": {
+    "Desc_IronPlate_C": 4,
+    "Desc_IronRod_C": 2,
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_PipelineJunction_Cross_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_PipelineJunction_Cross.Recipe_PipelineJunction_Cross_C",
+   "cost": {
+    "Desc_CopperSheet_C": 5
+   }
+  },
+  "Build_PipelineJunction_T_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_PipelineJunction_T.Recipe_PipelineJunction_T_C",
+   "cost": {
+    "Desc_CopperSheet_C": 5
+   }
+  },
+  "Build_PipelineMK2_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_PipelineMK2.Recipe_PipelineMK2_C",
+   "cost": {
+    "Desc_CopperSheet_C": 2,
+    "Desc_Plastic_C": 1
+   }
+  },
+  "Build_PipelineMK2_NoIndicator_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_PipelineMK2_NoIndicator.Recipe_PipelineMK2_NoIndicator_C",
+   "cost": {
+    "Desc_CopperSheet_C": 2,
+    "Desc_Plastic_C": 1
+   }
+  },
+  "Build_PipelinePumpMk2_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_PipelinePumpMK2.Recipe_PipelinePumpMK2_C",
+   "cost": {
+    "Desc_ModularFrameHeavy_C": 1,
+    "Desc_Motor_C": 2,
+    "Desc_Plastic_C": 10
+   }
+  },
+  "Build_PipelinePump_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_PipelinePump.Recipe_PipelinePump_C",
+   "cost": {
+    "Desc_CopperSheet_C": 2,
+    "Desc_Rotor_C": 2
+   }
+  },
+  "Build_PipelineSupportWallHole_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_PipeSupportWallHole.Recipe_PipeSupportWallHole_C",
+   "cost": {
+    "Desc_IronRod_C": 2,
+    "Desc_IronPlate_C": 1,
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_PipelineSupportWall_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_PipeSupportWall.Recipe_PipeSupportWall_C",
+   "cost": {
+    "Desc_IronRod_C": 2,
+    "Desc_IronPlate_C": 1,
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_PipelineSupport_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_PipeSupport.Recipe_PipeSupport_C",
+   "cost": {
+    "Desc_IronPlate_C": 2,
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Pipeline_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_Pipeline.Recipe_Pipeline_C",
+   "cost": {
+    "Desc_CopperSheet_C": 1
+   }
+  },
+  "Build_Pipeline_NoIndicator_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_Pipeline_NoIndicator.Recipe_Pipeline_NoIndicator_C",
+   "cost": {
+    "Desc_CopperSheet_C": 1
+   }
+  },
+  "Build_PortalPotty_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Factory/PortalPotty/Recipe_PortalPotty.Recipe_PortalPotty_C",
+   "cost": {
+    "Desc_SteelPipe_C": 20,
+    "Desc_ModularFrame_C": 5,
+    "Desc_GenericBiomass_C": 100,
+    "Desc_SAMIngot_C": 20
+   }
+  },
+  "Build_PortalSatellite_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_PortalSatellite.Recipe_PortalSatellite_C",
+   "cost": {
+    "Desc_ModularFrameLightweight_C": 5,
+    "Desc_QuantumOscillator_C": 10,
+    "Desc_SAMFluctuator_C": 25,
+    "Desc_FicsiteMesh_C": 25
+   }
+  },
+  "Build_Portal_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_Portal.Recipe_Portal_C",
+   "cost": {
+    "Desc_MotorLightweight_C": 5,
+    "Desc_ModularFrameLightweight_C": 10,
+    "Desc_QuantumOscillator_C": 15,
+    "Desc_SAMFluctuator_C": 25,
+    "Desc_FicsiteMesh_C": 50
+   }
+  },
+  "Build_PowerLine_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_PowerLine.Recipe_PowerLine_C",
+   "cost": {
+    "Desc_Cable_C": 1
+   }
+  },
+  "Build_PowerPoleMk1_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_PowerPoleMk1.Recipe_PowerPoleMk1_C",
+   "cost": {
+    "Desc_Wire_C": 3,
+    "Desc_IronRod_C": 1,
+    "Desc_Cement_C": 1
+   }
+  },
+  "Build_PowerPoleMk2_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_PowerPoleMk2.Recipe_PowerPoleMk2_C",
+   "cost": {
+    "Desc_HighSpeedWire_C": 6,
+    "Desc_IronRod_C": 2,
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_PowerPoleMk3_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_PowerPoleMk3.Recipe_PowerPoleMk3_C",
+   "cost": {
+    "Desc_HighSpeedConnector_C": 2,
+    "Desc_SteelPipe_C": 2,
+    "Desc_Rubber_C": 3
+   }
+  },
+  "Build_PowerPoleWallDoubleMk2_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_PowerPoleWallDoubleMk2.Recipe_PowerPoleWallDoubleMk2_C",
+   "cost": {
+    "Desc_HighSpeedWire_C": 16,
+    "Desc_IronRod_C": 4
+   }
+  },
+  "Build_PowerPoleWallDoubleMk3_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_PowerPoleWallDoubleMk3.Recipe_PowerPoleWallDoubleMk3_C",
+   "cost": {
+    "Desc_HighSpeedConnector_C": 6,
+    "Desc_SteelPipe_C": 6
+   }
+  },
+  "Build_PowerPoleWallDouble_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_PowerPoleWallDouble.Recipe_PowerPoleWallDouble_C",
+   "cost": {
+    "Desc_Wire_C": 8,
+    "Desc_IronRod_C": 2
+   }
+  },
+  "Build_PowerPoleWallMk2_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_PowerPoleWallMk2.Recipe_PowerPoleWallMk2_C",
+   "cost": {
+    "Desc_HighSpeedWire_C": 8,
+    "Desc_IronRod_C": 2
+   }
+  },
+  "Build_PowerPoleWallMk3_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_PowerPoleWallMk3.Recipe_PowerPoleWallMk3_C",
+   "cost": {
+    "Desc_HighSpeedConnector_C": 3,
+    "Desc_SteelPipe_C": 3
+   }
+  },
+  "Build_PowerPoleWall_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_PowerPoleWall.Recipe_PowerPoleWall_C",
+   "cost": {
+    "Desc_Wire_C": 4,
+    "Desc_IronRod_C": 1
+   }
+  },
+  "Build_PowerStorageMk1_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_PowerStorageMk1.Recipe_PowerStorageMk1_C",
+   "cost": {
+    "Desc_SteelPlateReinforced_C": 5,
+    "Desc_ModularFrame_C": 10,
+    "Desc_Wire_C": 100
+   }
+  },
+  "Build_PowerSwitch_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_PowerSwitch.Recipe_PowerSwitch_C",
+   "cost": {
+    "Desc_HighSpeedWire_C": 20,
+    "Desc_SteelPlate_C": 4,
+    "Desc_CircuitBoardHighSpeed_C": 1
+   }
+  },
+  "Build_PowerTowerPlatform_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_PowerTowerPlatform.Recipe_PowerTowerPlatform_C",
+   "cost": {
+    "Desc_Cement_C": 10,
+    "Desc_Wire_C": 20,
+    "Desc_SteelPlate_C": 20
+   }
+  },
+  "Build_PowerTower_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_PowerTower.Recipe_PowerTower_C",
+   "cost": {
+    "Desc_Cement_C": 10,
+    "Desc_Wire_C": 20,
+    "Desc_SteelPlate_C": 20
+   }
+  },
+  "Build_PriorityPowerSwitch_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_PriorityPowerSwitch.Recipe_PriorityPowerSwitch_C",
+   "cost": {
+    "Desc_HighSpeedConnector_C": 2,
+    "Desc_SteelPlate_C": 6,
+    "Desc_HighSpeedWire_C": 50
+   }
+  },
+  "Build_QuantumEncoder_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_QuantumEncoder.Recipe_QuantumEncoder_C",
+   "cost": {
+    "Desc_MotorLightweight_C": 20,
+    "Desc_ComputerSuper_C": 20,
+    "Desc_CoolingSystem_C": 50,
+    "Desc_TimeCrystal_C": 50,
+    "Desc_FicsiteMesh_C": 100
+   }
+  },
+  "Build_QuarterPipeCorner_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Foundations/Recipe_QuarterPipeCorner_01.Recipe_QuarterPipeCorner_01_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeCorner_02_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Foundations/Recipe_QuarterPipeCorner_02.Recipe_QuarterPipeCorner_02_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeCorner_03_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Foundations/Recipe_QuarterPipeCorner_03.Recipe_QuarterPipeCorner_03_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeCorner_04_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Foundations/Recipe_QuarterPipeCorner_04.Recipe_QuarterPipeCorner_04_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeInCorner_Asphalt_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_QuarterPipeInCorner_Asphalt_8x4.Recipe_QuarterPipeInCorner_Asphalt_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeInCorner_ConcretePolished_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_QuarterPipeInCorner_ConcretePolished_8x4.Recipe_QuarterPipeInCorner_ConcretePolished_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeInCorner_Concrete_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_QuarterPipeInCorner_Concrete_8x4.Recipe_QuarterPipeInCorner_Concrete_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeInCorner_Grip_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_QuarterPipeInCorner_Grip_8x4.Recipe_QuarterPipeInCorner_Grip_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddleInCorner_Asphalt_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_QuarterPipeMiddleInCorner_Asphalt_8x1.Recipe_QuarterPipeMiddleInCorner_Asphalt_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddleInCorner_Asphalt_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_QuarterPipeMiddleInCorner_Asphalt_8x2.Recipe_QuarterPipeMiddleInCorner_Asphalt_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddleInCorner_Asphalt_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_QuarterPipeMiddleInCorner_Asphalt_8x4.Recipe_QuarterPipeMiddleInCorner_Asphalt_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddleInCorner_Concrete_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_QuarterPipeMiddleInCorner_Concrete_8x1.Recipe_QuarterPipeMiddleInCorner_Concrete_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddleInCorner_Concrete_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_QuarterPipeMiddleInCorner_Concrete_8x2.Recipe_QuarterPipeMiddleInCorner_Concrete_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddleInCorner_Concrete_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_QuarterPipeMiddleInCorner_Concrete_8x4.Recipe_QuarterPipeMiddleInCorner_Concrete_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddleInCorner_Ficsit_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/FicsitSet/Recipe_QuarterPipeMiddleInCorner_Ficsit_8x1.Recipe_QuarterPipeMiddleInCorner_Ficsit_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddleInCorner_Ficsit_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/FicsitSet/Recipe_QuarterPipeMiddleInCorner_Ficsit_8x2.Recipe_QuarterPipeMiddleInCorner_Ficsit_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddleInCorner_Ficsit_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/FicsitSet/Recipe_QuarterPipeMiddleInCorner_Ficsit_8x4.Recipe_QuarterPipeMiddleInCorner_Ficsit_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddleInCorner_Grip_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_QuarterPipeMiddleInCorner_Grip_8x1.Recipe_QuarterPipeMiddleInCorner_Grip_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddleInCorner_Grip_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_QuarterPipeMiddleInCorner_Grip_8x2.Recipe_QuarterPipeMiddleInCorner_Grip_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddleInCorner_Grip_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_QuarterPipeMiddleInCorner_Grip_8x4.Recipe_QuarterPipeMiddleInCorner_Grip_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddleInCorner_PolishedConcrete_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_QuarterPipeMiddleInCorner_PolishedConcrete_8x1.Recipe_QuarterPipeMiddleInCorner_PolishedConcrete_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddleInCorner_PolishedConcrete_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_QuarterPipeMiddleInCorner_PolishedConcrete_8x2.Recipe_QuarterPipeMiddleInCorner_PolishedConcrete_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddleInCorner_PolishedConcrete_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_QuarterPipeMiddleInCorner_PolishedConcrete_8x4.Recipe_QuarterPipeMiddleInCorner_PolishedConcrete_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddleOutCorner_Asphalt_4x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_QuarterPipeMiddleOutCorner_Asphalt_4x1.Recipe_QuarterPipeMiddleOutCorner_Asphalt_4x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddleOutCorner_Asphalt_4x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_QuarterPipeMiddleOutCorner_Asphalt_4x2.Recipe_QuarterPipeMiddleOutCorner_Asphalt_4x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddleOutCorner_Asphalt_4x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_QuarterPipeMiddleOutCorner_Asphalt_4x4.Recipe_QuarterPipeMiddleOutCorner_Asphalt_4x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddleOutCorner_Concrete_4x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_QuarterPipeMiddleOutCorner_Concrete_4x1.Recipe_QuarterPipeMiddleOutCorner_Concrete_4x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddleOutCorner_Concrete_4x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_QuarterPipeMiddleOutCorner_Concrete_4x2.Recipe_QuarterPipeMiddleOutCorner_Concrete_4x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddleOutCorner_Concrete_4x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_QuarterPipeMiddleOutCorner_Concrete_4x4.Recipe_QuarterPipeMiddleOutCorner_Concrete_4x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddleOutCorner_Ficsit_4x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/FicsitSet/Recipe_QuarterPipeMiddleOutCorner_Ficsit_4x1.Recipe_QuarterPipeMiddleOutCorner_Ficsit_4x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddleOutCorner_Ficsit_4x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/FicsitSet/Recipe_QuarterPipeMiddleOutCorner_Ficsit_4x2.Recipe_QuarterPipeMiddleOutCorner_Ficsit_4x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddleOutCorner_Ficsit_4x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/FicsitSet/Recipe_QuarterPipeMiddleOutCorner_Ficsit_4x4.Recipe_QuarterPipeMiddleOutCorner_Ficsit_4x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddleOutCorner_Grip_4x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_QuarterPipeMiddleOutCorner_Grip_4x1.Recipe_QuarterPipeMiddleOutCorner_Grip_4x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddleOutCorner_Grip_4x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_QuarterPipeMiddleOutCorner_Grip_4x2.Recipe_QuarterPipeMiddleOutCorner_Grip_4x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddleOutCorner_Grip_4x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_QuarterPipeMiddleOutCorner_Grip_4x4.Recipe_QuarterPipeMiddleOutCorner_Grip_4x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddleOutCorner_PolishedConcrete_4x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_QuarterPipeMiddleOutCorner_PolishedConcrete_4x1.Recipe_QuarterPipeMiddleOutCorner_PolishedConcrete_4x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddleOutCorner_PolishedConcrete_4x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_QuarterPipeMiddleOutCorner_PolishedConcrete_4x2.Recipe_QuarterPipeMiddleOutCorner_PolishedConcrete_4x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddleOutCorner_PolishedConcrete_4x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_QuarterPipeMiddleOutCorner_PolishedConcrete_4x4.Recipe_QuarterPipeMiddleOutCorner_PolishedConcrete_4x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddle_Asphalt_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_QuarterPipeMiddle_Asphalt_8x1.Recipe_QuarterPipeMiddle_Asphalt_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddle_Asphalt_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_QuarterPipeMiddle_Asphalt_8x2.Recipe_QuarterPipeMiddle_Asphalt_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddle_Asphalt_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_QuarterPipeMiddle_Asphalt_8x4.Recipe_QuarterPipeMiddle_Asphalt_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddle_Concrete_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_QuarterPipeMiddle_Concrete_8x1.Recipe_QuarterPipeMiddle_Concrete_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddle_Concrete_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_QuarterPipeMiddle_Concrete_8x2.Recipe_QuarterPipeMiddle_Concrete_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddle_Concrete_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_QuarterPipeMiddle_Concrete_8x4.Recipe_QuarterPipeMiddle_Concrete_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddle_Ficsit_4x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/FicsitSet/Recipe_QuarterPipeMiddle_Ficsit_4x1.Recipe_QuarterPipeMiddle_Ficsit_4x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddle_Ficsit_4x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/FicsitSet/Recipe_QuarterPipeMiddle_Ficsit_4x2.Recipe_QuarterPipeMiddle_Ficsit_4x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddle_Ficsit_4x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/FicsitSet/Recipe_QuarterPipeMiddle_Ficsit_4x4.Recipe_QuarterPipeMiddle_Ficsit_4x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddle_Grip_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_QuarterPipeMiddle_Grip_8x1.Recipe_QuarterPipeMiddle_Grip_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddle_Grip_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_QuarterPipeMiddle_Grip_8x2.Recipe_QuarterPipeMiddle_Grip_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddle_Grip_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_QuarterPipeMiddle_Grip_8x4.Recipe_QuarterPipeMiddle_Grip_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddle_PolishedConcrete_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_QuarterPipeMiddle_PolishedConcrete_8x1.Recipe_QuarterPipeMiddle_PolishedConcrete_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddle_PolishedConcrete_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_QuarterPipeMiddle_PolishedConcrete_8x2.Recipe_QuarterPipeMiddle_PolishedConcrete_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeMiddle_PolishedConcrete_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_QuarterPipeMiddle_PolishedConcrete_8x4.Recipe_QuarterPipeMiddle_PolishedConcrete_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeOutCorner_Asphalt_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_QuarterPipeOutCorner_Asphalt_8x4.Recipe_QuarterPipeOutCorner_Asphalt_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeOutCorner_ConcretePolished_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_QuarterPipeOutCorner_ConcretePolished_8x4.Recipe_QuarterPipeOutCorner_ConcretePolished_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeOutCorner_Concrete_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_QuarterPipeOutCorner_Concrete_8x4.Recipe_QuarterPipeOutCorner_Concrete_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipeOutCorner_Grip_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_QuarterPipeOutCorner_Grip_8x4.Recipe_QuarterPipeOutCorner_Grip_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipe_02_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Foundations/Recipe_QuarterPipe_02.Recipe_QuarterPipe_02_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipe_Asphalt_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_QuarterPipe_Asphalt_8x4.Recipe_QuarterPipe_Asphalt_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipe_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Foundations/Recipe_QuarterPipe.Recipe_QuarterPipe_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipe_ConcretePolished_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_QuarterPipe_ConcretePolished_8x4.Recipe_QuarterPipe_ConcretePolished_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipe_Concrete_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_QuarterPipe_Concrete_8x4.Recipe_QuarterPipe_Concrete_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_QuarterPipe_Grip_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_QuarterPipe_Grip_8x4.Recipe_QuarterPipe_Grip_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_RadarTower_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_RadarTower.Recipe_RadarTower_C",
+   "cost": {
+    "Desc_Computer_C": 10,
+    "Desc_ModularFrameHeavy_C": 20,
+    "Desc_CrystalOscillator_C": 25,
+    "Desc_Cable_C": 100
+   }
+  },
+  "Build_Railing_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Fence/Recipe_Railing_01.Recipe_Railing_01_C",
+   "cost": {
+    "Desc_IronRod_C": 2
+   }
+  },
+  "Build_RailroadBlockSignal_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Factory/Train/Signal/Recipe_RailroadBlockSignal.Recipe_RailroadBlockSignal_C",
+   "cost": {
+    "Desc_SteelPipe_C": 2,
+    "Desc_Computer_C": 1
+   }
+  },
+  "Build_RailroadEndStop_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Factory/Train/EndStop/Recipe_RailroadEndStop.Recipe_RailroadEndStop_C",
+   "cost": {
+    "Desc_SteelPipe_C": 2,
+    "Desc_SteelPlateReinforced_C": 5,
+    "Desc_Cement_C": 20
+   }
+  },
+  "Build_RailroadPathSignal_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Factory/Train/Signal/Recipe_RailroadPathSignal.Recipe_RailroadPathSignal_C",
+   "cost": {
+    "Desc_SteelPipe_C": 2,
+    "Desc_Computer_C": 1
+   }
+  },
+  "Build_RailroadTrack_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_RailroadTrack.Recipe_RailroadTrack_C",
+   "cost": {
+    "Desc_SteelPipe_C": 1,
+    "Desc_SteelPlate_C": 1
+   }
+  },
+  "Build_RampDouble_8x1_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Ramps/Recipe_RampDouble_8x1.Recipe_RampDouble_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_RampDouble_Asphalt_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_RampDouble_Asphalt_8x1.Recipe_RampDouble_Asphalt_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_RampDouble_Asphalt_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_RampDouble_Asphalt_8x2.Recipe_RampDouble_Asphalt_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_RampDouble_Asphalt_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_RampDouble_Asphalt_8x4.Recipe_RampDouble_Asphalt_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_RampDouble_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Ramps/Recipe_RampDouble.Recipe_RampDouble_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_RampDouble_Concrete_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_RampDouble_Concrete_8x1.Recipe_RampDouble_Concrete_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_RampDouble_Concrete_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_RampDouble_Concrete_8x2.Recipe_RampDouble_Concrete_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_RampDouble_Concrete_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_RampDouble_Concrete_8x4.Recipe_RampDouble_Concrete_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_RampDouble_Metal_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_RampDouble_Metal_8x1.Recipe_RampDouble_Metal_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_RampDouble_Metal_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_RampDouble_Metal_8x2.Recipe_RampDouble_Metal_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_RampDouble_Metal_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_RampDouble_Metal_8x4.Recipe_RampDouble_Metal_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_RampDouble_Polished_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_RampDouble_Polished_8x1.Recipe_RampDouble_Polished_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_RampDouble_Polished_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_RampDouble_Polished_8x2.Recipe_RampDouble_Polished_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_RampDouble_Polished_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_RampDouble_Polished_8x4.Recipe_RampDouble_Polished_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_RampInverted_8x1_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Ramps/Recipe_RampInverted_8x1.Recipe_RampInverted_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_RampInverted_8x1_Corner_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Ramps/Recipe_RampInverted_8x1_Corner_01.Recipe_RampInverted_8x1_Corner_01_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_RampInverted_8x1_Corner_02_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Ramps/Recipe_RampInverted_8x1_Corner_02.Recipe_RampInverted_8x1_Corner_02_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_RampInverted_8x2_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Ramps/Recipe_RampInverted_8x2_01.Recipe_RampInverted_8x2_01_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_RampInverted_8x2_Corner_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Ramps/Recipe_RampInverted_8x2_Corner_01.Recipe_RampInverted_8x2_Corner_01_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_RampInverted_8x2_Corner_02_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Ramps/Recipe_RampInverted_8x2_Corner_02.Recipe_RampInverted_8x2_Corner_02_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_RampInverted_8x4_Corner_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Ramps/Recipe_RampInverted_8x4_Corner_01.Recipe_RampInverted_8x4_Corner_01_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_RampInverted_8x4_Corner_02_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Ramps/Recipe_RampInverted_8x4_Corner_02.Recipe_RampInverted_8x4_Corner_02_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_8x1_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Ramps/Recipe_Ramp_8x1_01.Recipe_Ramp_8x1_01_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_8x2_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Ramps/Recipe_Ramp_8x2_01.Recipe_Ramp_8x2_01_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_8x4_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Ramps/Recipe_Ramp_8x4_01.Recipe_Ramp_8x4_01_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_8x4_Inverted_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Ramps/Recipe_Ramp_8x4_Inverted_01.Recipe_Ramp_8x4_Inverted_01_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_8x8x8_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Ramps/Recipe_Ramp_8x8x8.Recipe_Ramp_8x8x8_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_Asphalt_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_Ramp_Asphalt_8x1.Recipe_Ramp_Asphalt_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_Asphalt_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_Ramp_Asphalt_8x2.Recipe_Ramp_Asphalt_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_Asphalt_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_Ramp_Asphalt_8x4.Recipe_Ramp_Asphalt_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_Concrete_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_Ramp_Concrete_8x1.Recipe_Ramp_Concrete_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_Concrete_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_Ramp_Concrete_8x2.Recipe_Ramp_Concrete_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_Concrete_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_Ramp_Concrete_8x4.Recipe_Ramp_Concrete_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_Diagonal_8x1_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Ramps/Recipe_Ramp_Diagonal_8x1_01.Recipe_Ramp_Diagonal_8x1_01_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_Diagonal_8x1_02_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Ramps/Recipe_Ramp_Diagonal_8x1_02.Recipe_Ramp_Diagonal_8x1_02_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_Diagonal_8x2_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Ramps/Recipe_Ramp_Diagonal_8x2_01.Recipe_Ramp_Diagonal_8x2_01_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_Diagonal_8x2_02_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Ramps/Recipe_Ramp_Diagonal_8x2_02.Recipe_Ramp_Diagonal_8x2_02_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_Diagonal_8x4_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Ramps/Recipe_Ramp_Diagonal_8x4_01.Recipe_Ramp_Diagonal_8x4_01_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_Diagonal_8x4_02_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Ramps/Recipe_Ramp_Diagonal_8x4_02.Recipe_Ramp_Diagonal_8x4_02_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_DownCorner_Asphalt_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_Ramp_DownCorner_Asphalt_8x1.Recipe_Ramp_DownCorner_Asphalt_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_DownCorner_Asphalt_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_Ramp_DownCorner_Asphalt_8x2.Recipe_Ramp_DownCorner_Asphalt_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_DownCorner_Asphalt_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_Ramp_DownCorner_Asphalt_8x4.Recipe_Ramp_DownCorner_Asphalt_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_DownCorner_Concrete_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_Ramp_DownCorner_Concrete_8x1.Recipe_Ramp_DownCorner_Concrete_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_DownCorner_Concrete_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_Ramp_DownCorner_Concrete_8x2.Recipe_Ramp_DownCorner_Concrete_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_DownCorner_Concrete_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_Ramp_DownCorner_Concrete_8x4.Recipe_Ramp_DownCorner_Concrete_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_DownCorner_Metal_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_Ramp_DownCorner_Metal_8x1.Recipe_Ramp_DownCorner_Metal_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_DownCorner_Metal_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_Ramp_DownCorner_Metal_8x2.Recipe_Ramp_DownCorner_Metal_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_DownCorner_Metal_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_Ramp_DownCorner_Metal_8x4.Recipe_Ramp_DownCorner_Metal_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_DownCorner_Polished_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_Ramp_DownCorner_Polished_8x1.Recipe_Ramp_DownCorner_Polished_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_DownCorner_Polished_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_Ramp_DownCorner_Polished_8x2.Recipe_Ramp_DownCorner_Polished_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_DownCorner_Polished_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_Ramp_DownCorner_Polished_8x4.Recipe_Ramp_DownCorner_Polished_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_Frame_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Ramps/Recipe_Ramp_Frame_01.Recipe_Ramp_Frame_01_C",
+   "cost": {
+    "Desc_SteelPlate_C": 5
+   }
+  },
+  "Build_Ramp_Frame_Inverted_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Ramps/Recipe_Ramp_Frame_Inverted_01.Recipe_Ramp_Frame_Inverted_01_C",
+   "cost": {
+    "Desc_SteelPlate_C": 5
+   }
+  },
+  "Build_Ramp_Metal_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_Ramp_Metal_8x1.Recipe_Ramp_Metal_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_Metal_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_Ramp_Metal_8x2.Recipe_Ramp_Metal_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_Metal_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_Ramp_Metal_8x4.Recipe_Ramp_Metal_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_Polished_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_Ramp_Polished_8x1.Recipe_Ramp_Polished_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_Polished_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_Ramp_Polished_8x2.Recipe_Ramp_Polished_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_Polished_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_Ramp_Polished_8x4.Recipe_Ramp_Polished_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_UpCorner_Asphalt_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_Ramp_UpCorner_Asphalt_8x1.Recipe_Ramp_UpCorner_Asphalt_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_UpCorner_Asphalt_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_Ramp_UpCorner_Asphalt_8x2.Recipe_Ramp_UpCorner_Asphalt_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_UpCorner_Asphalt_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_Ramp_UpCorner_Asphalt_8x4.Recipe_Ramp_UpCorner_Asphalt_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_UpCorner_Concrete_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_Ramp_UpCorner_Concrete_8x1.Recipe_Ramp_UpCorner_Concrete_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_UpCorner_Concrete_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_Ramp_UpCorner_Concrete_8x2.Recipe_Ramp_UpCorner_Concrete_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_UpCorner_Concrete_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_Ramp_UpCorner_Concrete_8x4.Recipe_Ramp_UpCorner_Concrete_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_UpCorner_Metal_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_Ramp_UpCorner_Metal_8x1.Recipe_Ramp_UpCorner_Metal_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_UpCorner_Metal_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_Ramp_UpCorner_Metal_8x2.Recipe_Ramp_UpCorner_Metal_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_UpCorner_Metal_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_Ramp_UpCorner_Metal_8x4.Recipe_Ramp_UpCorner_Metal_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_UpCorner_Polished_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_Ramp_UpCorner_Polished_8x1.Recipe_Ramp_UpCorner_Polished_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_UpCorner_Polished_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_Ramp_UpCorner_Polished_8x2.Recipe_Ramp_UpCorner_Polished_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Ramp_UpCorner_Polished_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_Ramp_UpCorner_Polished_8x4.Recipe_Ramp_UpCorner_Polished_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_ResourceSinkShop_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_ResourceSinkShop.Recipe_ResourceSinkShop_C",
+   "cost": {
+    "Desc_IronScrew_C": 200,
+    "Desc_IronPlate_C": 10,
+    "Desc_Cable_C": 10
+   }
+  },
+  "Build_ResourceSink_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_ResourceSink.Recipe_ResourceSink_C",
+   "cost": {
+    "Desc_IronPlateReinforced_C": 15,
+    "Desc_Cable_C": 30,
+    "Desc_Cement_C": 45
+   }
+  },
+  "Build_Roof_A_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_A_01.Recipe_Roof_A_01_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_A_02_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_A_02.Recipe_Roof_A_02_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_A_03_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_A_03.Recipe_Roof_A_03_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_A_04_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_A_04.Recipe_Roof_A_04_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_Metal_InCorner_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_Metal_InCorner_01.Recipe_Roof_Metal_InCorner_01_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_Metal_InCorner_02_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_Metal_InCorner_02.Recipe_Roof_Metal_InCorner_02_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_Metal_InCorner_03_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_Metal_InCorner_03.Recipe_Roof_Metal_InCorner_03_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_Metal_OutCorner_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_Metal_OutCorner_01.Recipe_Roof_Metal_OutCorner_01_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_Metal_OutCorner_02_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_Metal_OutCorner_02.Recipe_Roof_Metal_OutCorner_02_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_Metal_OutCorner_03_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_Metal_OutCorner_03.Recipe_Roof_Metal_OutCorner_03_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_Orange_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_Orange_01.Recipe_Roof_Orange_01_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_Orange_02_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_Orange_02.Recipe_Roof_Orange_02_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_Orange_03_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_Orange_03.Recipe_Roof_Orange_03_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_Orange_04_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_Orange_04.Recipe_Roof_Orange_04_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_Orange_InCorner_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_Orange_InCorner_01.Recipe_Roof_Orange_InCorner_01_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_Orange_InCorner_02_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_Orange_InCorner_02.Recipe_Roof_Orange_InCorner_02_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_Orange_InCorner_03_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_Orange_InCorner_03.Recipe_Roof_Orange_InCorner_03_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_Orange_OutCorner_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_Orange_OutCorner_01.Recipe_Roof_Orange_OutCorner_01_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_Orange_OutCorner_02_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_Orange_OutCorner_02.Recipe_Roof_Orange_OutCorner_02_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_Orange_OutCorner_03_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_Orange_OutCorner_03.Recipe_Roof_Orange_OutCorner_03_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_Tar_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_Tar_01.Recipe_Roof_Tar_01_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_Tar_02_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_Tar_02.Recipe_Roof_Tar_02_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_Tar_03_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_Tar_03.Recipe_Roof_Tar_03_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_Tar_04_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_Tar_04.Recipe_Roof_Tar_04_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_Tar_InCorner_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_Tar_InCorner_01.Recipe_Roof_Tar_InCorner_01_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_Tar_InCorner_02_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_Tar_InCorner_02.Recipe_Roof_Tar_InCorner_02_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_Tar_InCorner_03_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_Tar_InCorner_03.Recipe_Roof_Tar_InCorner_03_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_Tar_OutCorner_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_Tar_OutCorner_01.Recipe_Roof_Tar_OutCorner_01_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_Tar_OutCorner_02_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_Tar_OutCorner_02.Recipe_Roof_Tar_OutCorner_02_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_Tar_OutCorner_03_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_Tar_OutCorner_03.Recipe_Roof_Tar_OutCorner_03_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_Window_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_Window_01.Recipe_Roof_Window_01_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_Window_02_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_Window_02.Recipe_Roof_Window_02_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_Window_03_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_Window_03.Recipe_Roof_Window_03_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_Window_04_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_Window_04.Recipe_Roof_Window_04_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_Window_InCorner_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_Window_InCorner_01.Recipe_Roof_Window_InCorner_01_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_Window_InCorner_02_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_Window_InCorner_02.Recipe_Roof_Window_InCorner_02_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_Window_InCorner_03_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_Window_InCorner_03.Recipe_Roof_Window_InCorner_03_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_Window_OutCorner_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_Window_OutCorner_01.Recipe_Roof_Window_OutCorner_01_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_Window_OutCorner_02_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_Window_OutCorner_02.Recipe_Roof_Window_OutCorner_02_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Roof_Window_OutCorner_03_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Roof/Recipe_Roof_Window_OutCorner_03.Recipe_Roof_Window_OutCorner_03_C",
+   "cost": {
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_SmelterMk1_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_SmelterBasicMk1.Recipe_SmelterBasicMk1_C",
+   "cost": {
+    "Desc_IronRod_C": 5,
+    "Desc_Wire_C": 8
+   }
+  },
+  "Build_SnowCannon_C": {
+   "recipe": "/Game/FactoryGame/Events/Christmas/Buildings/SnowCannon/Recipe_SnowCannon.Recipe_SnowCannon_C",
+   "cost": {
+    "Desc_XmasBow_C": 10,
+    "Desc_Snow_C": 100,
+    "Desc_XmasBall3_C": 20
+   }
+  },
+  "Build_SnowDispenser_C": {
+   "recipe": "/Game/FactoryGame/Events/Christmas/Buildings/SnowDispenser/Recipe_SnowDispenser.Recipe_SnowDispenser_C",
+   "cost": {
+    "Desc_CandyCane_C": 10,
+    "Desc_Snow_C": 100,
+    "Desc_XmasBall4_C": 20
+   }
+  },
+  "Build_Snowman_C": {
+   "recipe": "/Game/FactoryGame/Events/Christmas/Buildings/SnowmanDecor/Recipe_Snowman.Recipe_Snowman_C",
+   "cost": {
+    "Desc_Snow_C": 50,
+    "Desc_CandyCane_C": 3,
+    "Desc_XmasBow_C": 1,
+    "Desc_XmasBall1_C": 3,
+    "Desc_XmasBall2_C": 2
+   }
+  },
+  "Build_StackableShelf_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/StackableShelf/Recipe_StackableShelf.Recipe_StackableShelf_C",
+   "cost": {
+    "Desc_IronPlate_C": 1,
+    "Desc_IronRod_C": 1
+   }
+  },
+  "Build_Stair_Asphalt_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_Stair_Asphalt_8x1.Recipe_Stair_Asphalt_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Stair_Asphalt_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_Stair_Asphalt_8x2.Recipe_Stair_Asphalt_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Stair_Asphalt_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/AsphaltSet/Recipe_Stair_Asphalt_8x4.Recipe_Stair_Asphalt_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Stair_Concrete_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_Stair_Concrete_8x1.Recipe_Stair_Concrete_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Stair_Concrete_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_Stair_Concrete_8x2.Recipe_Stair_Concrete_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Stair_Concrete_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/ConcreteSet/Recipe_Stair_Concrete_8x4.Recipe_Stair_Concrete_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Stair_FicsitSet_8x1_01_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/FicsitSet/Recipe_Stair_FicsitSet_8x1_01.Recipe_Stair_FicsitSet_8x1_01_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Stair_FicsitSet_8x2_01_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/FicsitSet/Recipe_Stair_FicsitSet_8x2_01.Recipe_Stair_FicsitSet_8x2_01_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Stair_FicsitSet_8x4_01_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/FicsitSet/Recipe_Stair_FicsitSet_8x4_01.Recipe_Stair_FicsitSet_8x4_01_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Stair_GripMetal_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_Stair_GripMetal_8x1.Recipe_Stair_GripMetal_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Stair_GripMetal_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_Stair_GripMetal_8x2.Recipe_Stair_GripMetal_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Stair_GripMetal_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/GripMetal/Recipe_Stair_GripMetal_8x4.Recipe_Stair_GripMetal_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Stair_PolishedConcrete_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_Stair_PolishedConcrete_8x1.Recipe_Stair_PolishedConcrete_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Stair_PolishedConcrete_8x2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_Stair_PolishedConcrete_8x2.Recipe_Stair_PolishedConcrete_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Stair_PolishedConcrete_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Foundation/PolishedConcreteSet/Recipe_Stair_PolishedConcrete_8x4.Recipe_Stair_PolishedConcrete_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 5
+   }
+  },
+  "Build_Stairs_Left_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Stairs/Recipe_Stairs_Left_01.Recipe_Stairs_Left_01_C",
+   "cost": {
+    "Desc_Cement_C": 3,
+    "Desc_IronPlate_C": 3
+   }
+  },
+  "Build_Stairs_Right_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Stairs/Recipe_Stairs_Right_01.Recipe_Stairs_Right_01_C",
+   "cost": {
+    "Desc_Cement_C": 3,
+    "Desc_IronPlate_C": 3
+   }
+  },
+  "Build_StandaloneWidgetSign_Huge_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_StandaloneWidgetSign_Huge.Recipe_StandaloneWidgetSign_Huge_C",
+   "cost": {
+    "Desc_SteelPlateReinforced_C": 12,
+    "Desc_CopperSheet_C": 20,
+    "Desc_CrystalOscillator_C": 5
+   }
+  },
+  "Build_StandaloneWidgetSign_Large_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_StandaloneWidgetSign_Large.Recipe_StandaloneWidgetSign_Large_C",
+   "cost": {
+    "Desc_SteelPlateReinforced_C": 3,
+    "Desc_CopperSheet_C": 4,
+    "Desc_CrystalOscillator_C": 1
+   }
+  },
+  "Build_StandaloneWidgetSign_Medium_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_StandaloneWidgetSign_Medium.Recipe_StandaloneWidgetSign_Medium_C",
+   "cost": {
+    "Desc_IronPlateReinforced_C": 2,
+    "Desc_QuartzCrystal_C": 5
+   }
+  },
+  "Build_StandaloneWidgetSign_Portrait_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_StandaloneWidgetSign_Portrait.Recipe_StandaloneWidgetSign_Portrait_C",
+   "cost": {
+    "Desc_IronPlateReinforced_C": 4,
+    "Desc_QuartzCrystal_C": 10
+   }
+  },
+  "Build_StandaloneWidgetSign_SmallVeryWide_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_StandaloneWidgetSign_SmallVeryWide.Recipe_StandaloneWidgetSign_SmallVeryWide_C",
+   "cost": {
+    "Desc_IronPlate_C": 4,
+    "Desc_QuartzCrystal_C": 4
+   }
+  },
+  "Build_StandaloneWidgetSign_SmallWide_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_StandaloneWidgetSign_SmallWide.Recipe_StandaloneWidgetSign_SmallWide_C",
+   "cost": {
+    "Desc_IronPlate_C": 3,
+    "Desc_QuartzCrystal_C": 3
+   }
+  },
+  "Build_StandaloneWidgetSign_Small_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_StandaloneWidgetSign_Small.Recipe_StandaloneWidgetSign_Small_C",
+   "cost": {
+    "Desc_IronPlate_C": 2,
+    "Desc_QuartzCrystal_C": 2
+   }
+  },
+  "Build_StandaloneWidgetSign_Square_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_StandaloneWidgetSign_Square.Recipe_StandaloneWidgetSign_Square_C",
+   "cost": {
+    "Desc_IronPlateReinforced_C": 3,
+    "Desc_QuartzCrystal_C": 10
+   }
+  },
+  "Build_StandaloneWidgetSign_Square_Small_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_StandaloneWidgetSign_Square_Small.Recipe_StandaloneWidgetSign_Square_Small_C",
+   "cost": {
+    "Desc_IronPlateReinforced_C": 1,
+    "Desc_QuartzCrystal_C": 5
+   }
+  },
+  "Build_StandaloneWidgetSign_Square_Tiny_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_StandaloneWidgetSign_Square_Tiny.Recipe_StandaloneWidgetSign_Square_Tiny_C",
+   "cost": {
+    "Desc_IronPlate_C": 1,
+    "Desc_QuartzCrystal_C": 1
+   }
+  },
+  "Build_SteelWall_8x1_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_SteelWall_8x1.Recipe_SteelWall_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_SteelWall_8x4_Gate_01_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Wall/SteelWallSet/Recipe_SteelWall_8x4_Gate_01.Recipe_SteelWall_8x4_Gate_01_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_SteelWall_8x4_Window_01_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Wall/SteelWallSet/Recipe_SteelWall_8x4_Window_01.Recipe_SteelWall_8x4_Window_01_C",
+   "cost": {
+    "Desc_Silica_C": 2
+   }
+  },
+  "Build_SteelWall_8x4_Window_02_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Wall/SteelWallSet/Recipe_SteelWall_8x4_Window_02.Recipe_SteelWall_8x4_Window_02_C",
+   "cost": {
+    "Desc_Silica_C": 2
+   }
+  },
+  "Build_SteelWall_8x4_Window_03_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Wall/SteelWallSet/Recipe_SteelWall_8x4_Window_03.Recipe_SteelWall_8x4_Window_03_C",
+   "cost": {
+    "Desc_Silica_C": 2
+   }
+  },
+  "Build_SteelWall_8x4_Window_04_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Wall/SteelWallSet/Recipe_SteelWall_8x4_Window_04.Recipe_SteelWall_8x4_Window_04_C",
+   "cost": {
+    "Desc_Silica_C": 2
+   }
+  },
+  "Build_SteelWall_FlipTris_8x1_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_SteelWall_FlipTris_8x1.Recipe_SteelWall_FlipTris_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_SteelWall_FlipTris_8x2_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_SteelWall_FlipTris_8x2.Recipe_SteelWall_FlipTris_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_SteelWall_FlipTris_8x4_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_SteelWall_FlipTris_8x4.Recipe_SteelWall_FlipTris_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_SteelWall_FlipTris_8x8_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_SteelWall_FlipTris_8x8.Recipe_SteelWall_FlipTris_8x8_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_SteelWall_Tris_8x1_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_SteelWall_Tris_8x1.Recipe_SteelWall_Tris_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_SteelWall_Tris_8x2_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_SteelWall_Tris_8x2.Recipe_SteelWall_Tris_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_SteelWall_Tris_8x4_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_SteelWall_Tris_8x4.Recipe_SteelWall_Tris_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_SteelWall_Tris_8x8_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_SteelWall_Tris_8x8.Recipe_SteelWall_Tris_8x8_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_StorageContainerMk1_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_StorageContainerMk1.Recipe_StorageContainerMk1_C",
+   "cost": {
+    "Desc_IronPlate_C": 10,
+    "Desc_IronRod_C": 10
+   }
+  },
+  "Build_StorageContainerMk2_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_StorageContainerMk2.Recipe_StorageContainerMk2_C",
+   "cost": {
+    "Desc_SteelPlate_C": 20,
+    "Desc_SteelPipe_C": 20
+   }
+  },
+  "Build_StorageHazard_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_StorageHazard.Recipe_StorageHazard_C",
+   "cost": {
+    "Desc_IronPlate_C": 6,
+    "Desc_IronRod_C": 6
+   }
+  },
+  "Build_StorageMedkit_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_StorageMedkit.Recipe_StorageMedkit_C",
+   "cost": {
+    "Desc_IronPlate_C": 6,
+    "Desc_IronRod_C": 6
+   }
+  },
+  "Build_StoragePlayer_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_StoragePlayer.Recipe_StoragePlayer_C",
+   "cost": {
+    "Desc_IronPlate_C": 6,
+    "Desc_IronRod_C": 6
+   }
+  },
+  "Build_StreetLight_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_StreetLight.Recipe_StreetLight_C",
+   "cost": {
+    "Desc_HighSpeedWire_C": 10,
+    "Desc_Wire_C": 4,
+    "Desc_IronRod_C": 4
+   }
+  },
+  "Build_TarpFence_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Fence/Recipe_TarpFence.Recipe_TarpFence_C",
+   "cost": {
+    "Desc_IronRod_C": 2
+   }
+  },
+  "Build_Tractor_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Vehicle/Recipe_Tractor.Recipe_Tractor_C",
+   "cost": {
+    "Desc_ModularFrame_C": 5,
+    "Desc_Rotor_C": 5,
+    "Desc_IronPlateReinforced_C": 10
+   }
+  },
+  "Build_TradingPost_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_TradingPost.Recipe_TradingPost_C",
+   "cost": {
+    "Desc_OreIron_C": 20
+   }
+  },
+  "Build_TrainDockingStationLiquid_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Factory/Train/Station/Recipe_TrainDockingStationLiquid.Recipe_TrainDockingStationLiquid_C",
+   "cost": {
+    "Desc_Motor_C": 5,
+    "Desc_SteelPlateReinforced_C": 10,
+    "Desc_Plastic_C": 25,
+    "Desc_Cement_C": 50,
+    "Desc_Wire_C": 100
+   }
+  },
+  "Build_TrainDockingStation_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Factory/Train/Station/Recipe_TrainDockingStation.Recipe_TrainDockingStation_C",
+   "cost": {
+    "Desc_Motor_C": 5,
+    "Desc_SteelPlateReinforced_C": 10,
+    "Desc_Plastic_C": 25,
+    "Desc_Cement_C": 50,
+    "Desc_Wire_C": 100
+   }
+  },
+  "Build_TrainPlatformEmpty_02_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Factory/Train/Station/Recipe_TrainPlatformEmpty_02.Recipe_TrainPlatformEmpty_02_C",
+   "cost": {
+    "Desc_SteelPlateReinforced_C": 10,
+    "Desc_Cement_C": 50
+   }
+  },
+  "Build_TrainPlatformEmpty_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Factory/Train/Station/Recipe_TrainPlatformEmpty.Recipe_TrainPlatformEmpty_C",
+   "cost": {
+    "Desc_SteelPlateReinforced_C": 10,
+    "Desc_Cement_C": 50
+   }
+  },
+  "Build_TrainStation_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Factory/Train/Station/Recipe_TrainStation.Recipe_TrainStation_C",
+   "cost": {
+    "Desc_SteelPlateReinforced_C": 10,
+    "Desc_Plastic_C": 50,
+    "Desc_Cement_C": 50,
+    "Desc_Wire_C": 200
+   }
+  },
+  "Build_TreeGiftProducer_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Holiday/Recipe_TreeGiftProducer.Recipe_TreeGiftProducer_C",
+   "cost": {
+    "Desc_Gift_C": 50,
+    "Desc_XmasBranch_C": 100,
+    "Desc_XmasBall1_C": 30,
+    "Desc_XmasBall2_C": 30
+   }
+  },
+  "Build_TruckStation_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_TruckStation.Recipe_TruckStation_C",
+   "cost": {
+    "Desc_ModularFrame_C": 15,
+    "Desc_Rotor_C": 20,
+    "Desc_Cable_C": 50
+   }
+  },
+  "Build_Truck_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Vehicle/Recipe_Truck.Recipe_Truck_C",
+   "cost": {
+    "Desc_Motor_C": 15,
+    "Desc_SteelPlateReinforced_C": 20,
+    "Desc_ModularFrame_C": 20,
+    "Desc_Rubber_C": 50
+   }
+  },
+  "Build_Valve_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_Valve.Recipe_Valve_C",
+   "cost": {
+    "Desc_Rubber_C": 4,
+    "Desc_SteelPlate_C": 4
+   }
+  },
+  "Build_VehiclePath_Explorer_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Vehicle/Explorer/Recipe_VehiclePath_Explorer.Recipe_VehiclePath_Explorer_C",
+   "cost": {}
+  },
+  "Build_VehiclePath_FactoryCart_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Vehicle/Golfcart/Recipe_VehiclePath_FactoryCart.Recipe_VehiclePath_FactoryCart_C",
+   "cost": {}
+  },
+  "Build_VehiclePath_Tractor_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Vehicle/Tractor/Recipe_VehiclePath_Tractor.Recipe_VehiclePath_Tractor_C",
+   "cost": {}
+  },
+  "Build_VehiclePath_Truck_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Vehicle/Truck/Recipe_VehiclePath_Truck.Recipe_VehiclePath_Truck_C",
+   "cost": {}
+  },
+  "Build_VehiclePath_Universal_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Vehicle/VehiclePath/Recipe_VehiclePath_Universal.Recipe_VehiclePath_Universal_C",
+   "cost": {}
+  },
+  "Build_WalkwayCross_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walkways/Recipe_Walkway_Cross.Recipe_Walkway_Cross_C",
+   "cost": {
+    "Desc_IronRod_C": 2,
+    "Desc_IronPlate_C": 1
+   }
+  },
+  "Build_WalkwayRamp_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walkways/Recipe_Walkway_Ramp.Recipe_Walkway_Ramp_C",
+   "cost": {
+    "Desc_IronRod_C": 2,
+    "Desc_IronPlate_C": 1
+   }
+  },
+  "Build_WalkwayStraight_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walkways/Recipe_Walkway_Straight.Recipe_Walkway_Straight_C",
+   "cost": {
+    "Desc_IronRod_C": 2,
+    "Desc_IronPlate_C": 1
+   }
+  },
+  "Build_WalkwayT_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walkways/Recipe_Walkway_T.Recipe_Walkway_T_C",
+   "cost": {
+    "Desc_IronRod_C": 2,
+    "Desc_IronPlate_C": 1
+   }
+  },
+  "Build_WalkwayTurn_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walkways/Recipe_Walkway_Turn.Recipe_Walkway_Turn_C",
+   "cost": {
+    "Desc_IronRod_C": 2,
+    "Desc_IronPlate_C": 1
+   }
+  },
+  "Build_WallSet_Steel_Angular_8x4_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_WallSet_Steel_Angular_8x4.Recipe_WallSet_Steel_Angular_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_WallSet_Steel_Angular_8x8_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_WallSet_Steel_Angular_8x8.Recipe_WallSet_Steel_Angular_8x8_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_8x4_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_8x4_01.Recipe_Wall_8x4_01_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_8x4_02_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_8x4_02.Recipe_Wall_8x4_02_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Concrete_8x1_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Wall/ConcreteWallSet/Recipe_Wall_Concrete_8x1.Recipe_Wall_Concrete_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Concrete_8x1_FlipTris_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Wall/ConcreteWallSet/Recipe_Wall_Concrete_FlipTris_8x1.Recipe_Wall_Concrete_FlipTris_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Concrete_8x1_Tris_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Wall/ConcreteWallSet/Recipe_Wall_Concrete_Tris_8x1.Recipe_Wall_Concrete_Tris_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Concrete_8x2_FlipTris_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Wall/ConcreteWallSet/Recipe_Wall_Concrete_FlipTris_8x2.Recipe_Wall_Concrete_FlipTris_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Concrete_8x2_Tris_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Wall/ConcreteWallSet/Recipe_Wall_Concrete_Tris_8x2.Recipe_Wall_Concrete_Tris_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Concrete_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Wall/ConcreteWallSet/Recipe_Wall_Concrete_8x4.Recipe_Wall_Concrete_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Concrete_8x4_ConveyorHole_01_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Wall/ConcreteWallSet/Recipe_Wall_Concrete_8x4_ConveyorHole_01.Recipe_Wall_Concrete_8x4_ConveyorHole_01_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Concrete_8x4_ConveyorHole_02_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Wall/ConcreteWallSet/Recipe_Wall_Concrete_8x4_ConveyorHole_02.Recipe_Wall_Concrete_8x4_ConveyorHole_02_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Concrete_8x4_ConveyorHole_03_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Wall/ConcreteWallSet/Recipe_Wall_Concrete_8x4_ConveyorHole_03.Recipe_Wall_Concrete_8x4_ConveyorHole_03_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Concrete_8x4_Corner_01_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Wall/ConcreteWallSet/Recipe_Wall_Concrete_8x4_Corner_01.Recipe_Wall_Concrete_8x4_Corner_01_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Concrete_8x4_Corner_2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Wall/ConcreteWallSet/Recipe_Wall_Concrete_8x4_Corner_2.Recipe_Wall_Concrete_8x4_Corner_2_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Concrete_8x4_FlipTris_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Wall/ConcreteWallSet/Recipe_Wall_Concrete_FlipTris_8x4.Recipe_Wall_Concrete_FlipTris_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Concrete_8x4_Tris_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Wall/ConcreteWallSet/Recipe_Wall_Concrete_Tris_8x4.Recipe_Wall_Concrete_Tris_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Concrete_8x4_Window_01_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Wall/ConcreteWallSet/Recipe_Wall_Concrete_8x4_Window_01.Recipe_Wall_Concrete_8x4_Window_01_C",
+   "cost": {
+    "Desc_Silica_C": 2
+   }
+  },
+  "Build_Wall_Concrete_8x4_Window_02_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Wall/ConcreteWallSet/Recipe_Wall_Concrete_8x4_Window_02.Recipe_Wall_Concrete_8x4_Window_02_C",
+   "cost": {
+    "Desc_Silica_C": 2
+   }
+  },
+  "Build_Wall_Concrete_8x4_Window_03_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Wall/ConcreteWallSet/Recipe_Wall_Concrete_8x4_Window_03.Recipe_Wall_Concrete_8x4_Window_03_C",
+   "cost": {
+    "Desc_Silica_C": 2
+   }
+  },
+  "Build_Wall_Concrete_8x4_Window_04_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Wall/ConcreteWallSet/Recipe_Wall_Concrete_8x4_Window_04.Recipe_Wall_Concrete_8x4_Window_04_C",
+   "cost": {
+    "Desc_Silica_C": 2
+   }
+  },
+  "Build_Wall_Concrete_8x8_Corner_01_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Wall/ConcreteWallSet/Recipe_Wall_Concrete_8x8_Corner_01.Recipe_Wall_Concrete_8x8_Corner_01_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Concrete_8x8_Corner_2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Wall/ConcreteWallSet/Recipe_Wall_Concrete_8x8_Corner_2.Recipe_Wall_Concrete_8x8_Corner_2_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Concrete_8x8_FlipTris_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Wall/ConcreteWallSet/Recipe_Wall_Concrete_FlipTris_8x8.Recipe_Wall_Concrete_FlipTris_8x8_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Concrete_8x8_Tris_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Wall/ConcreteWallSet/Recipe_Wall_Concrete_Tris_8x8.Recipe_Wall_Concrete_Tris_8x8_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Concrete_Angular_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Wall/ConcreteWallSet/Recipe_Wall_Concrete_Angular_8x4.Recipe_Wall_Concrete_Angular_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Concrete_Angular_8x8_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Wall/ConcreteWallSet/Recipe_Wall_Concrete_Angular_8x8.Recipe_Wall_Concrete_Angular_8x8_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Concrete_CDoor_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Wall/ConcreteWallSet/Recipe_Wall_Concrete_CDoor_8x4.Recipe_Wall_Concrete_CDoor_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Concrete_Gate_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Wall/ConcreteWallSet/Recipe_Wall_Concrete_Gate_8x4.Recipe_Wall_Concrete_Gate_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Concrete_SDoor_8x4_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Wall/ConcreteWallSet/Recipe_Wall_Concrete_SDoor_8x4.Recipe_Wall_Concrete_SDoor_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Conveyor_8x4_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Conveyor_8x4_01.Recipe_Wall_Conveyor_8x4_01_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Conveyor_8x4_01_Steel_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Conveyor_8x4_01_Steel.Recipe_Wall_Conveyor_8x4_01_Steel_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Conveyor_8x4_02_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Conveyor_8x4_02.Recipe_Wall_Conveyor_8x4_02_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Conveyor_8x4_02_Steel_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Conveyor_8x4_02_Steel.Recipe_Wall_Conveyor_8x4_02_Steel_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Conveyor_8x4_03_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Conveyor_8x4_03.Recipe_Wall_Conveyor_8x4_03_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Conveyor_8x4_03_Steel_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Conveyor_8x4_03_Steel.Recipe_Wall_Conveyor_8x4_03_Steel_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Conveyor_8x4_04_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Conveyor_8x4_04.Recipe_Wall_Conveyor_8x4_04_C",
+   "cost": {
+    "Desc_IronPlate_C": 3,
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Wall_Conveyor_8x4_04_Steel_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Conveyor_8x4_04_Steel.Recipe_Wall_Conveyor_8x4_04_Steel_C",
+   "cost": {
+    "Desc_IronPlate_C": 3,
+    "Desc_Cement_C": 3
+   }
+  },
+  "Build_Wall_Door_8x4_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Door_8x4_01.Recipe_Wall_Door_8x4_01_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Door_8x4_01_Steel_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Door_8x4_01_Steel.Recipe_Wall_Door_8x4_01_Steel_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Door_8x4_03_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Door_8x4_03.Recipe_Wall_Door_8x4_03_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Door_8x4_03_Steel_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Door_8x4_03_Steel.Recipe_Wall_Door_8x4_03_Steel_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Frame_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Frame_01.Recipe_Wall_Frame_01_C",
+   "cost": {
+    "Desc_SteelPlate_C": 2
+   }
+  },
+  "Build_Wall_Gate_8x4_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Gate_8x4_01.Recipe_Wall_Gate_8x4_01_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Orange_8x1_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Orange_8x1.Recipe_Wall_Orange_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Orange_8x1_FlipTris_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Orange_FlipTris_8x1.Recipe_Wall_Orange_FlipTris_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Orange_8x1_Tris_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Orange_Tris_8x1.Recipe_Wall_Orange_Tris_8x1_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Orange_8x2_FlipTris_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Orange_FlipTris_8x2.Recipe_Wall_Orange_FlipTris_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Orange_8x2_Tris_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Orange_Tris_8x2.Recipe_Wall_Orange_Tris_8x2_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Orange_8x4_Corner_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Orange_8x4_Corner_01.Recipe_Wall_Orange_8x4_Corner_01_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Orange_8x4_Corner_02_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Orange_8x4_Corner_02.Recipe_Wall_Orange_8x4_Corner_02_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Orange_8x4_FlipTris_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Orange_FlipTris_8x4.Recipe_Wall_Orange_FlipTris_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Orange_8x4_Tris_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Orange_Tris_8x4.Recipe_Wall_Orange_Tris_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Orange_8x8_Corner_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Orange_8x8_Corner_01.Recipe_Wall_Orange_8x8_Corner_01_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Orange_8x8_Corner_02_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Orange_8x8_Corner_02.Recipe_Wall_Orange_8x8_Corner_02_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Orange_8x8_FlipTris_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Orange_FlipTris_8x8.Recipe_Wall_Orange_FlipTris_8x8_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Orange_8x8_Tris_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Orange_Tris_8x8.Recipe_Wall_Orange_Tris_8x8_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Orange_Angular_8x4_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Orange_Angular_8x4.Recipe_Wall_Orange_Angular_8x4_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Orange_Angular_8x8_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Orange_Angular_8x8.Recipe_Wall_Orange_Angular_8x8_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Steel_8x4_Corner_01_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Wall/SteelWallSet/Recipe_Wall_Steel_8x4_Corner_01.Recipe_Wall_Steel_8x4_Corner_01_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Steel_8x4_Corner_2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Wall/SteelWallSet/Recipe_Wall_Steel_8x4_Corner_2.Recipe_Wall_Steel_8x4_Corner_2_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Steel_8x8_Corner_01_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Wall/SteelWallSet/Recipe_Wall_Steel_8x8_Corner_01.Recipe_Wall_Steel_8x8_Corner_01_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Steel_8x8_Corner_2_C": {
+   "recipe": "/Game/FactoryGame/Buildable/Building/Wall/SteelWallSet/Recipe_Wall_Steel_8x8_Corner_2.Recipe_Wall_Steel_8x8_Corner_2_C",
+   "cost": {
+    "Desc_Cement_C": 2
+   }
+  },
+  "Build_Wall_Window_8x4_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Window_8x4_01.Recipe_Wall_Window_8x4_01_C",
+   "cost": {
+    "Desc_Silica_C": 2
+   }
+  },
+  "Build_Wall_Window_8x4_02_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Window_8x4_02.Recipe_Wall_Window_8x4_02_C",
+   "cost": {
+    "Desc_Silica_C": 2
+   }
+  },
+  "Build_Wall_Window_8x4_03_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Window_8x4_03.Recipe_Wall_Window_8x4_03_C",
+   "cost": {
+    "Desc_Silica_C": 2
+   }
+  },
+  "Build_Wall_Window_8x4_04_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Window_8x4_04.Recipe_Wall_Window_8x4_04_C",
+   "cost": {
+    "Desc_Silica_C": 2
+   }
+  },
+  "Build_Wall_Window_8x4_05_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Window_8x4_05.Recipe_Wall_Window_8x4_05_C",
+   "cost": {
+    "Desc_Silica_C": 2,
+    "Desc_SteelPlate_C": 2
+   }
+  },
+  "Build_Wall_Window_8x4_06_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Window_8x4_06.Recipe_Wall_Window_8x4_06_C",
+   "cost": {
+    "Desc_Silica_C": 2,
+    "Desc_SteelPlate_C": 2
+   }
+  },
+  "Build_Wall_Window_8x4_07_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Window_8x4_07.Recipe_Wall_Window_8x4_07_C",
+   "cost": {
+    "Desc_Silica_C": 2,
+    "Desc_SteelPlate_C": 2
+   }
+  },
+  "Build_Wall_Window_Thin_8x4_01_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Window_Thin_8x4_01.Recipe_Wall_Window_Thin_8x4_01_C",
+   "cost": {
+    "Desc_Silica_C": 2,
+    "Desc_SteelPlate_C": 2
+   }
+  },
+  "Build_Wall_Window_Thin_8x4_02_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Walls/Recipe_Wall_Window_Thin_8x4_02.Recipe_Wall_Window_Thin_8x4_02_C",
+   "cost": {
+    "Desc_Silica_C": 2,
+    "Desc_SteelPlate_C": 2
+   }
+  },
+  "Build_WaterPump_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_WaterPump.Recipe_WaterPump_C",
+   "cost": {
+    "Desc_CopperSheet_C": 20,
+    "Desc_IronPlateReinforced_C": 10,
+    "Desc_Rotor_C": 10
+   }
+  },
+  "Build_WorkBench_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_WorkBench.Recipe_WorkBench_C",
+   "cost": {
+    "Desc_IronPlate_C": 3,
+    "Desc_IronRod_C": 3
+   }
+  },
+  "Build_Workshop_C": {
+   "recipe": "/Game/FactoryGame/Recipes/Buildings/Recipe_Workshop.Recipe_Workshop_C",
+   "cost": {
+    "Desc_IronPlate_C": 6,
+    "Desc_IronRod_C": 4
+   }
+  },
+  "Build_WreathDecor_C": {
+   "recipe": "/Game/FactoryGame/Events/Christmas/Buildings/WreathDecor/Recipe_WreathDecor.Recipe_WreathDecor_C",
+   "cost": {
+    "Desc_XmasWreath_C": 1,
+    "Desc_XmasBow_C": 1
+   }
+  },
+  "Build_XMassTree_C": {
+   "recipe": "/Game/FactoryGame/Events/Christmas/Buildings/TreeDecor/Recipe_XMassTree.Recipe_XMassTree_C",
+   "cost": {
+    "Desc_XmasBranch_C": 100,
+    "Desc_IronPlateReinforced_C": 50,
+    "Desc_Cement_C": 500
+   }
+  },
+  "Build_xmassLights_C": {
+   "recipe": "/Game/FactoryGame/Events/Christmas/Buildings/PowerLineLights/Recipe_xmassLights.Recipe_xmassLights_C",
+   "cost": {
+    "Desc_Cable_C": 1,
+    "Desc_XmasBallCluster_C": 1
+   }
+  }
+ },
+ "itemPaths": {
+  "BP_ItemDescriptorPortableMiner_C": "/Game/FactoryGame/Resource/Equipment/PortableMiner/BP_ItemDescriptorPortableMiner.BP_ItemDescriptorPortableMiner_C",
+  "Desc_AluminumCasing_C": "/Game/FactoryGame/Resource/Parts/AluminumCasing/Desc_AluminumCasing.Desc_AluminumCasing_C",
+  "Desc_AluminumPlate_C": "/Game/FactoryGame/Resource/Parts/AluminumPlate/Desc_AluminumPlate.Desc_AluminumPlate_C",
+  "Desc_Cable_C": "/Game/FactoryGame/Resource/Parts/Cable/Desc_Cable.Desc_Cable_C",
+  "Desc_CandyCane_C": "/Game/FactoryGame/Events/Christmas/Parts/Desc_CandyCane.Desc_CandyCane_C",
+  "Desc_Cement_C": "/Game/FactoryGame/Resource/Parts/Cement/Desc_Cement.Desc_Cement_C",
+  "Desc_CircuitBoardHighSpeed_C": "/Game/FactoryGame/Resource/Parts/CircuitBoardHighSpeed/Desc_CircuitBoardHighSpeed.Desc_CircuitBoardHighSpeed_C",
+  "Desc_ComputerSuper_C": "/Game/FactoryGame/Resource/Parts/ComputerSuper/Desc_ComputerSuper.Desc_ComputerSuper_C",
+  "Desc_Computer_C": "/Game/FactoryGame/Resource/Parts/Computer/Desc_Computer.Desc_Computer_C",
+  "Desc_CoolingSystem_C": "/Game/FactoryGame/Resource/Parts/CoolingSystem/Desc_CoolingSystem.Desc_CoolingSystem_C",
+  "Desc_CopperSheet_C": "/Game/FactoryGame/Resource/Parts/CopperSheet/Desc_CopperSheet.Desc_CopperSheet_C",
+  "Desc_CrystalOscillator_C": "/Game/FactoryGame/Resource/Parts/CrystalOscillator/Desc_CrystalOscillator.Desc_CrystalOscillator_C",
+  "Desc_FicsiteMesh_C": "/Game/FactoryGame/Resource/Parts/FicsiteMesh/Desc_FicsiteMesh.Desc_FicsiteMesh_C",
+  "Desc_GenericBiomass_C": "/Game/FactoryGame/Resource/Parts/GenericBiomass/Desc_GenericBiomass.Desc_GenericBiomass_C",
+  "Desc_Gift_C": "/Game/FactoryGame/Events/Christmas/Parts/Desc_Gift.Desc_Gift_C",
+  "Desc_HighSpeedConnector_C": "/Game/FactoryGame/Resource/Parts/HighSpeedConnector/Desc_HighSpeedConnector.Desc_HighSpeedConnector_C",
+  "Desc_HighSpeedWire_C": "/Game/FactoryGame/Resource/Parts/HighSpeedWire/Desc_HighSpeedWire.Desc_HighSpeedWire_C",
+  "Desc_IronPlateReinforced_C": "/Game/FactoryGame/Resource/Parts/IronPlateReinforced/Desc_IronPlateReinforced.Desc_IronPlateReinforced_C",
+  "Desc_IronPlate_C": "/Game/FactoryGame/Resource/Parts/IronPlate/Desc_IronPlate.Desc_IronPlate_C",
+  "Desc_IronRod_C": "/Game/FactoryGame/Resource/Parts/IronRod/Desc_IronRod.Desc_IronRod_C",
+  "Desc_IronScrew_C": "/Game/FactoryGame/Resource/Parts/IronScrew/Desc_IronScrew.Desc_IronScrew_C",
+  "Desc_ModularFrameFused_C": "/Game/FactoryGame/Resource/Parts/ModularFrameFused/Desc_ModularFrameFused.Desc_ModularFrameFused_C",
+  "Desc_ModularFrameHeavy_C": "/Game/FactoryGame/Resource/Parts/ModularFrameHeavy/Desc_ModularFrameHeavy.Desc_ModularFrameHeavy_C",
+  "Desc_ModularFrameLightweight_C": "/Game/FactoryGame/Resource/Parts/ModularFrameLightweight/Desc_ModularFrameLightweight.Desc_ModularFrameLightweight_C",
+  "Desc_ModularFrame_C": "/Game/FactoryGame/Resource/Parts/ModularFrame/Desc_ModularFrame.Desc_ModularFrame_C",
+  "Desc_MotorLightweight_C": "/Game/FactoryGame/Resource/Parts/MotorLightweight/Desc_MotorLightweight.Desc_MotorLightweight_C",
+  "Desc_Motor_C": "/Game/FactoryGame/Resource/Parts/Motor/Desc_Motor.Desc_Motor_C",
+  "Desc_OreIron_C": "/Game/FactoryGame/Resource/RawResources/OreIron/Desc_OreIron.Desc_OreIron_C",
+  "Desc_Plastic_C": "/Game/FactoryGame/Resource/Parts/Plastic/Desc_Plastic.Desc_Plastic_C",
+  "Desc_QuantumOscillator_C": "/Game/FactoryGame/Resource/Parts/QuantumOscillator/Desc_QuantumOscillator.Desc_QuantumOscillator_C",
+  "Desc_QuartzCrystal_C": "/Game/FactoryGame/Resource/Parts/QuartzCrystal/Desc_QuartzCrystal.Desc_QuartzCrystal_C",
+  "Desc_Rotor_C": "/Game/FactoryGame/Resource/Parts/Rotor/Desc_Rotor.Desc_Rotor_C",
+  "Desc_Rubber_C": "/Game/FactoryGame/Resource/Parts/Rubber/Desc_Rubber.Desc_Rubber_C",
+  "Desc_SAMFluctuator_C": "/Game/FactoryGame/Resource/Parts/SAMFluctuator/Desc_SAMFluctuator.Desc_SAMFluctuator_C",
+  "Desc_SAMIngot_C": "/Game/FactoryGame/Resource/Parts/SAMIngot/Desc_SAMIngot.Desc_SAMIngot_C",
+  "Desc_Silica_C": "/Game/FactoryGame/Resource/Parts/Silica/Desc_Silica.Desc_Silica_C",
+  "Desc_Snow_C": "/Game/FactoryGame/Events/Christmas/Parts/Desc_Snow.Desc_Snow_C",
+  "Desc_Stator_C": "/Game/FactoryGame/Resource/Parts/Stator/Desc_Stator.Desc_Stator_C",
+  "Desc_SteelPipe_C": "/Game/FactoryGame/Resource/Parts/SteelPipe/Desc_SteelPipe.Desc_SteelPipe_C",
+  "Desc_SteelPlateReinforced_C": "/Game/FactoryGame/Resource/Parts/SteelPlateReinforced/Desc_SteelPlateReinforced.Desc_SteelPlateReinforced_C",
+  "Desc_SteelPlate_C": "/Game/FactoryGame/Resource/Parts/SteelPlate/Desc_SteelPlate.Desc_SteelPlate_C",
+  "Desc_TemporalProcessor_C": "/Game/FactoryGame/Resource/Parts/TemporalProcessor/Desc_TemporalProcessor.Desc_TemporalProcessor_C",
+  "Desc_TimeCrystal_C": "/Game/FactoryGame/Resource/Parts/TimeCrystal/Desc_TimeCrystal.Desc_TimeCrystal_C",
+  "Desc_WAT1_C": "/Game/FactoryGame/Prototype/WAT/Desc_WAT1.Desc_WAT1_C",
+  "Desc_WAT2_C": "/Game/FactoryGame/Prototype/WAT/Desc_WAT2.Desc_WAT2_C",
+  "Desc_Wire_C": "/Game/FactoryGame/Resource/Parts/Wire/Desc_Wire.Desc_Wire_C",
+  "Desc_XmasBall1_C": "/Game/FactoryGame/Events/Christmas/Parts/Desc_XmasBall1.Desc_XmasBall1_C",
+  "Desc_XmasBall2_C": "/Game/FactoryGame/Events/Christmas/Parts/Desc_XmasBall2.Desc_XmasBall2_C",
+  "Desc_XmasBall3_C": "/Game/FactoryGame/Events/Christmas/Parts/Desc_XmasBall3.Desc_XmasBall3_C",
+  "Desc_XmasBall4_C": "/Game/FactoryGame/Events/Christmas/Parts/Desc_XmasBall4.Desc_XmasBall4_C",
+  "Desc_XmasBallCluster_C": "/Game/FactoryGame/Events/Christmas/Parts/Desc_XmasBallCluster.Desc_XmasBallCluster_C",
+  "Desc_XmasBow_C": "/Game/FactoryGame/Events/Christmas/Parts/Desc_XmasBow.Desc_XmasBow_C",
+  "Desc_XmasBranch_C": "/Game/FactoryGame/Events/Christmas/Parts/Desc_XmasBranch.Desc_XmasBranch_C",
+  "Desc_XmasWreath_C": "/Game/FactoryGame/Events/Christmas/Parts/Desc_XmasWreath.Desc_XmasWreath_C"
  }
 }

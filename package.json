@@ -12,7 +12,8 @@
     "poc:dump": "tsx tools/poc/dump.ts",
     "poc:modify": "tsx tools/poc/modify.ts",
     "poc:generate": "tsx tools/poc/generate.ts",
-    "poc:inventory": "tsx tools/poc/inventory.ts"
+    "poc:inventory": "tsx tools/poc/inventory.ts",
+    "generate:row": "tsx tools/generate-module.ts"
   },
   "devDependencies": {
     "@types/node": "^26.6.5",

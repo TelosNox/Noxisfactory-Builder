@@ -11,5 +11,5 @@
     "resolveJsonModule": true,
     "types": ["node"]
   },
-  "include": ["src", "tools/poc"]
+  "include": ["src", "tools"]
 }
