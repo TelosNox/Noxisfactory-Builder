@@ -83,7 +83,7 @@ Das Minimum für einen ersten Test. Alles andere läuft mit festen Standards.
 | Höchste Bandstufe (gilt auch für Lifts) | Mk1–Mk6 | Mk1 |
 | Höchste Mast-Stufe | Mk1–Mk3 | Mk1 |
 
-Feste Standards im Grundset: nur Standardrezepte, kein Übertakten, keine Daisy Chain, keine Unterboden-Ebene, Rohstoffe kommen seitlich am Anfang der Maschinenreihe an, Ausgangsleitung läuft in dieselbe Richtung wie die Zuleitung.
+Feste Standards im Grundset: nur Standardrezepte, kein Übertakten (Untertakten erlaubt, damit gleiche Kopien die Menge genau treffen), keine Daisy Chain, keine Unterboden-Ebene, Rohstoffe kommen seitlich am Anfang der Maschinenreihe an, Ausgangsleitung läuft in dieselbe Richtung wie die Zuleitung.
 
 Module sind erweiterbar: Man beginnt mit einem Teil und hängt weitere Kopien am Ende der Zuführung an, solange das Band genug Leistung hat. Der Anfang der Zuführung (und bei Rückführung auch der Ausgang) bleibt dabei an seinem Platz.
 

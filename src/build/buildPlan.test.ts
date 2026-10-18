@@ -1,0 +1,24 @@
+import { describe, expect, it } from 'vitest';
+import { plan } from '../planner/planner';
+import { buildPlan } from './buildPlan';
+
+describe('build plan', () => {
+  it('splits iron plates into modules and chains', () => {
+    const b = buildPlan(plan({ item: 'Desc_IronPlate_C', rate: 120 }), { designer: 4, beltTier: 3 });
+    const plates = b.groups.find((g) => g.recipe === 'Recipe_IronPlate_C')!;
+    expect(plates.copies * plates.perModule).toBeGreaterThanOrEqual(6);
+    expect(plates.chains.reduce((a, c) => a + c, 0)).toBe(plates.copies);
+    expect(b.groups[0].recipe).toBe('Recipe_IngotIron_C'); // smelting first
+  });
+
+  it('fits a small plan into one blueprint', () => {
+    const b = buildPlan(plan({ item: 'Desc_IronPlate_C', rate: 20 }), { designer: 4, beltTier: 1 });
+    const plates = b.groups.find((g) => g.recipe === 'Recipe_IronPlate_C')!;
+    expect(plates).toMatchObject({ perModule: 1, copies: 1 });
+  });
+
+  it('marks recipes the generator cannot build', () => {
+    const b = buildPlan(plan({ item: 'Desc_ModularFrame_C', rate: 2 }), { designer: 4, beltTier: 3 });
+    expect(b.groups.find((g) => g.recipe === 'Recipe_ModularFrame_C')!.unsupported).toMatch(/one belt input/);
+  });
+});
