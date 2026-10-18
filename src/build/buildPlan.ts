@@ -14,7 +14,7 @@
 // per recipe.
 
 import { gameData, ratePerMinute, type ItemId, type RecipeId } from '../planner/gameData';
-import type { Plan } from '../planner/planner';
+import { plan as planChain, type Plan, type PlanRequest } from '../planner/planner';
 import { BELT_SPEED, generateRow } from '../generator/row';
 import { validate } from '../generator/validate';
 import { generateChain } from '../generator/chain';
@@ -60,6 +60,8 @@ export interface BuildPlan {
   groups: Group[];
   /** Whole plan as one chain blueprint, if it fits. */
   chain?: ChainPlan;
+  /** Every machine runs at 100 %; otherwise some are clocked down. */
+  exact: boolean;
   /** Whole plan fits a single blueprint placed once. */
   singleBlueprint: boolean;
   blueprints: number;
@@ -138,7 +140,8 @@ export function buildPlan(plan: Plan, opt: BuildOptions): BuildPlan {
     if (typeof row === 'string') {
       return { ...base, unsupported: row, perModule: needed, copies: 1, chains: [1], clock: (100 * step.machines) / needed };
     }
-    // Identical copies: spread the machines evenly instead of a short last module.
+    // Fewest identical copies. If the machines do not divide evenly, the spare
+    // capacity is clocked down and the plan is not exact (see suggestRates).
     const copies = Math.ceil(needed / row);
     const perModule = Math.ceil(needed / copies);
     const machines = perModule * copies;
@@ -151,10 +154,15 @@ export function buildPlan(plan: Plan, opt: BuildOptions): BuildPlan {
   });
   groups.sort((a, b) => a.stage - b.stage || a.recipe.localeCompare(b.recipe));
   const chain = groups.length > 1 ? chainPlan(groups, opt) : undefined;
-  if (chain) return { groups, chain, singleBlueprint: chain.copies === 1, blueprints: 1, placements: chain.copies };
+  const full = (clock: number) => clock > 100 - 1e-4;
+  if (chain) {
+    const exact = chain.stages.every((s) => full(s.clock));
+    return { groups, chain, exact, singleBlueprint: chain.copies === 1, blueprints: 1, placements: chain.copies };
+  }
   const placements = groups.reduce((sum, g) => sum + g.copies, 0);
   return {
     groups,
+    exact: groups.every((g) => full(g.clock)),
     singleBlueprint: groups.length === 1 && placements === 1 && !groups[0].unsupported,
     blueprints: groups.length,
     placements,
@@ -182,4 +190,64 @@ export function chainPlan(groups: Group[], opt: BuildOptions): ChainPlan | undef
     }
   }
   return undefined;
+}
+
+/** Fraction p/q close to x, denominator up to 1000. */
+function fraction(x: number): [number, number] {
+  for (let q = 1; q <= 1000; q++) {
+    const p = Math.round(x * q);
+    if (Math.abs(p / q - x) < 1e-6 * Math.max(1, x)) return [p, q];
+  }
+  return [Math.round(x * 1000), 1000];
+}
+const gcd = (a: number, b: number): number => (b ? gcd(b, a % b) : a);
+
+/**
+ * Smallest rate at which every step needs a whole number of machines at 100 %.
+ * Exact rates are its multiples.
+ */
+export function unitRate(plan: Plan, rate: number): number {
+  // machines_i = c_i * rate with c_i = p_i/q_i; whole for rate = k * q_i/p_i.
+  let num = 1;
+  let den = 0;
+  for (const s of plan.steps) {
+    const [p, q] = fraction(s.machines / rate);
+    if (p === 0) continue;
+    num = (num * q) / gcd(num, q); // lcm of q_i
+    den = gcd(den, p); // gcd of p_i
+  }
+  return den ? num / den : rate;
+}
+
+export interface RateSuggestion {
+  rate: number;
+  build: BuildPlan;
+}
+
+/** Nearest exact rates below and above the request, with their build plans. */
+export function suggestRates(req: PlanRequest, opt: BuildOptions, tries = 50): RateSuggestion[] {
+  const unit = unitRate(planChain(req), req.rate);
+  const at = (m: number): RateSuggestion | undefined => {
+    if (m <= 0) return undefined;
+    const rate = m * unit;
+    const build = buildPlan(planChain({ ...req, rate }), opt);
+    return build.exact ? { rate, build } : undefined;
+  };
+  const result: RateSuggestion[] = [];
+  const base = req.rate / unit;
+  for (let m = Math.ceil(base - EPS) - (Number.isInteger(base) ? 1 : 0), i = 0; m > 0 && i < tries; m--, i++) {
+    const s = at(m);
+    if (s) {
+      result.push(s);
+      break;
+    }
+  }
+  for (let m = Math.floor(base + EPS) + 1, i = 0; i < tries; m++, i++) {
+    const s = at(m);
+    if (s) {
+      result.push(s);
+      break;
+    }
+  }
+  return result;
 }

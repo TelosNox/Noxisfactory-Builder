@@ -38,3 +38,4 @@ th, td { text-align: left; padding: 4px 8px; border-bottom: 1px solid var(--line
 .unsupported { border-style: dashed; }
 .ok { color: var(--ok); }
 .warn, .error { color: var(--warn); }
+button { font: inherit; margin: 0 4px; padding: 4px 8px; color: var(--fg); background: var(--card); border: 1px solid var(--line); border-radius: 4px; cursor: pointer; }

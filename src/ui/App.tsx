@@ -3,7 +3,7 @@
 import { useMemo, useState } from 'preact/hooks';
 import { gameData, type ItemId } from '../planner/gameData';
 import { plan, standardRecipes, type Plan } from '../planner/planner';
-import { buildPlan, type BuildOptions, type BuildPlan, type ChainPlan, type Group } from '../build/buildPlan';
+import { buildPlan, suggestRates, type BuildOptions, type BuildPlan, type ChainPlan, type Group } from '../build/buildPlan';
 
 const products: ItemId[] = [
   ...new Set(standardRecipes().flatMap((r) => Object.keys(gameData.recipes[r].out))),
@@ -87,13 +87,23 @@ export function App() {
       {'error' in result ? (
         <p class="error">{result.error}</p>
       ) : (
-        rate > 0 && <Result plan={result.plan} build={result.build} opt={opt} />
+        rate > 0 && <Result plan={result.plan} build={result.build} opt={opt} item={item} rate={rate} setRate={setRate} />
       )}
     </>
   );
 }
 
-function Result({ plan, build, opt }: { plan: Plan; build: BuildPlan; opt: BuildOptions }) {
+interface ResultProps {
+  plan: Plan;
+  build: BuildPlan;
+  opt: BuildOptions;
+  item: ItemId;
+  rate: number;
+  setRate: (rate: number) => void;
+}
+
+function Result({ plan, build, opt, item, rate, setRate }: ResultProps) {
+  const suggestions = useMemo(() => (build.exact ? [] : suggestRates({ item, rate }, opt)), [build, item, rate, opt]);
   const unsupported = build.groups.filter((g) => g.unsupported);
   return (
     <>
@@ -122,8 +132,19 @@ function Result({ plan, build, opt }: { plan: Plan; build: BuildPlan; opt: Build
         <p class={build.singleBlueprint ? 'ok' : 'warn'}>
           {build.singleBlueprint
             ? 'Ja, ein Bauplan, einmal gesetzt.'
-            : `Nein: ${build.blueprints} Baupläne, zusammen ${build.placements}-mal gesetzt.`}
+            : `Nein: ${build.blueprints === 1 ? 'ein Bauplan' : `${build.blueprints} Baupläne`}, zusammen ${build.placements}-mal gesetzt.`}
         </p>
+        {!build.exact && (
+          <p class="warn">
+            Geht nicht glatt auf: Einige Maschinen laufen untertaktet.
+            {suggestions.length > 0 && ' Passende Mengen: '}
+            {suggestions.map((s) => (
+              <button type="button" onClick={() => setRate(s.rate)}>
+                {fmt(s.rate)} /min ({s.build.blueprints === 1 ? 'ein Bauplan' : `${s.build.blueprints} Baupläne`}, {s.build.placements}× gesetzt)
+              </button>
+            ))}
+          </p>
+        )}
         {unsupported.length > 0 && (
           <p class="warn">
             Noch nicht generierbar: {unsupported.map((g) => `${recipeName(g.recipe)} (${g.unsupported})`).join('; ')}.

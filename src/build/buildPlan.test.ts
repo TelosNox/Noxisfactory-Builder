@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { plan } from '../planner/planner';
-import { buildPlan } from './buildPlan';
+import { buildPlan, suggestRates } from './buildPlan';
 
 describe('build plan', () => {
   it('splits iron plates into modules and chains', () => {
@@ -31,12 +31,23 @@ describe('chain plan', () => {
   });
 
   it('places the chain several times when the belt is the limit', () => {
-    const b = buildPlan(plan({ item: 'Desc_IronPlate_C', rate: 60 }), { designer: 6, beltTier: 1 });
+    // 3 smelters + 3 constructors, Mk1 belt carries 2 smelters: 2 x (2 + 2) at 75 %.
+    const b = buildPlan(plan({ item: 'Desc_IronPlate_C', rate: 60 }), { designer: 4, beltTier: 1 });
     expect(b.chain!.copies).toBe(2);
+    expect(b.exact).toBe(false);
   });
 
   it('keeps one blueprint per recipe for branching chains', () => {
     const b = buildPlan(plan({ item: 'Desc_ModularFrame_C', rate: 2 }), { designer: 6, beltTier: 3 });
     expect(b.chain).toBeUndefined();
+  });
+});
+
+describe('rate suggestions', () => {
+  it('offers the nearest rates that divide evenly', () => {
+    const s = suggestRates({ item: 'Desc_IronPlate_C', rate: 60 }, { designer: 4, beltTier: 1 });
+    // 1 copy of 2 + 2 makes 40/min, 2 copies make 80/min.
+    expect(s.map((x) => x.rate)).toEqual([40, 80]);
+    expect(s.every((x) => x.build.exact)).toBe(true);
   });
 });
