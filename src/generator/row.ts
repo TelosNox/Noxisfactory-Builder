@@ -7,8 +7,10 @@
 //                   │     │     │
 //   output line     M ──▶ M ──▶ M ──▶    mergers behind the output ports
 //
-// Both lines run along +X. Short belt stubs before the first splitter and the
-// first merger let the game auto-connect copies placed in a row towards +X. Everything stands on the floor (z = 0); belts run at port height.
+// The feed runs along +X. The output line runs along +X too, or back along -X
+// ('reverse') so products leave next to the feed entry. The row is extended at
+// the end of the feed: belt stubs sit on the -X side (the side of the feed
+// entry), so the game auto-connects copies added at +X. Everything stands on the floor (z = 0); belts run at port height.
 // Rules: docs/geometry.md.
 
 import { gameData } from '../planner/gameData';
@@ -31,6 +33,12 @@ export interface RowRequest {
   designer: number;
   /** Belt tier 1–6. */
   beltTier: number;
+  /**
+   * Flow of the output line. 'forward' (default): along the feed, products
+   * leave at the far end. 'reverse': back towards the start of the feed, so
+   * products leave where the raw materials arrive.
+   */
+  output?: 'reverse' | 'forward';
 }
 
 export function generateRow(req: RowRequest): Layout {
@@ -68,6 +76,12 @@ export function generateRow(req: RowRequest): Layout {
   const width = maxX - minX;
   if (width < 2 * SPLITTER_HALF) throw new Error(`${cls} is narrower than a splitter`);
 
+  const reverse = req.output === 'reverse';
+  // Merger turned by 180° for a reverse line: Input1 then faces +X, Output1 -X,
+  // and Input2 faces the machine.
+  const mergerYaw = reverse ? 180 : 0;
+  const mergerFromMachine = reverse ? 'Input2' : 'Input3';
+
   const rowStart = Math.round(-(width * req.machines) / 2); // 1 m grid
   const beltClass = `Build_ConveyorBeltMk${req.beltTier}_C`;
   const z = input.position[2];
@@ -86,9 +100,9 @@ export function generateRow(req: RowRequest): Layout {
     const outX = pos.x + output.position[0];
     parts.push({ id: machine, cls, pos, yaw: 0, recipe: req.recipe });
     parts.push({ id: splitter, cls: SPLITTER, pos: { x: inX, y: splitterY, z }, yaw: 0 });
-    parts.push({ id: merger, cls: MERGER, pos: { x: outX, y: mergerY, z }, yaw: 0 });
+    parts.push({ id: merger, cls: MERGER, pos: { x: outX, y: mergerY, z }, yaw: mergerYaw });
 
-    // Splitter Output2 (+Y side) to machine input; machine output to merger Input3 (-Y side).
+    // Splitter Output2 (+Y side) to machine input; machine output to the merger's -Y input.
     beltList.push({
       id: `in${i}`,
       cls: beltClass,
@@ -103,7 +117,7 @@ export function generateRow(req: RowRequest): Layout {
       from: { x: outX, y: output.position[1], z },
       to: { x: outX, y: mergerY - 1, z },
       fromPort: { part: machine, port: output.name },
-      toPort: { part: merger, port: 'Input3' },
+      toPort: { part: merger, port: mergerFromMachine },
     });
 
     if (i > 0) {
@@ -117,22 +131,37 @@ export function generateRow(req: RowRequest): Layout {
         fromPort: { part: `S${i - 1}`, port: 'Output1' },
         toPort: { part: splitter, port: 'Input1' },
       });
-      beltList.push({
-        id: `collect${i}`,
-        cls: beltClass,
-        from: { x: prevOut + 1, y: mergerY, z },
-        to: { x: outX - 1, y: mergerY, z },
-        fromPort: { part: `J${i - 1}`, port: 'Output1' },
-        toPort: { part: merger, port: 'Input1' },
-      });
+      beltList.push(
+        reverse
+          ? {
+              id: `collect${i}`,
+              cls: beltClass,
+              from: { x: outX - 1, y: mergerY, z },
+              to: { x: prevOut + 1, y: mergerY, z },
+              fromPort: { part: merger, port: 'Output1' },
+              toPort: { part: `J${i - 1}`, port: 'Input1' },
+            }
+          : {
+              id: `collect${i}`,
+              cls: beltClass,
+              from: { x: prevOut + 1, y: mergerY, z },
+              to: { x: outX - 1, y: mergerY, z },
+              fromPort: { part: `J${i - 1}`, port: 'Output1' },
+              toPort: { part: merger, port: 'Input1' },
+            },
+      );
     }
   }
 
   // Stub belts for the game's auto-connect. Auto-connect starts from the open
   // belt ends of the blueprint being placed and looks for matching open ports
-  // in the existing one, so all stubs sit on the same side: the -X side, where
-  // a new copy meets the previous one in a row growing towards +X. The +X ends
-  // of both lines stay open ports. Stubs are 2 m (minimum belt length).
+  // in the existing one. A row is extended at the end of the feed (+X), so the
+  // feed entry never moves: all stubs sit on the -X side of a copy, and the +X
+  // ends of both lines stay open ports for the next copy. Stubs are 2 m.
+  //   feed:    stub ends open, flows into S0.Input1
+  //   forward: stub ends open, flows into J0.Input1
+  //   reverse: stub starts at J0.Output1 and ends open; this is where the
+  //            products leave the first module, next to the feed entry
   const stub = 2;
   const firstSplitter = parts.find((p) => p.id === 'S0')!;
   const firstMerger = parts.find((p) => p.id === 'J0')!;
@@ -143,13 +172,23 @@ export function generateRow(req: RowRequest): Layout {
     to: { x: firstSplitter.pos.x - 1, y: splitterY, z },
     toPort: { part: 'S0', port: 'Input1' },
   });
-  beltList.push({
-    id: 'collect0',
-    cls: beltClass,
-    from: { x: firstMerger.pos.x - 1 - stub, y: mergerY, z },
-    to: { x: firstMerger.pos.x - 1, y: mergerY, z },
-    toPort: { part: 'J0', port: 'Input1' },
-  });
+  beltList.push(
+    reverse
+      ? {
+          id: 'collect0',
+          cls: beltClass,
+          from: { x: firstMerger.pos.x - 1, y: mergerY, z },
+          to: { x: firstMerger.pos.x - 1 - stub, y: mergerY, z },
+          fromPort: { part: 'J0', port: 'Output1' },
+        }
+      : {
+          id: 'collect0',
+          cls: beltClass,
+          from: { x: firstMerger.pos.x - 1 - stub, y: mergerY, z },
+          to: { x: firstMerger.pos.x - 1, y: mergerY, z },
+          toPort: { part: 'J0', port: 'Input1' },
+        },
+  );
 
   return { designer: req.designer, parts, belts: beltList };
 }

@@ -85,6 +85,8 @@ Das Minimum für einen ersten Test. Alles andere läuft mit festen Standards.
 
 Feste Standards im Grundset: nur Standardrezepte, kein Übertakten, keine Daisy Chain, keine Unterboden-Ebene, Rohstoffe kommen seitlich am Anfang der Maschinenreihe an, Ausgangsleitung läuft in dieselbe Richtung wie die Zuleitung.
 
+Module sind erweiterbar: Man beginnt mit einem Teil und hängt weitere Kopien am Ende der Zuführung an, solange das Band genug Leistung hat. Der Anfang der Zuführung (und bei Rückführung auch der Ausgang) bleibt dabei an seinem Platz.
+
 ### Erweiterungen
 
 - Freigeschaltete Alternativrezepte.

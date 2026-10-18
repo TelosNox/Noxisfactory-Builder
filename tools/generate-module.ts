@@ -1,6 +1,6 @@
 // Generate a row module blueprint (src/generator/row.ts) from the command line.
 //
-// Usage: npm run generate:row -- <recipe> <machines> <designer 4|5|6> <belt tier> [outDir]
+// Usage: npm run generate:row -- <recipe> <machines> <designer 4|5|6> <belt tier> [forward|reverse] [outDir]
 // Example: npm run generate:row -- Recipe_IronPlate_C 4 4 3
 //
 // Templates come from the blueprint folders in TEMPLATE_DIRS (mod-free sessions).
@@ -16,13 +16,14 @@ import { validate } from '../src/generator/validate';
 const BLUEPRINTS = join(process.env.LOCALAPPDATA ?? '', 'FactoryGame/Saved/SaveGames/blueprints');
 const TEMPLATE_DIRS = ['1.1 Spass', 'Bananendödels'].map((d) => join(BLUEPRINTS, d));
 
-const [recipe, machines, designer, tier, outDir = 'data/poc'] = process.argv.slice(2);
+const [recipe, machines, designer, tier, output = 'forward', outDir = 'data/poc'] = process.argv.slice(2);
 if (!recipe || !machines || !designer || !tier) {
-  console.error('usage: npm run generate:row -- <recipe> <machines> <designer 4|5|6> <belt tier> [outDir]');
+  console.error('usage: npm run generate:row -- <recipe> <machines> <designer 4|5|6> <belt tier> [forward|reverse] [outDir]');
   process.exit(1);
 }
 
-const layout = generateRow({ recipe, machines: +machines, designer: +designer, beltTier: +tier });
+if (output !== 'forward' && output !== 'reverse') throw new Error(`output must be forward or reverse, got ${output}`);
+const layout = generateRow({ recipe, machines: +machines, designer: +designer, beltTier: +tier, output });
 const problems = validate(layout);
 if (problems.length) {
   console.error('layout invalid:\n  ' + problems.join('\n  '));
@@ -38,7 +39,7 @@ for (const dir of TEMPLATE_DIRS) {
   }
 }
 
-const name = `Gen ${recipe.replace(/^Recipe_|_C$/g, '')} x${machines} Mk${tier}`;
+const name = `Gen ${recipe.replace(/^Recipe_|_C$/g, '')} x${machines} Mk${tier} ${output}`;
 const blueprint = layoutToBlueprint(layout, library, name, `Erzeugt von tools/generate-module.ts (${recipe}, ${machines} Maschinen)`);
 let header: Uint8Array = new Uint8Array();
 const chunks: Uint8Array[] = [];

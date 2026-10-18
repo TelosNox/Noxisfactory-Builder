@@ -14,21 +14,30 @@ describe('row module', () => {
     expect(validate(layout)).toEqual([]);
   });
 
-  it('puts both auto-connect stubs on the -X side, open ports on +X', () => {
+  const used = (layout: ReturnType<typeof generateRow>, part: string, port: string) =>
+    layout.belts.some((b) => [b.fromPort, b.toPort].some((r) => r?.part === part && r.port === port));
+
+  it('reverse output: products leave at the feed side, open ports at +X for extension', () => {
+    const layout = generateRow({ recipe: 'Recipe_IngotIron_C', machines: 3, designer: 4, beltTier: 3, output: 'reverse' });
+    expect(validate(layout)).toEqual([]);
+    const feed = layout.belts.find((b) => b.id === 'feed')!;
+    expect(feed.fromPort).toBeUndefined();
+    expect(feed.toPort).toEqual({ part: 'S0', port: 'Input1' });
+    const exit = layout.belts.find((b) => b.id === 'collect0')!;
+    expect(exit.fromPort).toEqual({ part: 'J0', port: 'Output1' });
+    expect(exit.toPort).toBeUndefined();
+    expect(exit.to.x).toBeLessThan(exit.from.x); // flows -X
+    expect(used(layout, 'S2', 'Output1')).toBe(false);
+    expect(used(layout, 'J2', 'Input1')).toBe(false);
+  });
+
+  it('forward output (default): both stubs on -X, open ports on +X', () => {
     const layout = generateRow({ recipe: 'Recipe_IngotIron_C', machines: 3, designer: 4, beltTier: 3 });
-    for (const [id, part] of [
-      ['feed', 'S0'],
-      ['collect0', 'J0'],
-    ]) {
-      const stub = layout.belts.find((b) => b.id === id)!;
-      expect(stub.fromPort).toBeUndefined();
-      expect(stub.toPort).toEqual({ part, port: 'Input1' });
-      expect(stub.to.x - stub.from.x).toBeCloseTo(2);
-    }
-    const used = (part: string, port: string) =>
-      layout.belts.some((b) => [b.fromPort, b.toPort].some((r) => r?.part === part && r.port === port));
-    expect(used('S2', 'Output1')).toBe(false);
-    expect(used('J2', 'Output1')).toBe(false);
+    expect(validate(layout)).toEqual([]);
+    const stub = layout.belts.find((b) => b.id === 'collect0')!;
+    expect(stub.fromPort).toBeUndefined();
+    expect(stub.toPort).toEqual({ part: 'J0', port: 'Input1' });
+    expect(used(layout, 'J2', 'Output1')).toBe(false);
   });
 
   it('rejects rows that exceed the belt', () => {

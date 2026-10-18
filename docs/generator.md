@@ -13,17 +13,18 @@ Erzeugt aus einem Rezept ein baubares Layout und daraus einen Blueprint. Code: `
 `generateRow`: eine Reihe gleicher Maschinen mit genau einem Bandeingang und einem Bandausgang (Constructor, Smelter).
 
 - Maschinen stehen Box an Box nebeneinander, Ports in ±Y.
-- Vor jedem Eingang ein Splitter (Zuleitung entlang +X), hinter jedem Ausgang ein Merger (Sammelleitung entlang +X).
-- Autoconnect: 2-m-Stummelbänder vor dem ersten Splitter und vor dem ersten Merger (Seite −X); auf der Seite +X enden beide Leitungen mit offenen Ports. Die Reihe wächst in +X (`docs/geometry.md`, Blueprint-Schnittstellen).
+- Vor jedem Eingang ein Splitter (Zuleitung entlang +X), hinter jedem Ausgang ein Merger.
+- Sammelleitung: standardmäßig entlang +X (`forward`), wahlweise zurück entlang −X (`reverse`), dann kommen die Produkte neben der Zuführung heraus.
+- Erweiterung am Ende der Zuführung (+X), die Seite der Stummelbänder richtet sich immer nach der Zuführung: 2-m-Stummelbänder auf der Seite −X, auf der Seite +X offene Ports. Eine neue Kopie rechts neben die vorige setzen, Autoconnect verbindet beide Leitungen (`docs/geometry.md`, Blueprint-Schnittstellen).
 - Alles am Boden, Bänder auf Port-Höhe (1 m).
 - Kapazität: Zu- und Sammelleitung tragen die Summe aller Maschinen; überschreitet das die Bandstufe, bricht der Generator ab.
 
 Aufruf:
 
 ```bash
-npm run generate:row -- Recipe_IronPlate_C 4 4 3
+npm run generate:row -- Recipe_IronPlate_C 4 4 3 forward
 ```
 
-Schreibt `data/poc/Gen IronPlate x4 Mk3.sbp/.sbpcfg`. Im Spiel getestet (4 Constructor, 5 Smelter, Mk3): baubar, Bänder verbunden, keine Warnungen. Autoconnect zwischen Kopien im Spiel bestätigt.
+Schreibt `data/poc/Gen IronPlate x4 Mk3 forward.sbp/.sbpcfg`. Im Spiel getestet (4 Constructor, 5 Smelter, Mk3): baubar, Bänder verbunden, keine Warnungen. Autoconnect zwischen Kopien im Spiel bestätigt (Ausgang `forward`); `reverse` noch nicht getestet.
 
 Offen: Rezepte der Maschinen setzen, Strom (Masten), Maschinen mit mehreren Eingängen, kleinsten passenden Designer wählen.
