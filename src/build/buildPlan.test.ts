@@ -22,3 +22,21 @@ describe('build plan', () => {
     expect(b.groups.find((g) => g.recipe === 'Recipe_ModularFrame_C')!.unsupported).toMatch(/one belt input/);
   });
 });
+
+describe('chain plan', () => {
+  it('puts smelter and constructor into one blueprint', () => {
+    const b = buildPlan(plan({ item: 'Desc_IronPlate_C', rate: 20 }), { designer: 6, beltTier: 1 });
+    expect(b.singleBlueprint).toBe(true);
+    expect(b.chain!.stages.map((s) => s.recipe)).toEqual(['Recipe_IngotIron_C', 'Recipe_IronPlate_C']);
+  });
+
+  it('places the chain several times when the belt is the limit', () => {
+    const b = buildPlan(plan({ item: 'Desc_IronPlate_C', rate: 60 }), { designer: 6, beltTier: 1 });
+    expect(b.chain!.copies).toBe(2);
+  });
+
+  it('keeps one blueprint per recipe for branching chains', () => {
+    const b = buildPlan(plan({ item: 'Desc_ModularFrame_C', rate: 2 }), { designer: 6, beltTier: 3 });
+    expect(b.chain).toBeUndefined();
+  });
+});

@@ -3,7 +3,7 @@
 import { useMemo, useState } from 'preact/hooks';
 import { gameData, type ItemId } from '../planner/gameData';
 import { plan, standardRecipes, type Plan } from '../planner/planner';
-import { buildPlan, type BuildOptions, type BuildPlan, type Group } from '../build/buildPlan';
+import { buildPlan, type BuildOptions, type BuildPlan, type ChainPlan, type Group } from '../build/buildPlan';
 
 const products: ItemId[] = [
   ...new Set(standardRecipes().flatMap((r) => Object.keys(gameData.recipes[r].out))),
@@ -131,22 +131,67 @@ function Result({ plan, build, opt }: { plan: Plan; build: BuildPlan; opt: Build
         )}
       </section>
 
+      {build.chain ? (
+        <ChainSection chain={build.chain} opt={opt} />
+      ) : (
+        <>
+          <section>
+            <h2>3. Gruppen</h2>
+            <p>Eine Gruppe ist ein Bauplan mit einer Reihe gleicher Maschinen. Er wird so oft gesetzt wie angegeben.</p>
+            <div class="groups">
+              {build.groups.map((g, i) => (
+                <GroupCard group={g} index={i} opt={opt} />
+              ))}
+            </div>
+          </section>
+
+          <section>
+            <h2>4. Bauanleitung</h2>
+            <ol>
+              {build.groups.map((g, i) => (
+                <li>{instruction(g, i, opt)}</li>
+              ))}
+            </ol>
+          </section>
+        </>
+      )}
+    </>
+  );
+}
+
+function ChainSection({ chain, opt }: { chain: ChainPlan; opt: BuildOptions }) {
+  const first = gameData.recipes[chain.stages[0].recipe];
+  const last = gameData.recipes[chain.stages[chain.stages.length - 1].recipe];
+  const side = opt.feedFrom === 'right' ? 'rechts' : 'links';
+  return (
+    <>
       <section>
         <h2>3. Gruppen</h2>
-        <p>Eine Gruppe ist ein Bauplan mit einer Reihe gleicher Maschinen. Er wird so oft gesetzt wie angegeben.</p>
+        <p>Die ganze Kette passt in einen Bauplan: Jede Reihe speist die nächste.</p>
         <div class="groups">
-          {build.groups.map((g, i) => (
-            <GroupCard group={g} index={i} opt={opt} />
-          ))}
+          <div class="card">
+            <h3>Bauplan A: Kette</h3>
+            {chain.stages.map((s) => (
+              <p>
+                {s.perModule} × {machineName(gameData.recipes[s.recipe].machine)} ({recipeName(s.recipe)})
+                {s.clock < 99.95 && `, Takt ${fmt(s.clock, 1)} %`}
+              </p>
+            ))}
+            <p>Designer Mk{opt.designer - 3}, Band Mk{opt.beltTier}</p>
+          </div>
         </div>
       </section>
 
       <section>
         <h2>4. Bauanleitung</h2>
         <ol>
-          {build.groups.map((g, i) => (
-            <li>{instruction(g, i, opt)}</li>
-          ))}
+          <li>
+            Bauplan A {chain.copies === 1 ? 'einmal setzen' : `${chain.copies}-mal setzen, jede Kopie mit eigener Zuleitung`}.
+          </li>
+          <li>
+            {Object.keys(first.in).map(itemName).join(' und ')} von {side} zuführen,{' '}
+            {Object.keys(last.out).map(itemName).join(' und ')} kommt am Ende der letzten Reihe heraus.
+          </li>
         </ol>
       </section>
     </>

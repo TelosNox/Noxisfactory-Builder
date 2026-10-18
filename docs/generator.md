@@ -29,3 +29,7 @@ npm run generate:row -- Recipe_IronPlate_C 4 4 3 left forward
 Schreibt `data/poc/Gen IronPlate x4 Mk3 left forward.sbp/.sbpcfg`. Im Spiel getestet (4 Constructor, 5 Smelter, Mk3): baubar, Bänder verbunden, keine Warnungen. Autoconnect zwischen Kopien im Spiel bestätigt (Ausgang `forward`); `reverse` noch nicht getestet.
 
 Offen: Rezepte der Maschinen setzen, Strom (Masten), Maschinen mit mehreren Eingängen, kleinsten passenden Designer wählen.
+
+## Modul „Kette“
+
+`src/generator/chain.ts`: mehrere Reihen in einem Bauplan. Jede Reihe wird von `row.ts` erzeugt und so verschoben, dass ihre Splitterleitung auf der Mergerleitung der vorigen liegt; die nächste Reihe beginnt 4 m nach dem letzten Merger (2-m-Band dazwischen). Stummel nur an der ersten Reihe. Nur Ausgang in gleicher Richtung. Im Spiel noch nicht getestet.

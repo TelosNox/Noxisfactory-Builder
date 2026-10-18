@@ -7,11 +7,17 @@
 //   chains              = copies joined by auto-connect share one feed line,
 //                         so a chain carries at most one belt of input/output
 // Recipes the generator cannot build yet stay in the plan with a reason.
+//
+// If the steps form a straight line (each step eats only what the previous one
+// makes), the whole plan may fit one chain blueprint (chain.ts), placed once or
+// a few times with their own feed lines. That is preferred over one blueprint
+// per recipe.
 
 import { gameData, ratePerMinute, type ItemId, type RecipeId } from '../planner/gameData';
 import type { Plan } from '../planner/planner';
 import { BELT_SPEED, generateRow } from '../generator/row';
 import { validate } from '../generator/validate';
+import { generateChain } from '../generator/chain';
 
 export interface BuildOptions {
   /** Blueprint Designer size in foundations: 4, 5, 6. */
@@ -43,8 +49,17 @@ export interface Group {
   stage: number;
 }
 
+export interface ChainPlan {
+  /** How often the chain blueprint is placed, each copy with its own feed line. */
+  copies: number;
+  /** In build order; machines per copy and clock in %. */
+  stages: { recipe: RecipeId; perModule: number; clock: number }[];
+}
+
 export interface BuildPlan {
   groups: Group[];
+  /** Whole plan as one chain blueprint, if it fits. */
+  chain?: ChainPlan;
   /** Whole plan fits a single blueprint placed once. */
   singleBlueprint: boolean;
   blueprints: number;
@@ -53,6 +68,7 @@ export interface BuildPlan {
 
 const EPS = 1e-6;
 const MAX_ROW = 30;
+const MAX_CHAIN_COPIES = 8;
 
 /** Largest valid row for this recipe, or an error message. */
 export function maxRow(recipe: RecipeId, opt: BuildOptions): number | string {
@@ -134,6 +150,8 @@ export function buildPlan(plan: Plan, opt: BuildOptions): BuildPlan {
     return { ...base, perModule, copies, chains, clock: (100 * step.machines) / machines };
   });
   groups.sort((a, b) => a.stage - b.stage || a.recipe.localeCompare(b.recipe));
+  const chain = groups.length > 1 ? chainPlan(groups, opt) : undefined;
+  if (chain) return { groups, chain, singleBlueprint: chain.copies === 1, blueprints: 1, placements: chain.copies };
   const placements = groups.reduce((sum, g) => sum + g.copies, 0);
   return {
     groups,
@@ -141,4 +159,27 @@ export function buildPlan(plan: Plan, opt: BuildOptions): BuildPlan {
     blueprints: groups.length,
     placements,
   };
+}
+
+/** Groups as one chain blueprint: straight line of steps, fewest copies that fit. */
+export function chainPlan(groups: Group[], opt: BuildOptions): ChainPlan | undefined {
+  if (opt.output === 'reverse' || groups.some((g) => g.unsupported)) return undefined;
+  for (let k = 1; k < groups.length; k++) {
+    const made = Object.keys(groups[k - 1].outputs);
+    const eaten = Object.keys(groups[k].inputs);
+    if (made.length !== 1 || eaten.length !== 1 || made[0] !== eaten[0]) return undefined;
+  }
+  for (let copies = 1; copies <= MAX_CHAIN_COPIES; copies++) {
+    const stages = groups.map((g) => {
+      const perModule = Math.max(1, Math.ceil(g.machinesExact / copies - EPS));
+      return { recipe: g.recipe, perModule, clock: (100 * g.machinesExact) / (perModule * copies) };
+    });
+    try {
+      const layout = generateChain({ ...opt, stages: stages.map((s) => ({ recipe: s.recipe, machines: s.perModule })) });
+      if (validate(layout).length === 0) return { copies, stages };
+    } catch {
+      // belt too slow for this many machines per row: try more copies
+    }
+  }
+  return undefined;
 }
