@@ -65,7 +65,35 @@ Engpass bei beiden: Die Zuführung einer Zutat trägt das ganze Gitter. Maschine
 
 Wenn die Leitungen an den Seitenkanten und die Steigleitungen an den Würfelkanten austreten, lässt sich das Modul in allen drei Richtungen kacheln. Die Modulschnittstelle ist dann eine Fläche mit festgelegten Port-Positionen.
 
-Offene Eingabe pro Bau: Wo kommen die Rohstoffe am Block an (unten, oben, seitlich, verteilt)?
+## Eingaben pro Bau
+
+Der Spieler gibt an, was er bauen will, was er freigeschaltet hat und wie gebaut wird.
+
+Zu- und Ausgangsleitungen laufen quer zu den Maschinenports, entlang der Maschinenreihe; nur so lassen sich Module aneinanderreihen.
+
+### Grundset
+
+Das Minimum für einen ersten Test. Alles andere läuft mit festen Standards.
+
+| Eingabe | Werte | Standard |
+|---|---|---|
+| Produkt | Item aus `Docs.json` | – (Pflicht) |
+| Menge | Items/min | – (Pflicht) |
+| Blueprint Designer | Mk1–Mk3 | Mk1 |
+| Höchste Bandstufe (gilt auch für Lifts) | Mk1–Mk6 | Mk1 |
+| Höchste Mast-Stufe | Mk1–Mk3 | Mk1 |
+
+Feste Standards im Grundset: nur Standardrezepte, kein Übertakten, keine Daisy Chain, keine Unterboden-Ebene, Rohstoffe kommen seitlich am Anfang der Maschinenreihe an, Ausgangsleitung läuft in dieselbe Richtung wie die Zuleitung.
+
+### Erweiterungen
+
+- Freigeschaltete Alternativrezepte.
+- Übertakten (Power Shards), Somersloops.
+- Daisy Chain verfügbar ja/nein.
+- Wo die Rohstoffe am Block ankommen (unten, oben, seitlich, verteilt).
+- Laufrichtung der Ausgangsleitung: dieselbe Richtung wie die Zuleitung (Produkt kommt am anderen Ende des Moduls heraus), Gegenrichtung (Produkt kommt dort heraus, wo die Rohstoffe zugeführt werden) oder der Generator wählt.
+- Unterboden-Ebene ja/nein.
+- Gewichtung Platz und Effektivität gegen Ästhetik (siehe Variationen).
 
 ## Vorgeschlagene Reihenfolge
 
