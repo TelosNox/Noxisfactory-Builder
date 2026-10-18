@@ -31,12 +31,41 @@ export interface Belt {
   toPort?: PortRef;
 }
 
+/**
+ * Conveyor lift, items flow upward: bottom end ConveyorAny0, top end ConveyorAny1.
+ * An end snapped to a port (no belt between) sits 2 m in front of that port.
+ */
+export interface Lift {
+  id: string;
+  cls: string;
+  /** Bottom end. */
+  pos: Vec3;
+  height: number;
+  /** Direction the bottom end faces (where items come from), degrees. */
+  yaw: number;
+  /** Direction of the top end relative to `yaw`. */
+  topYaw: number;
+  /** Port the bottom or top end is snapped to directly. */
+  bottomLink?: PortRef;
+  topLink?: PortRef;
+  /** Foundation passthrough (part id) the bottom or top end sits in. */
+  bottomPassthrough?: string;
+  topPassthrough?: string;
+}
+
 export interface Layout {
   /** Blueprint Designer size in foundations (4, 5 or 6). */
   designer: number;
   parts: Part[];
   belts: Belt[];
+  lifts?: Lift[];
 }
+
+export const PASSTHROUGH = 'Build_FoundationPassthrough_Lift_C';
+export const LIFT_REACH = 2;
+
+export const liftEnd = (l: Lift, port: string): Vec3 =>
+  port === 'ConveyorAny1' ? { ...l.pos, z: l.pos.z + l.height } : l.pos;
 
 export const FOUNDATION = 8;
 

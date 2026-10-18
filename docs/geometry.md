@@ -45,6 +45,19 @@ Spielversion der Exporte und Tests: 1.2.4.1 (CL#513885). „Spielerfahrung“ un
 - Der Fuß eines Lifts lässt sich direkt an einen Splitter-Port setzen, ohne Band dazwischen. Mit der Durchführung ergibt das kurze Abzweige: Splitter unter der Foundation, Lift am Port, durch die Durchführung nach oben (Spielerfahrung).
 - Der Lift lässt sich auch in den Splitter hineinbauen. **Festlegung:** Der Generator setzt den Liftfuß außen an den Port (übliche Bauweise).
 
+## Unterboden (Referenz „Manufaktor Straight“)
+
+Ausgelesen aus dem Blueprint „Manufaktor Straight“ (1.1 Spass, Designer Mk2), Bauweise des Spielers:
+
+- Maschine auf einer Foundation-Ebene, Oberkante 6 m (Port-Höhe 7 m). Durchführung bei Z = 5,5.
+- Unterboden mit zwei Bandebenen: 1 m (Leitungen längs der Reihe), 3 m (Querstücke).
+- Pro Eingang eine eigene Spur unter dem Maschinenrumpf (Manufacturer: X = 8, 3, −2, −7 bei Eingängen an der −X-Kante). Splitter je Spur genau auf Höhe ihres Eingangs, die Splitter bilden eine Treppe. Splitter-Ausgang 1 läuft weiter zur nächsten Kopie (Reihe 18 m Raster).
+- Abzweig: Lift vom Splitter-Port 1 → 3 m, Querband auf 3 m zur Eingangskante, Lift 3 → 5,5 m in die Durchführung, Lift 5,5 → 7 m mit Kopf am Maschinen-Port. Die Spur, die nichts kreuzt, geht direkt 1 → 5,5 m.
+- Normal: Band zwischen Splitter-Port und Liftfuß. Liftfuß direkt am Splitter-Port nur als Notbehelf bei Platzmangel (Spieler).
+- Ausgang oben: kurzes Band zum Merger, Leitung längs der Reihe an der Ausgangsseite. Ausgang im Unterboden wäre möglich, nicht getestet.
+- Lifts gehen hier mit 1,5, 2 und 2,5 m Höhe, weil sie an Port oder Durchführung einrasten; die Mindesthöhen unter „Lifts“ gelten für frei gebaute Lifts.
+- Im Blueprint: Lift mit Fußposition, `mTopTransform` (Höhe, Drehung des Kopfs), `mSnappedPassthroughs` (Verweis auf die Durchführung).
+
 ## Splitter und Merger
 
 - Ports 1 m vom Mittelpunkt in alle vier Richtungen, auf Höhe Z = 0 des Bauteils.

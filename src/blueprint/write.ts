@@ -26,6 +26,8 @@ function objectRef(target: SaveObject) {
 
 /** Belt cost: one build recipe per started 2 m (docs/blueprint.md). */
 const beltSegments = (length: number) => Math.ceil(length / 2 - 1e-6);
+/** Lift cost: one build recipe per started 4 m of height (docs/blueprint.md). */
+const liftSegments = (height: number) => Math.ceil(height / 4 - 1e-6);
 
 export function layoutToBlueprint(layout: Layout, library: TemplateLibrary, name: string, description = ''): Blueprint {
   const source = library.newest;
@@ -63,6 +65,78 @@ export function layoutToBlueprint(layout: Layout, library: TemplateLibrary, name
     byPart.set(part.id, parts);
     objects.push(...parts);
     charge(part.cls);
+  }
+
+  // Lifts: bottom end ConveyorAny0, top end ConveyorAny1 (docs/geometry.md, Unterboden).
+  const ref = (pathName: string) => ({ levelName: pathName ? 'Persistent_Level' : '', pathName });
+  const passthroughEnds = new Map<string, { below?: SaveObject; above?: SaveObject }>();
+  for (const lift of layout.lifts ?? []) {
+    const parts = library.instantiate(lift.cls, nextId++);
+    const entity = parts[0] as SaveEntity;
+    entity.transform = { rotation: yawQuaternion(lift.yaw), translation: cm(lift.pos), scale3d: { x: 1, y: 1, z: 1 } };
+    const props = entity.properties as Record<string, any>;
+    const top: Record<string, unknown> = {
+      Translation: {
+        type: 'StructProperty',
+        name: 'Translation',
+        propertyTagType: { name: 'StructProperty', children: [{ name: 'Vector', children: [] }] },
+        value: { x: 0, y: 0, z: lift.height * CM },
+      },
+    };
+    if (lift.topYaw % 360 !== 0) {
+      top.Rotation = {
+        type: 'StructProperty',
+        name: 'Rotation',
+        propertyTagType: { name: 'StructProperty', children: [{ name: 'Quat', children: [] }] },
+        value: yawQuaternion(lift.topYaw),
+      };
+    }
+    props.mTopTransform = {
+      type: 'StructProperty',
+      name: 'mTopTransform',
+      propertyTagType: { name: 'StructProperty', children: [{ name: 'Transform', children: [] }] },
+      value: { type: 'Transform', properties: top },
+    };
+    const passName = (id?: string) => (id ? byPart.get(id)![0].instanceName : '');
+    props.mSnappedPassthroughs = {
+      type: 'ArrayProperty',
+      name: 'mSnappedPassthroughs',
+      propertyTagType: { name: 'ArrayProperty', children: [{ name: 'ObjectProperty', children: [] }] },
+      values: [ref(passName(lift.bottomPassthrough)), ref(passName(lift.topPassthrough))],
+    };
+    if (lift.bottomLink) connect(component(parts, 'ConveyorAny0'), component(byPart.get(lift.bottomLink.part)!, lift.bottomLink.port));
+    if (lift.topLink) connect(component(parts, 'ConveyorAny1'), component(byPart.get(lift.topLink.part)!, lift.topLink.port));
+    if (lift.topPassthrough) {
+      const ends = passthroughEnds.get(lift.topPassthrough) ?? {};
+      passthroughEnds.set(lift.topPassthrough, { ...ends, below: component(parts, 'ConveyorAny1') });
+    }
+    if (lift.bottomPassthrough) {
+      const ends = passthroughEnds.get(lift.bottomPassthrough) ?? {};
+      passthroughEnds.set(lift.bottomPassthrough, { ...ends, above: component(parts, 'ConveyorAny0') });
+    }
+    byPart.set(lift.id, parts);
+    objects.push(...parts);
+    charge(lift.cls, liftSegments(lift.height));
+  }
+  // Lifts meeting in a passthrough are connected to each other and to the passthrough.
+  for (const [id, { below, above }] of passthroughEnds) {
+    if (!below || !above) throw new Error(`passthrough ${id} needs a lift below and above`);
+    connect(below, above);
+    const props = byPart.get(id)![0].properties as Record<string, any>;
+    const objectProperty = (name: string, target: SaveObject) => ({
+      type: 'ObjectProperty',
+      name,
+      propertyTagType: { name: 'ObjectProperty', children: [] },
+      value: ref(target.instanceName),
+    });
+    props.mBottomSnappedConnection = objectProperty('mBottomSnappedConnection', below);
+    props.mTopSnappedConnection = objectProperty('mTopSnappedConnection', above);
+    props.mSnappedBuildingThickness = {
+      type: 'FloatProperty',
+      name: 'mSnappedBuildingThickness',
+      propertyTagType: { name: 'FloatProperty', children: [] },
+      value: 100,
+    };
   }
 
   for (const belt of layout.belts) {

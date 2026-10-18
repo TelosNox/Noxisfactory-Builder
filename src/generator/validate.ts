@@ -2,7 +2,7 @@
 // Returns a list of problems; empty means the layout should build without warnings.
 
 import { overlaps, portPosition, worldBoxes, type Vec3 } from './geometry';
-import { beltLength, halfSize, type Belt, type Layout } from './layout';
+import { beltLength, halfSize, LIFT_REACH, liftEnd, type Belt, type Layout, type Lift } from './layout';
 
 const MIN_BELT = 2;
 const BELT_HALF_WIDTH = 1;
@@ -30,10 +30,19 @@ function beltBox(b: Belt) {
   };
 }
 
+/** Volume of a lift: 2 × 2 m column from 1 m below its bottom end to its top end. */
+function liftBox(l: Lift) {
+  return {
+    min: { x: l.pos.x - 1, y: l.pos.y - 1, z: l.pos.z - 1 },
+    max: { x: l.pos.x + 1, y: l.pos.y + 1, z: l.pos.z + l.height },
+  };
+}
+
 export function validate(layout: Layout): string[] {
   const problems: string[] = [];
   const half = halfSize(layout);
   const parts = new Map(layout.parts.map((p) => [p.id, p]));
+  const lifts = new Map((layout.lifts ?? []).map((l) => [l.id, l]));
   const boxes = layout.parts.map((p) => ({ part: p, boxes: worldBoxes(p.cls, p.pos, p.yaw) }));
 
   // Buildings: no overlap of hard or soft boxes, inside the designer.
@@ -61,6 +70,11 @@ export function validate(layout: Layout): string[] {
       [belt.toPort, belt.to],
     ] as const) {
       if (!ref) continue;
+      const lift = lifts.get(ref.part);
+      if (lift) {
+        if (!near(liftEnd(lift, ref.port), end)) problems.push(`${belt.id} does not end at ${ref.part}.${ref.port}`);
+        continue;
+      }
       const part = parts.get(ref.part);
       if (!part) {
         problems.push(`${belt.id} connects to unknown part ${ref.part}`);
@@ -76,6 +90,44 @@ export function validate(layout: Layout): string[] {
     for (const { part, boxes: partBoxes } of boxes) {
       if (!connected.has(part.id) && partBoxes.some((b) => overlaps(b, box))) {
         problems.push(`${belt.id} runs through ${part.id}`);
+      }
+    }
+    for (const lift of lifts.values()) {
+      if (!connected.has(lift.id) && overlaps(liftBox(lift), box)) problems.push(`${belt.id} runs through ${lift.id}`);
+    }
+  }
+
+  // Lifts: inside the designer, clear of foreign buildings and other lift columns,
+  // snapped ends 2 m in front of their port.
+  const all = [...lifts.values()];
+  for (const lift of all) {
+    const box = liftBox(lift);
+    if (box.min.x < -half - EPS || box.max.x > half + EPS || box.min.y < -half - EPS || box.max.y > half + EPS) {
+      problems.push(`${lift.id} reaches outside the designer`);
+    }
+    const own = new Set([lift.bottomLink?.part, lift.topLink?.part, lift.bottomPassthrough, lift.topPassthrough]);
+    for (const { part, boxes: partBoxes } of boxes) {
+      if (!own.has(part.id) && partBoxes.some((b) => overlaps(b, box))) problems.push(`${lift.id} overlaps ${part.id}`);
+    }
+    for (const other of all) {
+      const sameColumn = other.pos.x === lift.pos.x && other.pos.y === lift.pos.y;
+      if (other.id > lift.id && !sameColumn && overlaps(liftBox(other), box)) problems.push(`${lift.id} overlaps ${other.id}`);
+    }
+    for (const [link, port] of [
+      [lift.bottomLink, 'ConveyorAny0'],
+      [lift.topLink, 'ConveyorAny1'],
+    ] as const) {
+      if (!link) continue;
+      const part = parts.get(link.part);
+      if (!part) {
+        problems.push(`${lift.id} links to unknown part ${link.part}`);
+        continue;
+      }
+      const p = portPosition(part.cls, link.port, part.pos, part.yaw);
+      const end = liftEnd(lift, port);
+      const reach = Math.hypot(p.x - end.x, p.y - end.y);
+      if (Math.abs(p.z - end.z) > EPS || Math.abs(reach - LIFT_REACH) > 0.5) {
+        problems.push(`${lift.id} is not snapped to ${link.part}.${link.port}`);
       }
     }
   }

@@ -18,6 +18,8 @@ import { plan as planChain, type Plan, type PlanRequest } from '../planner/plann
 import { BELT_SPEED, generateRow } from '../generator/row';
 import { validate } from '../generator/validate';
 import { generateChain } from '../generator/chain';
+import { generateFloorRow, type Floor } from '../generator/floor';
+import type { Layout } from '../generator/layout';
 
 export interface BuildOptions {
   /** Blueprint Designer size in foundations: 4, 5, 6. */
@@ -26,6 +28,14 @@ export interface BuildOptions {
   beltTier: number;
   feedFrom?: 'left' | 'right';
   output?: 'forward' | 'reverse';
+  /** Logistics floor height in m; feed lines run underneath. None if missing. */
+  floor?: Floor;
+}
+
+/** Row layout for these options: on the floor or on a logistics floor. */
+export function moduleLayout(recipe: RecipeId, machines: number, opt: BuildOptions): Layout {
+  const { floor, ...rest } = opt;
+  return floor ? generateFloorRow({ ...rest, recipe, machines, floor }) : generateRow({ ...rest, recipe, machines });
 }
 
 export interface Group {
@@ -78,7 +88,7 @@ export function maxRow(recipe: RecipeId, opt: BuildOptions): number | string {
   for (let n = 1; n <= MAX_ROW; n++) {
     let ok: boolean;
     try {
-      ok = validate(generateRow({ recipe, machines: n, ...opt })).length === 0;
+      ok = validate(moduleLayout(recipe, n, opt)).length === 0;
     } catch (error) {
       if (n === 1) return String((error as Error).message);
       break;
@@ -171,7 +181,8 @@ export function buildPlan(plan: Plan, opt: BuildOptions): BuildPlan {
 
 /** Groups as one chain blueprint: straight line of steps, fewest copies that fit. */
 export function chainPlan(groups: Group[], opt: BuildOptions): ChainPlan | undefined {
-  if (opt.output === 'reverse' || groups.some((g) => g.unsupported)) return undefined;
+  // Chains on a logistics floor are not built yet: feed below, output on top.
+  if (opt.floor || opt.output === 'reverse' || groups.some((g) => g.unsupported)) return undefined;
   for (let k = 1; k < groups.length; k++) {
     const made = Object.keys(groups[k - 1].outputs);
     const eaten = Object.keys(groups[k].inputs);

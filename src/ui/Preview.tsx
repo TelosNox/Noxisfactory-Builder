@@ -3,15 +3,18 @@
 
 import { gameData } from '../planner/gameData';
 import { worldBoxes } from '../generator/geometry';
-import { FOUNDATION, halfSize, type Layout } from '../generator/layout';
+import { FOUNDATION, halfSize, PASSTHROUGH, type Layout } from '../generator/layout';
 import { MERGER, SPLITTER } from '../generator/row';
 
-const kind = (cls: string) => (cls === SPLITTER ? 'splitter' : cls === MERGER ? 'merger' : 'machine');
+const kind = (cls: string) =>
+  cls === SPLITTER ? 'splitter' : cls === MERGER ? 'merger' : cls === PASSTHROUGH ? 'passthrough' : 'machine';
 const short = (cls: string) =>
   (gameData.machines[cls]?.name ?? cls).replace(/ Mk ?\d+$/, '');
 
 export function Preview({ layout }: { layout: Layout }) {
   const half = halfSize(layout);
+  // Things below the machines' base are drawn dashed (logistics floor).
+  const floorZ = Math.min(...layout.parts.filter((p) => kind(p.cls) === 'machine').map((p) => p.pos.z));
   const pad = 2;
   const foundations = Array.from({ length: layout.designer + 1 }, (_, i) => -half + i * FOUNDATION);
   return (
@@ -41,8 +44,13 @@ export function Preview({ layout }: { layout: Layout }) {
           </rect>
         )),
       )}
+      {(layout.lifts ?? []).map((l) => (
+        <rect class="lift" x={l.pos.x - 1} y={-l.pos.y - 1} width={2} height={2}>
+          <title>{`${l.id}: Lift ${l.pos.z}–${l.pos.z + l.height} m`}</title>
+        </rect>
+      ))}
       {layout.belts.map((b) => (
-        <line class={'belt' + (b.fromPort && b.toPort ? '' : ' stub')} x1={b.from.x} y1={-b.from.y} x2={b.to.x} y2={-b.to.y} marker-end="url(#arrow)">
+        <line class={'belt' + (b.fromPort && b.toPort ? '' : ' stub') + (b.from.z < floorZ ? ' below' : '')} x1={b.from.x} y1={-b.from.y} x2={b.to.x} y2={-b.to.y} marker-end="url(#arrow)">
           <title>{b.id}</title>
         </line>
       ))}

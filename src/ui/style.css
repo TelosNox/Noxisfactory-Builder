@@ -53,3 +53,6 @@ button { font: inherit; margin: 0 4px; padding: 4px 8px; color: var(--fg); backg
 .preview .belt.stub { stroke: var(--accent); }
 .preview .arrow { fill: #555; }
 .preview .label { font-size: 1.2px; text-anchor: middle; dominant-baseline: middle; fill: #10263c; }
+.preview .machine.hard { fill-opacity: 0.55; }
+.preview .belt.below { stroke-dasharray: 1 0.6; stroke: #7a5a9a; }
+.preview .lift { fill: #7a5a9a; stroke: #3d2a55; stroke-width: 0.15; }

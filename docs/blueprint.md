@@ -30,3 +30,14 @@ Lesen und Schreiben mit `@etothepii/satisfactory-file-parser` (MIT). Erkenntniss
 
 - `mSplineData`: Punkte mit `Location`, `ArriveTangent`, `LeaveTangent`, relativ zur Transformation des Band-Actors.
 - Gerades Band mit zwei Punkten: innere Tangenten haben die halbe Länge des Bands in Laufrichtung, die äußeren Tangenten (Ankunft am ersten, Abgang am letzten Punkt) die Länge 1. So schreibt es das Spiel; im Spiel bestätigt für 3 m → 5 m.
+
+## Name
+
+Das Spiel kürzt Blueprint-Namen auf 32 Zeichen (im Spiel beobachtet). `src/blueprint/name.ts` baut kurze Namen wie `IronPlateReinforced x2 B3 LF F6`: Maschinen, Bandstufe, Zuführung (L/R) und Ausgang (F gleiche Richtung, R zurück), Logistic Floor. Der Rezeptteil wird gekürzt, bis alles passt. Die Details stehen in der Beschreibung.
+
+## Kosten von Bändern und Lifts
+
+Abgeglichen mit den Kosten, die das Spiel in den Kopf von 28 Spieler-Blueprints geschrieben hat (1.1 Spass, Bananendödels):
+
+- Lift: ein Baurezept je angefangene 4 m Höhe (1,5, 2 und 2,5 m kosten 1, 4,5 m kostet 2). Passt auf alle Blueprints mit Lifts.
+- Band: ein Baurezept je angefangene 2 m passt fast immer. Ausnahme: 7-m-Bänder kosten im Spiel 3 statt 4 (Manufaktor Straight, Test, eigene Floor-Blueprints); 5 m kosten 3. Ursache unbekannt, vermutlich misst das Spiel die Länge anders. Der Designer zeigt beim Setzen ohnehin seine eigene Rechnung; die Kosten im Kopf sind nur eine Anzeige.

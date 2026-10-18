@@ -29,7 +29,7 @@ Werte, die mit *(prüfen)* markiert sind, stammen aus dem Gedächtnis und müsse
 ## Variationen
 
 - **Ziel**: Platz und Effektivität gegen Ästhetik, als Gewichte in einer gemeinsamen Kostenfunktion (z. B. Strafe für sichtbare Belts, Bonus für Logistik im Unterboden).
-- **Unterirdische Logistik**: eine reservierte untere Ebene, in der nur Belts, Lifts, Splitter und Merger liegen.
+- **Unterirdische Logistik**: eine reservierte untere Ebene, in der nur Belts, Lifts, Splitter und Merger liegen. Der Unterboden ist das Logistiknetz der ganzen Fabrik, nicht nur des Moduls: Auch fremde Produkte müssen hindurch. Deshalb nie Leitungen übereinander stapeln (eine Wand, die kein Band kreuzen kann). Stattdessen Spuren nebeneinander, Ebenen nach Richtung getrennt: unten (1 m) Leitungen längs der Reihe, darüber (3 m) nur kurze Querstücke. Fremde Bänder kreuzen auf 3 m überall dort, wo kein Querstück liegt. Vorbild: Blueprint „Manufaktor Straight“ (1.1 Spass), siehe `docs/geometry.md`.
 - **Zwischenspeicher**: Bausteine mit Volumen und Ports, rechnerisch neutral.
 - **Uploader** (Dimensional Depot): Senke. Spart Ausgangsports an der Modulkante.
 
@@ -95,7 +95,7 @@ Module sind erweiterbar: Man beginnt mit einem Teil und hängt weitere Kopien am
 - Wo die Rohstoffe am Block ankommen (unten, oben, seitlich, verteilt).
 - Seite der Zuführung, von der Eingangsseite der Maschinen aus gesehen: links oder rechts (Standard links).
 - Laufrichtung der Ausgangsleitung: dieselbe Richtung wie die Zuleitung (Produkt kommt am anderen Ende des Moduls heraus), Gegenrichtung (Produkt kommt dort heraus, wo die Rohstoffe zugeführt werden) oder der Generator wählt.
-- Unterboden-Ebene ja/nein.
+- Logistic Floor: keiner, 4, 6 oder 8 m (höher passt kaum noch in den Designer). Bauweise ist Geschmackssache: manche bauen nur 4 m mit einer Bandebene, manche mischen je Fabrik.
 - Gewichtung Platz und Effektivität gegen Ästhetik (siehe Variationen).
 
 ## Vorgeschlagene Reihenfolge

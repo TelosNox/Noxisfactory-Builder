@@ -4,9 +4,9 @@ import { useMemo, useState } from 'preact/hooks';
 import { gameData, type ItemId } from '../planner/gameData';
 import { plan, standardRecipes, type Plan } from '../planner/planner';
 import { generateChain } from '../generator/chain';
-import { generateRow } from '../generator/row';
 import { Preview } from './Preview';
-import { buildPlan, suggestRates, type BuildOptions, type BuildPlan, type ChainPlan, type Group } from '../build/buildPlan';
+import { FLOORS } from '../generator/floor';
+import { buildPlan, moduleLayout, suggestRates, type BuildOptions, type BuildPlan, type ChainPlan, type Group } from '../build/buildPlan';
 
 const products: ItemId[] = [
   ...new Set(standardRecipes().flatMap((r) => Object.keys(gameData.recipes[r].out))),
@@ -68,6 +68,15 @@ export function App() {
           <select value={opt.beltTier} onChange={(e) => set('beltTier', +e.currentTarget.value)}>
             {[1, 2, 3, 4, 5, 6].map((t) => (
               <option value={t}>Mk{t}</option>
+            ))}
+          </select>
+        </label>
+        <label>
+          Logistic Floor
+          <select value={opt.floor ?? 0} onChange={(e) => set('floor', (+e.currentTarget.value || undefined) as BuildOptions['floor'])}>
+            <option value={0}>keiner</option>
+            {FLOORS.map((f) => (
+              <option value={f}>{f} m</option>
             ))}
           </select>
         </label>
@@ -241,7 +250,7 @@ function GroupCard({ group: g, index, opt }: { group: Group; index: number; opt:
       ) : (
         <>
           <p>Designer Mk{opt.designer - 3}, Band Mk{opt.beltTier}</p>
-          <Preview layout={generateRow({ ...opt, recipe: g.recipe, machines: n })} />
+          <Preview layout={moduleLayout(g.recipe, n, opt)} />
         </>
       )}
     </div>
