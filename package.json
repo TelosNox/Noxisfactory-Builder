@@ -10,7 +10,8 @@
     "test": "vitest run",
     "poc:roundtrip": "tsx tools/poc/roundtrip.ts",
     "poc:dump": "tsx tools/poc/dump.ts",
-    "poc:modify": "tsx tools/poc/modify.ts"
+    "poc:modify": "tsx tools/poc/modify.ts",
+    "poc:generate": "tsx tools/poc/generate.ts"
   },
   "devDependencies": {
     "@types/node": "^26.6.5",

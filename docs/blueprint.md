@@ -6,7 +6,13 @@ Lesen und Schreiben mit `@etothepii/satisfactory-file-parser` (MIT). Erkenntniss
 
 - Einlesen und Zurückschreiben ist byteidentisch, das Spiel lädt das Ergebnis (`roundtrip.ts`).
 - Geänderte Blueprints funktionieren: Merger verschoben, Band verlängert, im Spiel baubar (`modify.ts`).
-- Offen: Blueprint komplett neu erzeugen.
+- Neu erzeugte Blueprints funktionieren: Constructor mit zwei angeschlossenen Bändern, Kopf (Größe, Rezepte, Kosten) selbst berechnet, im Spiel baubar, Kosten korrekt (`generate.ts`).
+
+## Erzeugen
+
+- Objekte werden aus Vorlagen geklont (Gebäude samt Komponenten aus einem vorhandenen Blueprint), dann mit neuem Namen, Position und Verbindungen versehen. Instanznamen: `Build_<Klasse>_C_<Zahl>`, eindeutig im Blueprint.
+- Der Kopf braucht `designerDimension`, `recipeReferences` (Baurezepte aller Gebäude) und `itemCosts`. Kosten: Summe der Baurezepte; Bänder kosten je angefangene 2 m ein Rezept (abgeleitet aus Vorlagen, im Spiel bestätigt für Mk5).
+- Vorlagen gibt es bisher nur für die Gebäude in den Beispiel-Blueprints. Für jedes weitere Gebäude braucht es eine Vorlage oder ein Wissen darüber, welche Komponenten und Eigenschaften es hat.
 
 ## Aufbau
 
