@@ -8,7 +8,9 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "poc:roundtrip": "tsx tools/poc/roundtrip.ts"
+    "poc:roundtrip": "tsx tools/poc/roundtrip.ts",
+    "poc:dump": "tsx tools/poc/dump.ts",
+    "poc:modify": "tsx tools/poc/modify.ts"
   },
   "devDependencies": {
     "@types/node": "^26.6.5",
