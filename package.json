@@ -11,7 +11,8 @@
     "poc:roundtrip": "tsx tools/poc/roundtrip.ts",
     "poc:dump": "tsx tools/poc/dump.ts",
     "poc:modify": "tsx tools/poc/modify.ts",
-    "poc:generate": "tsx tools/poc/generate.ts"
+    "poc:generate": "tsx tools/poc/generate.ts",
+    "poc:inventory": "tsx tools/poc/inventory.ts"
   },
   "devDependencies": {
     "@types/node": "^26.6.5",

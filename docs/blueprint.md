@@ -12,7 +12,12 @@ Lesen und Schreiben mit `@etothepii/satisfactory-file-parser` (MIT). Erkenntniss
 
 - Objekte werden aus Vorlagen geklont (Gebäude samt Komponenten aus einem vorhandenen Blueprint), dann mit neuem Namen, Position und Verbindungen versehen. Instanznamen: `Build_<Klasse>_C_<Zahl>`, eindeutig im Blueprint.
 - Der Kopf braucht `designerDimension`, `recipeReferences` (Baurezepte aller Gebäude) und `itemCosts`. Kosten: Summe der Baurezepte; Bänder kosten je angefangene 2 m ein Rezept (abgeleitet aus Vorlagen, im Spiel bestätigt für Mk5).
-- Vorlagen gibt es bisher nur für die Gebäude in den Beispiel-Blueprints. Für jedes weitere Gebäude braucht es eine Vorlage oder ein Wissen darüber, welche Komponenten und Eigenschaften es hat.
+- Vorlagen nur aus Blueprints ohne Mod-Inhalte (alle Klassen unter `/Game/FactoryGame/` oder `/Script/`) und aus Sessions, die ohne Mods gespielt wurden. Quellen: Session „1.1 Spass“ (Spielversion 1.1/1.2) und zwei Vorlagen-Blueprints aus „Bananendödels“ (Build 513885 = 1.2.4.1). `tools/poc/inventory.ts` listet, welche Klassen ein Blueprint-Ordner liefert.
+- Die Vorlagen-Blueprints aus 1.2 enthalten alle Splitter- und Merger-Varianten (normal, Smart, Programmable, Priority, jeweils auch vertikal), Bänder Mk1/Mk2, Lifts Mk1/Mk2/Mk4/Mk5, Stütze, Stacker, Masten Mk2/Mk3, Blender, Rohrteile. Maschinen, Bänder Mk3–Mk5 und Lift Mk3 kommen aus „1.1 Spass“.
+- Es fehlen nur Band und Lift Mk6 (nicht freigeschaltet).
+- **Stufen von Bändern und Lifts unterscheiden sich nur im Namen** (Klasse, Rezept). Verglichen: Band Mk1/Mk2/Mk5, Lift Mk2/Mk4; nach Ersetzen von `MkN` identisch. Mk6 lässt sich daher aus Mk5 herleiten (Klasse `Build_ConveyorBeltMk6_C`, Rezept `Recipe_ConveyorBeltMk6_C`; Kosten laut `Docs.json`: Band 1 Ficsite Mesh + 1 Time Crystal je Segment, Lift 2 + 2) *(im Spiel nicht prüfbar, Mk6 nicht freigeschaltet)*.
+- Unterschied zwischen Vorlagen aus 1.1 und 1.2: In 1.2 gibt es zusätzlich die Eigenschaft `BuiltBy`. Vorlagen aus 1.2 bevorzugen.
+- Vorlagen gibt es nur für Gebäude, die in einem Blueprint vorkommen. Für jedes weitere Gebäude braucht es eine Vorlage oder ein Wissen darüber, welche Komponenten und Eigenschaften es hat.
 
 ## Aufbau
 
