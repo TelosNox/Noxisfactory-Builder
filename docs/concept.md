@@ -93,6 +93,7 @@ Module sind erweiterbar: Man beginnt mit einem Teil und hängt weitere Kopien am
 - Übertakten (Power Shards), Somersloops.
 - Daisy Chain verfügbar ja/nein.
 - Wo die Rohstoffe am Block ankommen (unten, oben, seitlich, verteilt).
+- Seite der Zuführung, von der Eingangsseite der Maschinen aus gesehen: links oder rechts (Standard links).
 - Laufrichtung der Ausgangsleitung: dieselbe Richtung wie die Zuleitung (Produkt kommt am anderen Ende des Moduls heraus), Gegenrichtung (Produkt kommt dort heraus, wo die Rohstoffe zugeführt werden) oder der Generator wählt.
 - Unterboden-Ebene ja/nein.
 - Gewichtung Platz und Effektivität gegen Ästhetik (siehe Variationen).

@@ -14,6 +14,7 @@ Erzeugt aus einem Rezept ein baubares Layout und daraus einen Blueprint. Code: `
 
 - Maschinen stehen Box an Box nebeneinander, Ports in ±Y.
 - Vor jedem Eingang ein Splitter (Zuleitung entlang +X), hinter jedem Ausgang ein Merger.
+- Zuführung von links oder rechts, von der Eingangsseite der Maschinen aus gesehen (`feedFrom`, Standard links = −X).
 - Sammelleitung: standardmäßig entlang +X (`forward`), wahlweise zurück entlang −X (`reverse`), dann kommen die Produkte neben der Zuführung heraus.
 - Erweiterung am Ende der Zuführung (+X), die Seite der Stummelbänder richtet sich immer nach der Zuführung: 2-m-Stummelbänder auf der Seite −X, auf der Seite +X offene Ports. Eine neue Kopie rechts neben die vorige setzen, Autoconnect verbindet beide Leitungen (`docs/geometry.md`, Blueprint-Schnittstellen).
 - Alles am Boden, Bänder auf Port-Höhe (1 m).
@@ -22,9 +23,9 @@ Erzeugt aus einem Rezept ein baubares Layout und daraus einen Blueprint. Code: `
 Aufruf:
 
 ```bash
-npm run generate:row -- Recipe_IronPlate_C 4 4 3 forward
+npm run generate:row -- Recipe_IronPlate_C 4 4 3 left forward
 ```
 
-Schreibt `data/poc/Gen IronPlate x4 Mk3 forward.sbp/.sbpcfg`. Im Spiel getestet (4 Constructor, 5 Smelter, Mk3): baubar, Bänder verbunden, keine Warnungen. Autoconnect zwischen Kopien im Spiel bestätigt (Ausgang `forward`); `reverse` noch nicht getestet.
+Schreibt `data/poc/Gen IronPlate x4 Mk3 left forward.sbp/.sbpcfg`. Im Spiel getestet (4 Constructor, 5 Smelter, Mk3): baubar, Bänder verbunden, keine Warnungen. Autoconnect zwischen Kopien im Spiel bestätigt (Ausgang `forward`); `reverse` noch nicht getestet.
 
 Offen: Rezepte der Maschinen setzen, Strom (Masten), Maschinen mit mehreren Eingängen, kleinsten passenden Designer wählen.
