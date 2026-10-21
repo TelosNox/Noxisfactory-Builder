@@ -31,3 +31,5 @@ Bilden die Schritte eine gerade Linie (jeder Schritt verarbeitet nur das Produkt
 ## Vorschau
 
 Draufsicht je Bauplan (`src/ui/Preview.tsx`), von der Eingangsseite aus gesehen: Zuführung unten, „links“ links. Orange Rahmen: Designer, Gitter: Foundations. Gefüllt: harte Boxen, gestrichelt: weiche Boxen. Graue Pfeile: Bänder in Flussrichtung, orange: Stummel und offene Enden.
+
+Umschalter „3D“ (`src/ui/Preview3D.tsx`, three.js, erst beim Öffnen geladen): harte Boxen der Maschinen, Splitter und Merger als Würfel, Bänder als Streifen mit Pfeil in Flussrichtung, Lifts als Säulen, Durchführungen grau. Beim Logistic Floor zeigt eine halbtransparente Platte die Foundation-Ebene (nicht Teil des Bauplans, ausblendbar). Orangefarbener Drahtwürfel: Designer. Die Kamera richtet sich auf den Inhalt aus.

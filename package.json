@@ -24,7 +24,9 @@
   },
   "dependencies": {
     "@etothepii/satisfactory-file-parser": "^4.1.2",
+    "@types/three": "^0.186.0",
     "preact": "^11.0.1",
+    "three": "^0.186.1",
     "yalps": "^0.6.4"
   }
 }

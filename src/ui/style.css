@@ -56,3 +56,11 @@ button { font: inherit; margin: 0 4px; padding: 4px 8px; color: var(--fg); backg
 .preview .machine.hard { fill-opacity: 0.55; }
 .preview .belt.below { stroke-dasharray: 1 0.6; stroke: #7a5a9a; }
 .preview .lift { fill: #7a5a9a; stroke: #3d2a55; stroke-width: 0.15; }
+.switch { display: flex; gap: 0; margin-top: 8px; }
+.switch button { margin: 0; border-radius: 0; }
+.switch button:first-child { border-radius: 4px 0 0 4px; }
+.switch button:last-child { border-radius: 0 4px 4px 0; border-left: none; }
+.switch button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.preview3d canvas { display: block; width: 100%; margin-top: 8px; border-radius: 4px; background: var(--bg); cursor: grab; }
+.inline { flex-direction: row; align-items: center; gap: 6px; margin-top: 6px; }
+.hint { font-size: 0.85em; color: var(--muted); }

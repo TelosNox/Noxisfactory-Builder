@@ -4,7 +4,7 @@ import { useMemo, useState } from 'preact/hooks';
 import { gameData, type ItemId } from '../planner/gameData';
 import { plan, standardRecipes, type Plan } from '../planner/planner';
 import { generateChain } from '../generator/chain';
-import { Preview } from './Preview';
+import { LayoutView } from './LayoutView';
 import { FLOORS } from '../generator/floor';
 import { buildPlan, moduleLayout, suggestRates, type BuildOptions, type BuildPlan, type ChainPlan, type Group } from '../build/buildPlan';
 
@@ -211,9 +211,7 @@ function ChainSection({ chain, opt }: { chain: ChainPlan; opt: BuildOptions }) {
               </p>
             ))}
             <p>Designer Mk{opt.designer - 3}, Band Mk{opt.beltTier}</p>
-            <Preview
-              layout={generateChain({ ...opt, stages: chain.stages.map((s) => ({ recipe: s.recipe, machines: s.perModule })) })}
-            />
+            <LayoutView make={() => generateChain({ ...opt, stages: chain.stages.map((s) => ({ recipe: s.recipe, machines: s.perModule })) })} deps={[chain, opt]} />
           </div>
         </div>
       </section>
@@ -250,7 +248,7 @@ function GroupCard({ group: g, index, opt }: { group: Group; index: number; opt:
       ) : (
         <>
           <p>Designer Mk{opt.designer - 3}, Band Mk{opt.beltTier}</p>
-          <Preview layout={moduleLayout(g.recipe, n, opt)} />
+          <LayoutView make={() => moduleLayout(g.recipe, n, opt)} deps={[g.recipe, n, opt]} />
         </>
       )}
     </div>
