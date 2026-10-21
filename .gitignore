@@ -3,3 +3,4 @@ data/raw/
 node_modules/
 dist/
 data/poc/
+__pycache__/
