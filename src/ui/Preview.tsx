@@ -2,14 +2,19 @@
 // -X ("left") on the left. 1 unit = 1 m.
 
 import { gameData } from '../planner/gameData';
-import { worldBoxes } from '../generator/geometry';
-import { FOUNDATION, halfSize, PASSTHROUGH, type Layout } from '../generator/layout';
+import { portPosition, worldBoxes } from '../generator/geometry';
+import { FOUNDATION, halfSize, PASSTHROUGH, type Layout, type PortRef } from '../generator/layout';
 import { MERGER, SPLITTER } from '../generator/row';
 
 const kind = (cls: string) =>
-  cls === SPLITTER ? 'splitter' : cls === MERGER ? 'merger' : cls === PASSTHROUGH ? 'passthrough' : 'machine';
+  cls === SPLITTER ? 'splitter' : cls === MERGER ? 'merger' : cls === PASSTHROUGH ? 'passthrough' : /PowerPole/.test(cls) ? 'pole' : 'machine';
 const short = (cls: string) =>
   (gameData.machines[cls]?.name ?? cls).replace(/ Mk ?\d+$/, '');
+
+export function wireEnd(layout: Layout, ref: PortRef) {
+  const part = layout.parts.find((p) => p.id === ref.part)!;
+  return portPosition(part.cls, ref.port, part.pos, part.yaw);
+}
 
 export function Preview({ layout }: { layout: Layout }) {
   const half = halfSize(layout);
@@ -54,6 +59,22 @@ export function Preview({ layout }: { layout: Layout }) {
           <title>{b.id}</title>
         </line>
       ))}
+      {(layout.wires ?? []).map((w) => {
+        const a = wireEnd(layout, w.from);
+        const b = wireEnd(layout, w.to);
+        return (
+          <line class="wire" x1={a.x} y1={-a.y} x2={b.x} y2={-b.y}>
+            <title>{w.id}</title>
+          </line>
+        );
+      })}
+      {layout.parts
+        .filter((p) => kind(p.cls) === 'pole')
+        .map((p) => (
+          <circle class="pole" cx={p.pos.x} cy={-p.pos.y} r={0.6}>
+            <title>{`${p.id}: Strommast`}</title>
+          </circle>
+        ))}
       {layout.parts
         .filter((p) => kind(p.cls) === 'machine')
         .map((p) => (

@@ -1,7 +1,7 @@
 // Checks a layout against the placement rules in docs/geometry.md.
 // Returns a list of problems; empty means the layout should build without warnings.
 
-import { overlaps, portPosition, worldBoxes, type Vec3 } from './geometry';
+import { buildingGeometry, overlaps, portPosition, worldBoxes, type Vec3 } from './geometry';
 import { beltLength, halfSize, LIFT_REACH, liftEnd, liftPorts, type Belt, type Layout, type Lift } from './layout';
 
 const MIN_BELT = 2;
@@ -12,7 +12,7 @@ const EPS = 1e-6;
 const near = (a: Vec3, b: Vec3) => Math.hypot(a.x - b.x, a.y - b.y, a.z - b.z) < 1e-3;
 
 /** Volume a straight belt occupies: 2 m wide, 2 m high from its centerline down to its supports. */
-function beltBox(b: Belt) {
+export function beltBox(b: Belt) {
   const lo = (k: 'x' | 'y') => Math.min(b.from[k], b.to[k]);
   const hi = (k: 'x' | 'y') => Math.max(b.from[k], b.to[k]);
   const alongX = Math.abs(b.to.x - b.from.x) > Math.abs(b.to.y - b.from.y);
@@ -31,7 +31,7 @@ function beltBox(b: Belt) {
 }
 
 /** Volume of a lift: 2 × 2 m column from 1 m below its bottom end to its top end. */
-function liftBox(l: Lift) {
+export function liftBox(l: Lift) {
   return {
     min: { x: l.pos.x - 1, y: l.pos.y - 1, z: l.pos.z - 1 },
     max: { x: l.pos.x + 1, y: l.pos.y + 1, z: l.pos.z + l.height },
@@ -130,6 +130,15 @@ export function validate(layout: Layout): string[] {
       if (Math.abs(p.z - end.z) > EPS || Math.abs(reach - LIFT_REACH) > 0.5) {
         problems.push(`${lift.id} is not snapped to ${link.part}.${link.port}`);
       }
+    }
+  }
+
+  // Power lines connect power connections of buildings in the layout.
+  for (const wire of layout.wires ?? []) {
+    for (const ref of [wire.from, wire.to]) {
+      const part = parts.get(ref.part);
+      const ok = part && buildingGeometry(part.cls).connections.some((c) => c.kind === 'power' && c.name === ref.port);
+      if (!ok) problems.push(`${wire.id} connects to unknown power connection ${ref.part}.${ref.port}`);
     }
   }
   return problems;

@@ -19,6 +19,7 @@ import { BELT_SPEED, generateRow } from '../generator/row';
 import { validate } from '../generator/validate';
 import { generateChain } from '../generator/chain';
 import { generateFloorRow, type Floor } from '../generator/floor';
+import { addPower, type PowerMode } from '../generator/power';
 import type { Layout } from '../generator/layout';
 
 export interface BuildOptions {
@@ -32,14 +33,28 @@ export interface BuildOptions {
   floor?: Floor;
   /** With a logistics floor: output line on the foundation instead of below like the feed. */
   outputOnTop?: boolean;
+  /** Power: poles (default), daisy chain or none. */
+  power?: PowerMode | 'none';
+  /** Highest pole tier 1–3, default 1. */
+  poleTier?: number;
 }
 
-/** Row layout for these options: on the floor or on a logistics floor. */
+const withPower = (layout: Layout, opt: BuildOptions) =>
+  opt.power === 'none' ? layout : addPower(layout, { mode: opt.power ?? 'poles', poleTier: opt.poleTier ?? 1 });
+
+/** Row layout for these options: on the floor or on a logistics floor, with power. */
 export function moduleLayout(recipe: RecipeId, machines: number, opt: BuildOptions): Layout {
-  const { floor, outputOnTop, ...rest } = opt;
-  return floor
-    ? generateFloorRow({ ...rest, recipe, machines, floor, outputOnTop })
-    : generateRow({ ...rest, recipe, machines });
+  const { floor, outputOnTop, power, poleTier, ...rest } = opt;
+  return withPower(
+    floor ? generateFloorRow({ ...rest, recipe, machines, floor, outputOnTop }) : generateRow({ ...rest, recipe, machines }),
+    opt,
+  );
+}
+
+/** Chain layout for these options, with power. */
+export function chainLayout(stages: { recipe: RecipeId; machines: number }[], opt: BuildOptions): Layout {
+  const { floor, outputOnTop, power, poleTier, ...rest } = opt;
+  return withPower(generateChain({ ...rest, stages }), opt);
 }
 
 export interface Group {
@@ -198,7 +213,7 @@ export function chainPlan(groups: Group[], opt: BuildOptions): ChainPlan | undef
       return { recipe: g.recipe, perModule, clock: (100 * g.machinesExact) / (perModule * copies) };
     });
     try {
-      const layout = generateChain({ ...opt, stages: stages.map((s) => ({ recipe: s.recipe, machines: s.perModule })) });
+      const layout = chainLayout(stages.map((s) => ({ recipe: s.recipe, machines: s.perModule })), opt);
       if (validate(layout).length === 0) return { copies, stages };
     } catch {
       // belt too slow for this many machines per row: try more copies

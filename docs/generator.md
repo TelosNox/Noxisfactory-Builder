@@ -46,3 +46,13 @@ Offen: Rezepte der Maschinen setzen, Strom (Masten), Maschinen mit mehreren Eing
 - Nur die Durchführungen sind im Bauplan, keine Foundations (wie in der Referenz). Ketten auf Logistic Floor gibt es noch nicht.
 - CLI: `npm run generate:row -- <recipe> <machines> <designer> <tier> [left|right] [forward|reverse] [floor 0|4|6|8][u]` (`o`: Ausgang oben auf der Foundation).
 - Im Spiel noch nicht getestet. Offen: Lift-Kopf am Port bei Ports, die nicht im 1-m-Raster 2 m vor der Liftreihe liegen; Liftkosten im Kopf (1 Baurezept pro Lift angenommen).
+
+## Strom
+
+`src/generator/power.ts`, angewendet auf jedes Modul (Option `power`, Standard Strommasten Mk1):
+
+- **Strommasten:** Maschinen in Gruppen zu höchstens der Hälfte der Mast-Anschlüsse (Mk1 2, Mk2 4, Mk3 5). Pro Gruppe ein Mast auf einem freien 1-m-Rasterplatz auf der Ebene der Maschinen (Boden oder Logistic Floor). Frei heißt: keine Überlappung mit Boxen, Bändern oder Lifts. Leitungen (Mastkopf → Anschluss) dürfen nicht durch Maschinen laufen; dadurch steht der Mast auf der Seite der Stromanschlüsse (Smelter: Ausgangsseite, Constructor: Eingangsseite, Raffinerie: Ausgang; Positionen aus `data/geometry.json`). Der Mast bleibt innerhalb der Länge der Maschinenreihe, sonst schiebt er aneinandergesetzte Kopien auseinander (im Spiel beobachtet). Unter den sauberen Plätzen gewinnt der nächste am Anschluss der ersten Maschine, also am Anfang der Zuführung (wie der Spieler baut). Masten eines Moduls sind untereinander verbunden.
+- **Daisy Chain:** keine Masten, jede Maschine mit der nächsten verbunden.
+- Die Zuleitung zum Modul und Verbindungen zwischen Kopien legt der Spieler.
+- Vorbild: „4er smelter LI-RO“ (TelosDesert), ein Mast Mk2 für 4 Smelter. Im Spiel noch nicht getestet. Offen: maximale Leitungslänge, ob Leitungen durch Gebäude dürfen.
+- CLI: weiteres Argument `p1|p2|p3|daisy|none` nach dem Floor. Name endet auf ` P1`–` P3` bzw. ` D`.

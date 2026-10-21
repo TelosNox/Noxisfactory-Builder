@@ -48,13 +48,16 @@ export class TemplateLibrary {
     return this.templates.has(cls) || this.derived(cls) !== undefined;
   }
 
-  /** Fresh copy of the template under a new instance name, connections removed. */
+  /** Fresh copy of the template under a new instance name, belt and power connections removed. */
   instantiate(cls: string, id: number): SaveObject[] {
     const t = this.templates.get(cls) ?? this.derived(cls);
     if (!t) throw new Error(`no template for ${cls}`);
     const name = t.name.replace(/_\d+$/, `_${id}`);
     const objects: SaveObject[] = JSON.parse(t.json.split(t.name).join(name));
-    for (const o of objects) delete (o.properties as Record<string, unknown>).mConnectedComponent;
+    for (const o of objects) {
+      delete (o.properties as Record<string, unknown>).mConnectedComponent;
+      delete (o.properties as Record<string, unknown>).mWires;
+    }
     return objects;
   }
 

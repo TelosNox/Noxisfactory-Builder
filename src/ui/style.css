@@ -64,3 +64,5 @@ button { font: inherit; margin: 0 4px; padding: 4px 8px; color: var(--fg); backg
 .preview3d canvas { display: block; width: 100%; margin-top: 8px; border-radius: 4px; background: var(--bg); cursor: grab; }
 .inline { flex-direction: row; align-items: center; gap: 6px; margin-top: 6px; }
 .hint { font-size: 0.85em; color: var(--muted); }
+.preview .wire { stroke: #d4a017; stroke-width: 0.25; }
+.preview .pole { fill: #6b5b3a; stroke: #3a2f1c; stroke-width: 0.15; }

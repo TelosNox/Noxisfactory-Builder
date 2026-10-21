@@ -92,5 +92,5 @@ Ausgelesen aus dem Blueprint „Manufaktor Straight“ (1.1 Spass, Designer Mk2)
 - Höhe des Bandanschlusses am Kopf der Förderlift-Durchführung *(vermutlich 1 m wie die Ports)*.
 - Bedeutung von `ExcludeForSnapping` an harten Boxen.
 - Fehlendes `mDirection` an Eingängen wird als Eingang gedeutet *(prüfen)*.
-- Strom: maximale Leitungslänge, ob Leitungen durch Gebäude führen dürfen, Platzbedarf eines Masts.
+- Strom: maximale Leitungslänge, ob Leitungen durch Gebäude führen dürfen.
 - Rohre und Flüssigkeiten (später, Schritt 6 im Konzept).

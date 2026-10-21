@@ -3,10 +3,10 @@
 import { useMemo, useState } from 'preact/hooks';
 import { gameData, type ItemId } from '../planner/gameData';
 import { plan, standardRecipes, type Plan } from '../planner/planner';
-import { generateChain } from '../generator/chain';
 import { LayoutView } from './LayoutView';
 import { FLOORS } from '../generator/floor';
-import { buildPlan, moduleLayout, suggestRates, type BuildOptions, type BuildPlan, type ChainPlan, type Group } from '../build/buildPlan';
+import { machinesPerPole } from '../generator/power';
+import { buildPlan, chainLayout, moduleLayout, suggestRates, type BuildOptions, type BuildPlan, type ChainPlan, type Group } from '../build/buildPlan';
 
 const products: ItemId[] = [
   ...new Set(standardRecipes().flatMap((r) => Object.keys(gameData.recipes[r].out))),
@@ -86,6 +86,24 @@ export function App() {
             <select value={opt.outputOnTop ? 'top' : 'below'} onChange={(e) => set('outputOnTop', e.currentTarget.value === 'top')}>
               <option value="below">unter dem Floor (wie Eingänge)</option>
               <option value="top">auf der Foundation</option>
+            </select>
+          </label>
+        )}
+        <label>
+          Strom
+          <select value={opt.power ?? 'poles'} onChange={(e) => set('power', e.currentTarget.value as BuildOptions['power'])}>
+            <option value="poles">Strommasten</option>
+            <option value="daisy">Daisy Chain</option>
+            <option value="none">keiner</option>
+          </select>
+        </label>
+        {(opt.power ?? 'poles') === 'poles' && (
+          <label>
+            Höchste Mast-Stufe
+            <select value={opt.poleTier ?? 1} onChange={(e) => set('poleTier', +e.currentTarget.value)}>
+              {[1, 2, 3].map((t) => (
+                <option value={t}>Mk{t} ({machinesPerPole(t)} Maschinen je Mast)</option>
+              ))}
             </select>
           </label>
         )}
@@ -220,7 +238,7 @@ function ChainSection({ chain, opt }: { chain: ChainPlan; opt: BuildOptions }) {
               </p>
             ))}
             <p>Designer Mk{opt.designer - 3}, Band Mk{opt.beltTier}</p>
-            <LayoutView make={() => generateChain({ ...opt, stages: chain.stages.map((s) => ({ recipe: s.recipe, machines: s.perModule })) })} deps={[chain, opt]} />
+            <LayoutView make={() => chainLayout(chain.stages.map((s) => ({ recipe: s.recipe, machines: s.perModule })), opt)} deps={[chain, opt]} />
           </div>
         </div>
       </section>

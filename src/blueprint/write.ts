@@ -3,7 +3,7 @@
 
 import type { Blueprint, SaveEntity } from '@etothepii/satisfactory-file-parser';
 import { gameData } from '../planner/gameData';
-import type { Vec3 } from '../generator/geometry';
+import { portPosition, type Vec3 } from '../generator/geometry';
 import { beltLength, liftPorts, type Layout } from '../generator/layout';
 import { LEVEL_PREFIX, type SaveObject, type TemplateLibrary } from './templates';
 
@@ -26,6 +26,8 @@ function objectRef(target: SaveObject) {
 
 /** Belt cost: one build recipe per started 2 m (docs/blueprint.md). */
 const beltSegments = (length: number) => Math.ceil(length / 2 - 1e-6);
+/** Power line cost: 3 build recipes (3 cables) per line, whatever its length (docs/blueprint.md). */
+const POWER_LINE_RECIPES = 3;
 /** Lift cost: one build recipe per started 4 m of height (docs/blueprint.md). */
 const liftSegments = (height: number) => Math.ceil(height / 4 - 1e-6);
 
@@ -168,6 +170,45 @@ export function layoutToBlueprint(layout: Layout, library: TemplateLibrary, name
     if (belt.toPort) connect(component(parts, 'ConveyorAny1'), component(byPart.get(belt.toPort.part)!, belt.toPort.port));
     objects.push(...parts);
     charge(belt.cls, beltSegments(beltLength(belt)));
+  }
+
+  // Power lines: actor at the `to` end, the other end relative to it (as the game saves them).
+  const wiresAt = new Map<SaveObject, SaveObject[]>();
+  for (const wire of layout.wires ?? []) {
+    const parts = library.instantiate('Build_PowerLine_C', nextId++);
+    const entity = parts[0] as SaveEntity;
+    const end = (ref: { part: string; port: string }) => {
+      const part = layout.parts.find((p) => p.id === ref.part)!;
+      return cm(portPosition(part.cls, ref.port, part.pos, part.yaw));
+    };
+    const a = end(wire.from);
+    const b = end(wire.to);
+    entity.transform = { rotation: yawQuaternion(0), translation: b, scale3d: { x: 1, y: 1, z: 1 } };
+    const props = entity.properties as Record<string, any>;
+    const instance = props.mWireInstances.values[0].properties;
+    instance.Locations[0].value = a;
+    instance.Locations[1].value = b;
+    instance.CachedRelativeLocations[0].value = { x: a.x - b.x, y: a.y - b.y, z: a.z - b.z };
+    instance.CachedRelativeLocations[1].value = { x: 0, y: 0, z: 0 };
+    props.mCachedLength.value = Math.hypot(a.x - b.x, a.y - b.y, a.z - b.z);
+    const source = component(byPart.get(wire.from.part)!, wire.from.port);
+    const target = component(byPart.get(wire.to.part)!, wire.to.port);
+    (entity as any).specialProperties = {
+      ...(entity as any).specialProperties,
+      source: { levelName: 'Persistent_Level', pathName: source.instanceName },
+      target: { levelName: 'Persistent_Level', pathName: target.instanceName },
+    };
+    for (const c of [source, target]) wiresAt.set(c, [...(wiresAt.get(c) ?? []), entity]);
+    objects.push(...parts);
+    charge('Build_PowerLine_C', POWER_LINE_RECIPES);
+  }
+  for (const [connection, wires] of wiresAt) {
+    (connection.properties as Record<string, unknown>).mWires = {
+      type: 'ArrayProperty',
+      name: 'mWires',
+      propertyTagType: { name: 'ArrayProperty', children: [{ name: 'ObjectProperty', children: [] }] },
+      values: wires.map((w) => ({ levelName: 'Persistent_Level', pathName: w.instanceName })),
+    };
   }
 
   const itemRef = (item: string) => {

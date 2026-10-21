@@ -4,7 +4,8 @@
 
 import { useEffect, useRef, useState } from 'preact/hooks';
 import type * as Three from 'three';
-import { worldBoxes } from '../generator/geometry';
+import { buildingGeometry, worldBoxes } from '../generator/geometry';
+import { wireEnd } from './Preview';
 import { FOUNDATION, halfSize, PASSTHROUGH, type Layout } from '../generator/layout';
 import { MERGER, SPLITTER } from '../generator/row';
 
@@ -18,12 +19,14 @@ const COLORS = {
   passthrough: 0x999999,
   foundation: 0xb0b0a8,
   designer: 0xe07b00,
+  pole: 0x6b5b3a,
+  wire: 0xd4a017,
 };
 
 export function Preview3D({ layout }: { layout: Layout }) {
   const host = useRef<HTMLDivElement>(null);
   const [showFloor, setShowFloor] = useState(true);
-  const floorZ = Math.min(...layout.parts.filter((p) => ![SPLITTER, MERGER, PASSTHROUGH].includes(p.cls)).map((p) => p.pos.z));
+  const floorZ = Math.min(...layout.parts.filter((p) => ![SPLITTER, MERGER, PASSTHROUGH].includes(p.cls) && !/PowerPole/.test(p.cls)).map((p) => p.pos.z));
   const hasFloor = floorZ > 0;
 
   useEffect(() => {
@@ -75,6 +78,9 @@ export function Preview3D({ layout }: { layout: Layout }) {
         if (p.cls === SPLITTER || p.cls === MERGER) {
           const c = p.cls === SPLITTER ? COLORS.splitter : COLORS.merger;
           edges(box({ x: p.pos.x - 1, y: p.pos.y - 1, z: p.pos.z - 1 }, { x: p.pos.x + 1, y: p.pos.y + 1, z: p.pos.z + 0.6 }, material(c)));
+        } else if (/PowerPole/.test(p.cls)) {
+          const top = buildingGeometry(p.cls).connections.find((c) => c.kind === 'power')!.position[2];
+          box({ x: p.pos.x - 0.3, y: p.pos.y - 0.3, z: p.pos.z }, { x: p.pos.x + 0.3, y: p.pos.y + 0.3, z: p.pos.z + top + 0.4 }, material(COLORS.pole));
         } else if (p.cls === PASSTHROUGH) {
           box({ x: p.pos.x - 1, y: p.pos.y - 1, z: p.pos.z - 0.55 }, { x: p.pos.x + 1, y: p.pos.y + 1, z: p.pos.z + 0.55 }, material(COLORS.passthrough));
         } else {
@@ -98,6 +104,14 @@ export function Preview3D({ layout }: { layout: Layout }) {
         arrow.position.copy(strip.position).add(new THREE.Vector3(0, 0.3, 0));
         arrow.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), c.clone().sub(a).normalize());
         scene.add(arrow);
+      }
+
+      // Power lines.
+      for (const w of layout.wires ?? []) {
+        const a = wireEnd(layout, w.from);
+        const b = wireEnd(layout, w.to);
+        const geometry = new THREE.BufferGeometry().setFromPoints([v(a.x, a.y, a.z), v(b.x, b.y, b.z)]);
+        scene.add(new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: COLORS.wire })));
       }
 
       // Lifts: columns.

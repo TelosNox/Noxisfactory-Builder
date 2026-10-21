@@ -41,3 +41,7 @@ Abgeglichen mit den Kosten, die das Spiel in den Kopf von 28 Spieler-Blueprints 
 
 - Lift: ein Baurezept je angefangene 4 m Höhe (1,5, 2 und 2,5 m kosten 1, 4,5 m kostet 2). Passt auf alle Blueprints mit Lifts.
 - Band: ein Baurezept je angefangene 2 m passt fast immer. Ausnahme: 7-m-Bänder kosten im Spiel 3 statt 4 (Manufaktor Straight, Test, eigene Floor-Blueprints); 5 m kosten 3. Ursache unbekannt, vermutlich misst das Spiel die Länge anders. Der Designer zeigt beim Setzen ohnehin seine eigene Rechnung; die Kosten im Kopf sind nur eine Anzeige. Korrigieren: Bauplan einmal im Designer laden und neu speichern. Kein Handlungsbedarf.
+
+## Stromleitungen
+
+Aus Spieler-Blueprints (TelosDesert, Bananendödels): `Build_PowerLine_C` mit `mWireInstances` (zwei Endpunkte `Locations`, `CachedRelativeLocations` relativ zum Ursprung der Leitung, der an einem Ende sitzt), `mCachedLength` in cm und in `specialProperties` die Anschlüsse `source` und `target`. Beide Anschlüsse (`FGPowerConnectionComponent`) führen die Leitung in `mWires`. Kosten: 3 Kabel je Leitung, unabhängig von der Länge (38 Leitungen bis 30 m im HMF Encabulator).

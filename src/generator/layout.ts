@@ -57,12 +57,20 @@ export interface Lift {
   topPassthrough?: string;
 }
 
+/** Power line between two power connections (machine or pole). */
+export interface Wire {
+  id: string;
+  from: PortRef;
+  to: PortRef;
+}
+
 export interface Layout {
   /** Blueprint Designer size in foundations (4, 5 or 6). */
   designer: number;
   parts: Part[];
   belts: Belt[];
   lifts?: Lift[];
+  wires?: Wire[];
 }
 
 export const PASSTHROUGH = 'Build_FoundationPassthrough_Lift_C';
