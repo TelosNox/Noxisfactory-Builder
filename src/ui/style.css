@@ -66,3 +66,6 @@ button { font: inherit; margin: 0 4px; padding: 4px 8px; color: var(--fg); backg
 .hint { font-size: 0.85em; color: var(--muted); }
 .preview .wire { stroke: #d4a017; stroke-width: 0.25; }
 .preview .pole { fill: #6b5b3a; stroke: #3a2f1c; stroke-width: 0.15; }
+.preview .pipe { stroke: #3a8fb7; stroke-width: 0.9; stroke-opacity: 0.85; }
+.preview .pipe.stub { stroke: var(--accent); }
+.preview .junction { fill: #3a8fb755; stroke: #1f5f7f; }

@@ -56,3 +56,17 @@ Offen: Rezepte der Maschinen setzen, Strom (Masten), Maschinen mit mehreren Eing
 - Die Zuleitung zum Modul und Verbindungen zwischen Kopien legt der Spieler.
 - Vorbild: „4er smelter LI-RO“ (TelosDesert), ein Mast Mk2 für 4 Smelter. Im Spiel noch nicht getestet. Offen: maximale Leitungslänge, ob Leitungen durch Gebäude dürfen.
 - CLI: weiteres Argument `p1|p2|p3|daisy|none` nach dem Floor. Name endet auf ` P1`–` P3` bzw. ` D`.
+
+## Modul „Reihe mit Rohren“
+
+`src/generator/fluidRow.ts`: Raffinerie und Packager, je Seite höchstens ein Band und ein Rohr. Bauweise nach „Raffinerie LI RO Straight“ (1.1 Spass), mit T-Verbindern statt Kreuzen (Spieler):
+
+- Bandleitung auf 1 m, Rohrleitung darüber auf 3,75 m, beide auf derselben Spur 5 m vor den Ports. Abzweig: Splitter unten, T-Verbinder oben.
+- Rohr vom T-Verbinder zum Port: 1 m gerade, Bogen auf Port-Höhe, 1 m gerade. Beim Packager liegt der Rohranschluss auf 3,75 m, das Rohr bleibt gerade.
+- Ausgang spiegelbildlich mit Mergern und T-Verbindern. Die Maschine wird gedreht, bis die Eingänge nach −Y zeigen (Raffinerie 180°).
+- Welche Leitungen entstehen, bestimmt das Rezept: Feststoffe aufs Band, Flüssigkeiten und Gase ins Rohr.
+- Stummel für Autoconnect auf der Seite des Feed-Eingangs, auch für Rohre (Spieler: gleiche Regeln wie bei Bändern).
+- Rohrstufe Mk1 300 m³/min, Mk2 600 m³/min; Kapazität wird wie bei Bändern geprüft. Keine Pumpen.
+- Noch nicht: Blender (zwei Rohreingänge), Rohre auf dem Logistic Floor, Ketten mit Rohren. Wählt man einen Logistic Floor, baut der Planer Gruppen, die damit nicht gehen (Rohre, zu hoch für den Designer), ebenerdig und sagt das dazu.
+- Die Prüfung kontrolliert jetzt auch die Höhe: harte Boxen bis zur Designerhöhe (4, 5, 6 Foundations à 8 m).
+- CLI: weiteres Argument `1|2` (Rohrstufe) nach dem Strom.

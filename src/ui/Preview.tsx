@@ -7,7 +7,7 @@ import { FOUNDATION, halfSize, PASSTHROUGH, type Layout, type PortRef } from '..
 import { MERGER, SPLITTER } from '../generator/row';
 
 const kind = (cls: string) =>
-  cls === SPLITTER ? 'splitter' : cls === MERGER ? 'merger' : cls === PASSTHROUGH ? 'passthrough' : /PowerPole/.test(cls) ? 'pole' : 'machine';
+  cls === SPLITTER ? 'splitter' : cls === MERGER ? 'merger' : cls === PASSTHROUGH ? 'passthrough' : /PowerPole/.test(cls) ? 'pole' : /Junction/.test(cls) ? 'junction' : 'machine';
 const short = (cls: string) =>
   (gameData.machines[cls]?.name ?? cls).replace(/ Mk ?\d+$/, '');
 
@@ -57,6 +57,11 @@ export function Preview({ layout }: { layout: Layout }) {
       {layout.belts.map((b) => (
         <line class={'belt' + (b.fromPort && b.toPort ? '' : ' stub') + (b.from.z < floorZ ? ' below' : '')} x1={b.from.x} y1={-b.from.y} x2={b.to.x} y2={-b.to.y} marker-end="url(#arrow)">
           <title>{b.id}</title>
+        </line>
+      ))}
+      {(layout.pipes ?? []).map((p) => (
+        <line class={'pipe' + (p.fromPort && p.toPort ? '' : ' stub')} x1={p.from.x} y1={-p.from.y} x2={p.to.x} y2={-p.to.y}>
+          <title>{p.id}</title>
         </line>
       ))}
       {(layout.wires ?? []).map((w) => {

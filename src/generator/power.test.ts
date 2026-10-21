@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { generateFloorRow } from './floor';
+import { generateFluidRow } from './fluidRow';
 import { addPower, machinesPerPole } from './power';
 import { generateRow } from './row';
 import { validate } from './validate';
@@ -31,13 +32,15 @@ describe('power', () => {
   });
 
   it('puts the pole on the side of the power connections, at the start of the feed', () => {
-    // Smelter: connection on the output side (+Y), Constructor: on the input side (-Y).
+    // Smelter and Constructor: connection on the input side (-Y), Refinery: on the output side (+Y).
     const smelters = addPower(generateRow({ recipe: 'Recipe_IngotIron_C', machines: 4, designer: 4, beltTier: 3 }), { mode: 'poles', poleTier: 2 });
     const constructors = addPower(generateRow({ recipe: 'Recipe_IronPlate_C', machines: 3, designer: 4, beltTier: 3 }), { mode: 'poles', poleTier: 2 });
     const pole = (l: typeof smelters) => l.parts.find((p) => p.id === 'E0')!.pos;
     const m0 = (l: typeof smelters) => l.parts.find((p) => p.id === 'M0')!.pos;
-    expect(pole(smelters).y).toBeGreaterThan(0);
+    const refineries = addPower(generateFluidRow({ recipe: 'Recipe_Plastic_C', machines: 2, designer: 4, beltTier: 3, pipeTier: 1 }), { mode: 'poles', poleTier: 2 });
+    expect(pole(smelters).y).toBeLessThan(0);
     expect(pole(constructors).y).toBeLessThan(0);
+    expect(pole(refineries).y).toBeGreaterThan(0);
     // within the row (copies are placed end to end), next to the first machine
     expect(Math.abs(pole(smelters).x - m0(smelters).x)).toBeLessThanOrEqual(2.5);
     expect(Math.abs(pole(constructors).x - m0(constructors).x)).toBeLessThanOrEqual(4);

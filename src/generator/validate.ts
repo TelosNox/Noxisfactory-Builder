@@ -2,12 +2,13 @@
 // Returns a list of problems; empty means the layout should build without warnings.
 
 import { buildingGeometry, overlaps, portPosition, worldBoxes, type Vec3 } from './geometry';
-import { beltLength, halfSize, LIFT_REACH, liftEnd, liftPorts, type Belt, type Layout, type Lift } from './layout';
+import { beltLength, halfSize, LIFT_REACH, liftEnd, liftPorts, type Belt, type Layout, type Lift, type Pipe } from './layout';
 
 const MIN_BELT = 2;
 const BELT_HALF_WIDTH = 1;
 const BELT_HEIGHT = 2;
 const EPS = 1e-6;
+const PIPE_HALF_WIDTH = 0.6;
 
 const near = (a: Vec3, b: Vec3) => Math.hypot(a.x - b.x, a.y - b.y, a.z - b.z) < 1e-3;
 
@@ -38,6 +39,28 @@ export function liftBox(l: Lift) {
   };
 }
 
+/**
+ * Volume of a pipe, 1.2 m thick. A pipe whose ends differ in height runs 1 m
+ * straight at each end and bends in between (generator): three boxes.
+ */
+export function pipeBoxes(p: Pipe) {
+  const r = PIPE_HALF_WIDTH;
+  const box = (a: Vec3, b: Vec3) => ({
+    min: { x: Math.min(a.x, b.x) - r, y: Math.min(a.y, b.y) - r, z: Math.min(a.z, b.z) - r },
+    max: { x: Math.max(a.x, b.x) + r, y: Math.max(a.y, b.y) + r, z: Math.max(a.z, b.z) + r },
+  });
+  if (Math.abs(p.from.z - p.to.z) < EPS) return [box(p.from, p.to)];
+  const length = Math.hypot(p.to.x - p.from.x, p.to.y - p.from.y);
+  const along = (from: Vec3, f: number, z: number) => ({
+    x: from.x + ((p.to.x - p.from.x) / length) * f,
+    y: from.y + ((p.to.y - p.from.y) / length) * f,
+    z,
+  });
+  const a = along(p.from, 1, p.from.z);
+  const b = along(p.from, length - 1, p.to.z);
+  return [box(p.from, a), box(a, b), box(b, p.to)];
+}
+
 export function validate(layout: Layout): string[] {
   const problems: string[] = [];
   const half = halfSize(layout);
@@ -51,6 +74,7 @@ export function validate(layout: Layout): string[] {
       if (box.min.x < -half - EPS || box.max.x > half + EPS || box.min.y < -half - EPS || box.max.y > half + EPS) {
         problems.push(`${boxes[i].part.id} reaches outside the designer`);
       }
+      if (box.type === 'CT_Default' && box.max.z > 2 * half + EPS) problems.push(`${boxes[i].part.id} is too high for the designer`);
     }
     for (let j = i + 1; j < boxes.length; j++) {
       if (boxes[i].boxes.some((a) => boxes[j].boxes.some((b) => overlaps(a, b)))) {
@@ -130,6 +154,31 @@ export function validate(layout: Layout): string[] {
       if (Math.abs(p.z - end.z) > EPS || Math.abs(reach - LIFT_REACH) > 0.5) {
         problems.push(`${lift.id} is not snapped to ${link.part}.${link.port}`);
       }
+    }
+  }
+
+  // Pipes: ends on their ports, inside the designer, not through foreign buildings
+  // or belts. Straight pipes between ports must be at least 1 m long.
+  for (const pipe of layout.pipes ?? []) {
+    for (const p of [pipe.from, pipe.to]) {
+      if (Math.abs(p.x) > half + EPS || Math.abs(p.y) > half + EPS) problems.push(`${pipe.id} ends outside the designer`);
+    }
+    for (const [ref, end] of [
+      [pipe.fromPort, pipe.from],
+      [pipe.toPort, pipe.to],
+    ] as const) {
+      if (!ref) continue;
+      const part = parts.get(ref.part);
+      if (!part) problems.push(`${pipe.id} connects to unknown part ${ref.part}`);
+      else if (!near(portPosition(part.cls, ref.port, part.pos, part.yaw), end)) problems.push(`${pipe.id} does not end at ${ref.part}.${ref.port}`);
+    }
+    const connected = new Set([pipe.fromPort?.part, pipe.toPort?.part]);
+    const own = pipeBoxes(pipe);
+    for (const { part, boxes: partBoxes } of boxes) {
+      if (!connected.has(part.id) && partBoxes.some((b) => own.some((o) => overlaps(b, o)))) problems.push(`${pipe.id} runs through ${part.id}`);
+    }
+    for (const belt of layout.belts) {
+      if (own.some((o) => overlaps(beltBox(belt), o))) problems.push(`${pipe.id} runs through ${belt.id}`);
     }
   }
 

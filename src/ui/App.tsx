@@ -6,6 +6,7 @@ import { plan, standardRecipes, type Plan } from '../planner/planner';
 import { LayoutView } from './LayoutView';
 import { FLOORS } from '../generator/floor';
 import { machinesPerPole } from '../generator/power';
+import { byproducts, type Byproduct } from '../build/byproducts';
 import { buildPlan, chainLayout, moduleLayout, suggestRates, type BuildOptions, type BuildPlan, type ChainPlan, type Group } from '../build/buildPlan';
 
 const products: ItemId[] = [
@@ -69,6 +70,13 @@ export function App() {
             {[1, 2, 3, 4, 5, 6].map((t) => (
               <option value={t}>Mk{t}</option>
             ))}
+          </select>
+        </label>
+        <label>
+          Höchste Rohrstufe
+          <select value={opt.pipeTier ?? 1} onChange={(e) => set('pipeTier', +e.currentTarget.value)}>
+            <option value={1}>Mk1 (300 m³/min)</option>
+            <option value={2}>Mk2 (600 m³/min)</option>
           </select>
         </label>
         <label>
@@ -144,6 +152,8 @@ interface ResultProps {
 function Result({ plan, build, opt, item, rate, setRate }: ResultProps) {
   const suggestions = useMemo(() => (build.exact ? [] : suggestRates({ item, rate }, opt)), [build, item, rate, opt]);
   const unsupported = build.groups.filter((g) => g.unsupported);
+  const extras = useMemo(() => byproducts(plan), [plan]);
+  const letter = (recipe: string) => String.fromCharCode(65 + build.groups.findIndex((g) => g.recipe === recipe));
   return (
     <>
       <section>
@@ -163,7 +173,22 @@ function Result({ plan, build, opt, item, rate, setRate }: ResultProps) {
           </tbody>
         </table>
         <p>Rohstoffe: {rates(plan.resources) || '–'}</p>
-        {Object.keys(plan.surplus).length > 0 && <p>Überschuss: {rates(plan.surplus)}</p>}
+        {extras.length > 0 && (
+          <>
+            <p>Nebenprodukte:</p>
+            <ul>
+              {extras.map((b) => (
+                <li>
+                  {itemName(b.item)} {fmt(b.rate)}/min aus {recipeName(b.from)}:{' '}
+                  {b.to.length > 0 && `bleibt im Kreislauf (→ ${b.to.map((t) => recipeName(t.recipe)).join(', ')})`}
+                  {b.to.length > 0 && b.surplus > 0 && ', '}
+                  {b.surplus > 0 && <span class="warn">{fmt(b.surplus)}/min verwerten</span>}
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+        {Object.keys(plan.surplus).length > 0 && <p class="warn">Überschuss: {rates(plan.surplus)}</p>}
       </section>
 
       <section>
@@ -210,6 +235,9 @@ function Result({ plan, build, opt, item, rate, setRate }: ResultProps) {
             <ol>
               {build.groups.map((g, i) => (
                 <li>{instruction(g, i, opt)}</li>
+              ))}
+              {extras.map((b) => (
+                <li>{byproductInstruction(b, letter)}</li>
               ))}
             </ol>
           </section>
@@ -274,8 +302,9 @@ function GroupCard({ group: g, index, opt }: { group: Group; index: number; opt:
         <p class="warn">Generator: {g.unsupported}</p>
       ) : (
         <>
+          {g.note && <p class="warn">{g.note}</p>}
           <p>Designer Mk{opt.designer - 3}, Band Mk{opt.beltTier}</p>
-          <LayoutView make={() => moduleLayout(g.recipe, n, opt)} deps={[g.recipe, n, opt]} />
+          <LayoutView make={() => moduleLayout(g.recipe, n, g.options)} deps={[g.recipe, n, g.options]} />
         </>
       )}
     </div>
@@ -295,4 +324,29 @@ function instruction(g: Group, index: number, opt: BuildOptions) {
       : `${g.chains.length} Stränge mit je eigener Zuleitung: ${g.chains.map((c) => `${c}×`).join(', ')}. Pro Strang ${chain(g.chains[0])}`;
   const exit = opt.output === 'reverse' ? 'neben der Zuführung' : 'am Ende des Strangs';
   return `${name} (${recipeName(g.recipe)}): ${lines}. ${inputs} von ${side} zuführen, ${Object.keys(g.outputs).map(itemName).join(' und ')} kommt ${exit} heraus.`;
+}
+
+function byproductInstruction(b: Byproduct, letter: (recipe: string) => string) {
+  const item = itemName(b.item);
+  const source = `Bauplan ${letter(b.from)} (${recipeName(b.from)})`;
+  const parts: string[] = [];
+  if (b.to.length > 0) {
+    const targets = b.to.map((t) => `Bauplan ${letter(t.recipe)} (${recipeName(t.recipe)}, ${fmt(t.rate)}/min)`).join(' und ');
+    let text = `${item} aus ${source} in ${targets} einspeisen.`;
+    if (b.fresh > 1e-6) {
+      text += b.fluid
+        ? ` Das Nebenprodukt hat Vorrang vor frischem ${item} (${fmt(b.fresh)}/min): Rücklauf tiefer anschließen, frischer Zufluss kommt von höher (die tiefere Flüssigkeit hat Vorrang).`
+        : ` Das Nebenprodukt hat Vorrang vor frischem ${item} (${fmt(b.fresh)}/min): Prioritäts-Merger, Rücklauf auf den Vorrang-Eingang.`;
+    }
+    parts.push(text);
+  }
+  if (b.surplus > 0) {
+    parts.push(
+      b.fluid
+        ? `${fmt(b.surplus)}/min ${item} aus ${source} verwerten: weiterverarbeiten oder abfüllen (Packager) und im Sink entsorgen; Flüssigkeiten lassen sich nicht direkt versenken.`
+        : `${fmt(b.surplus)}/min ${item} aus ${source} verwerten: weiterverarbeiten oder im Sink entsorgen.`,
+    );
+  }
+  parts.push('Sonst staut sich das Nebenprodukt und hält die Maschinen an.');
+  return parts.join(' ');
 }

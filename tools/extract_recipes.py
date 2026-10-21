@@ -95,6 +95,15 @@ def main():
             result[item] = value / 1000 if items[item]["form"] in ("liquid", "gas") else value
         return result
 
+    # Alternates are the recipes unlocked by alternate schematics (hard drives).
+    # Not all of them carry "Alternate" in the class name, e.g. Pure Aluminum Ingot.
+    alternates = {
+        recipe
+        for c in groups.get("FGSchematic", [])
+        if c.get("mType") == "EST_Alternate"
+        for recipe in re.findall(r"\.(Recipe_\w+_C)'", json.dumps(c.get("mUnlocks", [])))
+    }
+
     recipes = {}
     for c in groups["FGRecipe"]:
         produced_in = [m for m in PRODUCED_IN.findall(c.get("mProducedIn", "")) if m in machines]
@@ -105,7 +114,7 @@ def main():
             continue
         recipe = {
             "name": readable(c["ClassName"]),
-            "alternate": c["ClassName"].startswith("Recipe_Alternate_"),
+            "alternate": c["ClassName"] in alternates or c["ClassName"].startswith("Recipe_Alternate_"),
             "machine": produced_in[0],
             "durationS": float(c["mManufactoringDuration"]),
             "in": inputs,

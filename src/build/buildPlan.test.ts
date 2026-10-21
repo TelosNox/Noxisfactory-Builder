@@ -23,6 +23,16 @@ describe('build plan', () => {
   });
 });
 
+describe('line limit', () => {
+  it('clocks a machine down when one line cannot carry its full rate', () => {
+    const build = buildPlan(plan({ item: 'Desc_AluminaSolution_C', rate: 120 }), { designer: 6, beltTier: 1, feedFrom: 'left', output: 'forward' });
+    const g = build.groups[0];
+    expect(g.unsupported).toBeUndefined();
+    expect([g.perModule, g.copies, g.maxClock]).toEqual([1, 2, 50]);
+    expect(build.exact).toBe(true);
+  });
+});
+
 describe('chain plan', () => {
   it('puts smelter and constructor into one blueprint', () => {
     const b = buildPlan(plan({ item: 'Desc_IronPlate_C', rate: 20 }), { designer: 6, beltTier: 1 });

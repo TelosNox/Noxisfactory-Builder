@@ -78,7 +78,9 @@ export function generateRow(req: RowRequest): Layout {
   const perMinute = (amount: number) => (amount * 60) / recipe.durationS;
   const inRate = perMinute(Object.values(recipe.in)[0]) * req.machines;
   const outRate = perMinute(Object.values(recipe.out)[0]) * req.machines;
-  if (inRate > speed || outRate > speed) {
+  // A single machine may need more than the line carries: it then runs
+  // clocked down (or undersupplied), see buildPlan.
+  if (req.machines > 1 && (inRate > speed || outRate > speed)) {
     throw new Error(`belt Mk${req.beltTier} carries ${speed}/min, row needs ${Math.max(inRate, outRate)}/min`);
   }
 

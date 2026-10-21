@@ -3767,7 +3767,7 @@
   },
   "Recipe_PackagedTurboFuel_C": {
    "name": "Packaged Turbo Fuel",
-   "alternate": false,
+   "alternate": true,
    "machine": "Build_Packager_C",
    "durationS": 6.0,
    "in": {
@@ -3960,7 +3960,7 @@
   },
   "Recipe_PureAluminumIngot_C": {
    "name": "Pure Aluminum Ingot",
-   "alternate": false,
+   "alternate": true,
    "machine": "Build_SmelterMk1_C",
    "durationS": 2.0,
    "in": {
@@ -4730,7 +4730,7 @@
   },
   "Recipe_UnpackageTurboFuel_C": {
    "name": "Unpackage Turbo Fuel",
-   "alternate": false,
+   "alternate": true,
    "machine": "Build_Packager_C",
    "durationS": 6.0,
    "in": {

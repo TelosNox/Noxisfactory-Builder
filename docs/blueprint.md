@@ -45,3 +45,7 @@ Abgeglichen mit den Kosten, die das Spiel in den Kopf von 28 Spieler-Blueprints 
 ## Stromleitungen
 
 Aus Spieler-Blueprints (TelosDesert, Bananendödels): `Build_PowerLine_C` mit `mWireInstances` (zwei Endpunkte `Locations`, `CachedRelativeLocations` relativ zum Ursprung der Leitung, der an einem Ende sitzt), `mCachedLength` in cm und in `specialProperties` die Anschlüsse `source` und `target`. Beide Anschlüsse (`FGPowerConnectionComponent`) führen die Leitung in `mWires`. Kosten: 3 Kabel je Leitung, unabhängig von der Länge (38 Leitungen bis 30 m im HMF Encabulator).
+
+## Rohre
+
+`Build_Pipeline_C` (Mk1) und `Build_PipelineMK2_C` mit `mSplineData` wie Bänder, Anschlüsse `PipelineConnection0/1` über `mConnectedComponent`. Bögen mit vier Punkten: 1 m gerade, Bogen mit waagerechten Tangenten (Länge halbe Bogensehne, wie in der Referenz), 1 m gerade. Kosten in der Referenz grob 1 Baurezept je Rohr bis etwa 5 m; angenommen: je angefangene 6 m *(prüfen)*.

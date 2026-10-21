@@ -1,6 +1,6 @@
 // Generate a row module blueprint (src/generator/row.ts) from the command line.
 //
-// Usage: npm run generate:row -- <recipe> <machines> <designer 4|5|6> <belt tier> [left|right] [forward|reverse] [floor 0|4|6|8][o] [power p1|p2|p3|daisy|none] [outDir]
+// Usage: npm run generate:row -- <recipe> <machines> <designer 4|5|6> <belt tier> [left|right] [forward|reverse] [floor 0|4|6|8][o] [power p1|p2|p3|daisy|none] [pipe 1|2] [outDir]
 // Example: npm run generate:row -- Recipe_IronPlate_C 4 4 3
 //
 // Templates come from the blueprint folders in TEMPLATE_DIRS (mod-free sessions).
@@ -18,9 +18,9 @@ import { validate } from '../src/generator/validate';
 const BLUEPRINTS = join(process.env.LOCALAPPDATA ?? '', 'FactoryGame/Saved/SaveGames/blueprints');
 const TEMPLATE_DIRS = ['1.1 Spass', 'Bananendödels'].map((d) => join(BLUEPRINTS, d));
 
-const [recipe, machines, designer, tier, feedFrom = 'left', output = 'forward', floorArg = '0', powerArg = 'p1', outDir = 'data/poc'] = process.argv.slice(2);
+const [recipe, machines, designer, tier, feedFrom = 'left', output = 'forward', floorArg = '0', powerArg = 'p1', pipeArg = '1', outDir = 'data/poc'] = process.argv.slice(2);
 if (!recipe || !machines || !designer || !tier) {
-  console.error('usage: npm run generate:row -- <recipe> <machines> <designer 4|5|6> <belt tier> [left|right] [forward|reverse] [floor 0|4|6|8][o] [power p1|p2|p3|daisy|none] [outDir]');
+  console.error('usage: npm run generate:row -- <recipe> <machines> <designer 4|5|6> <belt tier> [left|right] [forward|reverse] [floor 0|4|6|8][o] [power p1|p2|p3|daisy|none] [pipe 1|2] [outDir]');
   process.exit(1);
 }
 
@@ -32,7 +32,7 @@ if (floor && !(FLOORS as readonly number[]).includes(floor)) throw new Error(`fl
 const power = powerArg === 'none' ? 'none' : powerArg === 'daisy' ? 'daisy' : 'poles';
 const poleTier = power === 'poles' ? +powerArg.slice(1) : undefined;
 if (power === 'poles' && ![1, 2, 3].includes(poleTier!)) throw new Error(`power must be p1, p2, p3, daisy or none, got ${powerArg}`);
-const layout = moduleLayout(recipe, +machines, { designer: +designer, beltTier: +tier, feedFrom, output, floor: (floor || undefined) as Floor | undefined, outputOnTop, power, poleTier });
+const layout = moduleLayout(recipe, +machines, { designer: +designer, beltTier: +tier, feedFrom, output, floor: (floor || undefined) as Floor | undefined, outputOnTop, power, poleTier, pipeTier: +pipeArg });
 const problems = validate(layout);
 if (problems.length) {
   console.error('layout invalid:\n  ' + problems.join('\n  '));

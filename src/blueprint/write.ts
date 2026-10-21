@@ -26,6 +26,8 @@ function objectRef(target: SaveObject) {
 
 /** Belt cost: one build recipe per started 2 m (docs/blueprint.md). */
 const beltSegments = (length: number) => Math.ceil(length / 2 - 1e-6);
+/** Pipe cost: one build recipe per started 6 m (rough fit to the reference, docs/blueprint.md, prüfen). */
+const pipeSegments = (length: number) => Math.ceil(length / 6 - 1e-6);
 /** Power line cost: 3 build recipes (3 cables) per line, whatever its length (docs/blueprint.md). */
 const POWER_LINE_RECIPES = 3;
 /** Lift cost: one build recipe per started 4 m of height (docs/blueprint.md). */
@@ -170,6 +172,44 @@ export function layoutToBlueprint(layout: Layout, library: TemplateLibrary, name
     if (belt.toPort) connect(component(parts, 'ConveyorAny1'), component(byPart.get(belt.toPort.part)!, belt.toPort.port));
     objects.push(...parts);
     charge(belt.cls, beltSegments(beltLength(belt)));
+  }
+
+  // Pipes: spline like a belt; with a height difference 1 m straight at each end
+  // and a bend in between with horizontal tangents (reference "Raffinerie LI RO Straight").
+  for (const pipe of layout.pipes ?? []) {
+    const parts = library.instantiate(pipe.cls, nextId++);
+    const entity = parts[0] as SaveEntity;
+    entity.transform = { rotation: yawQuaternion(0), translation: cm(pipe.from), scale3d: { x: 1, y: 1, z: 1 } };
+    const d = cm({ x: pipe.to.x - pipe.from.x, y: pipe.to.y - pipe.from.y, z: pipe.to.z - pipe.from.z });
+    const flat = Math.hypot(d.x, d.y);
+    const dir = { x: d.x / flat, y: d.y / flat };
+    const h = (f: number, z = 0) => ({ x: dir.x * f, y: dir.y * f, z });
+    const points = (entity.properties.mSplineData as any).values;
+    const template = JSON.stringify(points[0]);
+    const point = (location: Vec3, arrive: Vec3, leave: Vec3) => {
+      const p = JSON.parse(template);
+      p.properties.Location.value = location;
+      p.properties.ArriveTangent.value = arrive;
+      p.properties.LeaveTangent.value = leave;
+      return p;
+    };
+    let spline;
+    if (Math.abs(d.z) < 1e-6) {
+      spline = [point({ x: 0, y: 0, z: 0 }, h(1), h(flat / 2)), point(d, h(flat / 2), h(1))];
+    } else {
+      const bend = Math.hypot(flat - 2 * CM, d.z) / 2;
+      spline = [
+        point({ x: 0, y: 0, z: 0 }, h(1), h(CM / 2)),
+        point(h(CM), h(CM / 2), h(bend)),
+        point(h(flat - CM, d.z), h(bend), h(CM / 2)),
+        point(d, h(CM / 2), h(1)),
+      ];
+    }
+    (entity.properties.mSplineData as any).values = spline;
+    if (pipe.fromPort) connect(component(parts, 'PipelineConnection0'), component(byPart.get(pipe.fromPort.part)!, pipe.fromPort.port));
+    if (pipe.toPort) connect(component(parts, 'PipelineConnection1'), component(byPart.get(pipe.toPort.part)!, pipe.toPort.port));
+    objects.push(...parts);
+    charge(pipe.cls, pipeSegments(Math.hypot(pipe.to.x - pipe.from.x, pipe.to.y - pipe.from.y, pipe.to.z - pipe.from.z)));
   }
 
   // Power lines: actor at the `to` end, the other end relative to it (as the game saves them).

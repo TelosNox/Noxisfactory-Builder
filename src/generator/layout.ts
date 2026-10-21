@@ -57,6 +57,19 @@ export interface Lift {
   topPassthrough?: string;
 }
 
+/**
+ * Pipe from `from` to `to`. Pipes have no direction. If the ends differ in
+ * height, the pipe runs 1 m straight at each end and bends in between.
+ */
+export interface Pipe {
+  id: string;
+  cls: string;
+  from: Vec3;
+  to: Vec3;
+  fromPort?: PortRef;
+  toPort?: PortRef;
+}
+
 /** Power line between two power connections (machine or pole). */
 export interface Wire {
   id: string;
@@ -70,6 +83,7 @@ export interface Layout {
   parts: Part[];
   belts: Belt[];
   lifts?: Lift[];
+  pipes?: Pipe[];
   wires?: Wire[];
 }
 

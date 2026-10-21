@@ -19,6 +19,7 @@ import { BELT_SPEED, generateRow } from '../generator/row';
 import { validate } from '../generator/validate';
 import { generateChain } from '../generator/chain';
 import { generateFloorRow, type Floor } from '../generator/floor';
+import { generateFluidRow, hasPipes, PIPE_SPEED } from '../generator/fluidRow';
 import { addPower, type PowerMode } from '../generator/power';
 import type { Layout } from '../generator/layout';
 
@@ -37,6 +38,8 @@ export interface BuildOptions {
   power?: PowerMode | 'none';
   /** Highest pole tier 1–3, default 1. */
   poleTier?: number;
+  /** Highest pipe tier 1–2, default 1. */
+  pipeTier?: number;
 }
 
 const withPower = (layout: Layout, opt: BuildOptions) =>
@@ -44,7 +47,11 @@ const withPower = (layout: Layout, opt: BuildOptions) =>
 
 /** Row layout for these options: on the floor or on a logistics floor, with power. */
 export function moduleLayout(recipe: RecipeId, machines: number, opt: BuildOptions): Layout {
-  const { floor, outputOnTop, power, poleTier, ...rest } = opt;
+  const { floor, outputOnTop, power, poleTier, pipeTier, ...rest } = opt;
+  if (hasPipes(gameData.recipes[recipe].machine)) {
+    if (floor) throw new Error('Rohre auf dem Logistic Floor werden noch nicht unterstützt');
+    return withPower(generateFluidRow({ ...rest, recipe, machines, pipeTier: pipeTier ?? 1 }), opt);
+  }
   return withPower(
     floor ? generateFloorRow({ ...rest, recipe, machines, floor, outputOnTop }) : generateRow({ ...rest, recipe, machines }),
     opt,
@@ -53,11 +60,15 @@ export function moduleLayout(recipe: RecipeId, machines: number, opt: BuildOptio
 
 /** Chain layout for these options, with power. */
 export function chainLayout(stages: { recipe: RecipeId; machines: number }[], opt: BuildOptions): Layout {
-  const { floor, outputOnTop, power, poleTier, ...rest } = opt;
+  const { floor, outputOnTop, power, poleTier, pipeTier, ...rest } = opt;
   return withPower(generateChain({ ...rest, stages }), opt);
 }
 
 export interface Group {
+  /** Options this group is built with (may differ from the request, see `note`). */
+  options: BuildOptions;
+  /** Why the group deviates from the requested options. */
+  note?: string;
   recipe: RecipeId;
   /** Machines the plan needs at 100 % (fractional). */
   machinesExact: number;
@@ -71,6 +82,8 @@ export interface Group {
   chains: number[];
   /** Clock speed in % so the built machines match the plan exactly. */
   clock: number;
+  /** Highest clock in % the lines allow for one machine. */
+  maxClock: number;
   /** Items/min per machine at 100 %. */
   inputs: Record<ItemId, number>;
   outputs: Record<ItemId, number>;
@@ -151,13 +164,21 @@ function stages(plan: Plan): Map<RecipeId, number> {
   return result;
 }
 
+/** Capacity of the line carrying this item: belt or pipe. */
+const lineSpeed = (item: ItemId, opt: BuildOptions) =>
+  ['liquid', 'gas'].includes(gameData.items[item]?.form) ? PIPE_SPEED[opt.pipeTier ?? 1] : BELT_SPEED[opt.beltTier];
+
 export function buildPlan(plan: Plan, opt: BuildOptions): BuildPlan {
   const stage = stages(plan);
-  const speed = BELT_SPEED[opt.beltTier];
   const groups: Group[] = plan.steps.map((step) => {
     const inputs = perMachine(step.recipe, 'in');
     const outputs = perMachine(step.recipe, 'out');
-    const needed = Math.max(1, Math.ceil(step.machines - EPS));
+    // A machine that needs more than one line carries is limited by the line.
+    const load = Math.max(
+      ...[...Object.entries(inputs), ...Object.entries(outputs)].map(([item, rate]) => rate / lineSpeed(item, opt)),
+    );
+    const maxClock = 100 * Math.min(1, 1 / load);
+    const needed = Math.max(1, Math.ceil((step.machines * 100) / maxClock - EPS));
     const base = {
       recipe: step.recipe,
       machinesExact: step.machines,
@@ -165,9 +186,25 @@ export function buildPlan(plan: Plan, opt: BuildOptions): BuildPlan {
       outputs,
       stage: stage.get(step.recipe) ?? 0,
     };
-    const row = maxRow(step.recipe, opt);
+    // A group that cannot be built on the logistics floor (too high for the
+    // designer, pipes) is built on the ground and says so.
+    let options = opt;
+    let note: string | undefined;
+    let row = maxRow(step.recipe, opt);
+    if (typeof row === 'string' && opt.floor) {
+      const ground = { ...opt, floor: undefined };
+      const alt = maxRow(step.recipe, ground);
+      if (typeof alt === 'number') {
+        options = ground;
+        note = `ohne Logistic Floor gebaut: ${row}`;
+        row = alt;
+      }
+    }
+    if (maxClock < 100 - EPS) {
+      note = [note, `Linie begrenzt eine Maschine auf ${+maxClock.toFixed(1)} % Takt (heruntertakten oder unterversorgt laufen lassen)`].filter(Boolean).join('; ');
+    }
     if (typeof row === 'string') {
-      return { ...base, unsupported: row, perModule: needed, copies: 1, chains: [1], clock: (100 * step.machines) / needed };
+      return { ...base, options, note, maxClock, unsupported: row, perModule: needed, copies: 1, chains: [1], clock: (100 * step.machines) / needed };
     }
     // Fewest identical copies. If the machines do not divide evenly, the spare
     // capacity is clocked down and the plan is not exact (see suggestRates).
@@ -175,11 +212,10 @@ export function buildPlan(plan: Plan, opt: BuildOptions): BuildPlan {
     const perModule = Math.ceil(needed / copies);
     const machines = perModule * copies;
     // One chain carries one belt: limited by the strongest ingredient or product.
-    const strongest = Math.max(...Object.values(inputs), ...Object.values(outputs));
-    const perChain = Math.max(1, Math.floor((speed + EPS) / (strongest * perModule)));
+    const perChain = Math.max(1, Math.floor((1 + EPS) / (Math.min(1, load) * perModule)));
     const chains: number[] = [];
     for (let left = copies; left > 0; left -= perChain) chains.push(Math.min(perChain, left));
-    return { ...base, perModule, copies, chains, clock: (100 * step.machines) / machines };
+    return { ...base, options, note, maxClock, perModule, copies, chains, clock: (100 * step.machines) / machines };
   });
   groups.sort((a, b) => a.stage - b.stage || a.recipe.localeCompare(b.recipe));
   const chain = groups.length > 1 ? chainPlan(groups, opt) : undefined;
@@ -191,7 +227,7 @@ export function buildPlan(plan: Plan, opt: BuildOptions): BuildPlan {
   const placements = groups.reduce((sum, g) => sum + g.copies, 0);
   return {
     groups,
-    exact: groups.every((g) => full(g.clock)),
+    exact: groups.every((g) => g.clock > g.maxClock - 1e-4),
     singleBlueprint: groups.length === 1 && placements === 1 && !groups[0].unsupported,
     blueprints: groups.length,
     placements,
@@ -201,7 +237,7 @@ export function buildPlan(plan: Plan, opt: BuildOptions): BuildPlan {
 /** Groups as one chain blueprint: straight line of steps, fewest copies that fit. */
 export function chainPlan(groups: Group[], opt: BuildOptions): ChainPlan | undefined {
   // Chains on a logistics floor are not built yet: feed below, output on top.
-  if (opt.floor || opt.output === 'reverse' || groups.some((g) => g.unsupported)) return undefined;
+  if (opt.floor || opt.output === 'reverse' || groups.some((g) => g.unsupported || g.maxClock < 100 || hasPipes(gameData.recipes[g.recipe].machine))) return undefined;
   for (let k = 1; k < groups.length; k++) {
     const made = Object.keys(groups[k - 1].outputs);
     const eaten = Object.keys(groups[k].inputs);

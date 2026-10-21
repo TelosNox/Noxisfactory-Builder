@@ -20,13 +20,14 @@ const COLORS = {
   foundation: 0xb0b0a8,
   designer: 0xe07b00,
   pole: 0x6b5b3a,
+  pipe: 0x3a8fb7,
   wire: 0xd4a017,
 };
 
 export function Preview3D({ layout }: { layout: Layout }) {
   const host = useRef<HTMLDivElement>(null);
   const [showFloor, setShowFloor] = useState(true);
-  const floorZ = Math.min(...layout.parts.filter((p) => ![SPLITTER, MERGER, PASSTHROUGH].includes(p.cls) && !/PowerPole/.test(p.cls)).map((p) => p.pos.z));
+  const floorZ = Math.min(...layout.parts.filter((p) => ![SPLITTER, MERGER, PASSTHROUGH].includes(p.cls) && !/PowerPole|Junction/.test(p.cls)).map((p) => p.pos.z));
   const hasFloor = floorZ > 0;
 
   useEffect(() => {
@@ -78,6 +79,8 @@ export function Preview3D({ layout }: { layout: Layout }) {
         if (p.cls === SPLITTER || p.cls === MERGER) {
           const c = p.cls === SPLITTER ? COLORS.splitter : COLORS.merger;
           edges(box({ x: p.pos.x - 1, y: p.pos.y - 1, z: p.pos.z - 1 }, { x: p.pos.x + 1, y: p.pos.y + 1, z: p.pos.z + 0.6 }, material(c)));
+        } else if (/Junction/.test(p.cls)) {
+          edges(box({ x: p.pos.x - 0.8, y: p.pos.y - 0.8, z: p.pos.z - 0.6 }, { x: p.pos.x + 0.8, y: p.pos.y + 0.8, z: p.pos.z + 0.6 }, material(COLORS.pipe)));
         } else if (/PowerPole/.test(p.cls)) {
           const top = buildingGeometry(p.cls).connections.find((c) => c.kind === 'power')!.position[2];
           box({ x: p.pos.x - 0.3, y: p.pos.y - 0.3, z: p.pos.z }, { x: p.pos.x + 0.3, y: p.pos.y + 0.3, z: p.pos.z + top + 0.4 }, material(COLORS.pole));
@@ -104,6 +107,26 @@ export function Preview3D({ layout }: { layout: Layout }) {
         arrow.position.copy(strip.position).add(new THREE.Vector3(0, 0.3, 0));
         arrow.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), c.clone().sub(a).normalize());
         scene.add(arrow);
+      }
+
+      // Pipes: tubes, bent pipes as three pieces (straight, bend, straight).
+      for (const p of layout.pipes ?? []) {
+        const stub = !(p.fromPort && p.toPort);
+        const flat = Math.hypot(p.to.x - p.from.x, p.to.y - p.from.y);
+        const along = (f: number, z: number) => ({
+          x: p.from.x + ((p.to.x - p.from.x) / flat) * f,
+          y: p.from.y + ((p.to.y - p.from.y) / flat) * f,
+          z,
+        });
+        const path = Math.abs(p.to.z - p.from.z) < 1e-6 ? [p.from, p.to] : [p.from, along(1, p.from.z), along(flat - 1, p.to.z), p.to];
+        for (let i = 1; i < path.length; i++) {
+          const a = v(path[i - 1].x, path[i - 1].y, path[i - 1].z);
+          const c = v(path[i].x, path[i].y, path[i].z);
+          const tube = new THREE.Mesh(new THREE.CylinderGeometry(0.45, 0.45, a.distanceTo(c), 10), material(stub ? COLORS.stub : COLORS.pipe));
+          tube.position.copy(a.clone().add(c).multiplyScalar(0.5));
+          tube.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), c.clone().sub(a).normalize());
+          scene.add(tube);
+        }
       }
 
       // Power lines.
