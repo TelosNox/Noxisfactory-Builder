@@ -17,9 +17,10 @@
 //   - Lanes further in go up to 3 m first and cross the others there.
 //   - With a 4 m floor there is only one belt level: one lane inside, one
 //     outside in front of the lift row (at most 2 inputs).
-// Output on top of the foundation as in row.ts, or with `outputBelow` down
-// through a passthrough to a merger line at 1 m: under the output edge of the
-// machine if the feed lanes leave room, otherwise outside in front of the lift.
+// Output below the floor like the feed: down through a passthrough to a merger
+// line at 1 m, under the output edge of the machine if the feed lanes leave
+// room, otherwise outside in front of the lift. With `outputOnTop` the merger
+// line runs on the foundation as in row.ts.
 // References: blueprints "Manufaktor Straight" and "Fabrikator Simple"
 // (docs/geometry.md, Unterboden).
 
@@ -33,11 +34,8 @@ export type Floor = (typeof FLOORS)[number];
 
 export interface FloorRowRequest extends RowRequest {
   floor: Floor;
-  /**
-   * Output line below the floor too (lift down through a passthrough to a
-   * merger line at 1 m) instead of on top of the foundation.
-   */
-  outputBelow?: boolean;
+  /** Output line on top of the foundation instead of below the floor like the feed. */
+  outputOnTop?: boolean;
 }
 
 const SPLITTER_HALF = 2;
@@ -116,7 +114,7 @@ export function generateFloorRow(req: FloorRowRequest): Layout {
   const inward = outLiftY - (LANE_GAP - 2);
   // Merger and lane splitters are 4 × 4 m: 4 m between their lines is enough.
   const outIn = lanes.every((l) => Math.abs(l.y - inward) >= 2 * SPLITTER_HALF);
-  const below = req.outputBelow
+  const below = !req.outputOnTop
     ? { y: outIn ? inward : outLiftY + (LANE_GAP - 2), towardsLift: outIn ? 1 : -1 }
     : undefined;
   const mergerY = below ? below.y : Math.ceil(maxY + SPLITTER_HALF);

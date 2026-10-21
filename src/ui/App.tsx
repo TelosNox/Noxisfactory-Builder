@@ -83,9 +83,9 @@ export function App() {
         {opt.floor && (
           <label>
             Ausgang liegt
-            <select value={opt.outputBelow ? 'below' : 'top'} onChange={(e) => set('outputBelow', e.currentTarget.value === 'below')}>
+            <select value={opt.outputOnTop ? 'top' : 'below'} onChange={(e) => set('outputOnTop', e.currentTarget.value === 'top')}>
+              <option value="below">unter dem Floor (wie Eingänge)</option>
               <option value="top">auf der Foundation</option>
-              <option value="below">unter dem Floor</option>
             </select>
           </label>
         )}

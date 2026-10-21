@@ -22,7 +22,7 @@ describe('logistics floor row', () => {
     const high = generateFloorRow({ recipe: 'Recipe_IronPlateReinforced_C', machines: 1, designer: 4, beltTier: 3, floor: 6 });
     const cross = high.belts.find((b) => b.id === 'cross1_0')!;
     expect(cross.from.z).toBe(3);
-    expect(high.lifts!.filter((l) => l.topLink?.part === 'M0')).toHaveLength(2);
+    expect(high.lifts!.filter((l) => !l.down && l.topLink?.part === 'M0')).toHaveLength(2);
   });
 
   it('rejects manufacturers on a 4 m floor', () => {
@@ -35,10 +35,10 @@ describe('logistics floor row', () => {
     expect(validate(layout).some((p) => p.includes('not snapped'))).toBe(true);
   });
 
-  it('puts the output line below the floor on request', () => {
+  it('puts the output line below the floor by default', () => {
     for (const floor of [4, 6, 8] as const) {
       for (const output of ['forward', 'reverse'] as const) {
-        const layout = generateFloorRow({ recipe: 'Recipe_IronPlateReinforced_C', machines: 3, designer: 4, beltTier: 3, floor, output, outputBelow: true });
+        const layout = generateFloorRow({ recipe: 'Recipe_IronPlateReinforced_C', machines: 3, designer: 4, beltTier: 3, floor, output });
         expect(validate(layout), `${floor} ${output}`).toEqual([]);
         expect(layout.parts.filter((p) => p.id.startsWith('J')).every((p) => p.pos.z === 1)).toBe(true);
         expect(layout.lifts!.filter((l) => l.down)).toHaveLength(6);
@@ -47,7 +47,7 @@ describe('logistics floor row', () => {
   });
 
   it('puts the output merger under the machine when the lanes leave room', () => {
-    const layout = generateFloorRow({ recipe: 'Recipe_IronPlateReinforced_C', machines: 1, designer: 4, beltTier: 3, floor: 6, outputBelow: true });
+    const layout = generateFloorRow({ recipe: 'Recipe_IronPlateReinforced_C', machines: 1, designer: 4, beltTier: 3, floor: 6 });
     const merger = layout.parts.find((p) => p.id === 'J0')!;
     const lift = layout.lifts!.find((l) => l.id === 'O0b')!;
     expect(merger.pos.y).toBeLessThan(lift.pos.y);
