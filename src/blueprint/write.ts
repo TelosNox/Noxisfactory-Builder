@@ -4,7 +4,7 @@
 import type { Blueprint, SaveEntity } from '@etothepii/satisfactory-file-parser';
 import { gameData } from '../planner/gameData';
 import type { Vec3 } from '../generator/geometry';
-import { beltLength, type Layout } from '../generator/layout';
+import { beltLength, liftPorts, type Layout } from '../generator/layout';
 import { LEVEL_PREFIX, type SaveObject, type TemplateLibrary } from './templates';
 
 const CM = 100;
@@ -104,15 +104,22 @@ export function layoutToBlueprint(layout: Layout, library: TemplateLibrary, name
       propertyTagType: { name: 'ArrayProperty', children: [{ name: 'ObjectProperty', children: [] }] },
       values: [ref(passName(lift.bottomPassthrough)), ref(passName(lift.topPassthrough))],
     };
-    if (lift.bottomLink) connect(component(parts, 'ConveyorAny0'), component(byPart.get(lift.bottomLink.part)!, lift.bottomLink.port));
-    if (lift.topLink) connect(component(parts, 'ConveyorAny1'), component(byPart.get(lift.topLink.part)!, lift.topLink.port));
+    // Downward lifts are saved reversed: input (ConveyorAny0) at the top.
+    if (lift.down) {
+      props.mIsReversed = { type: 'BoolProperty', name: 'mIsReversed', propertyTagType: { name: 'BoolProperty', children: [] }, value: true };
+    } else {
+      delete props.mIsReversed;
+    }
+    const end = liftPorts(lift);
+    if (lift.bottomLink) connect(component(parts, end.bottom), component(byPart.get(lift.bottomLink.part)!, lift.bottomLink.port));
+    if (lift.topLink) connect(component(parts, end.top), component(byPart.get(lift.topLink.part)!, lift.topLink.port));
     if (lift.topPassthrough) {
       const ends = passthroughEnds.get(lift.topPassthrough) ?? {};
-      passthroughEnds.set(lift.topPassthrough, { ...ends, below: component(parts, 'ConveyorAny1') });
+      passthroughEnds.set(lift.topPassthrough, { ...ends, below: component(parts, end.top) });
     }
     if (lift.bottomPassthrough) {
       const ends = passthroughEnds.get(lift.bottomPassthrough) ?? {};
-      passthroughEnds.set(lift.bottomPassthrough, { ...ends, above: component(parts, 'ConveyorAny0') });
+      passthroughEnds.set(lift.bottomPassthrough, { ...ends, above: component(parts, end.bottom) });
     }
     byPart.set(lift.id, parts);
     objects.push(...parts);

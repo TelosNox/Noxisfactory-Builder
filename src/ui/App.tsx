@@ -80,6 +80,15 @@ export function App() {
             ))}
           </select>
         </label>
+        {opt.floor && (
+          <label>
+            Ausgang liegt
+            <select value={opt.outputBelow ? 'below' : 'top'} onChange={(e) => set('outputBelow', e.currentTarget.value === 'below')}>
+              <option value="top">auf der Foundation</option>
+              <option value="below">unter dem Floor</option>
+            </select>
+          </label>
+        )}
         <label>
           Zuführung von
           <select value={opt.feedFrom} onChange={(e) => set('feedFrom', e.currentTarget.value as 'left' | 'right')}>

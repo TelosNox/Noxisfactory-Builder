@@ -56,6 +56,7 @@ Ausgelesen aus dem Blueprint „Manufaktor Straight“ (1.1 Spass, Designer Mk2)
 - Normal: Band zwischen Splitter-Port und Liftfuß. Liftfuß direkt am Splitter-Port nur als Notbehelf bei Platzmangel (Spieler).
 - Ausgang oben: kurzes Band zum Merger, Leitung längs der Reihe an der Ausgangsseite. Ausgang im Unterboden wäre möglich, nicht getestet.
 - Lifts gehen hier mit 1,5, 2 und 2,5 m Höhe, weil sie an Port oder Durchführung einrasten; die Mindesthöhen unter „Lifts“ gelten für frei gebaute Lifts.
+- Abwärts fördernde Lifts (Referenz „Fabrikator Simple“, Bananendödels): `mIsReversed = true`, Eingang `ConveyorAny0` liegt dann oben. Das Spiel speichert den Lift oft mit dem Ursprung in der Durchführung und negativer Höhe; Ursprung unten mit positiver Höhe ist gleichwertig *(prüfen)*.
 - Im Blueprint: Lift mit Fußposition, `mTopTransform` (Höhe, Drehung des Kopfs), `mSnappedPassthroughs` (Verweis auf die Durchführung).
 
 ## Splitter und Merger

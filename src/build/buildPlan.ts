@@ -30,12 +30,16 @@ export interface BuildOptions {
   output?: 'forward' | 'reverse';
   /** Logistics floor height in m; feed lines run underneath. None if missing. */
   floor?: Floor;
+  /** With a logistics floor: output line below the floor too. */
+  outputBelow?: boolean;
 }
 
 /** Row layout for these options: on the floor or on a logistics floor. */
 export function moduleLayout(recipe: RecipeId, machines: number, opt: BuildOptions): Layout {
-  const { floor, ...rest } = opt;
-  return floor ? generateFloorRow({ ...rest, recipe, machines, floor }) : generateRow({ ...rest, recipe, machines });
+  const { floor, outputBelow, ...rest } = opt;
+  return floor
+    ? generateFloorRow({ ...rest, recipe, machines, floor, outputBelow })
+    : generateRow({ ...rest, recipe, machines });
 }
 
 export interface Group {

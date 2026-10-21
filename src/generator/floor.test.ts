@@ -34,4 +34,22 @@ describe('logistics floor row', () => {
     layout.lifts![0].pos.y += 1;
     expect(validate(layout).some((p) => p.includes('not snapped'))).toBe(true);
   });
+
+  it('puts the output line below the floor on request', () => {
+    for (const floor of [4, 6, 8] as const) {
+      for (const output of ['forward', 'reverse'] as const) {
+        const layout = generateFloorRow({ recipe: 'Recipe_IronPlateReinforced_C', machines: 3, designer: 4, beltTier: 3, floor, output, outputBelow: true });
+        expect(validate(layout), `${floor} ${output}`).toEqual([]);
+        expect(layout.parts.filter((p) => p.id.startsWith('J')).every((p) => p.pos.z === 1)).toBe(true);
+        expect(layout.lifts!.filter((l) => l.down)).toHaveLength(6);
+      }
+    }
+  });
+
+  it('puts the output merger under the machine when the lanes leave room', () => {
+    const layout = generateFloorRow({ recipe: 'Recipe_IronPlateReinforced_C', machines: 1, designer: 4, beltTier: 3, floor: 6, outputBelow: true });
+    const merger = layout.parts.find((p) => p.id === 'J0')!;
+    const lift = layout.lifts!.find((l) => l.id === 'O0b')!;
+    expect(merger.pos.y).toBeLessThan(lift.pos.y);
+  });
 });

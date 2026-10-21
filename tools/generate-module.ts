@@ -1,6 +1,6 @@
 // Generate a row module blueprint (src/generator/row.ts) from the command line.
 //
-// Usage: npm run generate:row -- <recipe> <machines> <designer 4|5|6> <belt tier> [left|right] [forward|reverse] [floor 0|4|6|8] [outDir]
+// Usage: npm run generate:row -- <recipe> <machines> <designer 4|5|6> <belt tier> [left|right] [forward|reverse] [floor 0|4|6|8][u] [outDir]
 // Example: npm run generate:row -- Recipe_IronPlate_C 4 4 3
 //
 // Templates come from the blueprint folders in TEMPLATE_DIRS (mod-free sessions).
@@ -20,15 +20,16 @@ const TEMPLATE_DIRS = ['1.1 Spass', 'Bananendödels'].map((d) => join(BLUEPRINTS
 
 const [recipe, machines, designer, tier, feedFrom = 'left', output = 'forward', floorArg = '0', outDir = 'data/poc'] = process.argv.slice(2);
 if (!recipe || !machines || !designer || !tier) {
-  console.error('usage: npm run generate:row -- <recipe> <machines> <designer 4|5|6> <belt tier> [left|right] [forward|reverse] [floor 0|4|6|8] [outDir]');
+  console.error('usage: npm run generate:row -- <recipe> <machines> <designer 4|5|6> <belt tier> [left|right] [forward|reverse] [floor 0|4|6|8][u] [outDir]');
   process.exit(1);
 }
 
 if (feedFrom !== 'left' && feedFrom !== 'right') throw new Error(`feed side must be left or right, got ${feedFrom}`);
 if (output !== 'forward' && output !== 'reverse') throw new Error(`output must be forward or reverse, got ${output}`);
-const floor = +floorArg;
+const outputBelow = floorArg.endsWith('u');
+const floor = parseInt(floorArg, 10);
 if (floor && !(FLOORS as readonly number[]).includes(floor)) throw new Error(`floor must be 0, 4, 6 or 8, got ${floorArg}`);
-const layout = moduleLayout(recipe, +machines, { designer: +designer, beltTier: +tier, feedFrom, output, floor: (floor || undefined) as Floor | undefined });
+const layout = moduleLayout(recipe, +machines, { designer: +designer, beltTier: +tier, feedFrom, output, floor: (floor || undefined) as Floor | undefined, outputBelow });
 const problems = validate(layout);
 if (problems.length) {
   console.error('layout invalid:\n  ' + problems.join('\n  '));
@@ -44,8 +45,8 @@ for (const dir of TEMPLATE_DIRS) {
   }
 }
 
-const name = blueprintName({ recipe, machines: +machines, beltTier: +tier, feedFrom, output, floor });
-const details = `${recipe}, ${machines} Maschinen, Band Mk${tier}, Zuführung ${feedFrom}, Ausgang ${output}${floor ? `, Logistic Floor ${floor} m` : ''}`;
+const name = blueprintName({ recipe, machines: +machines, beltTier: +tier, feedFrom, output, floor, outputBelow });
+const details = `${recipe}, ${machines} Maschinen, Band Mk${tier}, Zuführung ${feedFrom}, Ausgang ${output}${floor ? `, Logistic Floor ${floor} m${outputBelow ? ', Ausgang unten' : ''}` : ''}`;
 const blueprint = layoutToBlueprint(layout, library, name, `Erzeugt von Noxisfactory Builder (${details})`);
 let header: Uint8Array = new Uint8Array();
 const chunks: Uint8Array[] = [];

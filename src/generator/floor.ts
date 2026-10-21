@@ -17,8 +17,11 @@
 //   - Lanes further in go up to 3 m first and cross the others there.
 //   - With a 4 m floor there is only one belt level: one lane inside, one
 //     outside in front of the lift row (at most 2 inputs).
-// Output on top of the foundation as in row.ts. Reference: blueprint
-// "Manufaktor Straight" (docs/geometry.md, Unterboden).
+// Output on top of the foundation as in row.ts, or with `outputBelow` down
+// through a passthrough to a merger line at 1 m: under the output edge of the
+// machine if the feed lanes leave room, otherwise outside in front of the lift.
+// References: blueprints "Manufaktor Straight" and "Fabrikator Simple"
+// (docs/geometry.md, Unterboden).
 
 import { gameData } from '../planner/gameData';
 import { buildingGeometry, type Vec3 } from './geometry';
@@ -30,6 +33,11 @@ export type Floor = (typeof FLOORS)[number];
 
 export interface FloorRowRequest extends RowRequest {
   floor: Floor;
+  /**
+   * Output line below the floor too (lift down through a passthrough to a
+   * merger line at 1 m) instead of on top of the foundation.
+   */
+  outputBelow?: boolean;
 }
 
 const SPLITTER_HALF = 2;
@@ -103,6 +111,19 @@ export function generateFloorRow(req: FloorRowRequest): Layout {
       : { y: liftY + LANE_GAP - 2 + LANE_GAP * j, dir: -1, cross: j > 0 },
   );
 
+  // Output: merger line on the foundation or below the floor.
+  const outLiftY = Math.ceil(output.position[1] + LIFT_REACH);
+  const inward = outLiftY - (LANE_GAP - 2);
+  // Merger and lane splitters are 4 × 4 m: 4 m between their lines is enough.
+  const outIn = lanes.every((l) => Math.abs(l.y - inward) >= 2 * SPLITTER_HALF);
+  const below = req.outputBelow
+    ? { y: outIn ? inward : outLiftY + (LANE_GAP - 2), towardsLift: outIn ? 1 : -1 }
+    : undefined;
+  const mergerY = below ? below.y : Math.ceil(maxY + SPLITTER_HALF);
+  const mergerZ = below ? LEVEL_1 : portZ;
+  // Merger side port facing the incoming belt or lift (+Y side is Input2 at yaw 0).
+  const mergerSide = (dy: number) => ((dy > 0) === outDir > 0 ? 'Input2' : 'Input3');
+
   const parts: Part[] = [];
   const belts: Belt[] = [];
   const lifts: Lift[] = [];
@@ -152,19 +173,34 @@ export function generateFloorRow(req: FloorRowRequest): Layout {
       });
     });
 
-    // Output on the foundation, as in row.ts.
     const outX = pos.x + output.position[0];
-    const mergerY = Math.ceil(maxY + SPLITTER_HALF);
     mergerX.push(outX);
-    parts.push({ id: `J${i}`, cls: MERGER, pos: { x: outX, y: mergerY, z: portZ }, yaw: flowYaw(outDir) });
-    belts.push({
-      id: `out${i}`, cls: beltCls,
-      from: { x: outX, y: output.position[1], z: portZ }, to: { x: outX, y: mergerY - 1, z: portZ },
-      fromPort: { part: `M${i}`, port: output.name }, toPort: { part: `J${i}`, port: machineToMerger },
-    });
+    parts.push({ id: `J${i}`, cls: MERGER, pos: { x: outX, y: mergerY, z: mergerZ }, yaw: flowYaw(outDir) });
+    if (below) {
+      // Down from the output port into the passthrough, then down to the merger.
+      // Bottom ends face the merger, top ends the machine (-Y, yaw 270).
+      const pass = `Q${i}`;
+      parts.push({ id: pass, cls: PASSTHROUGH, pos: { x: outX, y: outLiftY, z: passZ }, yaw: 0 });
+      lifts.push({
+        id: `O${i}a`, cls: liftCls, pos: { x: outX, y: outLiftY, z: passZ }, height: portZ - passZ, down: true,
+        yaw: 270, topYaw: 0, topLink: { part: `M${i}`, port: output.name }, bottomPassthrough: pass,
+      });
+      const bottomYaw = below.towardsLift > 0 ? 270 : 90;
+      lifts.push({
+        id: `O${i}b`, cls: liftCls, pos: { x: outX, y: outLiftY, z: LEVEL_1 }, height: passZ - LEVEL_1, down: true,
+        yaw: bottomYaw, topYaw: (270 - bottomYaw + 360) % 360, topPassthrough: pass,
+        bottomLink: { part: `J${i}`, port: mergerSide(below.towardsLift) },
+      });
+    } else {
+      // On the foundation, as in row.ts.
+      belts.push({
+        id: `out${i}`, cls: beltCls,
+        from: { x: outX, y: output.position[1], z: portZ }, to: { x: outX, y: mergerY - 1, z: portZ },
+        fromPort: { part: `M${i}`, port: output.name }, toPort: { part: `J${i}`, port: machineToMerger },
+      });
+    }
   }
 
-  const mergerY = Math.ceil(maxY + SPLITTER_HALF);
   for (let i = 1; i < req.machines; i++) {
     lanes.forEach((lane, j) => {
       belts.push({
@@ -177,7 +213,7 @@ export function generateFloorRow(req: FloorRowRequest): Layout {
     const [up, down] = outDir === feedDir ? [i - 1, i] : [i, i - 1];
     belts.push({
       id: `collect${i}`, cls: beltCls,
-      from: { x: mergerX[up] + outDir, y: mergerY, z: portZ }, to: { x: mergerX[down] - outDir, y: mergerY, z: portZ },
+      from: { x: mergerX[up] + outDir, y: mergerY, z: mergerZ }, to: { x: mergerX[down] - outDir, y: mergerY, z: mergerZ },
       fromPort: { part: `J${up}`, port: 'Output1' }, toPort: { part: `J${down}`, port: 'Input1' },
     });
   }
@@ -192,8 +228,8 @@ export function generateFloorRow(req: FloorRowRequest): Layout {
       toPort: { part: `S${j}_0`, port: 'Input1' },
     });
   });
-  const outerEnd = { x: entry(mergerX[0], 1 + STUB), y: mergerY, z: portZ };
-  const portEnd = { x: entry(mergerX[0], 1), y: mergerY, z: portZ };
+  const outerEnd = { x: entry(mergerX[0], 1 + STUB), y: mergerY, z: mergerZ };
+  const portEnd = { x: entry(mergerX[0], 1), y: mergerY, z: mergerZ };
   belts.push(
     outDir === feedDir
       ? { id: 'collect0', cls: beltCls, from: outerEnd, to: portEnd, toPort: { part: 'J0', port: 'Input1' } }
@@ -201,7 +237,7 @@ export function generateFloorRow(req: FloorRowRequest): Layout {
   );
 
   // Center across the row on the 1 m grid (row.ts centers along it).
-  const ys = [...lanes.map((l) => l.y - SPLITTER_HALF), liftY - 1, mergerY + SPLITTER_HALF];
+  const ys = [...lanes.map((l) => l.y - SPLITTER_HALF), liftY - 1, mergerY + SPLITTER_HALF, below ? outLiftY + 1 : mergerY];
   const dy = -Math.round((Math.min(...ys) + Math.max(...ys)) / 2);
   const move = (v: Vec3): Vec3 => ({ ...v, y: v.y + dy });
   return {

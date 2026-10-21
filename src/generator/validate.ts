@@ -2,7 +2,7 @@
 // Returns a list of problems; empty means the layout should build without warnings.
 
 import { overlaps, portPosition, worldBoxes, type Vec3 } from './geometry';
-import { beltLength, halfSize, LIFT_REACH, liftEnd, type Belt, type Layout, type Lift } from './layout';
+import { beltLength, halfSize, LIFT_REACH, liftEnd, liftPorts, type Belt, type Layout, type Lift } from './layout';
 
 const MIN_BELT = 2;
 const BELT_HALF_WIDTH = 1;
@@ -113,9 +113,10 @@ export function validate(layout: Layout): string[] {
       const sameColumn = other.pos.x === lift.pos.x && other.pos.y === lift.pos.y;
       if (other.id > lift.id && !sameColumn && overlaps(liftBox(other), box)) problems.push(`${lift.id} overlaps ${other.id}`);
     }
+    const ends = liftPorts(lift);
     for (const [link, port] of [
-      [lift.bottomLink, 'ConveyorAny0'],
-      [lift.topLink, 'ConveyorAny1'],
+      [lift.bottomLink, ends.bottom],
+      [lift.topLink, ends.top],
     ] as const) {
       if (!link) continue;
       const part = parts.get(link.part);
