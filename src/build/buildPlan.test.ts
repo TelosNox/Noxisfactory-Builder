@@ -18,8 +18,9 @@ describe('build plan', () => {
   });
 
   it('marks recipes the generator cannot build', () => {
-    const b = buildPlan(plan({ item: 'Desc_ModularFrame_C', rate: 2 }), { designer: 4, beltTier: 3 });
-    expect(b.groups.find((g) => g.recipe === 'Recipe_ModularFrame_C')!.unsupported).toMatch(/one belt input/);
+    // Blender: two pipe inputs, not generated yet
+    const b = buildPlan(plan({ item: 'Desc_NitricAcid_C', rate: 30 }), { designer: 6, beltTier: 3 });
+    expect(b.groups.find((g) => g.recipe === 'Recipe_NitricAcid_C')!.unsupported).toBeTruthy();
   });
 });
 
@@ -30,6 +31,16 @@ describe('line limit', () => {
     expect(g.unsupported).toBeUndefined();
     expect([g.perModule, g.copies, g.maxClock]).toEqual([1, 2, 50]);
     expect(build.exact).toBe(true);
+  });
+});
+
+describe('several inputs on the ground', () => {
+  it('builds machines with several inputs on the ground with stacked lanes', () => {
+    const build = buildPlan(plan({ item: 'Desc_Computer_C', rate: 10 }), { designer: 6, beltTier: 3 });
+    const boards = build.groups.find((g) => g.recipe === 'Recipe_CircuitBoard_C')!;
+    const computers = build.groups.find((g) => g.recipe === 'Recipe_Computer_C')!;
+    expect([boards.unsupported, boards.options.floor]).toEqual([undefined, undefined]);
+    expect([computers.unsupported, computers.options.floor]).toEqual([undefined, undefined]);
   });
 });
 

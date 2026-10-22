@@ -19,6 +19,7 @@ import { BELT_SPEED, generateRow } from '../generator/row';
 import { validate } from '../generator/validate';
 import { generateChain } from '../generator/chain';
 import { generateFloorRow, type Floor } from '../generator/floor';
+import { generateStackedRow } from '../generator/stacked';
 import { generateFluidRow, hasPipes, PIPE_SPEED } from '../generator/fluidRow';
 import { addPower, type PowerMode } from '../generator/power';
 import type { Layout } from '../generator/layout';
@@ -53,7 +54,11 @@ export function moduleLayout(recipe: RecipeId, machines: number, opt: BuildOptio
     return withPower(generateFluidRow({ ...rest, recipe, machines, pipeTier: pipeTier ?? 1 }), opt);
   }
   return withPower(
-    floor ? generateFloorRow({ ...rest, recipe, machines, floor, outputOnTop }) : generateRow({ ...rest, recipe, machines }),
+    floor
+      ? generateFloorRow({ ...rest, recipe, machines, floor, outputOnTop })
+      : Object.keys(gameData.recipes[recipe].in).length > 1
+        ? generateStackedRow({ ...rest, recipe, machines })
+        : generateRow({ ...rest, recipe, machines }),
     opt,
   );
 }
