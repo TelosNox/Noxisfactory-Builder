@@ -112,7 +112,11 @@ export function validate(layout: Layout): string[] {
     const connected = new Set([belt.fromPort?.part, belt.toPort?.part]);
     const box = beltBox(belt);
     for (const { part, boxes: partBoxes } of boxes) {
-      if (!connected.has(part.id) && partBoxes.some((b) => overlaps(b, box))) {
+      // A belt may pass 2 m above a splitter or merger although it touches
+      // their soft box (tested in game, docs/geometry.md).
+      const above = /ConveyorAttachment/.test(part.cls) && Math.min(belt.from.z, belt.to.z) - part.pos.z >= 2 - 1e-6;
+      const solid = above ? partBoxes.filter((b) => b.type !== 'CT_Soft') : partBoxes;
+      if (!connected.has(part.id) && solid.some((b) => overlaps(b, box))) {
         problems.push(`${belt.id} runs through ${part.id}`);
       }
     }

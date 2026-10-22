@@ -34,6 +34,16 @@ Offen: Rezepte der Maschinen setzen, Strom (Masten), Maschinen mit mehreren Eing
 
 `src/generator/chain.ts`: mehrere Reihen in einem Bauplan. Jede Reihe wird von `row.ts` erzeugt und so verschoben, dass ihre Splitterleitung auf der Mergerleitung der vorigen liegt; die nächste Reihe beginnt 4 m nach dem letzten Merger (2-m-Band dazwischen). Stummel nur an der ersten Reihe. Nur Ausgang in gleicher Richtung. Im Spiel noch nicht getestet.
 
+## Modul „Reihe mit gestapelten Zuleitungen“
+
+`src/generator/stacked.ts`: Maschinen mit mehreren Band-Eingängen ohne Logistic Floor (Konzept: „Reihe, Zuleitungen gestapelt über den Eingängen“).
+
+- Spur 0 auf Port-Höhe (1 m), Band direkt vom Splitter in den Eingang.
+- Weitere Spuren senkrecht darüber auf 5, 7, 9 m (kürzester eingerasteter Lift 4 m, dann 2-m-Raster). Splitter-Port rastet am Kopf eines abwärts fördernden Lifts ein, der 2 m vor dem Eingang in den Port mündet.
+- Ausgang wie bei „Reihe“.
+- Validierung: Ein Band darf 2 m über einem Splitter/Merger durch dessen weiche Box laufen (`docs/geometry.md`, Splitter und Merger).
+- Im Spiel noch nicht getestet.
+
 ## Modul „Reihe auf Logistic Floor“
 
 `src/generator/floor.ts`: Maschinen auf einer Foundation-Ebene in 4, 6 oder 8 m Höhe, Zuleitungen darunter. Bauweise nach „Manufaktor Straight“ (`docs/geometry.md`, Unterboden):
