@@ -54,6 +54,8 @@ Offen: Rezepte der Maschinen setzen, Strom (Masten), Maschinen mit mehreren Eing
 - 4-m-Boden: nur eine Ebene, keine Kreuzung. Höchstens 2 Eingänge: eine Spur innen, eine außen vor der Liftreihe.
 - Ausgang standardmäßig wie die Eingänge unter dem Floor (Referenz „Fabrikator Simple“, Bananendödels), mit `outputOnTop` oben auf der Foundation wie bei „Reihe“. Unter dem Floor: Lift vom Ausgang abwärts in die Durchführung, zweiter Lift abwärts auf 1 m, Merger-Leitung längs der Reihe. Der Merger liegt unter der Ausgangskante der Maschine, wenn die Zuleitungsspuren 4 m Abstand lassen (Splitter und Merger 4 × 4 m), sonst außen vor dem Lift.
 - Nur die Durchführungen sind im Bauplan, keine Foundations (wie in der Referenz). Ketten auf Logistic Floor gibt es noch nicht.
+- **Rohre** (Raffinerie, Packager, Blender; Referenz „Raffinerie Simple“, Bananendödels): Die Maschine wird gedreht wie bei „Reihe mit Rohren“. Je Flüssigkeit eine Rohrspur auf 1,75 m, außerhalb der Bandspuren: 4 m vor den Ports, weitere Spuren je 2 m weiter außen, mit Band-Spur außen (4-m-Boden) 4 m mehr. Auf der Spur ein T-Verbinder, nach oben gekippt (roll −90°, Connection2 zeigt nach oben), darüber eine Rohr-Durchführung (`Build_FoundationPassthrough_Pipe_C`). Senkrechtes Rohr vom T-Verbinder in die Durchführung; über dem Floor 1 m senkrecht, Bogen, gerade in den Port. Die Referenz setzt die Durchführung 3 m vor den Port; 4 m halten die Rohrspur aus der Liftreihe der Nachbarmaschinen heraus.
+- Rohr-Ausgang unter dem Floor genauso, außerhalb des Mergers; mit `outputOnTop` auf der Foundation wie bei „Reihe mit Rohren“ (T-Verbinder auf 3,75 m über der Merger-Leitung).
 - CLI: `npm run generate:row -- <recipe> <machines> <designer> <tier> [left|right] [forward|reverse] [floor 0|4|6|8][u]` (`o`: Ausgang oben auf der Foundation).
 - Im Spiel noch nicht getestet. Offen: Lift-Kopf am Port bei Ports, die nicht im 1-m-Raster 2 m vor der Liftreihe liegen; Liftkosten im Kopf (1 Baurezept pro Lift angenommen).
 
@@ -61,7 +63,7 @@ Offen: Rezepte der Maschinen setzen, Strom (Masten), Maschinen mit mehreren Eing
 
 `src/generator/power.ts`, angewendet auf jedes Modul (Option `power`, Standard Strommasten Mk1):
 
-- **Strommasten:** Maschinen in Gruppen zu höchstens der Hälfte der Mast-Anschlüsse (Mk1 2, Mk2 4, Mk3 5). Pro Gruppe ein Mast auf einem freien 1-m-Rasterplatz auf der Ebene der Maschinen (Boden oder Logistic Floor). Frei heißt: keine Überlappung mit Boxen, Bändern oder Lifts. Leitungen (Mastkopf → Anschluss) dürfen nicht durch Maschinen laufen; dadurch steht der Mast auf der Seite der Stromanschlüsse (Smelter: Ausgangsseite, Constructor: Eingangsseite, Raffinerie: Ausgang; Positionen aus `data/geometry.json`). Der Mast bleibt innerhalb der Länge der Maschinenreihe, sonst schiebt er aneinandergesetzte Kopien auseinander (im Spiel beobachtet). Unter den sauberen Plätzen gewinnt der nächste am Anschluss der ersten Maschine, also am Anfang der Zuführung (wie der Spieler baut). Masten eines Moduls sind untereinander verbunden.
+- **Strommasten:** Maschinen in Gruppen zu höchstens der Hälfte der Mast-Anschlüsse (Mk1 2, Mk2 4, Mk3 5). Pro Gruppe ein Mast auf einem freien 1-m-Rasterplatz auf der Ebene der Maschinen (Boden oder Logistic Floor). Frei heißt: keine Überlappung mit Boxen, Bändern oder Lifts. Leitungen (Mastkopf → Anschluss) dürfen nicht durch Maschinen laufen; dadurch steht der Mast auf der Seite der Stromanschlüsse (Smelter und Constructor: Eingangsseite, Raffinerie: Ausgang; Positionen aus `data/geometry.json`, an Bauplänen des Spielers geprüft). Der Mast bleibt innerhalb der Länge der Maschinenreihe, sonst schiebt er aneinandergesetzte Kopien auseinander (im Spiel beobachtet). Unter den sauberen Plätzen gewinnt der nächste am Anschluss der ersten Maschine, also am Anfang der Zuführung (wie der Spieler baut). Masten eines Moduls sind untereinander verbunden.
 - **Daisy Chain:** keine Masten, jede Maschine mit der nächsten verbunden.
 - Die Zuleitung zum Modul und Verbindungen zwischen Kopien legt der Spieler.
 - Vorbild: „4er smelter LI-RO“ (TelosDesert), ein Mast Mk2 für 4 Smelter. Im Spiel noch nicht getestet. Offen: maximale Leitungslänge, ob Leitungen durch Gebäude dürfen.
@@ -69,7 +71,7 @@ Offen: Rezepte der Maschinen setzen, Strom (Masten), Maschinen mit mehreren Eing
 
 ## Modul „Reihe mit Rohren“
 
-`src/generator/fluidRow.ts`: Raffinerie und Packager, je Seite höchstens ein Band und ein Rohr. Bauweise nach „Raffinerie LI RO Straight“ (1.1 Spass), mit T-Verbindern statt Kreuzen (Spieler):
+`src/generator/fluidRow.ts`: Raffinerie, Packager und Blender auf dem Boden, am Ausgang höchstens ein Band und ein Rohr. Bauweise nach „Raffinerie LI RO Straight“ (1.1 Spass), mit T-Verbindern statt Kreuzen (Spieler):
 
 - Bandleitung auf 1 m, Rohrleitung darüber auf 3,75 m, beide auf derselben Spur 5 m vor den Ports. Abzweig: Splitter unten, T-Verbinder oben.
 - Rohr vom T-Verbinder zum Port: 1 m gerade, Bogen auf Port-Höhe, 1 m gerade. Beim Packager liegt der Rohranschluss auf 3,75 m, das Rohr bleibt gerade.
@@ -77,6 +79,8 @@ Offen: Rezepte der Maschinen setzen, Strom (Masten), Maschinen mit mehreren Eing
 - Welche Leitungen entstehen, bestimmt das Rezept: Feststoffe aufs Band, Flüssigkeiten und Gase ins Rohr.
 - Stummel für Autoconnect auf der Seite des Feed-Eingangs, auch für Rohre (Spieler: gleiche Regeln wie bei Bändern).
 - Rohrstufe Mk1 300 m³/min, Mk2 600 m³/min; Kapazität wird wie bei Bändern geprüft. Keine Pumpen.
-- Noch nicht: Blender (zwei Rohreingänge), Rohre auf dem Logistic Floor, Ketten mit Rohren. Wählt man einen Logistic Floor, baut der Planer Gruppen, die damit nicht gehen (Rohre, zu hoch für den Designer), ebenerdig und sagt das dazu.
+- Mehrere Eingänge einer Art (Blender: 2 Bänder, 2 Rohre), alle auf derselben Spur: Rohre unten, weil sie nicht steil abfallen können (1,75 m gerade in den Port, dann 3,75, 5,75 m mit Bogen); Bänder darüber ab 3,25 m über dem obersten Rohr im 2-m-Raster (Blender: 7 und 9 m), mit Lift abwärts in den Port wie bei „Reihe mit gestapelten Zuleitungen“.
+- Noch nicht: Ketten mit Rohren. Wählt man einen Logistic Floor, baut der Planer Gruppen, die damit nicht gehen (zu hoch für den Designer), ebenerdig und sagt das dazu.
+- Nicht baubar ohne Floor: Quantum Encoder und Hadron Collider (Band-Eingänge nicht in einer Linie für Lifts).
 - Die Prüfung kontrolliert jetzt auch die Höhe: harte Boxen bis zur Designerhöhe (4, 5, 6 Foundations à 8 m).
 - CLI: weiteres Argument `1|2` (Rohrstufe) nach dem Strom.

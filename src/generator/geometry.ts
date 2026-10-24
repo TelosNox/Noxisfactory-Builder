@@ -49,6 +49,22 @@ export function rotate(p: Vec3, yaw: number): Vec3 {
   }
 }
 
+/** Rotate around X (roll, multiple of 90°, before yaw): +90 turns Y into Z. */
+export function rollX(p: Vec3, roll = 0): Vec3 {
+  switch (((roll % 360) + 360) % 360) {
+    case 0:
+      return { ...p };
+    case 90:
+      return { x: p.x, y: -p.z, z: p.y };
+    case 180:
+      return { x: p.x, y: -p.y, z: -p.z };
+    case 270:
+      return { x: p.x, y: p.z, z: -p.y };
+    default:
+      throw new Error(`roll ${roll} is not a multiple of 90°`);
+  }
+}
+
 export const add = (a: Vec3, b: Vec3): Vec3 => ({ x: a.x + b.x, y: a.y + b.y, z: a.z + b.z });
 
 export interface WorldBox {
@@ -57,11 +73,11 @@ export interface WorldBox {
   max: Vec3;
 }
 
-/** Clearance boxes of a building placed at `pos` with `yaw`. */
-export function worldBoxes(cls: string, pos: Vec3, yaw: number): WorldBox[] {
+/** Clearance boxes of a building placed at `pos` with `yaw` (and `roll`, applied first). */
+export function worldBoxes(cls: string, pos: Vec3, yaw: number, roll = 0): WorldBox[] {
   return buildingGeometry(cls).clearance.map((b) => {
-    const a = add(pos, rotate({ x: b.min[0], y: b.min[1], z: b.min[2] }, yaw));
-    const c = add(pos, rotate({ x: b.max[0], y: b.max[1], z: b.max[2] }, yaw));
+    const a = add(pos, rotate(rollX({ x: b.min[0], y: b.min[1], z: b.min[2] }, roll), yaw));
+    const c = add(pos, rotate(rollX({ x: b.max[0], y: b.max[1], z: b.max[2] }, roll), yaw));
     return {
       type: b.type,
       min: { x: Math.min(a.x, c.x), y: Math.min(a.y, c.y), z: Math.min(a.z, c.z) },
@@ -71,10 +87,10 @@ export function worldBoxes(cls: string, pos: Vec3, yaw: number): WorldBox[] {
 }
 
 /** World position of a named port of a building placed at `pos` with `yaw`. */
-export function portPosition(cls: string, port: string, pos: Vec3, yaw: number): Vec3 {
+export function portPosition(cls: string, port: string, pos: Vec3, yaw: number, roll = 0): Vec3 {
   const c = buildingGeometry(cls).connections.find((x) => x.name === port);
   if (!c) throw new Error(`${cls} has no port ${port}`);
-  return add(pos, rotate({ x: c.position[0], y: c.position[1], z: c.position[2] }, yaw));
+  return add(pos, rotate(rollX({ x: c.position[0], y: c.position[1], z: c.position[2] }, roll), yaw));
 }
 
 /** Overlap with positive volume; touching faces do not count. */

@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'preact/hooks';
 import type * as Three from 'three';
 import { buildingGeometry, worldBoxes } from '../generator/geometry';
 import { wireEnd } from './Preview';
-import { FOUNDATION, halfSize, PASSTHROUGH, type Layout } from '../generator/layout';
+import { FOUNDATION, halfSize, PASSTHROUGH, PIPE_PASSTHROUGH, pipePath, type Layout } from '../generator/layout';
 import { MERGER, SPLITTER } from '../generator/row';
 
 const COLORS = {
@@ -84,10 +84,10 @@ export function Preview3D({ layout }: { layout: Layout }) {
         } else if (/PowerPole/.test(p.cls)) {
           const top = buildingGeometry(p.cls).connections.find((c) => c.kind === 'power')!.position[2];
           box({ x: p.pos.x - 0.3, y: p.pos.y - 0.3, z: p.pos.z }, { x: p.pos.x + 0.3, y: p.pos.y + 0.3, z: p.pos.z + top + 0.4 }, material(COLORS.pole));
-        } else if (p.cls === PASSTHROUGH) {
+        } else if (p.cls === PASSTHROUGH || p.cls === PIPE_PASSTHROUGH) {
           box({ x: p.pos.x - 1, y: p.pos.y - 1, z: p.pos.z - 0.55 }, { x: p.pos.x + 1, y: p.pos.y + 1, z: p.pos.z + 0.55 }, material(COLORS.passthrough));
         } else {
-          for (const b of worldBoxes(p.cls, p.pos, p.yaw).filter((b) => b.type === 'CT_Default')) {
+          for (const b of worldBoxes(p.cls, p.pos, p.yaw, p.roll).filter((b) => b.type === 'CT_Default')) {
             edges(box(b.min, b.max, material(COLORS.machine, 0.85)), 0x3d5f80);
           }
         }
@@ -111,14 +111,8 @@ export function Preview3D({ layout }: { layout: Layout }) {
 
       // Pipes: tubes, bent pipes as three pieces (straight, bend, straight).
       for (const p of layout.pipes ?? []) {
-        const stub = !(p.fromPort && p.toPort);
-        const flat = Math.hypot(p.to.x - p.from.x, p.to.y - p.from.y);
-        const along = (f: number, z: number) => ({
-          x: p.from.x + ((p.to.x - p.from.x) / flat) * f,
-          y: p.from.y + ((p.to.y - p.from.y) / flat) * f,
-          z,
-        });
-        const path = Math.abs(p.to.z - p.from.z) < 1e-6 ? [p.from, p.to] : [p.from, along(1, p.from.z), along(flat - 1, p.to.z), p.to];
+        const stub = !((p.fromPort || p.fromPassthrough) && p.toPort);
+        const path = pipePath(p);
         for (let i = 1; i < path.length; i++) {
           const a = v(path[i - 1].x, path[i - 1].y, path[i - 1].z);
           const c = v(path[i].x, path[i].y, path[i].z);

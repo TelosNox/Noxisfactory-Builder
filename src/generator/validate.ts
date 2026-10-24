@@ -2,7 +2,7 @@
 // Returns a list of problems; empty means the layout should build without warnings.
 
 import { buildingGeometry, overlaps, portPosition, worldBoxes, type Vec3 } from './geometry';
-import { beltLength, halfSize, LIFT_REACH, liftEnd, liftPorts, type Belt, type Layout, type Lift, type Pipe } from './layout';
+import { beltLength, halfSize, pipePath, LIFT_REACH, liftEnd, liftPorts, type Belt, type Layout, type Lift, type Pipe } from './layout';
 
 const MIN_BELT = 2;
 const BELT_HALF_WIDTH = 1;
@@ -49,16 +49,8 @@ export function pipeBoxes(p: Pipe) {
     min: { x: Math.min(a.x, b.x) - r, y: Math.min(a.y, b.y) - r, z: Math.min(a.z, b.z) - r },
     max: { x: Math.max(a.x, b.x) + r, y: Math.max(a.y, b.y) + r, z: Math.max(a.z, b.z) + r },
   });
-  if (Math.abs(p.from.z - p.to.z) < EPS) return [box(p.from, p.to)];
-  const length = Math.hypot(p.to.x - p.from.x, p.to.y - p.from.y);
-  const along = (from: Vec3, f: number, z: number) => ({
-    x: from.x + ((p.to.x - p.from.x) / length) * f,
-    y: from.y + ((p.to.y - p.from.y) / length) * f,
-    z,
-  });
-  const a = along(p.from, 1, p.from.z);
-  const b = along(p.from, length - 1, p.to.z);
-  return [box(p.from, a), box(a, b), box(b, p.to)];
+  const path = pipePath(p);
+  return path.slice(1).map((q, i) => box(path[i], q));
 }
 
 export function validate(layout: Layout): string[] {
@@ -66,7 +58,7 @@ export function validate(layout: Layout): string[] {
   const half = halfSize(layout);
   const parts = new Map(layout.parts.map((p) => [p.id, p]));
   const lifts = new Map((layout.lifts ?? []).map((l) => [l.id, l]));
-  const boxes = layout.parts.map((p) => ({ part: p, boxes: worldBoxes(p.cls, p.pos, p.yaw) }));
+  const boxes = layout.parts.map((p) => ({ part: p, boxes: worldBoxes(p.cls, p.pos, p.yaw, p.roll) }));
 
   // Buildings: no overlap of hard or soft boxes, inside the designer.
   for (let i = 0; i < boxes.length; i++) {
@@ -104,7 +96,7 @@ export function validate(layout: Layout): string[] {
         problems.push(`${belt.id} connects to unknown part ${ref.part}`);
         continue;
       }
-      if (!near(portPosition(part.cls, ref.port, part.pos, part.yaw), end)) {
+      if (!near(portPosition(part.cls, ref.port, part.pos, part.yaw, part.roll), end)) {
         problems.push(`${belt.id} does not end at ${ref.part}.${ref.port}`);
       }
     }
@@ -152,7 +144,7 @@ export function validate(layout: Layout): string[] {
         problems.push(`${lift.id} links to unknown part ${link.part}`);
         continue;
       }
-      const p = portPosition(part.cls, link.port, part.pos, part.yaw);
+      const p = portPosition(part.cls, link.port, part.pos, part.yaw, part.roll);
       const end = liftEnd(lift, port);
       const reach = Math.hypot(p.x - end.x, p.y - end.y);
       if (Math.abs(p.z - end.z) > EPS || Math.abs(reach - LIFT_REACH) > 0.5) {
@@ -174,12 +166,15 @@ export function validate(layout: Layout): string[] {
       if (!ref) continue;
       const part = parts.get(ref.part);
       if (!part) problems.push(`${pipe.id} connects to unknown part ${ref.part}`);
-      else if (!near(portPosition(part.cls, ref.port, part.pos, part.yaw), end)) problems.push(`${pipe.id} does not end at ${ref.part}.${ref.port}`);
+      else if (!near(portPosition(part.cls, ref.port, part.pos, part.yaw, part.roll), end)) problems.push(`${pipe.id} does not end at ${ref.part}.${ref.port}`);
     }
     const connected = new Set([pipe.fromPort?.part, pipe.toPort?.part]);
     const own = pipeBoxes(pipe);
     for (const { part, boxes: partBoxes } of boxes) {
       if (!connected.has(part.id) && partBoxes.some((b) => own.some((o) => overlaps(b, o)))) problems.push(`${pipe.id} runs through ${part.id}`);
+    }
+    for (const lift of lifts.values()) {
+      if (own.some((o) => overlaps(liftBox(lift), o))) problems.push(`${pipe.id} runs through ${lift.id}`);
     }
     for (const belt of layout.belts) {
       if (own.some((o) => overlaps(beltBox(belt), o))) problems.push(`${pipe.id} runs through ${belt.id}`);

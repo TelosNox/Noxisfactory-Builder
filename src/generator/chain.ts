@@ -64,7 +64,7 @@ export function generateChain(req: ChainRequest): Layout {
   });
 
   // Center the layout on the 1 m grid, measured on the building boxes and belt ends.
-  const boxes = parts.flatMap((p) => worldBoxes(p.cls, p.pos, p.yaw));
+  const boxes = parts.flatMap((p) => worldBoxes(p.cls, p.pos, p.yaw, p.roll));
   const xs = [...boxes.flatMap((b) => [b.min.x, b.max.x]), ...belts.flatMap((b) => [b.from.x, b.to.x])];
   const ys = [...boxes.flatMap((b) => [b.min.y, b.max.y]), ...belts.flatMap((b) => [b.from.y, b.to.y])];
   const dx = -Math.round((Math.min(...xs) + Math.max(...xs)) / 2);

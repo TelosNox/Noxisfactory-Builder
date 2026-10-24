@@ -91,14 +91,14 @@ function placePole(cls: string, group: Part[], layout: Layout): Vec3 {
   const head = buildingGeometry(cls).connections.find((c) => c.kind === 'power')!.position[2];
   const half = halfSize(layout);
   const blocked = [
-    ...layout.parts.flatMap((p) => worldBoxes(p.cls, p.pos, p.yaw)),
+    ...layout.parts.flatMap((p) => worldBoxes(p.cls, p.pos, p.yaw, p.roll)),
     ...layout.belts.map(beltBox),
     ...(layout.lifts ?? []).map(liftBox),
   ];
   // Machine bodies, shrunk a little so a wire may end on the surface of its own machine.
   const bodies = layout.parts
     .filter((p) => powerPort(p.cls))
-    .flatMap((p) => worldBoxes(p.cls, p.pos, p.yaw).filter((b) => b.type === 'CT_Default'))
+    .flatMap((p) => worldBoxes(p.cls, p.pos, p.yaw, p.roll).filter((b) => b.type === 'CT_Default'))
     .map((b) => ({
       min: { x: b.min.x + 0.3, y: b.min.y + 0.3, z: b.min.z + 0.3 },
       max: { x: b.max.x - 0.3, y: b.max.y - 0.3, z: b.max.z - 0.3 },

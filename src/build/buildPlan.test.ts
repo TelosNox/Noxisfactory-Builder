@@ -18,9 +18,9 @@ describe('build plan', () => {
   });
 
   it('marks recipes the generator cannot build', () => {
-    // Blender: two pipe inputs, not generated yet
-    const b = buildPlan(plan({ item: 'Desc_NitricAcid_C', rate: 30 }), { designer: 6, beltTier: 3 });
-    expect(b.groups.find((g) => g.recipe === 'Recipe_NitricAcid_C')!.unsupported).toBeTruthy();
+    // Quantum Encoder: belt inputs not in one line for lifts
+    const b = buildPlan({ steps: [{ recipe: 'Recipe_SuperpositionOscillator_C', machines: 1 }], resources: {}, surplus: {} }, { designer: 6, beltTier: 5, pipeTier: 2 });
+    expect(b.groups.find((g) => g.recipe === 'Recipe_SuperpositionOscillator_C')!.unsupported).toBeTruthy();
   });
 });
 

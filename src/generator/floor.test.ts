@@ -52,4 +52,25 @@ describe('logistics floor row', () => {
     const lift = layout.lifts!.find((l) => l.id === 'O0b')!;
     expect(merger.pos.y).toBeLessThan(lift.pos.y);
   });
+
+  it('builds machines with pipes on every floor, output below or on top', () => {
+    for (const [recipe, machines, designer] of [['Recipe_Plastic_C', 2, 5], ['Recipe_PackagedWater_C', 3, 4], ['Recipe_CoolingSystem_C', 2, 5]] as const) {
+      for (const floor of [4, 6, 8] as const) {
+        for (const outputOnTop of [false, true]) {
+          for (const output of ['forward', 'reverse'] as const) {
+            const layout = generateFloorRow({ recipe, machines, designer, beltTier: 3, pipeTier: 1, floor, outputOnTop, output });
+            expect(validate(layout), `${recipe} ${floor} ${outputOnTop} ${output}`).toEqual([]);
+          }
+        }
+      }
+    }
+  });
+
+  it('feeds pipes through a pipe passthrough from a junction tilted up', () => {
+    const layout = generateFloorRow({ recipe: 'Recipe_Plastic_C', machines: 1, designer: 5, beltTier: 3, pipeTier: 1, floor: 6 });
+    const t = layout.parts.find((p) => p.id === 'T0_0')!;
+    expect([t.pos.z, t.roll]).toEqual([1.75, 270]);
+    const up = layout.pipes!.filter((p) => p.fromPassthrough === 'R0_0');
+    expect(up.map((p) => p.to.z).sort()).toEqual([2.75, 7.75]);
+  });
 });
