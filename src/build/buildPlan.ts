@@ -123,8 +123,21 @@ const EPS = 1e-6;
 const MAX_ROW = 30;
 const MAX_CHAIN_COPIES = 8;
 
-/** Largest valid row for this recipe, or an error message. */
+/**
+ * Largest valid row for this recipe, or an error message. Independent of the
+ * rate, so it is cached: rate suggestions build many plans with the same rows.
+ */
+const rows = new Map<string, number | string>();
 export function maxRow(recipe: RecipeId, opt: BuildOptions): number | string {
+  const key = `${recipe}|${JSON.stringify(Object.entries(opt).sort())}`;
+  if (!rows.has(key)) {
+    if (rows.size > 2000) rows.clear();
+    rows.set(key, findMaxRow(recipe, opt));
+  }
+  return rows.get(key)!;
+}
+
+function findMaxRow(recipe: RecipeId, opt: BuildOptions): number | string {
   let best = 0;
   for (let n = 1; n <= MAX_ROW; n++) {
     let ok: boolean;
@@ -303,14 +316,16 @@ export interface RateSuggestion {
 export function suggestRates(req: PlanRequest, opt: BuildOptions, tries = 50): RateSuggestion[] {
   const unit = unitRate(planChain(req), req.rate);
   const at = (m: number): RateSuggestion | undefined => {
-    if (m <= 0) return undefined;
     const rate = m * unit;
+    // Only rates near the target are useful (half to double).
+    if (m <= 0 || rate < req.rate / 2 - EPS || rate > req.rate * 2 + EPS || Math.abs(rate - req.rate) < EPS) return undefined;
     const build = buildPlan(planChain({ ...req, rate }), opt);
     return build.exact ? { rate, build } : undefined;
   };
   const result: RateSuggestion[] = [];
   const base = req.rate / unit;
-  for (let m = Math.ceil(base - EPS) - (Number.isInteger(base) ? 1 : 0), i = 0; m > 0 && i < tries; m--, i++) {
+  // Largest multiple below the target, then the smallest above it.
+  for (let m = Math.ceil(base - EPS) - 1, i = 0; m > 0 && i < tries; m--, i++) {
     const s = at(m);
     if (s) {
       result.push(s);

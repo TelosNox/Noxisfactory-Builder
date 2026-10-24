@@ -1,6 +1,7 @@
 // Planner page: game progress, production chain (fast, on every change) and,
 // on request, the blueprints with fit check, groups and build instructions.
 
+import { Component, type ComponentChildren } from 'preact';
 import { useMemo, useState } from 'preact/hooks';
 import { gameData, type ItemId, type RecipeId } from '../planner/gameData';
 import { alternateRecipes, plan, recipesFor, standardRecipes, WATER, type Plan } from '../planner/planner';
@@ -70,10 +71,14 @@ export function App() {
   };
   // Blueprints are built on request only: generating and checking layouts is slow.
   const key = JSON.stringify([item, rate, config, supply, forced, layout, water]);
-  const build = useMemo(
-    () => ('plan' in result && requested === key ? buildPlan(result.plan, opt) : undefined),
-    [result, requested, key],
-  );
+  const build = useMemo((): BuildPlan | { error: string } | undefined => {
+    if (!('plan' in result) || requested !== key) return undefined;
+    try {
+      return buildPlan(result.plan, opt);
+    } catch (error) {
+      return { error: String((error as Error).message) };
+    }
+  }, [result, requested, key]);
   const setLayoutKey = <K extends keyof Layout>(k: K, v: Layout[K]) => setLayout({ ...layout, [k]: v });
 
   return (
@@ -103,6 +108,7 @@ export function App() {
         </label>
       </section>
 
+      <Guard reset={key}>
       {'error' in result ? (
         <p class="error">{result.error}</p>
       ) : (
@@ -153,7 +159,7 @@ export function App() {
                   </select>
                 </label>
               </div>
-              {!build && (
+              {(!build || 'error' in build) && (
                 <p>
                   <button type="button" class="primary" onClick={() => setRequested(key)}>
                     {requested ? 'Baupläne neu erzeugen' : 'Baupläne erzeugen'}
@@ -161,7 +167,8 @@ export function App() {
                 </p>
               )}
             </section>
-            {build && (
+            {build && 'error' in build && <p class="error">Baupläne: {build.error}</p>}
+            {build && !('error' in build) && (
               <BuildView
                 plan={result.plan}
                 build={build}
@@ -178,8 +185,24 @@ export function App() {
           </>
         )
       )}
+      </Guard>
     </>
   );
+}
+
+/**
+ * Catches errors while rendering the results: an uncaught error leaves Preact's
+ * DOM half updated and later renders duplicate whole sections.
+ */
+class Guard extends Component<{ reset: string; children: ComponentChildren }, { error?: string; at?: string }> {
+  state: { error?: string; at?: string } = {};
+  componentDidCatch(error: Error) {
+    this.setState({ error: String(error.message), at: this.props.reset });
+  }
+  render() {
+    if (this.state.error && this.state.at === this.props.reset) return <p class="error">Fehler: {this.state.error}</p>;
+    return this.props.children;
+  }
 }
 
 interface ChainProps {
@@ -340,7 +363,14 @@ interface BuildProps {
 
 /** Steps 2–4: fit check, groups and build instructions. */
 function BuildView({ plan, build, opt, item, rate, request, setRate }: BuildProps) {
-  const suggestions = useMemo(() => (build.exact ? [] : suggestRates({ ...request, item, rate }, opt)), [build, item, rate, opt]);
+  const suggestions = useMemo(() => {
+    if (build.exact) return [];
+    try {
+      return suggestRates({ ...request, item, rate }, opt);
+    } catch {
+      return [];
+    }
+  }, [build, item, rate, opt]);
   const unsupported = build.groups.filter((g) => g.unsupported);
   const extras = useMemo(() => byproducts(plan), [plan]);
   const letter = (recipe: string) => String.fromCharCode(65 + build.groups.findIndex((g) => g.recipe === recipe));
@@ -356,7 +386,7 @@ function BuildView({ plan, build, opt, item, rate, request, setRate }: BuildProp
         {!build.exact && (
           <p class="warn">
             Geht nicht glatt auf: Einige Maschinen laufen untertaktet.
-            {suggestions.length > 0 && ' Passende Mengen: '}
+            {suggestions.length > 0 ? ' Passende Mengen: ' : ` Keine glatte Menge zwischen ${fmt(rate / 2)} und ${fmt(rate * 2)} /min.`}
             {suggestions.map((s) => (
               <button type="button" onClick={() => setRate(s.rate)}>
                 {fmt(s.rate)} /min ({s.build.blueprints === 1 ? 'ein Bauplan' : `${s.build.blueprints} Baupläne`}, {s.build.placements}× gesetzt)
