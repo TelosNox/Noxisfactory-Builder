@@ -1,11 +1,16 @@
-// Row module for machines with pipes (Refinery, Packager): at most one belt
-// and one pipe per side, on the ground.
+// Row module for machines with pipes (Refinery, Packager, Blender) on the
+// ground: at most one belt and one pipe on the output side.
 //
 //   feed:   belt line at 1 m and pipe line at 3.75 m stacked on the same track,
 //           5 m in front of the input ports; splitter below, T junction above
 //   branch: belt from the splitter to the port; pipe from the junction 1 m
 //           straight, bend down to port height, straight into the port
 //   output: the same on the other side with mergers and T junctions
+//
+// Several inputs of a kind (Blender: 2 belts, 2 pipes), all on the same track:
+// pipes stay low because they cannot drop steeply (1.75 m straight into the
+// port, then 3.75, 5.75 m with a bend), belts go above them and come down by
+// lift into their port (stacked.ts).
 //
 // The machine is turned so that its inputs face -Y (Refinery: 180°). Stubs on
 // the feed entry side for auto-connect, pipes like belts (player). Reference:
@@ -14,7 +19,7 @@
 
 import { gameData } from '../planner/gameData';
 import { buildingGeometry, rotate, type Connection, type Vec3 } from './geometry';
-import type { Belt, Layout, Part, Pipe } from './layout';
+import { LIFT_REACH, type Belt, type Layout, type Lift, type Part, type Pipe } from './layout';
 import { BELT_SPEED, MERGER, SPLITTER, type RowRequest } from './row';
 
 export const JUNCTION = 'Build_PipelineJunction_T_C';
@@ -31,10 +36,15 @@ export interface FluidRowRequest extends RowRequest {
 export const PIPE_Z = 3.75;
 /** Distance from the ports to the track of the lines (reference). */
 const LINE_GAP = 5;
+/** Pipe port height of the machines (Refinery, Blender) and spacing of stacked lines. */
+const PORT_PIPE_Z = 1.75;
+const LEVEL_GAP = 2;
+/** Lowest belt line above the top pipe line: belt box 1 m, junction box 0.75 m, splitter box 0.8 m below. */
+const BELT_ABOVE_PIPE = 3.25;
 const STUB = 2;
 
 const flowYaw = (dir: number) => (dir > 0 ? 0 : 180);
-const isFluid = (item: string) => ['liquid', 'gas'].includes(gameData.items[item]?.form);
+export const isFluid = (item: string) => ['liquid', 'gas'].includes(gameData.items[item]?.form);
 
 export const hasPipes = (cls: string) => buildingGeometry(cls).connections.some((c) => c.kind === 'pipe');
 
@@ -54,9 +64,7 @@ export function generateFluidRow(req: FluidRowRequest): Layout {
     beltOut: count(recipe.out, false),
     pipeOut: count(recipe.out, true),
   };
-  if (need.beltIn > 1 || need.pipeIn > 1 || need.beltOut > 1 || need.pipeOut > 1) {
-    throw new Error(`${cls}: only one belt and one pipe per side are supported`);
-  }
+  if (need.beltOut > 1 || need.pipeOut > 1) throw new Error(`${cls}: only one belt and one pipe output are supported`);
   if (need.beltIn > ins.belt.length || need.pipeIn > ins.pipe.length || need.beltOut > outs.belt.length || need.pipeOut > outs.pipe.length) {
     throw new Error(`${cls}: recipe needs ports the machine does not have`);
   }
@@ -82,12 +90,12 @@ export function generateFluidRow(req: FluidRowRequest): Layout {
   const width = maxX - minX;
 
   const used = {
-    beltIn: need.beltIn ? ins.belt[0] : undefined,
-    pipeIn: need.pipeIn ? ins.pipe[0] : undefined,
+    beltIns: ins.belt.slice(0, need.beltIn).sort((a, b) => at(a).x - at(b).x),
+    pipeIns: ins.pipe.slice(0, need.pipeIn).sort((a, b) => at(a).x - at(b).x),
     beltOut: need.beltOut ? outs.belt[0] : undefined,
     pipeOut: need.pipeOut ? outs.pipe[0] : undefined,
   };
-  const inPorts = [used.beltIn, used.pipeIn].filter((c): c is Connection => !!c).map(at);
+  const inPorts = [...used.beltIns, ...used.pipeIns].map(at);
   const outPorts = [used.beltOut, used.pipeOut].filter((c): c is Connection => !!c).map(at);
   const inLineY = Math.floor(Math.min(...inPorts.map((p) => p.y))) - LINE_GAP;
   const outLineY = Math.ceil(Math.max(...outPorts.map((p) => p.y))) + LINE_GAP;
@@ -104,12 +112,22 @@ export function generateFluidRow(req: FluidRowRequest): Layout {
     return { yaw: yawJ, downstream: dir > 0 ? plusX : minusX, upstream: dir > 0 ? minusX : plusX };
   };
   const jIn = junction(true, feedDir);
+  // Heights of the input lines (see header).
+  const stacked = used.beltIns.length > 1 || used.pipeIns.length > 1;
+  const pipeZ = (k: number) => (stacked ? PORT_PIPE_Z + LEVEL_GAP * k : PIPE_Z);
+  const topPipe = used.pipeIns.length ? pipeZ(used.pipeIns.length - 1) : 0;
+  const beltZ0 = stacked ? 2 * Math.ceil((topPipe + BELT_ABOVE_PIPE - 1) / 2) + 1 : 1;
+  const laneZ = (j: number) => beltZ0 + LEVEL_GAP * j;
+  // Lift from the splitter to the port: splitter port 2 m in front of the lift top.
+  const liftY = inLineY + 1 + LIFT_REACH;
+  const liftCls = `Build_ConveyorLiftMk${req.beltTier}_C`;
   const jOut = junction(false, outDir);
 
   const parts: Part[] = [];
   const belts: Belt[] = [];
   const pipes: Pipe[] = [];
-  const xs: Record<string, number[]> = { S: [], T: [], J: [], U: [] };
+  const xs: Record<string, number[]> = { J: [], U: [] };
+  const lifts: Lift[] = [];
   const base = Math.round(-(width * req.machines) / 2 - minX);
 
   for (let i = 0; i < req.machines; i++) {
@@ -121,24 +139,35 @@ export function generateFluidRow(req: FluidRowRequest): Layout {
       const p = at(c);
       return { x: pos.x + p.x, y: p.y, z: p.z };
     };
-    if (used.beltIn) {
-      const p = world(used.beltIn);
-      xs.S.push(p.x);
-      parts.push({ id: `S${i}`, cls: SPLITTER, pos: { x: p.x, y: inLineY, z: p.z }, yaw: flowYaw(feedDir) });
-      belts.push({
-        id: `in${i}`, cls: beltCls, from: { x: p.x, y: inLineY + 1, z: p.z }, to: p,
-        fromPort: { part: `S${i}`, port: feedDir > 0 ? 'Output2' : 'Output3' }, toPort: { part: m, port: used.beltIn.name },
-      });
-    }
-    if (used.pipeIn) {
-      const p = world(used.pipeIn);
-      xs.T.push(p.x);
-      parts.push({ id: `T${i}`, cls: JUNCTION, pos: { x: p.x, y: inLineY, z: PIPE_Z }, yaw: jIn.yaw });
+    used.beltIns.forEach((input, j) => {
+      const p = world(input);
+      const z = laneZ(j);
+      const id = `S${j}_${i}`;
+      xs[`S${j}`] = [...(xs[`S${j}`] ?? []), p.x];
+      parts.push({ id, cls: SPLITTER, pos: { x: p.x, y: inLineY, z }, yaw: flowYaw(feedDir) });
+      const branch = { part: id, port: feedDir > 0 ? 'Output2' : 'Output3' };
+      if (z === p.z) {
+        belts.push({ id: `in${j}_${i}`, cls: beltCls, from: { x: p.x, y: inLineY + 1, z }, to: p, fromPort: branch, toPort: { part: m, port: input.name } });
+      } else {
+        if (Math.abs(p.y - LIFT_REACH - liftY) > 1e-6) throw new Error(`${cls}: belt input not in line for a lift`);
+        // Down lift: bottom faces the machine (+Y, yaw 90), top faces the splitter (-Y).
+        lifts.push({
+          id: `L${j}_${i}`, cls: liftCls, pos: { x: p.x, y: liftY, z: p.z }, height: z - p.z, down: true,
+          yaw: 90, topYaw: 180, topLink: branch, bottomLink: { part: m, port: input.name },
+        });
+      }
+    });
+    used.pipeIns.forEach((input, k) => {
+      const p = world(input);
+      const z = pipeZ(k);
+      const id = `T${k}_${i}`;
+      xs[`T${k}`] = [...(xs[`T${k}`] ?? []), p.x];
+      parts.push({ id, cls: JUNCTION, pos: { x: p.x, y: inLineY, z }, yaw: jIn.yaw });
       pipes.push({
-        id: `pin${i}`, cls: pipeCls, from: { x: p.x, y: inLineY + 1, z: PIPE_Z }, to: p,
-        fromPort: { part: `T${i}`, port: 'Connection2' }, toPort: { part: m, port: used.pipeIn.name },
+        id: `pin${k}_${i}`, cls: pipeCls, from: { x: p.x, y: inLineY + 1, z }, to: p,
+        fromPort: { part: id, port: 'Connection2' }, toPort: { part: m, port: input.name },
       });
-    }
+    });
     if (used.beltOut) {
       const p = world(used.beltOut);
       xs.J.push(p.x);
@@ -162,35 +191,38 @@ export function generateFluidRow(req: FluidRowRequest): Layout {
   // Lines between neighbours and stubs on the feed entry side.
   const entry = (x: number, length: number) => x - feedDir * length;
   const beltZ = (id: string) => parts.find((p) => p.id === id)!.pos.z;
-  if (used.beltIn) {
-    const z = beltZ('S0');
+  used.beltIns.forEach((_, j) => {
+    const z = laneZ(j);
+    const list = xs[`S${j}`];
     for (let i = 1; i < req.machines; i++) {
       belts.push({
-        id: `line${i}`, cls: beltCls,
-        from: { x: xs.S[i - 1] + feedDir, y: inLineY, z }, to: { x: xs.S[i] - feedDir, y: inLineY, z },
-        fromPort: { part: `S${i - 1}`, port: 'Output1' }, toPort: { part: `S${i}`, port: 'Input1' },
+        id: `line${j}_${i}`, cls: beltCls,
+        from: { x: list[i - 1] + feedDir, y: inLineY, z }, to: { x: list[i] - feedDir, y: inLineY, z },
+        fromPort: { part: `S${j}_${i - 1}`, port: 'Output1' }, toPort: { part: `S${j}_${i}`, port: 'Input1' },
       });
     }
     belts.push({
-      id: 'feed', cls: beltCls,
-      from: { x: entry(xs.S[0], 1 + STUB), y: inLineY, z }, to: { x: entry(xs.S[0], 1), y: inLineY, z },
-      toPort: { part: 'S0', port: 'Input1' },
+      id: `feed${j}`, cls: beltCls,
+      from: { x: entry(list[0], 1 + STUB), y: inLineY, z }, to: { x: entry(list[0], 1), y: inLineY, z },
+      toPort: { part: `S${j}_0`, port: 'Input1' },
     });
-  }
-  if (used.pipeIn) {
+  });
+  used.pipeIns.forEach((_, k) => {
+    const z = pipeZ(k);
+    const list = xs[`T${k}`];
     for (let i = 1; i < req.machines; i++) {
       pipes.push({
-        id: `pline${i}`, cls: pipeCls,
-        from: { x: xs.T[i - 1] + feedDir, y: inLineY, z: PIPE_Z }, to: { x: xs.T[i] - feedDir, y: inLineY, z: PIPE_Z },
-        fromPort: { part: `T${i - 1}`, port: jIn.downstream }, toPort: { part: `T${i}`, port: jIn.upstream },
+        id: `pline${k}_${i}`, cls: pipeCls,
+        from: { x: list[i - 1] + feedDir, y: inLineY, z }, to: { x: list[i] - feedDir, y: inLineY, z },
+        fromPort: { part: `T${k}_${i - 1}`, port: jIn.downstream }, toPort: { part: `T${k}_${i}`, port: jIn.upstream },
       });
     }
     pipes.push({
-      id: 'pfeed', cls: pipeCls,
-      from: { x: entry(xs.T[0], 1 + STUB), y: inLineY, z: PIPE_Z }, to: { x: entry(xs.T[0], 1), y: inLineY, z: PIPE_Z },
-      toPort: { part: 'T0', port: jIn.upstream },
+      id: `pfeed${k}`, cls: pipeCls,
+      from: { x: entry(list[0], 1 + STUB), y: inLineY, z }, to: { x: entry(list[0], 1), y: inLineY, z },
+      toPort: { part: `T${k}_0`, port: jIn.upstream },
     });
-  }
+  });
   // Output lines: neighbours in flow direction; the stub sits on the feed entry
   // side (forward: flows into the first merger, reverse: leaves there).
   const outLine = <T extends Belt | Pipe>(ids: string, list: number[], z: number, cls: string, down: string, up: string, push: (x: T) => void, prefix: string) => {
@@ -222,5 +254,6 @@ export function generateFluidRow(req: FluidRowRequest): Layout {
     parts: parts.map((p) => ({ ...p, pos: move(p.pos) })),
     belts: belts.map((b) => ({ ...b, from: move(b.from), to: move(b.to) })),
     pipes: pipes.map((p) => ({ ...p, from: move(p.from), to: move(p.to) })),
+    ...(lifts.length ? { lifts: lifts.map((l) => ({ ...l, pos: move(l.pos) })) } : {}),
   };
 }

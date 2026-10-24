@@ -4,15 +4,19 @@
 import type { Blueprint, SaveEntity } from '@etothepii/satisfactory-file-parser';
 import { gameData } from '../planner/gameData';
 import { portPosition, type Vec3 } from '../generator/geometry';
-import { beltLength, liftPorts, type Layout } from '../generator/layout';
+import { beltLength, liftPorts, pipePath, type Layout } from '../generator/layout';
 import { LEVEL_PREFIX, type SaveObject, type TemplateLibrary } from './templates';
 
 const CM = 100;
 const cm = (v: Vec3) => ({ x: v.x * CM, y: v.y * CM, z: v.z * CM });
 
-function yawQuaternion(yaw: number) {
-  const r = (yaw * Math.PI) / 360;
-  return { x: 0, y: 0, z: Math.sin(r), w: Math.cos(r) };
+function yawQuaternion(yaw: number, roll = 0) {
+  // q(yaw) * q(roll): roll around X first (+90 turns Y into Z), then yaw.
+  const a = Math.sin((yaw * Math.PI) / 360);
+  const b = Math.cos((yaw * Math.PI) / 360);
+  const c = Math.sin((roll * Math.PI) / 360);
+  const d = Math.cos((roll * Math.PI) / 360);
+  return { x: b * c, y: a * c, z: a * d, w: b * d };
 }
 
 function objectRef(target: SaveObject) {
@@ -62,7 +66,7 @@ export function layoutToBlueprint(layout: Layout, library: TemplateLibrary, name
   for (const part of layout.parts) {
     const parts = library.instantiate(part.cls, nextId++);
     (parts[0] as SaveEntity).transform = {
-      rotation: yawQuaternion(part.yaw),
+      rotation: yawQuaternion(part.yaw, part.roll),
       translation: cm(part.pos),
       scale3d: { x: 1, y: 1, z: 1 },
     };
@@ -129,27 +133,6 @@ export function layoutToBlueprint(layout: Layout, library: TemplateLibrary, name
     objects.push(...parts);
     charge(lift.cls, liftSegments(lift.height));
   }
-  // Lifts meeting in a passthrough are connected to each other and to the passthrough.
-  for (const [id, { below, above }] of passthroughEnds) {
-    if (!below || !above) throw new Error(`passthrough ${id} needs a lift below and above`);
-    connect(below, above);
-    const props = byPart.get(id)![0].properties as Record<string, any>;
-    const objectProperty = (name: string, target: SaveObject) => ({
-      type: 'ObjectProperty',
-      name,
-      propertyTagType: { name: 'ObjectProperty', children: [] },
-      value: ref(target.instanceName),
-    });
-    props.mBottomSnappedConnection = objectProperty('mBottomSnappedConnection', below);
-    props.mTopSnappedConnection = objectProperty('mTopSnappedConnection', above);
-    props.mSnappedBuildingThickness = {
-      type: 'FloatProperty',
-      name: 'mSnappedBuildingThickness',
-      propertyTagType: { name: 'FloatProperty', children: [] },
-      value: 100,
-    };
-  }
-
   for (const belt of layout.belts) {
     const parts = library.instantiate(belt.cls, nextId++);
     const entity = parts[0] as SaveEntity;
@@ -193,8 +176,23 @@ export function layoutToBlueprint(layout: Layout, library: TemplateLibrary, name
       p.properties.LeaveTangent.value = leave;
       return p;
     };
+    const v = (z: number) => ({ x: 0, y: 0, z });
     let spline;
-    if (Math.abs(d.z) < 1e-6) {
+    if (pipe.fromPassthrough && flat < 1e-6) {
+      // Straight down (or up) out of a floor passthrough.
+      spline = [point(v(0), v(Math.sign(d.z)), v(d.z / 2)), point(d, v(d.z / 2), v(Math.sign(d.z)))];
+    } else if (pipe.fromPassthrough) {
+      // Up 1 m, quarter bend to horizontal, straight into the port.
+      const r = d.z - CM;
+      const k = 1.63 * r; // tangent of a quarter circle as in the reference
+      const rest = flat - r;
+      spline = [
+        point(v(0), v(1), v(CM / 2)),
+        point(v(CM), v(CM / 2), v(k)),
+        point(h(r, d.z), h(k), h(rest / 2)),
+        point(d, h(rest / 2), h(1)),
+      ];
+    } else if (Math.abs(d.z) < 1e-6) {
       spline = [point({ x: 0, y: 0, z: 0 }, h(1), h(flat / 2)), point(d, h(flat / 2), h(1))];
     } else {
       const bend = Math.hypot(flat - 2 * CM, d.z) / 2;
@@ -208,9 +206,37 @@ export function layoutToBlueprint(layout: Layout, library: TemplateLibrary, name
     (entity.properties.mSplineData as any).values = spline;
     if (pipe.fromPort) connect(component(parts, 'PipelineConnection0'), component(byPart.get(pipe.fromPort.part)!, pipe.fromPort.port));
     if (pipe.toPort) connect(component(parts, 'PipelineConnection1'), component(byPart.get(pipe.toPort.part)!, pipe.toPort.port));
+    if (pipe.fromPassthrough) {
+      const ends = passthroughEnds.get(pipe.fromPassthrough) ?? {};
+      const side = pipe.to.z > pipe.from.z ? 'above' : 'below';
+      passthroughEnds.set(pipe.fromPassthrough, { ...ends, [side]: component(parts, 'PipelineConnection0') });
+    }
     objects.push(...parts);
-    charge(pipe.cls, pipeSegments(Math.hypot(pipe.to.x - pipe.from.x, pipe.to.y - pipe.from.y, pipe.to.z - pipe.from.z)));
+    const path = pipePath(pipe);
+    charge(pipe.cls, pipeSegments(path.slice(1).reduce((sum, q, i) => sum + Math.hypot(q.x - path[i].x, q.y - path[i].y, q.z - path[i].z), 0)));
   }
+
+  // Lifts or pipes meeting in a passthrough are connected to each other and to the passthrough.
+  for (const [id, { below, above }] of passthroughEnds) {
+    if (!below || !above) throw new Error(`passthrough ${id} needs a lift or pipe below and above`);
+    connect(below, above);
+    const props = byPart.get(id)![0].properties as Record<string, any>;
+    const objectProperty = (name: string, target: SaveObject) => ({
+      type: 'ObjectProperty',
+      name,
+      propertyTagType: { name: 'ObjectProperty', children: [] },
+      value: ref(target.instanceName),
+    });
+    props.mBottomSnappedConnection = objectProperty('mBottomSnappedConnection', below);
+    props.mTopSnappedConnection = objectProperty('mTopSnappedConnection', above);
+    props.mSnappedBuildingThickness = {
+      type: 'FloatProperty',
+      name: 'mSnappedBuildingThickness',
+      propertyTagType: { name: 'FloatProperty', children: [] },
+      value: 100,
+    };
+  }
+
 
   // Power lines: actor at the `to` end, the other end relative to it (as the game saves them).
   const wiresAt = new Map<SaveObject, SaveObject[]>();
@@ -219,7 +245,7 @@ export function layoutToBlueprint(layout: Layout, library: TemplateLibrary, name
     const entity = parts[0] as SaveEntity;
     const end = (ref: { part: string; port: string }) => {
       const part = layout.parts.find((p) => p.id === ref.part)!;
-      return cm(portPosition(part.cls, ref.port, part.pos, part.yaw));
+      return cm(portPosition(part.cls, ref.port, part.pos, part.yaw, part.roll));
     };
     const a = end(wire.from);
     const b = end(wire.to);

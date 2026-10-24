@@ -50,8 +50,12 @@ const withPower = (layout: Layout, opt: BuildOptions) =>
 export function moduleLayout(recipe: RecipeId, machines: number, opt: BuildOptions): Layout {
   const { floor, outputOnTop, power, poleTier, pipeTier, ...rest } = opt;
   if (hasPipes(gameData.recipes[recipe].machine)) {
-    if (floor) throw new Error('Rohre auf dem Logistic Floor werden noch nicht unterstützt');
-    return withPower(generateFluidRow({ ...rest, recipe, machines, pipeTier: pipeTier ?? 1 }), opt);
+    return withPower(
+      floor
+        ? generateFloorRow({ ...rest, recipe, machines, floor, outputOnTop, pipeTier: pipeTier ?? 1 })
+        : generateFluidRow({ ...rest, recipe, machines, pipeTier: pipeTier ?? 1 }),
+      opt,
+    );
   }
   return withPower(
     floor

@@ -49,3 +49,7 @@ Aus Spieler-Blueprints (TelosDesert, Bananendödels): `Build_PowerLine_C` mit `m
 ## Rohre
 
 `Build_Pipeline_C` (Mk1) und `Build_PipelineMK2_C` mit `mSplineData` wie Bänder, Anschlüsse `PipelineConnection0/1` über `mConnectedComponent`. Bögen mit vier Punkten: 1 m gerade, Bogen mit waagerechten Tangenten (Länge halbe Bogensehne, wie in der Referenz), 1 m gerade. Kosten in der Referenz grob 1 Baurezept je Rohr bis etwa 5 m; angenommen: je angefangene 6 m *(prüfen)*.
+
+Rohr-Durchführung (`Build_FoundationPassthrough_Pipe_C`, Referenz „Raffinerie Simple“): Zwei Rohre beginnen mit `PipelineConnection0` 0,25 m über bzw. unter der Mitte der Durchführung und sind dort miteinander verbunden. Die Durchführung verweist mit `mTopSnappedConnection`/`mBottomSnappedConnection` auf diese Anschlüsse, `mSnappedBuildingThickness` 100. Rohr nach oben: 1 m senkrecht, Viertelbogen (Tangente 1,63 × Radius wie in der Referenz), gerade in den Port.
+
+Gekippte Teile: `Part.roll` dreht um die X-Achse des Gebäudes vor dem Yaw; Quaternion q(yaw) · q(roll). Ein T-Verbinder mit roll −90° hat Connection2 oben (Referenz: Kreuzverbinder, der so gekippt ist).

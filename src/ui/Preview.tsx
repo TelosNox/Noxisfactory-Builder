@@ -3,17 +3,17 @@
 
 import { gameData } from '../planner/gameData';
 import { portPosition, worldBoxes } from '../generator/geometry';
-import { FOUNDATION, halfSize, PASSTHROUGH, type Layout, type PortRef } from '../generator/layout';
+import { FOUNDATION, halfSize, PASSTHROUGH, PIPE_PASSTHROUGH, type Layout, type PortRef } from '../generator/layout';
 import { MERGER, SPLITTER } from '../generator/row';
 
 const kind = (cls: string) =>
-  cls === SPLITTER ? 'splitter' : cls === MERGER ? 'merger' : cls === PASSTHROUGH ? 'passthrough' : /PowerPole/.test(cls) ? 'pole' : /Junction/.test(cls) ? 'junction' : 'machine';
+  cls === SPLITTER ? 'splitter' : cls === MERGER ? 'merger' : cls === PASSTHROUGH || cls === PIPE_PASSTHROUGH ? 'passthrough' : /PowerPole/.test(cls) ? 'pole' : /Junction/.test(cls) ? 'junction' : 'machine';
 const short = (cls: string) =>
   (gameData.machines[cls]?.name ?? cls).replace(/ Mk ?\d+$/, '');
 
 export function wireEnd(layout: Layout, ref: PortRef) {
   const part = layout.parts.find((p) => p.id === ref.part)!;
-  return portPosition(part.cls, ref.port, part.pos, part.yaw);
+  return portPosition(part.cls, ref.port, part.pos, part.yaw, part.roll);
 }
 
 export function Preview({ layout }: { layout: Layout }) {
@@ -37,7 +37,7 @@ export function Preview({ layout }: { layout: Layout }) {
         </>
       ))}
       {layout.parts.map((p) =>
-        worldBoxes(p.cls, p.pos, p.yaw).map((b) => (
+        worldBoxes(p.cls, p.pos, p.yaw, p.roll).map((b) => (
           <rect
             class={`${kind(p.cls)} ${b.type === 'CT_Soft' ? 'soft' : 'hard'}`}
             x={b.min.x}
@@ -60,7 +60,7 @@ export function Preview({ layout }: { layout: Layout }) {
         </line>
       ))}
       {(layout.pipes ?? []).map((p) => (
-        <line class={'pipe' + (p.fromPort && p.toPort ? '' : ' stub')} x1={p.from.x} y1={-p.from.y} x2={p.to.x} y2={-p.to.y}>
+        <line class={'pipe' + ((p.fromPort || p.fromPassthrough) && p.toPort ? '' : ' stub')} x1={p.from.x} y1={-p.from.y} x2={p.to.x} y2={-p.to.y}>
           <title>{p.id}</title>
         </line>
       ))}

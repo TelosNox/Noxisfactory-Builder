@@ -11,6 +11,8 @@ export interface Part {
   pos: Vec3;
   /** Rotation around Z in degrees, multiple of 90. */
   yaw: number;
+  /** Rotation around the building's X axis before `yaw`, multiple of 90 (e.g. a junction tilted up). */
+  roll?: number;
   /** Production recipe for machines (informational for now). */
   recipe?: string;
 }
@@ -60,6 +62,9 @@ export interface Lift {
 /**
  * Pipe from `from` to `to`. Pipes have no direction. If the ends differ in
  * height, the pipe runs 1 m straight at each end and bends in between.
+ * From a floor passthrough (`fromPassthrough`) it leaves vertically: straight
+ * down, or up 1 m, a bend to horizontal and straight into `to` (reference
+ * "Raffinerie Simple").
  */
 export interface Pipe {
   id: string;
@@ -68,6 +73,8 @@ export interface Pipe {
   to: Vec3;
   fromPort?: PortRef;
   toPort?: PortRef;
+  /** Pipe passthrough (part id) the `from` end sits in. */
+  fromPassthrough?: string;
 }
 
 /** Power line between two power connections (machine or pole). */
@@ -96,6 +103,23 @@ export const liftPorts = (l: Lift) =>
 
 export const liftEnd = (l: Lift, port: string): Vec3 =>
   port === liftPorts(l).top ? { ...l.pos, z: l.pos.z + l.height } : l.pos;
+
+export const PIPE_PASSTHROUGH = 'Build_FoundationPassthrough_Pipe_C';
+/** Pipe ends sit 0.25 m above and below the passthrough center. */
+export const PIPE_PASSTHROUGH_END = 0.25;
+
+/** Corner points of a pipe, for clearance and previews. */
+export function pipePath(p: Pipe): Vec3[] {
+  const flat = Math.hypot(p.to.x - p.from.x, p.to.y - p.from.y);
+  if (Math.abs(p.to.z - p.from.z) < 1e-6 || flat < 1e-6) return [p.from, p.to];
+  const along = (f: number, z: number) => ({
+    x: p.from.x + ((p.to.x - p.from.x) / flat) * f,
+    y: p.from.y + ((p.to.y - p.from.y) / flat) * f,
+    z,
+  });
+  if (p.fromPassthrough) return [p.from, { ...p.from, z: p.to.z }, p.to];
+  return [p.from, along(1, p.from.z), along(flat - 1, p.to.z), p.to];
+}
 
 export const FOUNDATION = 8;
 
