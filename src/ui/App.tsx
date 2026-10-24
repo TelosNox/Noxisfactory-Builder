@@ -1,18 +1,20 @@
-// Planner page: production chain, fit check, groups and the build instructions.
+// Planner page: game progress, production chain (fast, on every change) and,
+// on request, the blueprints with fit check, groups and build instructions.
 
 import { useMemo, useState } from 'preact/hooks';
-import { gameData, type ItemId } from '../planner/gameData';
-import { plan, standardRecipes, type Plan } from '../planner/planner';
+import { gameData, type ItemId, type RecipeId } from '../planner/gameData';
+import { alternateRecipes, plan, recipesFor, standardRecipes, WATER, type Plan } from '../planner/planner';
 import { LayoutView } from './LayoutView';
 import { FLOORS } from '../generator/floor';
-import { machinesPerPole } from '../generator/power';
 import { byproducts, type Byproduct } from '../build/byproducts';
 import { buildPlan, chainLayout, moduleLayout, suggestRates, type BuildOptions, type BuildPlan, type ChainPlan, type Group } from '../build/buildPlan';
+import { loadConfig, saveConfig, type GameConfig } from './config';
+import { ConfigPanel } from './ConfigPanel';
 
 const products: ItemId[] = [
-  ...new Set(standardRecipes().flatMap((r) => Object.keys(gameData.recipes[r].out))),
+  ...new Set([...standardRecipes(), ...alternateRecipes()].flatMap((r) => Object.keys(gameData.recipes[r].out))),
 ]
-  .filter((id) => !gameData.items[id]?.resource)
+  .filter((id) => gameData.items[id] && !gameData.items[id].resource)
   .sort((a, b) => itemName(a).localeCompare(itemName(b)));
 
 function itemName(id: ItemId) {
@@ -20,33 +22,68 @@ function itemName(id: ItemId) {
 }
 const machineName = (cls: string) => gameData.machines[cls]?.name ?? cls;
 const recipeName = (id: string) => gameData.recipes[id]?.name ?? id;
+const mainProduct = (recipe: RecipeId) => Object.keys(gameData.recipes[recipe].out)[0];
 const fmt = (n: number, digits = 2) => n.toLocaleString('de-DE', { maximumFractionDigits: digits });
 const rates = (r: Record<ItemId, number>, factor = 1) =>
   Object.entries(r).map(([item, v]) => `${fmt(v * factor)} ${itemName(item)}`).join(', ');
 
+/** Layout choices per plan; tiers and power come from the game progress. */
+type Layout = Pick<BuildOptions, 'floor' | 'outputOnTop' | 'feedFrom' | 'output'>;
+
 export function App() {
+  const [config, setConfig] = useState<GameConfig>(loadConfig);
   const [item, setItem] = useState<ItemId>('Desc_IronPlate_C');
   const [rate, setRate] = useState(60);
-  const [opt, setOpt] = useState<BuildOptions>({ designer: 4, beltTier: 1, feedFrom: 'left', output: 'forward' });
+  const [water, setWater] = useState<keyof typeof WATER>('free');
+  const [forced, setForced] = useState<RecipeId[]>([]);
+  /** Supplied items of this plan; undefined: the defaults of the game progress. */
+  const [supplied, setSupplied] = useState<ItemId[] | undefined>();
+  const [layout, setLayout] = useState<Layout>({ feedFrom: 'left', output: 'forward' });
+  const [requested, setRequested] = useState<string>();
 
-  const result = useMemo((): { plan: Plan; build: BuildPlan } | { error: string } => {
+  const changeConfig = (c: GameConfig) => {
+    setConfig(c);
+    saveConfig(c);
+  };
+  const changeItem = (id: ItemId) => {
+    setItem(id);
+    setForced([]);
+    setSupplied(undefined);
+  };
+  const supply = supplied ?? config.supplied;
+
+  const result = useMemo((): { plan: Plan } | { error: string } => {
     try {
-      const p = plan({ item, rate });
-      return { plan: p, build: buildPlan(p, opt) };
+      return { plan: plan({ item, rate, recipes: [...standardRecipes(), ...config.alternates], criterion: config.criterion, supplied: supply, forced, water: WATER[water] }) };
     } catch (error) {
       return { error: String((error as Error).message) };
     }
-  }, [item, rate, opt]);
+  }, [item, rate, config.alternates, config.criterion, supply, forced, water]);
 
-  const set = <K extends keyof BuildOptions>(key: K, value: BuildOptions[K]) => setOpt({ ...opt, [key]: value });
+  const opt: BuildOptions = {
+    designer: config.designer,
+    beltTier: config.beltTier,
+    pipeTier: config.pipeTier,
+    power: config.power,
+    poleTier: config.poleTier,
+    ...layout,
+  };
+  // Blueprints are built on request only: generating and checking layouts is slow.
+  const key = JSON.stringify([item, rate, config, supply, forced, layout, water]);
+  const build = useMemo(
+    () => ('plan' in result && requested === key ? buildPlan(result.plan, opt) : undefined),
+    [result, requested, key],
+  );
+  const setLayoutKey = <K extends keyof Layout>(k: K, v: Layout[K]) => setLayout({ ...layout, [k]: v });
 
   return (
     <>
       <h1>Noxisfactory Builder</h1>
+      <ConfigPanel config={config} onChange={changeConfig} />
       <section class="inputs">
         <label>
           Produkt
-          <select value={item} onChange={(e) => setItem(e.currentTarget.value)}>
+          <select value={item} onChange={(e) => changeItem(e.currentTarget.value)}>
             {products.map((id) => (
               <option value={id}>{itemName(id)}</option>
             ))}
@@ -57,76 +94,11 @@ export function App() {
           <input type="number" min="0" step="any" value={rate} onInput={(e) => setRate(+e.currentTarget.value)} />
         </label>
         <label>
-          Blueprint Designer
-          <select value={opt.designer} onChange={(e) => set('designer', +e.currentTarget.value)}>
-            {[4, 5, 6].map((d) => (
-              <option value={d}>Mk{d - 3} ({d}×{d} Foundations)</option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Höchste Bandstufe
-          <select value={opt.beltTier} onChange={(e) => set('beltTier', +e.currentTarget.value)}>
-            {[1, 2, 3, 4, 5, 6].map((t) => (
-              <option value={t}>Mk{t}</option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Höchste Rohrstufe
-          <select value={opt.pipeTier ?? 1} onChange={(e) => set('pipeTier', +e.currentTarget.value)}>
-            <option value={1}>Mk1 (300 m³/min)</option>
-            <option value={2}>Mk2 (600 m³/min)</option>
-          </select>
-        </label>
-        <label>
-          Logistic Floor
-          <select value={opt.floor ?? 0} onChange={(e) => set('floor', (+e.currentTarget.value || undefined) as BuildOptions['floor'])}>
-            <option value={0}>keiner</option>
-            {FLOORS.map((f) => (
-              <option value={f}>{f} m</option>
-            ))}
-          </select>
-        </label>
-        {opt.floor && (
-          <label>
-            Ausgang liegt
-            <select value={opt.outputOnTop ? 'top' : 'below'} onChange={(e) => set('outputOnTop', e.currentTarget.value === 'top')}>
-              <option value="below">unter dem Floor (wie Eingänge)</option>
-              <option value="top">auf der Foundation</option>
-            </select>
-          </label>
-        )}
-        <label>
-          Strom
-          <select value={opt.power ?? 'poles'} onChange={(e) => set('power', e.currentTarget.value as BuildOptions['power'])}>
-            <option value="poles">Strommasten</option>
-            <option value="daisy">Daisy Chain</option>
-            <option value="none">keiner</option>
-          </select>
-        </label>
-        {(opt.power ?? 'poles') === 'poles' && (
-          <label>
-            Höchste Mast-Stufe
-            <select value={opt.poleTier ?? 1} onChange={(e) => set('poleTier', +e.currentTarget.value)}>
-              {[1, 2, 3].map((t) => (
-                <option value={t}>Mk{t} ({machinesPerPole(t)} Maschinen je Mast)</option>
-              ))}
-            </select>
-          </label>
-        )}
-        <label>
-          Zuführung von
-          <select value={opt.feedFrom} onChange={(e) => set('feedFrom', e.currentTarget.value as 'left' | 'right')}>
-            <option value="left">links</option>
-            <option value="right">rechts</option>
-          </select>
-        </label>
-        <label>
-          Ausgang
-          <select value={opt.output} onChange={(e) => set('output', e.currentTarget.value as 'forward' | 'reverse')}>
-            <option value="forward">gleiche Richtung</option>
-            <option value="reverse">zurück zum Eingang</option>
+          Wasser am Bauort
+          <select value={water} onChange={(e) => setWater(e.currentTarget.value as keyof typeof WATER)}>
+            <option value="free">frei verfügbar</option>
+            <option value="normal">wie Eisenerz</option>
+            <option value="avoid">meiden</option>
           </select>
         </label>
       </section>
@@ -134,65 +106,248 @@ export function App() {
       {'error' in result ? (
         <p class="error">{result.error}</p>
       ) : (
-        rate > 0 && <Result plan={result.plan} build={result.build} opt={opt} item={item} rate={rate} setRate={setRate} />
+        rate > 0 && (
+          <>
+            <ChainView
+              plan={result.plan}
+              item={item}
+              config={config}
+              forced={forced}
+              setForced={setForced}
+              supply={supply}
+              setSupply={setSupplied}
+            />
+            <section>
+              <h2>2. Baupläne</h2>
+              <div class="inputs">
+                <label>
+                  Logistic Floor
+                  <select value={layout.floor ?? 0} onChange={(e) => setLayoutKey('floor', (+e.currentTarget.value || undefined) as Layout['floor'])}>
+                    <option value={0}>keiner</option>
+                    {FLOORS.map((f) => (
+                      <option value={f}>{f} m</option>
+                    ))}
+                  </select>
+                </label>
+                {layout.floor && (
+                  <label>
+                    Ausgang liegt
+                    <select value={layout.outputOnTop ? 'top' : 'below'} onChange={(e) => setLayoutKey('outputOnTop', e.currentTarget.value === 'top')}>
+                      <option value="below">unter dem Floor (wie Eingänge)</option>
+                      <option value="top">auf der Foundation</option>
+                    </select>
+                  </label>
+                )}
+                <label>
+                  Zuführung von
+                  <select value={layout.feedFrom} onChange={(e) => setLayoutKey('feedFrom', e.currentTarget.value as 'left' | 'right')}>
+                    <option value="left">links</option>
+                    <option value="right">rechts</option>
+                  </select>
+                </label>
+                <label>
+                  Ausgang
+                  <select value={layout.output} onChange={(e) => setLayoutKey('output', e.currentTarget.value as 'forward' | 'reverse')}>
+                    <option value="forward">gleiche Richtung</option>
+                    <option value="reverse">zurück zum Eingang</option>
+                  </select>
+                </label>
+              </div>
+              {!build && (
+                <p>
+                  <button type="button" class="primary" onClick={() => setRequested(key)}>
+                    {requested ? 'Baupläne neu erzeugen' : 'Baupläne erzeugen'}
+                  </button>
+                </p>
+              )}
+            </section>
+            {build && (
+              <BuildView
+                plan={result.plan}
+                build={build}
+                opt={opt}
+                item={item}
+                rate={rate}
+                request={{ recipes: [...standardRecipes(), ...config.alternates], criterion: config.criterion, supplied: supply, forced, water: WATER[water] }}
+                setRate={(r) => {
+                  setRate(r);
+                  setRequested(JSON.stringify([item, r, config, supply, forced, layout, water]));
+                }}
+              />
+            )}
+          </>
+        )
       )}
     </>
   );
 }
 
-interface ResultProps {
+interface ChainProps {
+  plan: Plan;
+  item: ItemId;
+  config: GameConfig;
+  forced: RecipeId[];
+  setForced: (f: RecipeId[]) => void;
+  supply: ItemId[];
+  setSupply: (s: ItemId[]) => void;
+}
+
+/** Step 1: recipes, resources, supply, alternates and by-products. */
+function ChainView({ plan, item, config, forced, setForced, supply, setSupply }: ChainProps) {
+  const extras = useMemo(() => byproducts(plan), [plan]);
+  const used = plan.steps.map((s) => s.recipe);
+  const force = (recipe: RecipeId) => setForced([...forced.filter((f) => mainProduct(f) !== mainProduct(recipe)), recipe]);
+  const release = (recipe: RecipeId) => setForced(forced.filter((f) => f !== recipe));
+  const usedAlternates = used.filter((r) => gameData.recipes[r].alternate);
+  // Unlocked alternates for products made with a standard recipe.
+  const options = used
+    .filter((r) => !gameData.recipes[r].alternate)
+    .map((r) => ({
+      recipe: r,
+      unlocked: recipesFor(mainProduct(r)).filter((a) => a !== r && config.alternates.includes(a)),
+      locked: recipesFor(mainProduct(r)).filter((a) => gameData.recipes[a].alternate && !config.alternates.includes(a)).length,
+    }))
+    .filter((o) => o.unlocked.length || o.locked);
+
+  return (
+    <section>
+      <h2>1. Produktionskette</h2>
+      <table>
+        <thead>
+          <tr><th>Rezept</th><th>Maschine</th><th class="num">Anzahl (100 %)</th><th /></tr>
+        </thead>
+        <tbody>
+          {plan.steps.map((s) => (
+            <tr>
+              <td>
+                {recipeName(s.recipe)}
+                {gameData.recipes[s.recipe].alternate && <span class="tag">Alternative</span>}
+                {forced.includes(s.recipe) && <span class="tag">erzwungen</span>}
+              </td>
+              <td>{machineName(gameData.recipes[s.recipe].machine)}</td>
+              <td class="num">{fmt(s.machines)}</td>
+              <td>
+                {mainProduct(s.recipe) !== item && (
+                  <button type="button" class="small" onClick={() => setSupply([...supply, mainProduct(s.recipe)])}>
+                    zuliefern
+                  </button>
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p>Rohstoffe: {rates(plan.resources) || '–'}</p>
+      {Object.keys(plan.supplied).length > 0 && (
+        <p>
+          Zulieferung:{' '}
+          {Object.entries(plan.supplied).map(([id, v]) => (
+            <span class="chip">
+              {fmt(v)} {itemName(id)}/min
+              <button type="button" class="small" title="selbst herstellen" onClick={() => setSupply(supply.filter((s) => s !== id))}>
+                selbst bauen
+              </button>
+            </span>
+          ))}
+        </p>
+      )}
+
+      {(usedAlternates.length > 0 || options.length > 0 || forced.length > 0) && (
+        <div class="alternates">
+          {usedAlternates.length > 0 && (
+            <p>
+              Verwendete Alternativrezepte:{' '}
+              {usedAlternates.map((r) => {
+                const standard = recipesFor(mainProduct(r)).find((s) => !gameData.recipes[s].alternate);
+                return (
+                  <span class="chip">
+                    {recipeName(r)}
+                    {forced.includes(r) ? (
+                      <button type="button" class="small" onClick={() => release(r)}>lösen</button>
+                    ) : (
+                      standard && (
+                        <button type="button" class="small" onClick={() => force(standard)}>
+                          Standard erzwingen
+                        </button>
+                      )
+                    )}
+                  </span>
+                );
+              })}
+            </p>
+          )}
+          {options.length > 0 && (
+            <p>
+              Mögliche Alternativen:{' '}
+              {options.map((o) => (
+                <span class="chip">
+                  {itemName(mainProduct(o.recipe))}:
+                  {o.unlocked.map((a) => (
+                    <button type="button" class="small" onClick={() => force(a)}>
+                      {recipeName(a)} erzwingen
+                    </button>
+                  ))}
+                  {o.locked > 0 && <span class="hint"> +{o.locked} nicht freigeschaltet</span>}
+                </span>
+              ))}
+            </p>
+          )}
+          {forced.filter((f) => !gameData.recipes[f].alternate).length > 0 && (
+            <p>
+              Erzwungene Standardrezepte:{' '}
+              {forced
+                .filter((f) => !gameData.recipes[f].alternate)
+                .map((f) => (
+                  <span class="chip">
+                    {recipeName(f)}
+                    <button type="button" class="small" onClick={() => release(f)}>lösen</button>
+                  </span>
+                ))}
+            </p>
+          )}
+        </div>
+      )}
+
+      {extras.length > 0 && (
+        <>
+          <p>Nebenprodukte:</p>
+          <ul>
+            {extras.map((b) => (
+              <li>
+                {itemName(b.item)} {fmt(b.rate)}/min aus {recipeName(b.from)}:{' '}
+                {b.to.length > 0 && `bleibt im Kreislauf (→ ${b.to.map((t) => recipeName(t.recipe)).join(', ')})`}
+                {b.to.length > 0 && b.surplus > 0 && ', '}
+                {b.surplus > 0 && <span class="warn">{fmt(b.surplus)}/min verwerten</span>}
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+      {Object.keys(plan.surplus).length > 0 && <p class="warn">Überschuss: {rates(plan.surplus)}</p>}
+    </section>
+  );
+}
+
+interface BuildProps {
   plan: Plan;
   build: BuildPlan;
   opt: BuildOptions;
   item: ItemId;
   rate: number;
+  request: Omit<Parameters<typeof plan>[0], 'item' | 'rate'>;
   setRate: (rate: number) => void;
 }
 
-function Result({ plan, build, opt, item, rate, setRate }: ResultProps) {
-  const suggestions = useMemo(() => (build.exact ? [] : suggestRates({ item, rate }, opt)), [build, item, rate, opt]);
+/** Steps 2–4: fit check, groups and build instructions. */
+function BuildView({ plan, build, opt, item, rate, request, setRate }: BuildProps) {
+  const suggestions = useMemo(() => (build.exact ? [] : suggestRates({ ...request, item, rate }, opt)), [build, item, rate, opt]);
   const unsupported = build.groups.filter((g) => g.unsupported);
   const extras = useMemo(() => byproducts(plan), [plan]);
   const letter = (recipe: string) => String.fromCharCode(65 + build.groups.findIndex((g) => g.recipe === recipe));
   return (
     <>
       <section>
-        <h2>1. Produktionskette</h2>
-        <table>
-          <thead>
-            <tr><th>Rezept</th><th>Maschine</th><th class="num">Anzahl (100 %)</th></tr>
-          </thead>
-          <tbody>
-            {build.groups.map((g) => (
-              <tr>
-                <td>{recipeName(g.recipe)}</td>
-                <td>{machineName(gameData.recipes[g.recipe].machine)}</td>
-                <td class="num">{fmt(g.machinesExact)}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <p>Rohstoffe: {rates(plan.resources) || '–'}</p>
-        {extras.length > 0 && (
-          <>
-            <p>Nebenprodukte:</p>
-            <ul>
-              {extras.map((b) => (
-                <li>
-                  {itemName(b.item)} {fmt(b.rate)}/min aus {recipeName(b.from)}:{' '}
-                  {b.to.length > 0 && `bleibt im Kreislauf (→ ${b.to.map((t) => recipeName(t.recipe)).join(', ')})`}
-                  {b.to.length > 0 && b.surplus > 0 && ', '}
-                  {b.surplus > 0 && <span class="warn">{fmt(b.surplus)}/min verwerten</span>}
-                </li>
-              ))}
-            </ul>
-          </>
-        )}
-        {Object.keys(plan.surplus).length > 0 && <p class="warn">Überschuss: {rates(plan.surplus)}</p>}
-      </section>
-
-      <section>
-        <h2>2. Passt das in einen Bauplan?</h2>
+        <h2>3. Passt das in einen Bauplan?</h2>
         <p class={build.singleBlueprint ? 'ok' : 'warn'}>
           {build.singleBlueprint
             ? 'Ja, ein Bauplan, einmal gesetzt.'
@@ -221,7 +376,7 @@ function Result({ plan, build, opt, item, rate, setRate }: ResultProps) {
       ) : (
         <>
           <section>
-            <h2>3. Gruppen</h2>
+            <h2>4. Gruppen</h2>
             <p>Eine Gruppe ist ein Bauplan mit einer Reihe gleicher Maschinen. Er wird so oft gesetzt wie angegeben.</p>
             <div class="groups">
               {build.groups.map((g, i) => (
@@ -231,8 +386,9 @@ function Result({ plan, build, opt, item, rate, setRate }: ResultProps) {
           </section>
 
           <section>
-            <h2>4. Bauanleitung</h2>
+            <h2>5. Bauanleitung</h2>
             <ol>
+              {Object.keys(plan.supplied).length > 0 && <li>Zuliefern: {rates(plan.supplied)} /min.</li>}
               {build.groups.map((g, i) => (
                 <li>{instruction(g, i, opt)}</li>
               ))}
@@ -254,7 +410,7 @@ function ChainSection({ chain, opt }: { chain: ChainPlan; opt: BuildOptions }) {
   return (
     <>
       <section>
-        <h2>3. Gruppen</h2>
+        <h2>4. Gruppen</h2>
         <p>Die ganze Kette passt in einen Bauplan: Jede Reihe speist die nächste.</p>
         <div class="groups">
           <div class="card">
@@ -272,7 +428,7 @@ function ChainSection({ chain, opt }: { chain: ChainPlan; opt: BuildOptions }) {
       </section>
 
       <section>
-        <h2>4. Bauanleitung</h2>
+        <h2>5. Bauanleitung</h2>
         <ol>
           <li>
             Bauplan A {chain.copies === 1 ? 'einmal setzen' : `${chain.copies}-mal setzen, jede Kopie mit eigener Zuleitung`}.

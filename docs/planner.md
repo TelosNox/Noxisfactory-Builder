@@ -14,15 +14,32 @@ Lineares Programm (`yalps`):
 
 - Eine Variable je Rezept: Maschinen bei 100 % Takt (gebrochen).
 - Eine Variable je Rohstoff: entnommene Menge pro Minute.
+- Eine Variable je zugeliefertem Item (Kosten 0): Der Plan nimmt es als geliefert, statt es herzustellen. Das Zielprodukt wird nie zugeliefert.
 - Je Item: Produktion − Verbrauch + Entnahme ≥ Bedarf (Ziel oder 0). Überschuss ist erlaubt und wird als Nebenprodukt ausgewiesen.
-- Ziel: Rohstoffverbrauch minimieren, alle Rohstoffe gleich gewichtet, Wasser mit 0,01. Dazu ein kleiner Term für die Maschinenzahl.
+- Ziel: Kosten nach dem gewählten Kriterium, dazu ein kleiner Term für die Maschinenzahl.
+
+## Kriterien
+
+„Optimal“ ist einstellbar (Spielstand):
+
+- **Knappe Rohstoffe schonen** (Standard): Gewicht je Rohstoff = Förderrate Eisenerz der Karte ÷ Förderrate dieses Rohstoffs (`WORLD_LIMIT` in `planner.ts`). Quelle: Satisfactory Wiki, Summen aller Vorkommen bei Miner Mk3 / Extraktoren mit 250 % *(prüfen)*.
+- **Wenig Rohstoffe**: alle Rohstoffe gleich.
+- **Wenig Maschinen**: Kosten 1 je Maschine, Rohstoffe nur als Gleichstandsregel.
+- **Wenig Strom**: Leistung je Maschine bei 100 % (bei variabler Leistung das Maximum).
+
+Wasser ist auf der Karte unbegrenzt, hängt aber davon ab, wie gut sich Extraktoren am Bauort setzen lassen (Spieler). Deshalb pro Plan: frei verfügbar (Gewicht 0,01, Standard), wie Eisenerz (1), meiden (10). Mit freiem Wasser gewinnen Rezepte wie Pure Iron Ingot fast immer.
+
+## Alternativrezepte und erzwungene Rezepte
+
+- Freigeschaltete Alternativrezepte stehen im Spielstand; der Planer darf sie zusätzlich zu den Standardrezepten nutzen und nimmt sie, wenn sie nach dem Kriterium günstiger sind.
+- Ein erzwungenes Rezept ist das einzige für sein Hauptprodukt (Alternative oder Standard). Damit lassen sich andere Varianten gezielt ausprobieren.
+- Beobachtung: Mit vielen freigeschalteten Alternativen mischt das Optimum gern Splitter-Ketten mit Bruchteilen einer Maschine ein. Abhilfe wäre eine Strafe pro verwendetem Rezept (braucht ganzzahlige Variablen); bis dahin per Erzwingen.
 
 Standardrezepte (Grundset): alle Nicht-Alternativrezepte ohne Converter-Rezepte. Mit gleichen Gewichten würde der Solver sonst SAM in Erz umwandeln, um normales Erz zu sparen.
 
 ## Offen
 
-- Gewichtung der Rohstoffe (z. B. nach Knappheit auf der Karte).
-- Ganze Maschinenzahlen und Untertakten; Ausgabe für den Generator.
+- Strafe für viele kleine Schritte (siehe oben).
 
 ## Nebenprodukte
 
