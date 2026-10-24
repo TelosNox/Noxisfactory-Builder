@@ -8,7 +8,7 @@ import { alternateRecipes, plan, recipesFor, standardRecipes, WATER, type Plan }
 import { LayoutView } from './LayoutView';
 import { FLOORS } from '../generator/floor';
 import { byproducts, type Byproduct } from '../build/byproducts';
-import { buildPlan, chainLayout, moduleLayout, suggestRates, type BuildOptions, type BuildPlan, type ChainPlan, type Group } from '../build/buildPlan';
+import { buildPlan, chainLayout, moduleLayout, wholeRates, type BuildOptions, type BuildPlan, type ChainPlan, type Group } from '../build/buildPlan';
 import { loadConfig, saveConfig, type GameConfig } from './config';
 import { ConfigPanel } from './ConfigPanel';
 
@@ -122,6 +122,8 @@ export function App() {
               setForced={setForced}
               supply={supply}
               setSupply={setSupplied}
+              rate={rate}
+              setRate={setRate}
             />
             <section>
               <h2>2. Baupläne</h2>
@@ -173,13 +175,6 @@ export function App() {
                 plan={result.plan}
                 build={build}
                 opt={opt}
-                item={item}
-                rate={rate}
-                request={{ recipes: [...standardRecipes(), ...config.alternates], criterion: config.criterion, supplied: supply, forced, water: WATER[water] }}
-                setRate={(r) => {
-                  setRate(r);
-                  setRequested(JSON.stringify([item, r, config, supply, forced, layout, water]));
-                }}
               />
             )}
           </>
@@ -213,11 +208,14 @@ interface ChainProps {
   setForced: (f: RecipeId[]) => void;
   supply: ItemId[];
   setSupply: (s: ItemId[]) => void;
+  rate: number;
+  setRate: (rate: number) => void;
 }
 
 /** Step 1: recipes, resources, supply, alternates and by-products. */
-function ChainView({ plan, item, config, forced, setForced, supply, setSupply }: ChainProps) {
+function ChainView({ plan, item, config, forced, setForced, supply, setSupply, rate, setRate }: ChainProps) {
   const extras = useMemo(() => byproducts(plan), [plan]);
+  const whole = wholeRates(plan, item, rate);
   const used = plan.steps.map((s) => s.recipe);
   const force = (recipe: RecipeId) => setForced([...forced.filter((f) => mainProduct(f) !== mainProduct(recipe)), recipe]);
   const release = (recipe: RecipeId) => setForced(forced.filter((f) => f !== recipe));
@@ -260,6 +258,16 @@ function ChainView({ plan, item, config, forced, setForced, supply, setSupply }:
           ))}
         </tbody>
       </table>
+      {whole.length > 0 && (
+        <p>
+          Ganze Maschinen bei:{' '}
+          {whole.map((w) => (
+            <button type="button" class="small" onClick={() => setRate(w.rate)}>
+              {fmt(w.rate)} /min ({recipeName(w.recipe)}: {w.machines})
+            </button>
+          ))}
+        </p>
+      )}
       <p>Rohstoffe: {rates(plan.resources) || '–'}</p>
       {Object.keys(plan.supplied).length > 0 && (
         <p>
@@ -355,22 +363,10 @@ interface BuildProps {
   plan: Plan;
   build: BuildPlan;
   opt: BuildOptions;
-  item: ItemId;
-  rate: number;
-  request: Omit<Parameters<typeof plan>[0], 'item' | 'rate'>;
-  setRate: (rate: number) => void;
 }
 
 /** Steps 2–4: fit check, groups and build instructions. */
-function BuildView({ plan, build, opt, item, rate, request, setRate }: BuildProps) {
-  const suggestions = useMemo(() => {
-    if (build.exact) return [];
-    try {
-      return suggestRates({ ...request, item, rate }, opt);
-    } catch {
-      return [];
-    }
-  }, [build, item, rate, opt]);
+function BuildView({ plan, build, opt }: BuildProps) {
   const unsupported = build.groups.filter((g) => g.unsupported);
   const extras = useMemo(() => byproducts(plan), [plan]);
   const letter = (recipe: string) => String.fromCharCode(65 + build.groups.findIndex((g) => g.recipe === recipe));
@@ -385,13 +381,7 @@ function BuildView({ plan, build, opt, item, rate, request, setRate }: BuildProp
         </p>
         {!build.exact && (
           <p class="warn">
-            Geht nicht glatt auf: Einige Maschinen laufen untertaktet.
-            {suggestions.length > 0 ? ' Passende Mengen: ' : ` Keine glatte Menge zwischen ${fmt(rate / 2)} und ${fmt(rate * 2)} /min.`}
-            {suggestions.map((s) => (
-              <button type="button" onClick={() => setRate(s.rate)}>
-                {fmt(s.rate)} /min ({s.build.blueprints === 1 ? 'ein Bauplan' : `${s.build.blueprints} Baupläne`}, {s.build.placements}× gesetzt)
-              </button>
-            ))}
+            Geht nicht glatt auf: Einige Maschinen laufen untertaktet, weil die Maschinenzahl nicht ganz ist oder sich nicht gleichmäßig auf die Kopien verteilt. Mengen mit ganzen Maschinen stehen unter der Produktionskette.
           </p>
         )}
         {unsupported.length > 0 && (

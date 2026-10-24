@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { plan } from '../planner/planner';
-import { buildPlan, suggestRates } from './buildPlan';
+import { buildPlan, wholeRates } from './buildPlan';
 
 describe('build plan', () => {
   it('splits iron plates into modules and chains', () => {
@@ -64,17 +64,29 @@ describe('chain plan', () => {
   });
 });
 
-describe('rate suggestions', () => {
-  it('offers the nearest rates that divide evenly', () => {
-    const s = suggestRates({ item: 'Desc_IronPlate_C', rate: 60 }, { designer: 4, beltTier: 1 });
-    // 1 copy of 2 + 2 makes 40/min, 2 copies make 80/min.
-    expect(s.map((x) => x.rate)).toEqual([40, 80]);
-    expect(s.every((x) => x.build.exact)).toBe(true);
+describe('whole machine rates', () => {
+  it('offers the rates where the target step runs on whole machines', () => {
+    // 50 plates/min: 2.5 constructors at 20/min each.
+    const p = plan({ item: 'Desc_IronPlate_C', rate: 50, supplied: ['Desc_IronIngot_C'] });
+    expect(wholeRates(p, 'Desc_IronPlate_C', 50).map((r) => [r.rate, r.machines])).toEqual([
+      [40, 2],
+      [60, 3],
+    ]);
   });
 
-  it('suggests one rate below and one above the target, within half to double', () => {
-    const s = suggestRates({ item: 'Desc_IronPlate_C', rate: 50, supplied: ['Desc_IronIngot_C'] }, { designer: 5, beltTier: 3 });
-    expect(s.map((x) => x.rate)).toEqual([40, 60]);
-    for (const x of s) expect(x.rate).toBeGreaterThanOrEqual(25);
+  it('includes direct predecessors but nothing further back', () => {
+    // 5 RIP/min: 1 assembler, 1.5 plate and 1.5 screw constructors (ingots supplied):
+    // whole at 10/3 and 20/3 per minute, the same for both predecessors.
+    const p = plan({ item: 'Desc_IronPlateReinforced_C', rate: 5, supplied: ['Desc_IronIngot_C'] });
+    const rates = wholeRates(p, 'Desc_IronPlateReinforced_C', 5);
+    expect(rates.map((r) => r.rate)).toEqual([10 / 3, 20 / 3]);
+    expect(rates.every((r) => ['Recipe_IronPlate_C', 'Recipe_Screw_C'].includes(r.recipe))).toBe(true);
+    const deep = plan({ item: 'Desc_IronPlateReinforced_C', rate: 5 });
+    expect(wholeRates(deep, 'Desc_IronPlateReinforced_C', 5).some((r) => r.recipe === 'Recipe_IngotIron_C')).toBe(false);
+  });
+
+  it('offers nothing when the target and its predecessors are whole', () => {
+    const p = plan({ item: 'Desc_IronPlate_C', rate: 60, supplied: ['Desc_IronIngot_C'] });
+    expect(wholeRates(p, 'Desc_IronPlate_C', 60)).toEqual([]);
   });
 });
