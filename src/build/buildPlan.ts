@@ -14,7 +14,7 @@
 // per recipe.
 
 import { gameData, ratePerMinute, type ItemId, type RecipeId } from '../planner/gameData';
-import { plan as planChain, type Plan, type PlanRequest } from '../planner/planner';
+import type { Plan } from '../planner/planner';
 import { BELT_SPEED, generateRow } from '../generator/row';
 import { validate } from '../generator/validate';
 import { generateChain } from '../generator/chain';
@@ -280,64 +280,33 @@ export function chainPlan(groups: Group[], opt: BuildOptions): ChainPlan | undef
   return undefined;
 }
 
-/** Fraction p/q close to x, denominator up to 1000. */
-function fraction(x: number): [number, number] {
-  for (let q = 1; q <= 1000; q++) {
-    const p = Math.round(x * q);
-    if (Math.abs(p / q - x) < 1e-6 * Math.max(1, x)) return [p, q];
-  }
-  return [Math.round(x * 1000), 1000];
+export interface WholeRate {
+  rate: number;
+  /** Step that runs on whole machines at this rate, and how many. */
+  recipe: RecipeId;
+  machines: number;
 }
-const gcd = (a: number, b: number): number => (b ? gcd(b, a % b) : a);
 
 /**
- * Smallest rate at which every step needs a whole number of machines at 100 %.
- * Exact rates are its multiples.
+ * Rates at which the target step or one of its direct predecessors needs a
+ * whole number of machines: the next lower and higher one per step. With the
+ * same recipes every machine count grows in proportion to the rate, so no new
+ * plan is needed. Further steps are not considered (player).
  */
-export function unitRate(plan: Plan, rate: number): number {
-  // machines_i = c_i * rate with c_i = p_i/q_i; whole for rate = k * q_i/p_i.
-  let num = 1;
-  let den = 0;
-  for (const s of plan.steps) {
-    const [p, q] = fraction(s.machines / rate);
-    if (p === 0) continue;
-    num = (num * q) / gcd(num, q); // lcm of q_i
-    den = gcd(den, p); // gcd of p_i
-  }
-  return den ? num / den : rate;
-}
-
-export interface RateSuggestion {
-  rate: number;
-  build: BuildPlan;
-}
-
-/** Nearest exact rates below and above the request, with their build plans. */
-export function suggestRates(req: PlanRequest, opt: BuildOptions, tries = 50): RateSuggestion[] {
-  const unit = unitRate(planChain(req), req.rate);
-  const at = (m: number): RateSuggestion | undefined => {
-    const rate = m * unit;
-    // Only rates near the target are useful (half to double).
-    if (m <= 0 || rate < req.rate / 2 - EPS || rate > req.rate * 2 + EPS || Math.abs(rate - req.rate) < EPS) return undefined;
-    const build = buildPlan(planChain({ ...req, rate }), opt);
-    return build.exact ? { rate, build } : undefined;
-  };
-  const result: RateSuggestion[] = [];
-  const base = req.rate / unit;
-  // Largest multiple below the target, then the smallest above it.
-  for (let m = Math.ceil(base - EPS) - 1, i = 0; m > 0 && i < tries; m--, i++) {
-    const s = at(m);
-    if (s) {
-      result.push(s);
-      break;
+export function wholeRates(plan: Plan, item: ItemId, rate: number): WholeRate[] {
+  const main = (recipe: RecipeId) => Object.keys(gameData.recipes[recipe].out)[0];
+  const finals = plan.steps.filter((s) => main(s.recipe) === item);
+  const inputs = new Set(finals.flatMap((s) => Object.keys(gameData.recipes[s.recipe].in)));
+  const before = plan.steps.filter((s) => !finals.includes(s) && inputs.has(main(s.recipe)));
+  const result: WholeRate[] = [];
+  for (const s of [...finals, ...before]) {
+    const perRate = s.machines / rate;
+    if (perRate <= 0 || Math.abs(s.machines - Math.round(s.machines)) < 1e-6) continue;
+    for (const machines of [Math.floor(s.machines), Math.ceil(s.machines)]) {
+      if (machines < 1) continue;
+      const r = machines / perRate;
+      if (!result.some((x) => Math.abs(x.rate - r) < 1e-6)) result.push({ rate: r, recipe: s.recipe, machines });
     }
   }
-  for (let m = Math.floor(base + EPS) + 1, i = 0; i < tries; m++, i++) {
-    const s = at(m);
-    if (s) {
-      result.push(s);
-      break;
-    }
-  }
-  return result;
+  return result.sort((a, b) => a.rate - b.rate);
 }

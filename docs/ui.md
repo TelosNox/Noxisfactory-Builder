@@ -21,7 +21,8 @@ Zwei Schritte: Die Produktionskette rechnet bei jeder Änderung neu (nur das LP,
 ## Rechnung je Gruppe
 
 - Maschinen pro Bauplan: größte Reihe, die in den Designer passt und deren Bänder reichen (Generator + Prüfung).
-- Kopien: benötigte Maschinen ÷ Maschinen pro Bauplan, aufgerundet. Alle Kopien sind gleich, Ziel sind möglichst wenige Kopien (am besten ein Bauplan, einmal gesetzt). Geht die Zahl der Maschinen nicht glatt auf, wird untertaktet, damit die Menge stimmt (kein Übertakten). Die Seite weist dann darauf hin und schlägt die nächstniedrigere und die nächsthöhere Menge vor, bei der alle Maschinen mit 100 % laufen. Grundlage ist die kleinste Menge, bei der jeder Schritt ganze Maschinen braucht (`unitRate`); geprüft werden deren Vielfache.
+- Kopien: benötigte Maschinen ÷ Maschinen pro Bauplan, aufgerundet. Alle Kopien sind gleich, Ziel sind möglichst wenige Kopien (am besten ein Bauplan, einmal gesetzt). Geht die Zahl der Maschinen nicht glatt auf, wird untertaktet, damit die Menge stimmt (kein Übertakten). Die Seite weist dann darauf hin.
+- Mengen mit ganzen Maschinen (`wholeRates`, schon im Rezeptschritt): je Schritt die nächstniedrigere und nächsthöhere Menge, bei der die Zielmaschine oder eine direkte Vorstufe ganze Maschinen braucht. Bei gleicher Rezeptwahl wachsen alle Maschinenzahlen proportional zur Menge, das braucht keine neue Rechnung. Weiter zurück wird nicht gesucht (Spieler): Mit Alternativrezepten geht fast nie die ganze Kette glatt auf. Ob sich die Maschinen gleichmäßig auf die Kopien verteilen, bleibt dabei unberücksichtigt.
 - Stränge: Kopien, die per Autoconnect am Ende der Zuführung angehängt werden, teilen sich Zuleitung und Ausgang. Ein Strang trägt höchstens ein Band; was darüber liegt, bekommt einen eigenen Strang mit eigener Zuleitung.
 - Stufe: längster Weg von den Rohstoffen, bestimmt die Reihenfolge der Bauanleitung.
 
