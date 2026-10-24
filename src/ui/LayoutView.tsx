@@ -22,9 +22,16 @@ function use3D(active: boolean): View3D | undefined {
 }
 
 export function LayoutView({ make, deps }: { make: () => Layout; deps: unknown[] }) {
-  const layout = useMemo(make, deps);
+  const layout = useMemo(() => {
+    try {
+      return make();
+    } catch (error) {
+      return String((error as Error).message);
+    }
+  }, deps);
   const [mode, setMode] = useState<'2d' | '3d'>('2d');
   const View3D = use3D(mode === '3d');
+  if (typeof layout === 'string') return <p class="warn">Vorschau: {layout}</p>;
   return (
     <div>
       <div class="switch">

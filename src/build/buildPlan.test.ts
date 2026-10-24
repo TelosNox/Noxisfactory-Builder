@@ -71,4 +71,10 @@ describe('rate suggestions', () => {
     expect(s.map((x) => x.rate)).toEqual([40, 80]);
     expect(s.every((x) => x.build.exact)).toBe(true);
   });
+
+  it('suggests one rate below and one above the target, within half to double', () => {
+    const s = suggestRates({ item: 'Desc_IronPlate_C', rate: 50, supplied: ['Desc_IronIngot_C'] }, { designer: 5, beltTier: 3 });
+    expect(s.map((x) => x.rate)).toEqual([40, 60]);
+    for (const x of s) expect(x.rate).toBeGreaterThanOrEqual(25);
+  });
 });
