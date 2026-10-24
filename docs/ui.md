@@ -2,12 +2,21 @@
 
 Eine Seite (`src/ui/App.tsx`, Preact), alles läuft im Browser. Die Rechnung liegt in `src/build/buildPlan.ts` und ist ohne UI testbar.
 
+## Spielstand
+
+Einmal festgelegt und jederzeit änderbar (`src/ui/config.ts`, `ConfigPanel.tsx`), gespeichert im `localStorage` des Browsers: größter Designer, höchste Band-, Rohr- und Maststufe, Strom (Masten, Daisy Chain, keiner), freigeschaltete Alternativrezepte, Items, die immer zugeliefert werden (Standard: Ingots), und das Kriterium für das optimale Rezept.
+
 ## Ablauf
 
-1. **Produktionskette**: Planer (`docs/planner.md`) mit Produkt und Menge. Gezeigt werden Rezepte, Maschinen bei 100 %, Rohstoffe und Überschuss.
-2. **Passt das in einen Bauplan?** Ja, wenn die ganze Kette als Ketten-Modul (`src/generator/chain.ts`) in den Designer passt und eine Kopie reicht. Rezepte, die der Generator noch nicht kann, werden mit Grund genannt.
-3. **Gruppen**: ein Bauplan pro Rezept, eine Reihe gleicher Maschinen (Modul „Reihe“, `docs/generator.md`).
-4. **Bauanleitung** (Meta-Bauplan): Reihenfolge von den Rohstoffen zum Produkt, wie oft jeder Bauplan gesetzt wird und wie die Kopien zusammenhängen.
+Zwei Schritte: Die Produktionskette rechnet bei jeder Änderung neu (nur das LP, schnell). Baupläne entstehen erst auf „Baupläne erzeugen“, weil Generator und Prüfung je Gruppe viele Layouts durchprobieren. Ändert sich danach etwas, verschwinden die Baupläne, bis man neu erzeugt.
+
+1. **Produktionskette**: Planer (`docs/planner.md`) mit Produkt, Menge und Wasser am Bauort. Gezeigt werden Rezepte (Alternativen und erzwungene markiert), Maschinen bei 100 %, Rohstoffe, Zulieferung mit Mengen, Nebenprodukte und Überschuss.
+   - Zulieferung: Jeder Zwischenschritt lässt sich auf „zuliefern“ stellen, jede Zulieferung auf „selbst bauen“. Gilt für diesen Plan; beim Produktwechsel gelten wieder die Standards.
+   - Verwendete Alternativrezepte stehen gesondert, mit „Standard erzwingen“. Für Schritte mit Standardrezept die freigeschalteten Alternativen fürs selbe Produkt mit „erzwingen“, dazu die Zahl der nicht freigeschalteten. Erzwungenes lässt sich lösen.
+2. **Baupläne**: Logistic Floor, Zuführung, Ausgangsrichtung, dann der Knopf.
+3. **Passt das in einen Bauplan?** Ja, wenn die ganze Kette als Ketten-Modul (`src/generator/chain.ts`) in den Designer passt und eine Kopie reicht. Rezepte, die der Generator noch nicht kann, werden mit Grund genannt.
+4. **Gruppen**: ein Bauplan pro Rezept, eine Reihe gleicher Maschinen (Modul „Reihe“, `docs/generator.md`).
+5. **Bauanleitung** (Meta-Bauplan): Zulieferung, Reihenfolge von den Rohstoffen zum Produkt, wie oft jeder Bauplan gesetzt wird und wie die Kopien zusammenhängen.
 
 ## Rechnung je Gruppe
 
@@ -26,7 +35,6 @@ Bilden die Schritte eine gerade Linie (jeder Schritt verarbeitet nur das Produkt
 - Ketten-Modul im Spiel testen.
 - Verbindungen zwischen den Gruppen (welcher Ausgang speist welchen Strang).
 - Blueprint-Download: braucht Vorlagen aus Spieler-Blueprints, die nicht im Repo liegen.
-- Auswahl von Alternativrezepten, Mast-Stufe, Daisy Chain.
 
 ## Vorschau
 

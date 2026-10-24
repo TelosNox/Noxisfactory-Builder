@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { plan } from './planner';
+import { alternateRecipes, plan, standardRecipes } from './planner';
 
 const machines = (p: ReturnType<typeof plan>, recipe: string) =>
   p.steps.find((s) => s.recipe === recipe)?.machines ?? 0;
@@ -41,5 +41,27 @@ describe('planner', () => {
 
   it('rejects unknown items', () => {
     expect(() => plan({ item: 'Desc_Nothing_C', rate: 1 })).toThrow();
+  });
+
+  it('takes supplied items as delivered, except the target', () => {
+    const p = plan({ item: 'Desc_ModularFrame_C', rate: 10, supplied: ['Desc_IronIngot_C', 'Desc_ModularFrame_C'] });
+    expect(machines(p, 'Recipe_IngotIron_C')).toBe(0);
+    expect(p.supplied.Desc_IronIngot_C).toBeCloseTo(240);
+    expect(p.resources).toEqual({});
+    expect(machines(p, 'Recipe_ModularFrame_C')).toBeCloseTo(5);
+  });
+
+  it('uses a forced recipe for its product', () => {
+    const p = plan({ item: 'Desc_IronPlateReinforced_C', rate: 10, forced: ['Recipe_Alternate_Screw_C'] });
+    expect(machines(p, 'Recipe_Alternate_Screw_C')).toBeGreaterThan(0);
+    expect(machines(p, 'Recipe_Screw_C')).toBe(0);
+  });
+
+  it('weighs rare resources more with the scarcity criterion', () => {
+    const recipes = [...standardRecipes(), ...alternateRecipes()];
+    const rare = plan({ item: 'Desc_ModularFrame_C', rate: 10, recipes, criterion: 'scarcity' });
+    const few = plan({ item: 'Desc_ModularFrame_C', rate: 10, recipes, criterion: 'machines' });
+    const count = (q: typeof rare) => q.steps.reduce((sum, s) => sum + s.machines, 0);
+    expect(count(few)).toBeLessThan(count(rare));
   });
 });
