@@ -17,6 +17,11 @@ export interface GameConfig {
   /** Items always delivered from outside, unless they are the product itself. */
   supplied: ItemId[];
   criterion: Criterion;
+  /** Extra cost per recipe used, share of the plan's cost (planner stepPenalty). */
+  stepPenalty: number;
+  /** Extra cost per machine and per MW, iron ore/min. */
+  machineCost: number;
+  powerCost: number;
 }
 
 /** Ingots usually come from a central smelter (player). */
@@ -37,6 +42,9 @@ export const DEFAULT_CONFIG: GameConfig = {
   alternates: [],
   supplied: DEFAULT_SUPPLIED,
   criterion: 'scarcity',
+  stepPenalty: 0.01,
+  machineCost: 0,
+  powerCost: 0,
 };
 
 const KEY = 'noxisfactory.config';

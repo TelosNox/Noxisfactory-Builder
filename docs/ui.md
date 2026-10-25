@@ -4,7 +4,7 @@ Eine Seite (`src/ui/App.tsx`, Preact), alles läuft im Browser. Die Rechnung lie
 
 ## Spielstand
 
-Einmal festgelegt und jederzeit änderbar (`src/ui/config.ts`, `ConfigPanel.tsx`), gespeichert im `localStorage` des Browsers: größter Designer, höchste Band-, Rohr- und Maststufe, Strom (Masten, Daisy Chain, keiner), freigeschaltete Alternativrezepte, Items, die immer zugeliefert werden (Standard: Ingots), und das Kriterium für das optimale Rezept.
+Einmal festgelegt und jederzeit änderbar (`src/ui/config.ts`, `ConfigPanel.tsx`), gespeichert im `localStorage` des Browsers: größter Designer, höchste Band-, Rohr- und Maststufe, Strom (Masten, Daisy Chain, keiner), freigeschaltete Alternativrezepte, Items, die immer zugeliefert werden (Standard: Ingots), und das Kriterium für das optimale Rezept, dazu Aufschläge je Maschine und MW und wie stark kleine Nebenketten vermieden werden.
 
 Aus Spielstand übernehmen (`src/ui/savegame.ts`): Eine `.sav`-Datei wird im Browser gelesen (Web Worker, `saveWorker.ts`, Parser `@etothepii/satisfactory-file-parser`), nichts wird hochgeladen. Der Rezept-Manager im Spielstand (`FGRecipeManager`, ältere Stände `BP_RecipeManager_C`, Eigenschaft `mAvailableRecipes`) listet alle freigeschalteten Rezepte, Baurezepte eingeschlossen. Daraus: Designer (`Recipe_BlueprintDesigner_C`, `_Mk2_C`, `_Mk3_C`), Band (`Recipe_ConveyorBeltMk1_C` … `Mk6`), Rohr (`Recipe_PipelineMK2_C`), Masten (`Recipe_PowerPoleMk1_C` … `Mk3`) und die Alternativrezepte. Strom, Zulieferungen und Kriterium bleiben, wie sie sind. Idee nach SatisfactoryTools (MIT), eigene Umsetzung.
 
@@ -12,7 +12,7 @@ Aus Spielstand übernehmen (`src/ui/savegame.ts`): Eine `.sav`-Datei wird im Bro
 
 Zwei Schritte: Die Produktionskette rechnet bei jeder Änderung neu (nur das LP, schnell). Baupläne entstehen erst auf „Baupläne erzeugen“, weil Generator und Prüfung je Gruppe viele Layouts durchprobieren. Ändert sich danach etwas, verschwinden die Baupläne, bis man neu erzeugt.
 
-1. **Produktionskette**: Planer (`docs/planner.md`) mit Produkt, Menge und Wasser am Bauort. Gezeigt werden Rezepte (Alternativen und erzwungene markiert), Maschinen bei 100 %, Rohstoffe, Zulieferung mit Mengen, Nebenprodukte und Überschuss.
+1. **Produktionskette**: Planer (`docs/planner.md`) mit Produkt, Menge (oder „so viel wie verfügbar“) und Wasser am Bauort. „Verfügbar am Bauort“ setzt Höchstmengen für die Rohstoffe und Zulieferungen des Plans; scheitert ein Plan, bleiben die Felder des letzten Plans und die in der Meldung genannten stehen. Gezeigt werden Rezepte (Alternativen und erzwungene markiert), Maschinen bei 100 %, Rohstoffe, Zulieferung mit Mengen, Nebenprodukte und Überschuss.
    - Zulieferung: Jeder Zwischenschritt lässt sich auf „zuliefern“ stellen, jede Zulieferung auf „selbst bauen“. Gilt für diesen Plan; beim Produktwechsel gelten wieder die Standards.
    - Verwendete Alternativrezepte stehen gesondert, mit „Standard erzwingen“. Für Schritte mit Standardrezept die freigeschalteten Alternativen fürs selbe Produkt mit „erzwingen“, dazu die Zahl der nicht freigeschalteten. Erzwungenes lässt sich lösen.
 2. **Baupläne**: Logistic Floor, Zuführung, Ausgangsrichtung, dann der Knopf.

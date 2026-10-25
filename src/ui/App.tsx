@@ -2,9 +2,9 @@
 // on request, the blueprints with fit check, groups and build instructions.
 
 import { Component, type ComponentChildren } from 'preact';
-import { useMemo, useState } from 'preact/hooks';
+import { useMemo, useRef, useState } from 'preact/hooks';
 import { gameData, type ItemId, type RecipeId } from '../planner/gameData';
-import { alternateRecipes, plan, recipesFor, standardRecipes, WATER, type Plan } from '../planner/planner';
+import { alternateRecipes, plan, PlanError, recipesFor, standardRecipes, WATER, type Plan } from '../planner/planner';
 import { LayoutView } from './LayoutView';
 import { FLOORS } from '../generator/floor';
 import { byproducts, type Byproduct } from '../build/byproducts';
@@ -36,6 +36,9 @@ export function App() {
   const [item, setItem] = useState<ItemId>('Desc_IronPlate_C');
   const [rate, setRate] = useState(60);
   const [water, setWater] = useState<keyof typeof WATER>('free');
+  /** Upper limits at the build site (raw resources, supplied items). */
+  const [available, setAvailable] = useState<Record<ItemId, number>>({});
+  const [maximize, setMaximize] = useState(false);
   const [forced, setForced] = useState<RecipeId[]>([]);
   /** Supplied items of this plan; undefined: the defaults of the game progress. */
   const [supplied, setSupplied] = useState<ItemId[] | undefined>();
@@ -53,13 +56,36 @@ export function App() {
   };
   const supply = supplied ?? config.supplied;
 
-  const result = useMemo((): { plan: Plan } | { error: string } => {
+  const result = useMemo((): { plan: Plan } | { error: string; items?: ItemId[] } => {
     try {
-      return { plan: plan({ item, rate, recipes: [...standardRecipes(), ...config.alternates], criterion: config.criterion, supplied: supply, forced, water: WATER[water] }) };
+      return {
+        plan: plan({
+          item,
+          rate,
+          recipes: [...standardRecipes(), ...config.alternates],
+          criterion: config.criterion,
+          supplied: supply,
+          forced,
+          water: WATER[water],
+          available,
+          maximize,
+          stepPenalty: config.stepPenalty,
+          machineCost: config.machineCost,
+          powerCost: config.powerCost,
+        }),
+      };
     } catch (error) {
-      return { error: String((error as Error).message) };
+      return { error: String((error as Error).message), items: error instanceof PlanError ? error.items : undefined };
     }
-  }, [item, rate, config.alternates, config.criterion, supply, forced, water]);
+  }, [item, rate, config, supply, forced, water, available, maximize]);
+  const target = 'plan' in result ? result.plan.rate : rate;
+  // The limits stay editable when a plan fails: show the inputs of the last plan.
+  const lastPlan = useRef<Plan | undefined>(undefined);
+  if ('plan' in result) lastPlan.current = result.plan;
+  const pickRate = (r: number) => {
+    setMaximize(false);
+    setRate(r);
+  };
 
   const opt: BuildOptions = {
     designer: config.designer,
@@ -70,7 +96,7 @@ export function App() {
     ...layout,
   };
   // Blueprints are built on request only: generating and checking layouts is slow.
-  const key = JSON.stringify([item, rate, config, supply, forced, layout, water]);
+  const key = JSON.stringify([item, rate, config, supply, forced, layout, water, available, maximize]);
   const build = useMemo((): BuildPlan | { error: string } | undefined => {
     if (!('plan' in result) || requested !== key) return undefined;
     try {
@@ -96,7 +122,18 @@ export function App() {
         </label>
         <label>
           Menge / min
-          <input type="number" min="0" step="any" value={rate} onInput={(e) => setRate(+e.currentTarget.value)} />
+          <input
+            type="number"
+            min="0"
+            step="any"
+            value={maximize ? Math.round(target * 100) / 100 : rate}
+            disabled={maximize}
+            onInput={(e) => setRate(+e.currentTarget.value)}
+          />
+        </label>
+        <label class="inline">
+          <input type="checkbox" checked={maximize} onChange={(e) => setMaximize(e.currentTarget.checked)} />
+          so viel wie verfügbar
         </label>
         <label>
           Wasser am Bauort
@@ -107,12 +144,13 @@ export function App() {
           </select>
         </label>
       </section>
+      <LimitsView plan={lastPlan.current} extra={'items' in result ? result.items : undefined} available={available} setAvailable={setAvailable} />
 
       <Guard reset={key}>
       {'error' in result ? (
         <p class="error">{result.error}</p>
       ) : (
-        rate > 0 && (
+        target > 0 && (
           <>
             <ChainView
               plan={result.plan}
@@ -122,8 +160,8 @@ export function App() {
               setForced={setForced}
               supply={supply}
               setSupply={setSupplied}
-              rate={rate}
-              setRate={setRate}
+              rate={target}
+              setRate={pickRate}
             />
             <section>
               <h2>2. Baupläne</h2>
@@ -182,6 +220,45 @@ export function App() {
       )}
       </Guard>
     </>
+  );
+}
+
+interface LimitsProps {
+  plan?: Plan;
+  /** Inputs a failed plan names. */
+  extra?: ItemId[];
+  available: Record<ItemId, number>;
+  setAvailable: (a: Record<ItemId, number>) => void;
+}
+
+/** Upper limits at the build site for the raw resources and supplied items of the plan. */
+function LimitsView({ plan, extra, available, setAvailable }: LimitsProps) {
+  const used = { ...plan?.resources, ...plan?.supplied };
+  const ids = [...new Set([...Object.keys(available), ...Object.keys(used), ...(extra ?? [])])].sort((a, b) => itemName(a).localeCompare(itemName(b)));
+  if (ids.length === 0) return null;
+  const change = (id: ItemId, value: string) => {
+    const next = { ...available };
+    if (value === '' || !(+value >= 0)) delete next[id];
+    else next[id] = +value;
+    setAvailable(next);
+  };
+  return (
+    <details class="limits" open={Object.keys(available).length > 0}>
+      <summary>
+        Verfügbar am Bauort
+        {Object.keys(available).length > 0 && `: ${Object.entries(available).map(([id, v]) => `${fmt(v)} ${itemName(id)}`).join(', ')}`}
+      </summary>
+      <p class="hint">Höchstens so viel pro Minute; leer heißt unbegrenzt.</p>
+      <div class="inputs">
+        {ids.map((id) => (
+          <label>
+            {itemName(id)}
+            {used[id] !== undefined && <span class="hint"> (braucht {fmt(used[id])})</span>}
+            <input type="number" min="0" step="any" placeholder="unbegrenzt" value={available[id] ?? ''} onChange={(e) => change(id, e.currentTarget.value)} />
+          </label>
+        ))}
+      </div>
+    </details>
   );
 }
 

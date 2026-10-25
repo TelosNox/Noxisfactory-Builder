@@ -26,6 +26,13 @@ export const CRITERIA: { value: Criterion; label: string }[] = [
   { value: 'power', label: 'Wenig Strom' },
 ];
 
+export const STEP_PENALTIES = [
+  { value: 0, label: 'aus' },
+  { value: 0.01, label: 'leicht (1 % je Rezept)' },
+  { value: 0.03, label: 'mittel (3 %)' },
+  { value: 0.1, label: 'stark (10 %)' },
+];
+
 export function ConfigPanel({ config, onChange }: { config: GameConfig; onChange: (c: GameConfig) => void }) {
   const set = <K extends keyof GameConfig>(key: K, value: GameConfig[K]) => onChange({ ...config, [key]: value });
   const toggle = (list: string[], id: string, on: boolean) => (on ? [...list, id] : list.filter((x) => x !== id));
@@ -115,6 +122,22 @@ export function ConfigPanel({ config, onChange }: { config: GameConfig; onChange
               <option value={c.value}>{c.label}</option>
             ))}
           </select>
+        </label>
+        <label>
+          Kleine Nebenketten vermeiden
+          <select value={config.stepPenalty} onChange={(e) => set('stepPenalty', +e.currentTarget.value)}>
+            {STEP_PENALTIES.map((p) => (
+              <option value={p.value}>{p.label}</option>
+            ))}
+          </select>
+        </label>
+        <label>
+          Aufschlag je Maschine (Erz/min)
+          <input type="number" min="0" step="any" value={config.machineCost} onInput={(e) => set('machineCost', Math.max(0, +e.currentTarget.value || 0))} />
+        </label>
+        <label>
+          Aufschlag je MW (Erz/min)
+          <input type="number" min="0" step="any" value={config.powerCost} onInput={(e) => set('powerCost', Math.max(0, +e.currentTarget.value || 0))} />
         </label>
       </div>
 
