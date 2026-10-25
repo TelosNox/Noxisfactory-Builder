@@ -5,6 +5,7 @@ import { gameData, type ItemId } from '../planner/gameData';
 import { alternateRecipes, type Criterion } from '../planner/planner';
 import { machinesPerPole } from '../generator/power';
 import { DEFAULT_SUPPLIED, type GameConfig } from './config';
+import { progressFromRecipes, readSave } from './savegame';
 
 const itemName = (id: ItemId) => gameData.items[id]?.name ?? id;
 const mainProduct = (recipe: string) => Object.keys(gameData.recipes[recipe].out)[0];
@@ -30,8 +31,24 @@ export function ConfigPanel({ config, onChange }: { config: GameConfig; onChange
   const toggle = (list: string[], id: string, on: boolean) => (on ? [...list, id] : list.filter((x) => x !== id));
   const [altFilter, setAltFilter] = useState('');
   const [supFilter, setSupFilter] = useState('');
+  const [saveStatus, setSaveStatus] = useState<{ text: string; error?: boolean }>();
   const alts = ALTERNATES.filter((a) => a.label.toLowerCase().includes(altFilter.toLowerCase()));
   const sups = SUPPLIABLE.filter((id) => itemName(id).toLowerCase().includes(supFilter.toLowerCase()));
+
+  const importSave = async (file: File | undefined) => {
+    if (!file) return;
+    setSaveStatus({ text: `Lese ${file.name} …` });
+    try {
+      const unlocks = await readSave(file);
+      const progress = progressFromRecipes(unlocks.recipes);
+      onChange({ ...config, ...progress });
+      setSaveStatus({
+        text: `Übernommen aus „${unlocks.sessionName ?? file.name}“: Designer Mk${progress.designer - 3}, Band Mk${progress.beltTier}, Rohr Mk${progress.pipeTier}, Masten Mk${progress.poleTier}, ${progress.alternates.length} Alternativrezepte.`,
+      });
+    } catch (error) {
+      setSaveStatus({ text: String((error as Error).message), error: true });
+    }
+  };
 
   return (
     <details class="config">
@@ -40,6 +57,15 @@ export function ConfigPanel({ config, onChange }: { config: GameConfig; onChange
         {config.power === 'poles' ? `Masten Mk${config.poleTier}` : config.power === 'daisy' ? 'Daisy Chain' : 'ohne Strom'},{' '}
         {config.alternates.length} Alternativrezepte, {config.supplied.length} Zulieferungen
       </summary>
+      <p>
+        <label>
+          Aus Spielstand übernehmen (.sav, liest Stufen und Alternativrezepte; bleibt im Browser){' '}
+          <input type="file" accept=".sav" onChange={(e) => importSave(e.currentTarget.files?.[0])} />
+        </label>
+        <br />
+        <span class="hint">Spielstände liegen unter %LOCALAPPDATA%\FactoryGame\Saved\SaveGames\.</span>
+        {saveStatus && <span class={saveStatus.error ? 'error' : 'ok'}> {saveStatus.text}</span>}
+      </p>
       <div class="inputs">
         <label>
           Größter Blueprint Designer
