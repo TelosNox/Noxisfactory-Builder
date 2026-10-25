@@ -69,8 +69,8 @@ button { font: inherit; margin: 0 4px; padding: 4px 8px; color: var(--fg); backg
 .preview .pipe { stroke: #3a8fb7; stroke-width: 0.9; stroke-opacity: 0.85; }
 .preview .pipe.stub { stroke: var(--accent); }
 .preview .junction { fill: #3a8fb755; stroke: #1f5f7f; }
-.config, .limits { margin: 12px 0; padding: 8px 12px; background: var(--card); border: 1px solid var(--line); border-radius: 6px; }
-.config summary, .limits summary { cursor: pointer; color: var(--muted); }
+.config, .limits, .variants { margin: 12px 0; padding: 8px 12px; background: var(--card); border: 1px solid var(--line); border-radius: 6px; }
+.config summary, .limits summary, .variants summary { cursor: pointer; color: var(--muted); }
 .config .inputs, .limits .inputs { margin-top: 12px; }
 .lists { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; margin-top: 12px; }
 fieldset { border: 1px solid var(--line); border-radius: 4px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
@@ -81,3 +81,5 @@ fieldset { border: 1px solid var(--line); border-radius: 4px; display: flex; fle
 button.small { font-size: 0.8em; padding: 1px 6px; margin: 0 2px; }
 button.primary { background: var(--accent); color: #fff; border-color: var(--accent); padding: 6px 14px; margin: 0; }
 .alternates p { margin: 6px 0; }
+.variants ul { margin: 4px 0 8px; padding-left: 20px; }
+.variants p { margin: 8px 0 0; }

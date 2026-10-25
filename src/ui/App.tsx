@@ -2,9 +2,10 @@
 // on request, the blueprints with fit check, groups and build instructions.
 
 import { Component, type ComponentChildren } from 'preact';
-import { useMemo, useRef, useState } from 'preact/hooks';
+import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
 import { gameData, type ItemId, type RecipeId } from '../planner/gameData';
-import { alternateRecipes, plan, PlanError, recipesFor, standardRecipes, WATER, type Plan } from '../planner/planner';
+import { alternateRecipes, plan, PlanError, standardRecipes, WATER, type Plan, type PlanRequest } from '../planner/planner';
+import { alternatives, optionEffect, type Effect, type RecipeOption } from '../build/alternatives';
 import { LayoutView } from './LayoutView';
 import { FLOORS } from '../generator/floor';
 import { byproducts, type Byproduct } from '../build/byproducts';
@@ -56,29 +57,31 @@ export function App() {
   };
   const supply = supplied ?? config.supplied;
 
+  const request = useMemo(
+    (): PlanRequest => ({
+      item,
+      rate,
+      recipes: [...standardRecipes(), ...config.alternates],
+      lockedMachines: config.lockedMachines,
+      criterion: config.criterion,
+      supplied: supply,
+      forced,
+      water: WATER[water],
+      available,
+      maximize,
+      stepPenalty: config.stepPenalty,
+      machineCost: config.machineCost,
+      powerCost: config.powerCost,
+    }),
+    [item, rate, config, supply, forced, water, available, maximize],
+  );
   const result = useMemo((): { plan: Plan } | { error: string; items?: ItemId[] } => {
     try {
-      return {
-        plan: plan({
-          item,
-          rate,
-          recipes: [...standardRecipes(), ...config.alternates],
-          lockedMachines: config.lockedMachines,
-          criterion: config.criterion,
-          supplied: supply,
-          forced,
-          water: WATER[water],
-          available,
-          maximize,
-          stepPenalty: config.stepPenalty,
-          machineCost: config.machineCost,
-          powerCost: config.powerCost,
-        }),
-      };
+      return { plan: plan(request) };
     } catch (error) {
       return { error: String((error as Error).message), items: error instanceof PlanError ? error.items : undefined };
     }
-  }, [item, rate, config, supply, forced, water, available, maximize]);
+  }, [request]);
   const target = 'plan' in result ? result.plan.rate : rate;
   // The limits stay editable when a plan fails: show the inputs of the last plan.
   const lastPlan = useRef<Plan | undefined>(undefined);
@@ -155,6 +158,7 @@ export function App() {
           <>
             <ChainView
               plan={result.plan}
+              request={request}
               item={item}
               config={config}
               forced={forced}
@@ -280,6 +284,7 @@ class Guard extends Component<{ reset: string; children: ComponentChildren }, { 
 
 interface ChainProps {
   plan: Plan;
+  request: PlanRequest;
   item: ItemId;
   config: GameConfig;
   forced: RecipeId[];
@@ -291,28 +296,11 @@ interface ChainProps {
 }
 
 /** Step 1: recipes, resources, supply, alternates and by-products. */
-function ChainView({ plan, item, config, forced, setForced, supply, setSupply, rate, setRate }: ChainProps) {
+function ChainView({ plan, request, item, config, forced, setForced, supply, setSupply, rate, setRate }: ChainProps) {
   const extras = useMemo(() => byproducts(plan), [plan]);
   const whole = wholeRates(plan, item, rate);
-  const used = plan.steps.map((s) => s.recipe);
   const force = (recipe: RecipeId) => setForced([...forced.filter((f) => mainProduct(f) !== mainProduct(recipe)), recipe]);
   const release = (recipe: RecipeId) => setForced(forced.filter((f) => f !== recipe));
-  const usedAlternates = used.filter((r) => gameData.recipes[r].alternate);
-  const usable = (r: RecipeId) => !config.lockedMachines.includes(gameData.recipes[r].machine);
-  // Unlocked alternates for products made with a standard recipe.
-  const options = used
-    .filter((r) => !gameData.recipes[r].alternate)
-    .map((r) => ({
-      recipe: r,
-      unlocked: recipesFor(mainProduct(r)).filter((a) => a !== r && config.alternates.includes(a) && usable(a)),
-      locked: recipesFor(mainProduct(r)).filter((a) => gameData.recipes[a].alternate && !config.alternates.includes(a)).length,
-      // Unlocked recipes whose machine is not unlocked yet.
-      noMachine: recipesFor(mainProduct(r)).filter(
-        (a) => a !== r && !usable(a) && (!gameData.recipes[a].alternate || config.alternates.includes(a)),
-      ),
-    }))
-    .filter((o) => o.unlocked.length || o.locked || o.noMachine.length);
-
   return (
     <section>
       <h2>1. Produktionskette</h2>
@@ -366,64 +354,18 @@ function ChainView({ plan, item, config, forced, setForced, supply, setSupply, r
         </p>
       )}
 
-      {(usedAlternates.length > 0 || options.length > 0 || forced.length > 0) && (
-        <div class="alternates">
-          {usedAlternates.length > 0 && (
-            <p>
-              Verwendete Alternativrezepte:{' '}
-              {usedAlternates.map((r) => {
-                const standard = recipesFor(mainProduct(r)).find((s) => !gameData.recipes[s].alternate);
-                return (
-                  <span class="chip">
-                    {recipeName(r)}
-                    {forced.includes(r) ? (
-                      <button type="button" class="small" onClick={() => release(r)}>lösen</button>
-                    ) : (
-                      standard && (
-                        <button type="button" class="small" onClick={() => force(standard)}>
-                          Standard erzwingen
-                        </button>
-                      )
-                    )}
-                  </span>
-                );
-              })}
-            </p>
-          )}
-          {options.length > 0 && (
-            <p>
-              Mögliche Alternativen:{' '}
-              {options.map((o) => (
-                <span class="chip">
-                  {itemName(mainProduct(o.recipe))}:
-                  {o.unlocked.map((a) => (
-                    <button type="button" class="small" onClick={() => force(a)}>
-                      {recipeName(a)} erzwingen
-                    </button>
-                  ))}
-                  {o.noMachine.map((a) => (
-                    <span class="hint"> {recipeName(a)} ({machineName(gameData.recipes[a].machine)} nicht freigeschaltet)</span>
-                  ))}
-                  {o.locked > 0 && <span class="hint"> +{o.locked} nicht freigeschaltet</span>}
-                </span>
-              ))}
-            </p>
-          )}
-          {forced.filter((f) => !gameData.recipes[f].alternate).length > 0 && (
-            <p>
-              Erzwungene Standardrezepte:{' '}
-              {forced
-                .filter((f) => !gameData.recipes[f].alternate)
-                .map((f) => (
-                  <span class="chip">
-                    {recipeName(f)}
-                    <button type="button" class="small" onClick={() => release(f)}>lösen</button>
-                  </span>
-                ))}
-            </p>
-          )}
-        </div>
+      {forced.length > 0 && (
+        <p>
+          Erzwungen:{' '}
+          {forced.map((f) => (
+            <span class="chip">
+              {recipeName(f)}
+              <button type="button" class="small" onClick={() => release(f)}>lösen</button>
+            </span>
+          ))}
+        </p>
       )}
+      <Variants plan={plan} request={request} config={config} force={force} />
 
       {extras.length > 0 && (
         <>
@@ -442,6 +384,82 @@ function ChainView({ plan, item, config, forced, setForced, supply, setSupply, r
       )}
       {Object.keys(plan.surplus).length > 0 && <p class="warn">Überschuss: {rates(plan.surplus)}</p>}
     </section>
+  );
+}
+
+const signed = (n: number, unit = '') => `${n > 0 ? '+' : '−'}${fmt(Math.abs(n))}${unit}`;
+
+function effectText(e: Effect): string {
+  const parts = [
+    ...(Math.abs(e.machines) > 0.005 ? [`${signed(e.machines)} Maschinen`] : []),
+    ...(e.steps !== 0 ? [`${signed(e.steps)} ${Math.abs(e.steps) === 1 ? 'Schritt' : 'Schritte'}`] : []),
+    ...(Math.abs(e.powerMW) > 0.05 ? [`${signed(e.powerMW, ' MW')}`] : []),
+    ...Object.entries(e.inputs).map(([id, d]) => `${signed(d)} ${itemName(id)}/min`),
+  ];
+  return parts.join(', ') || 'gleichwertig';
+}
+
+/**
+ * Other recipes per product with a summary of what forcing each would change.
+ * Each variant is a solve of its own (up to 100 ms with the step penalty), so
+ * they run one after the other and the page stays usable.
+ */
+function Variants({ plan, request, config, force }: { plan: Plan; request: PlanRequest; config: GameConfig; force: (r: RecipeId) => void }) {
+  // With "so viel wie verfügbar" the variants are compared at the same rate.
+  const fixed = useMemo(() => ({ ...request, maximize: false, rate: plan.rate }), [request, plan]);
+  const products = useMemo(() => alternatives(fixed, plan, new Set(config.alternates)), [fixed, plan, config.alternates]);
+  const [effects, setEffects] = useState<Record<RecipeId, Pick<RecipeOption, 'effect' | 'error'>>>({});
+  useEffect(() => {
+    setEffects({});
+    const queue = products.flatMap((p) => p.options.map((o) => o.recipe));
+    let timer: ReturnType<typeof setTimeout>;
+    const next = () => {
+      const recipe = queue.shift();
+      if (!recipe) return;
+      const result = optionEffect(fixed, plan, recipe);
+      setEffects((e) => ({ ...e, [recipe]: result }));
+      timer = setTimeout(next, 0);
+    };
+    timer = setTimeout(next, 0);
+    return () => clearTimeout(timer);
+  }, [products]);
+  if (products.length === 0) return null;
+  const count = products.reduce((n, p) => n + p.options.length, 0);
+  return (
+    <details class="variants" open>
+      <summary>Rezeptvarianten ({count}): was sich ändert, wenn man sie erzwingt</summary>
+      {products.map((p) => (
+        <div>
+          <p>
+            <strong>{itemName(p.item)}</strong>
+            <span class="hint"> jetzt: {p.current.map(recipeName).join(', ')}</span>
+          </p>
+          <ul>
+            {p.options.map((o) => {
+              const r = effects[o.recipe];
+              return (
+                <li>
+                  {recipeName(o.recipe)} <span class="hint">({machineName(gameData.recipes[o.recipe].machine)})</span>
+                  {gameData.recipes[o.recipe].alternate && <span class="tag">Alternative</span>}
+                  {o.status === 'locked' && <span class="tag">nicht freigeschaltet</span>}
+                  {o.status === 'noMachine' && <span class="tag">{machineName(gameData.recipes[o.recipe].machine)} fehlt</span>}
+                  {': '}
+                  {!r ? <span class="hint">wird gerechnet …</span> : r.error ? <span class="hint">geht nicht ({r.error})</span> : effectText(r.effect!)}
+                  {o.status === 'usable' && r?.effect && (
+                    <>
+                      {' '}
+                      <button type="button" class="small" onClick={() => force(o.recipe)}>
+                        erzwingen
+                      </button>
+                    </>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      ))}
+    </details>
   );
 }
 
