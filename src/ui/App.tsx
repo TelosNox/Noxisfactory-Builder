@@ -305,9 +305,13 @@ function ChainView({ plan, item, config, forced, setForced, supply, setSupply, r
     .map((r) => ({
       recipe: r,
       unlocked: recipesFor(mainProduct(r)).filter((a) => a !== r && config.alternates.includes(a) && usable(a)),
-      locked: recipesFor(mainProduct(r)).filter((a) => gameData.recipes[a].alternate && (!config.alternates.includes(a) || !usable(a))).length,
+      locked: recipesFor(mainProduct(r)).filter((a) => gameData.recipes[a].alternate && !config.alternates.includes(a)).length,
+      // Unlocked recipes whose machine is not unlocked yet.
+      noMachine: recipesFor(mainProduct(r)).filter(
+        (a) => a !== r && !usable(a) && (!gameData.recipes[a].alternate || config.alternates.includes(a)),
+      ),
     }))
-    .filter((o) => o.unlocked.length || o.locked);
+    .filter((o) => o.unlocked.length || o.locked || o.noMachine.length);
 
   return (
     <section>
@@ -396,6 +400,9 @@ function ChainView({ plan, item, config, forced, setForced, supply, setSupply, r
                     <button type="button" class="small" onClick={() => force(a)}>
                       {recipeName(a)} erzwingen
                     </button>
+                  ))}
+                  {o.noMachine.map((a) => (
+                    <span class="hint"> {recipeName(a)} ({machineName(gameData.recipes[a].machine)} nicht freigeschaltet)</span>
                   ))}
                   {o.locked > 0 && <span class="hint"> +{o.locked} nicht freigeschaltet</span>}
                 </span>
