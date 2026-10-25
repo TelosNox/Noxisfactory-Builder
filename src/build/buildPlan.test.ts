@@ -19,7 +19,7 @@ describe('build plan', () => {
 
   it('marks recipes the generator cannot build', () => {
     // Quantum Encoder: belt inputs not in one line for lifts
-    const b = buildPlan({ steps: [{ recipe: 'Recipe_SuperpositionOscillator_C', machines: 1 }], resources: {}, supplied: {}, surplus: {} }, { designer: 6, beltTier: 5, pipeTier: 2 });
+    const b = buildPlan({ rate: 1, steps: [{ recipe: 'Recipe_SuperpositionOscillator_C', machines: 1 }], resources: {}, supplied: {}, surplus: {} }, { designer: 6, beltTier: 5, pipeTier: 2 });
     expect(b.groups.find((g) => g.recipe === 'Recipe_SuperpositionOscillator_C')!.unsupported).toBeTruthy();
   });
 });
