@@ -6,7 +6,7 @@ Eine Seite (`src/ui/App.tsx`, Preact), alles läuft im Browser. Die Rechnung lie
 
 Einmal festgelegt und jederzeit änderbar (`src/ui/config.ts`, `ConfigPanel.tsx`), gespeichert im `localStorage` des Browsers: größter Designer, höchste Band-, Rohr- und Maststufe, Strom (Masten, Daisy Chain, keiner), freigeschaltete Alternativrezepte, Items, die immer zugeliefert werden (Standard: Ingots), und das Kriterium für das optimale Rezept, dazu Aufschläge je Maschine und MW und wie stark kleine Nebenketten vermieden werden.
 
-Spielstand finden (`src/ui/saveFolder.ts`, `SavePicker.tsx`): Man wählt den Ordner `SaveGames` (unter `%LOCALAPPDATA%\FactoryGame\Saved`) per Ordnerauswahl (`<input webkitdirectory>`, alle Browser). Die Seite sucht darin die `.sav`-Dateien (ohne `ServerManager`, ohne `blueprints`), neueste zuerst, mit Spielstand-Name ohne `_autosave_n`. Der Browser fragt, ob er die Dateien „hochladen“ darf; sie werden nur im Browser gelesen. Der Ordner muss bei jedem Besuch neu gewählt werden. Die File System Access API (`showDirectoryPicker`) könnte sich den Ordner merken, aber Chrome lehnt jeden Ordner unter `AppData\Local` als Systemordner ab (getestet, Nutzer).
+Kein Ordnerzugriff auf den Spielordner (getestet, Nutzer, Chrome): Chrome lehnt jeden Ordner unter `AppData\Local` als Systemordner ab, über die File System Access API (`showDirectoryPicker`), über die Ordnerauswahl `<input webkitdirectory>` und auch über eine Junction außerhalb von AppData. Die Seite kann Spielstände deshalb nicht selbst suchen und Blueprints nicht selbst in `SaveGames\blueprints` schreiben. Einzelne Dateien gehen über den normalen Datei-Dialog.
 
 Aus Spielstand übernehmen (`src/ui/savegame.ts`): Eine `.sav`-Datei wird im Browser gelesen (Web Worker, `saveWorker.ts`, Parser `@etothepii/satisfactory-file-parser`), nichts wird hochgeladen. Der Rezept-Manager im Spielstand (`FGRecipeManager`, ältere Stände `BP_RecipeManager_C`, Eigenschaft `mAvailableRecipes`) listet alle freigeschalteten Rezepte, Baurezepte eingeschlossen. Daraus: Designer (`Recipe_BlueprintDesigner_C`, `_Mk2_C`, `_Mk3_C`), Band (`Recipe_ConveyorBeltMk1_C` … `Mk6`), Rohr (`Recipe_PipelineMK2_C`), Masten (`Recipe_PowerPoleMk1_C` … `Mk3`) und die Alternativrezepte. Strom, Zulieferungen und Kriterium bleiben, wie sie sind. Idee nach SatisfactoryTools (MIT), eigene Umsetzung.
 
@@ -39,7 +39,7 @@ Bilden die Schritte eine gerade Linie (jeder Schritt verarbeitet nur das Produkt
 - Verzweigte Ketten in einem Bauplan (mehrere Zutaten, z. B. Reinforced Iron Plate).
 - Ketten-Modul im Spiel testen.
 - Verbindungen zwischen den Gruppen (welcher Ausgang speist welchen Strang).
-- Blueprint-Download: braucht Vorlagen aus Spieler-Blueprints, die nicht im Repo liegen.
+- Blueprint-Download: braucht Vorlagen aus Spieler-Blueprints, die nicht im Repo liegen. Weg ins Spiel: normaler Download (`.sbp` und `.sbpcfg`). Mit Chrome-Einstellung „Vor dem Download nach dem Speicherort fragen“ wählt man einmal `SaveGames\blueprints\<Spielstand>`; Chrome öffnet den Dialog danach dort. Direktes Schreiben scheitert an der AppData-Sperre (oben).
 
 ## Vorschau
 
