@@ -16,14 +16,22 @@ describe('save game progress', () => {
       'Recipe_PipelineMK2_C',
       'Recipe_PowerPoleMk2_C',
       'Recipe_BlueprintDesigner_C',
+      'Recipe_SmelterBasicMk1_C',
+      'Recipe_ConstructorMk1_C',
+      'Recipe_AssemblerMk1_C',
+      'Recipe_SmelterMk1_C',
       'Recipe_Alternate_PureIronIngot_C',
       'Recipe_IronPlate_C',
     ]);
-    expect(p).toEqual({ designer: 4, beltTier: 3, pipeTier: 2, poleTier: 2, alternates: ['Recipe_Alternate_PureIronIngot_C'] });
+    expect(p).toMatchObject({ designer: 4, beltTier: 3, pipeTier: 2, poleTier: 2, alternates: ['Recipe_Alternate_PureIronIngot_C'] });
+    // Recipe_SmelterMk1_C builds the Foundry, the smelter is Recipe_SmelterBasicMk1_C.
+    expect(p.lockedMachines).not.toContain('Build_FoundryMk1_C');
+    expect(p.lockedMachines).not.toContain('Build_SmelterMk1_C');
+    expect(p.lockedMachines).toContain('Build_Blender_C');
   });
 
   it('falls back to the lowest tiers without build recipes', () => {
-    expect(progressFromRecipes([])).toEqual({ designer: 4, beltTier: 1, pipeTier: 1, poleTier: 1, alternates: [] });
+    expect(progressFromRecipes([])).toMatchObject({ designer: 4, beltTier: 1, pipeTier: 1, poleTier: 1, alternates: [] });
   });
 
   it('reads the recipe manager of current and older saves', () => {

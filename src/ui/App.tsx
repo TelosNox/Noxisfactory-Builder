@@ -63,6 +63,7 @@ export function App() {
           item,
           rate,
           recipes: [...standardRecipes(), ...config.alternates],
+          lockedMachines: config.lockedMachines,
           criterion: config.criterion,
           supplied: supply,
           forced,
@@ -297,13 +298,14 @@ function ChainView({ plan, item, config, forced, setForced, supply, setSupply, r
   const force = (recipe: RecipeId) => setForced([...forced.filter((f) => mainProduct(f) !== mainProduct(recipe)), recipe]);
   const release = (recipe: RecipeId) => setForced(forced.filter((f) => f !== recipe));
   const usedAlternates = used.filter((r) => gameData.recipes[r].alternate);
+  const usable = (r: RecipeId) => !config.lockedMachines.includes(gameData.recipes[r].machine);
   // Unlocked alternates for products made with a standard recipe.
   const options = used
     .filter((r) => !gameData.recipes[r].alternate)
     .map((r) => ({
       recipe: r,
-      unlocked: recipesFor(mainProduct(r)).filter((a) => a !== r && config.alternates.includes(a)),
-      locked: recipesFor(mainProduct(r)).filter((a) => gameData.recipes[a].alternate && !config.alternates.includes(a)).length,
+      unlocked: recipesFor(mainProduct(r)).filter((a) => a !== r && config.alternates.includes(a) && usable(a)),
+      locked: recipesFor(mainProduct(r)).filter((a) => gameData.recipes[a].alternate && (!config.alternates.includes(a) || !usable(a))).length,
     }))
     .filter((o) => o.unlocked.length || o.locked);
 

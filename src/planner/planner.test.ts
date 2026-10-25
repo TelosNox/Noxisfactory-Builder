@@ -106,3 +106,12 @@ describe('extra costs', () => {
     expect(count(costly)).toBeLessThan(count(plain));
   });
 });
+
+describe('locked machines', () => {
+  it('leaves out recipes of machines not unlocked', () => {
+    const recipes = [...standardRecipes(), ...alternateRecipes()];
+    const p = plan({ item: 'Desc_LiquidFuel_C', rate: 60, recipes, lockedMachines: ['Build_Blender_C'] });
+    expect(p.steps.some((s) => s.recipe === 'Recipe_Alternate_DilutedFuel_C')).toBe(false);
+    expect(p.steps.length).toBeGreaterThan(0);
+  });
+});

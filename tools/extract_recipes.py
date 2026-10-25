@@ -51,8 +51,23 @@ def load(path):
     raise ValueError(f"cannot decode {path}")
 
 
+# Class names that name a different product than the game shows: the packaged
+# item carries the plain name, the fluid "Liquid". Without this, "Fuel" would
+# be the canister and the planner looks wrong (it delivers packaged fuel).
+NAMES = {
+    "Desc_Fuel_C": "Packaged Fuel",
+    "Desc_LiquidFuel_C": "Fuel",
+    "Desc_TurboFuel_C": "Packaged Turbo Fuel",
+    "Desc_LiquidTurboFuel_C": "Turbo Fuel",
+    "Recipe_Fuel_C": "Packaged Fuel",
+    "Recipe_LiquidFuel_C": "Fuel",
+}
+
+
 def readable(class_name):
     """Desc_IronPlateReinforced_C -> Iron Plate Reinforced."""
+    if class_name in NAMES:
+        return NAMES[class_name]
     core = re.sub(r"^(Desc|Build|Recipe|BP)_|_C$", "", class_name)
     core = core.replace("Alternate_", "").replace("_", " ")
     return re.sub(r"(?<=[a-z])(?=[A-Z0-9])", " ", core).strip()

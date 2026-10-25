@@ -19,6 +19,11 @@ const SUPPLIABLE = [...new Set(Object.values(gameData.recipes).flatMap((r) => Ob
   .filter((id) => gameData.items[id] && !gameData.items[id].resource)
   .sort((a, b) => itemName(a).localeCompare(itemName(b)));
 
+/** Production machines the player may lack; the converter is never planned. */
+const MACHINES = Object.keys(gameData.machines)
+  .filter((m) => m !== 'Build_Converter_C')
+  .sort((a, b) => gameData.machines[a].name.localeCompare(gameData.machines[b].name));
+
 export const CRITERIA: { value: Criterion; label: string }[] = [
   { value: 'scarcity', label: 'Knappe Rohstoffe schonen' },
   { value: 'resources', label: 'Wenig Rohstoffe' },
@@ -50,7 +55,7 @@ export function ConfigPanel({ config, onChange }: { config: GameConfig; onChange
       const progress = progressFromRecipes(unlocks.recipes);
       onChange({ ...config, ...progress });
       setSaveStatus({
-        text: `Übernommen aus „${unlocks.sessionName ?? file.name}“: Designer Mk${progress.designer - 3}, Band Mk${progress.beltTier}, Rohr Mk${progress.pipeTier}, Masten Mk${progress.poleTier}, ${progress.alternates.length} Alternativrezepte.`,
+        text: `Übernommen aus „${unlocks.sessionName ?? file.name}“: Designer Mk${progress.designer - 3}, Band Mk${progress.beltTier}, Rohr Mk${progress.pipeTier}, Masten Mk${progress.poleTier}, ${progress.alternates.length} Alternativrezepte${progress.lockedMachines.length ? `, noch nicht freigeschaltet: ${progress.lockedMachines.map((m) => gameData.machines[m].name).join(', ')}` : ''}.`,
       });
     } catch (error) {
       setSaveStatus({ text: String((error as Error).message), error: true });
@@ -143,6 +148,20 @@ export function ConfigPanel({ config, onChange }: { config: GameConfig; onChange
           <input type="number" min="0" step="any" value={config.powerCost} onInput={(e) => set('powerCost', Math.max(0, +e.currentTarget.value || 0))} />
         </label>
       </div>
+
+      <fieldset>
+        <legend>Freigeschaltete Maschinen</legend>
+        {MACHINES.map((m) => (
+          <label class="inline">
+            <input
+              type="checkbox"
+              checked={!config.lockedMachines.includes(m)}
+              onChange={(e) => set('lockedMachines', toggle(config.lockedMachines, m, !e.currentTarget.checked))}
+            />
+            {gameData.machines[m].name}
+          </label>
+        ))}
+      </fieldset>
 
       <div class="lists">
         <fieldset>
