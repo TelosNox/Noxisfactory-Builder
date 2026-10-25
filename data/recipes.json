@@ -242,7 +242,7 @@
    "resource": false
   },
   "Desc_Fuel_C": {
-   "name": "Fuel",
+   "name": "Packaged Fuel",
    "form": "solid",
    "resource": false
   },
@@ -347,7 +347,7 @@
    "resource": false
   },
   "Desc_LiquidFuel_C": {
-   "name": "Liquid Fuel",
+   "name": "Fuel",
    "form": "liquid",
    "resource": false
   },
@@ -357,7 +357,7 @@
    "resource": true
   },
   "Desc_LiquidTurboFuel_C": {
-   "name": "Liquid Turbo Fuel",
+   "name": "Turbo Fuel",
    "form": "liquid",
    "resource": false
   },
@@ -772,7 +772,7 @@
    "resource": false
   },
   "Desc_TurboFuel_C": {
-   "name": "Turbo Fuel",
+   "name": "Packaged Turbo Fuel",
    "form": "solid",
    "resource": false
   },
@@ -3171,7 +3171,7 @@
    }
   },
   "Recipe_Fuel_C": {
-   "name": "Fuel",
+   "name": "Packaged Fuel",
    "alternate": false,
    "machine": "Build_Packager_C",
    "durationS": 3.0,
@@ -3435,7 +3435,7 @@
    }
   },
   "Recipe_LiquidFuel_C": {
-   "name": "Liquid Fuel",
+   "name": "Fuel",
    "alternate": false,
    "machine": "Build_OilRefinery_C",
    "durationS": 6.0,

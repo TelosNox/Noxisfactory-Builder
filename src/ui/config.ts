@@ -2,7 +2,7 @@
 // game goes on (docs/ui.md, Spielstand). Kept in the browser's localStorage;
 // without storage the defaults apply.
 
-import type { ItemId, RecipeId } from '../planner/gameData';
+import type { ItemId, MachineId, RecipeId } from '../planner/gameData';
 import type { Criterion } from '../planner/planner';
 
 export interface GameConfig {
@@ -14,6 +14,8 @@ export interface GameConfig {
   poleTier: number;
   /** Unlocked alternate recipes. */
   alternates: RecipeId[];
+  /** Production machines not unlocked yet. */
+  lockedMachines: MachineId[];
   /** Items always delivered from outside, unless they are the product itself. */
   supplied: ItemId[];
   criterion: Criterion;
@@ -40,6 +42,7 @@ export const DEFAULT_CONFIG: GameConfig = {
   power: 'poles',
   poleTier: 1,
   alternates: [],
+  lockedMachines: [],
   supplied: DEFAULT_SUPPLIED,
   criterion: 'scarcity',
   stepPenalty: 0.01,

@@ -4,7 +4,7 @@ Wählt Rezepte und Maschinenzahlen für ein Produktionsziel. Code: `src/planner/
 
 ## Daten
 
-`tools/extract_recipes.py` liest `Docs.json` (CommunityResources) und schreibt nur die Fakten, die der Planer braucht: Mengen je Zyklus, Dauer, Maschine, Leistung. Namen werden aus den Klassennamen abgeleitet, Spieltexte werden nicht übernommen. Flüssigkeiten in m³ (das Spiel speichert Liter).
+`tools/extract_recipes.py` liest `Docs.json` (CommunityResources) und schreibt nur die Fakten, die der Planer braucht: Mengen je Zyklus, Dauer, Maschine, Leistung. Namen werden aus den Klassennamen abgeleitet, Spieltexte werden nicht übernommen. Ausnahme `NAMES` im Skript, wo der Klassenname ein anderes Produkt nennt als das Spiel: `Desc_Fuel_C` ist Packaged Fuel, `Desc_LiquidFuel_C` ist Fuel (ebenso Turbo Fuel). Flüssigkeiten in m³ (das Spiel speichert Liter).
 
 Berücksichtigt sind Rezepte, die in Produktionsmaschinen laufen (Constructor bis Quantum Encoder), keine Werkbank- oder Baurezepte.
 
@@ -45,6 +45,8 @@ Je Bauort lässt sich für Rohstoffe und Zulieferungen eine Höchstmenge pro Min
 - **So viel wie verfügbar** (`maximize`): Erst die höchste Menge des Ziels aus den Grenzen bestimmen, dann für diese Menge (minimal darunter, gegen Rundung) den günstigsten Plan nach Kriterium. Ist das Ziel aus unbegrenzten Zuflüssen beliebig herstellbar, nennt die Meldung diese Zuflüsse (zweite Rechnung mit riesiger Obergrenze für die unbegrenzten); man gibt dafür eine Menge an, notfalls 0.
 
 ## Alternativrezepte und erzwungene Rezepte
+
+- Maschinen, die noch nicht freigeschaltet sind (Spielstand), fallen mit all ihren Rezepten weg; erzwungene Rezepte bleiben.
 
 - Freigeschaltete Alternativrezepte stehen im Spielstand; der Planer darf sie zusätzlich zu den Standardrezepten nutzen und nimmt sie, wenn sie nach dem Kriterium günstiger sind.
 - Ein erzwungenes Rezept ist das einzige für sein Hauptprodukt (Alternative oder Standard). Damit lassen sich andere Varianten gezielt ausprobieren.

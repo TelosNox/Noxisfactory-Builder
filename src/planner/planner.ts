@@ -18,7 +18,7 @@
 // A forced recipe is the only one allowed for its main product.
 
 import { solve, type Constraint, type Solution } from 'yalps';
-import { gameData, ratePerMinute, type GameData, type ItemId, type RecipeId } from './gameData';
+import { gameData, ratePerMinute, type GameData, type ItemId, type MachineId, type RecipeId } from './gameData';
 
 export interface PlanRequest {
   /** Target item and rate in items/min (fluids in m³/min). Ignored with `maximize`. */
@@ -32,6 +32,8 @@ export interface PlanRequest {
   supplied?: ItemId[];
   /** Recipes that must make their main product (alternates or standard ones). */
   forced?: RecipeId[];
+  /** Machines not unlocked yet: their recipes are left out, except forced ones. */
+  lockedMachines?: MachineId[];
   /**
    * Cost of water relative to iron ore. The map has water without limit, but
    * placing extractors depends on the site. Default 0.01: practically free.
@@ -141,8 +143,11 @@ function buildModel(request: PlanRequest, data: GameData, rate: number) {
   // A forced recipe replaces all others for its main product.
   const forcedFor = new Map(forced.map((id) => [mainProduct(data, id), id]));
   const supplied = new Set((request.supplied ?? []).filter((id) => id !== request.item && data.items[id]));
+  const locked = new Set(request.lockedMachines ?? []);
   // Supplied items come from outside only, also when their amount is limited.
-  const recipeIds = [...new Set([...(request.recipes ?? standardRecipes(data)), ...forced])].filter((id) => {
+  const recipeIds = [
+    ...new Set([...(request.recipes ?? standardRecipes(data)).filter((id) => !locked.has(data.recipes[id]?.machine)), ...forced]),
+  ].filter((id) => {
     const owner = forcedFor.get(mainProduct(data, id));
     return (!owner || owner === id) && !supplied.has(mainProduct(data, id));
   });

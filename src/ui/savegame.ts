@@ -3,10 +3,10 @@
 // Parsing runs in a worker (saveWorker.ts); this part maps class names only.
 
 import { alternateRecipes } from '../planner/planner';
-import type { RecipeId } from '../planner/gameData';
+import { gameData, type RecipeId } from '../planner/gameData';
 import type { GameConfig } from './config';
 
-export type SaveProgress = Pick<GameConfig, 'designer' | 'beltTier' | 'pipeTier' | 'poleTier' | 'alternates'>;
+export type SaveProgress = Pick<GameConfig, 'designer' | 'beltTier' | 'pipeTier' | 'poleTier' | 'alternates' | 'lockedMachines'>;
 
 export interface SaveUnlocks {
   sessionName: string | null;
@@ -28,6 +28,13 @@ export function progressFromRecipes(unlocked: string[]): SaveProgress {
     pipeTier: highest(recipes, [[1, 'Recipe_Pipeline_C'], [2, 'Recipe_PipelineMK2_C']], 1),
     poleTier: highest(recipes, [1, 2, 3].map((t) => [t, `Recipe_PowerPoleMk${t}_C`]), 1),
     alternates: unlocked.filter((id): id is RecipeId => alternates.has(id)).sort(),
+    // By the building's build recipe (names differ: Recipe_SmelterMk1_C builds the Foundry).
+    lockedMachines: Object.keys(gameData.machines)
+      .filter((m) => {
+        const path = gameData.buildings[m]?.recipe;
+        return path && !recipes.has(path.slice(path.lastIndexOf('.') + 1));
+      })
+      .sort(),
   };
 }
 
