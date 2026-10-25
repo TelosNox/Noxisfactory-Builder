@@ -6,6 +6,7 @@ import { alternateRecipes, type Criterion } from '../planner/planner';
 import { machinesPerPole } from '../generator/power';
 import { DEFAULT_SUPPLIED, type GameConfig } from './config';
 import { progressFromRecipes, readSave } from './savegame';
+import { SavePicker } from './SavePicker';
 
 const itemName = (id: ItemId) => gameData.items[id]?.name ?? id;
 const mainProduct = (recipe: string) => Object.keys(gameData.recipes[recipe].out)[0];
@@ -64,15 +65,8 @@ export function ConfigPanel({ config, onChange }: { config: GameConfig; onChange
         {config.power === 'poles' ? `Masten Mk${config.poleTier}` : config.power === 'daisy' ? 'Daisy Chain' : 'ohne Strom'},{' '}
         {config.alternates.length} Alternativrezepte, {config.supplied.length} Zulieferungen
       </summary>
-      <p>
-        <label>
-          Aus Spielstand übernehmen (.sav, liest Stufen und Alternativrezepte; bleibt im Browser){' '}
-          <input type="file" accept=".sav" onChange={(e) => importSave(e.currentTarget.files?.[0])} />
-        </label>
-        <br />
-        <span class="hint">Spielstände liegen unter %LOCALAPPDATA%\FactoryGame\Saved\SaveGames\.</span>
-        {saveStatus && <span class={saveStatus.error ? 'error' : 'ok'}> {saveStatus.text}</span>}
-      </p>
+      <SavePicker onFile={importSave} />
+      {saveStatus && <p class={saveStatus.error ? 'error' : 'ok'}>{saveStatus.text}</p>}
       <div class="inputs">
         <label>
           Größter Blueprint Designer
